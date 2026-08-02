@@ -11,7 +11,7 @@
 
 
 
-
+    a
          __________   __________   __________   __________   ________
         /  _______/  /  ____   /  /  _______/  /  _______/  /  ____  \
        /  / _____   /  /   /  /  /  /______   /  /______   /  /___/  /
@@ -604,7 +604,7 @@ expressions as described in section 11.
 
 
 .ST 7.1  Functions
---------------
+
 If t1 and t2 are types then t1 -> t2 is the type of a  function  which,
 given an argument of type t1 produces a result of type t2.  A  function
 of type t1 -> t2 is said to have argument type t1 and result type t2.
@@ -641,7 +641,7 @@ evaluates to the integer 9 as expected.
 
 
 .ST 7.2  Booleans
--------------
+
 Represented by the type "Bool", there are two boolean values written as
 "True" and "False".   The  standard  prelude  includes  several  useful
 functions for manipulating boolean values:
@@ -673,7 +673,7 @@ type.
 
 
 .ST 7.3  Integers
--------------
+
 Represented by the type "Int", the integer type includes both  positive
 and negative integers such as -273, 0  and  383.   Like  many  computer
 systems, the range of integer values that can be used is restricted and
@@ -713,7 +713,7 @@ identities:
 
 
 .ST 7.4  Floating point numbers
----------------------------
+
 Represented by the type "Float", elements of this type can be  used  to
 represent fractional values  as  well  as  very  large  or  very  small
 quantities.  Such values are however usually only accurate to  a  fixed
@@ -730,7 +730,7 @@ Gofer].
 
 
 .ST 7.5  Characters
----------------
+
 Represented by  the  type  "Char",  elements  of  this  type  represent
 individual characters such as those entered at a  keyboard.   Character
 values  are  written  as  single  characters  enclosed  by   apostrophe
@@ -789,7 +789,7 @@ or from an ASCII value to the corresponding character:
 
 
 .ST 7.6  Lists
-----------
+
 If a is a type then [a] is the type whose elements are lists of  values
 of type a.  There are several ways of writing list expressions:
 
@@ -853,7 +853,7 @@ would be if different names had been used such as (a:b).]
 
 
 .ST 7.7  Strings
-------------
+
 A string is treated as a list of characters  and  the  type  String  is
 simply an abbreviation for the type [Char].   Strings  are  written  as
 sequences of characters enclosed between  speech  marks.   All  of  the
@@ -935,7 +935,7 @@ strings:
 
 
 .ST 7.8  Tuples and the unit type
------------------------------
+
 If t1, t2, ..., tn are types and n>=2, then there is a type of n-tuples
 written (t1, t2, ..., tn) whose elements are also written in  the  form
 (x1, x2, ..., xn) where the expressions x1, x2, ..., xn have types  t1,
@@ -958,7 +958,7 @@ find a use for it in practical programs.
 .ST 8. ERRORS
 
 .ST 8.1  Errors detected on input
------------------------------
+
 After an expression has been entered, but before any attempt is made to
 evaluate it, Gofer carries out a number of checks to make sure that the
 expression that you typed does not contain any errors.  Here  are  some
@@ -1005,7 +1005,7 @@ examples of the kind of problem that might occur:
 
 
 .ST 8.2  Errors during evaluation
------------------------------
+
 If no errors are detected in an input expression, Gofer then begins  to
 evaluate that expression.  Despite all of the checks that  are  carried
 out before the evaluation begins, it is still possible for an error  to
@@ -1043,7 +1043,7 @@ produced when an error occurs:
 .ST 9. MORE ABOUT VALUE DECLARATIONS
 
 .ST 9.1  Simple pattern matching
-----------------------------
+
 Although the Gofer standard prelude includes many useful functions, you
 will usually need to define a collection of new functions for  specific
 problems and calculations.  The declaration of a function  "f"  usually
@@ -1178,7 +1178,7 @@ using the notation of guards introduced in the next section:
 
 
 .ST 9.2  Guarded equations
-----------------------
+
 Each of the equations in a function  definition  may  contain  `guards'
 which require  certain conditions  on  the  values  of  the  function's
 arguments to be met.  As an example, here is a function which uses  the
@@ -1220,7 +1220,7 @@ Translation between the two notations is relatively straightforward.]
 
 
 .ST 9.3  Local definitions
-----------------------
+
 Function definitions may include local definitions for variables  which
 can be used both in guards and on the right hand side of  an  equation.
 Consider the following function which calculates the number of distinct
@@ -1252,7 +1252,7 @@ For example:
 
 
 .ST 9.4  Recursion with integers
-----------------------------
+
 Recursion  is  a  particularly  important  and  powerful  technique  in
 functional programming which is useful for defining functions involving
 a wide range of datatypes.  In this section, we describe one particular
@@ -1338,7 +1338,7 @@ potentially non-terminating computation.]
 
 
 .ST 9.5  Recursion with lists
--------------------------
+
 The same kind of  technique  that  can  be  used  to  define  recursive
 functions with integers can also be used to define recursive  functions
 on lists.  As an example, suppose that we wish to define a function  to
@@ -1384,7 +1384,7 @@ map introduced in earlier sections:
 
 
 .ST 9.6  Lazy evaluation
---------------------
+
 Gofer evaluates expressions using a technique  sometimes  described  as
 `lazy evaluation' which means that:
 
@@ -1504,7 +1504,7 @@ sorted in order to obtain the last element.
 
 
 .ST 9.7  Infinite data structures
------------------------------
+
 One particular benefit of lazy evaluation is that it makes it  possible
 for functions  in  Gofer  to  manipulate  `infinite'  data  structures.
 Obviously we cannot hope either to   construct  or  store  an  infinite
@@ -1583,7 +1583,7 @@ For example:
     ?
 
 .ST 9.8  Polymorphism
------------------
+
 Given the definition of "product" in section 9.5, it  is  easy  to  see
 that product takes a single argument which is a list  of  integers  and
 returns a single integer value -- the product of the  elements  of  the
@@ -1643,7 +1643,7 @@ string:
 
 
 .ST 9.9  Higher-order functions
----------------------------
+
 In Gofer, function values are treated in much the same way as any other
 kind of value; in particular, they can be used both  as  arguments  to,
 and results of other functions.
@@ -1698,7 +1698,7 @@ calculate the sum of these individual lengths:
 
 
 .ST 9.10 Variable declarations
---------------------------
+
 A variable declaration  is  a  special  form  of  function  definition,
 almost always consisting of a single equation of the form:
 
@@ -1745,7 +1745,7 @@ other files instead.
 
 
 .ST 9.11 Pattern bindings and irrefutable patterns
-----------------------------------------------
+
 Another useful way of defining variables uses `pattern bindings'  which
 are equations of the form:
 
@@ -1877,7 +1877,7 @@ and will not behave as you might have intended:
 
 
 .ST 9.12 Type declarations
------------------------
+
 The type system used in Gofer is sufficiently powerful to enable  Gofer
 to determine the type of any function without the need to  declare  the
 types of its arguments and the return  value  as  in  some  programming
@@ -1943,7 +1943,7 @@ expressions and function definitions to be  written  more  clearly  and
 concisely than the equivalent expressions without these notations.
 
 .ST 10.1 Arithmetic sequences
--------------------------
+
 A number of useful  lists  can  be  generated  using  the  notation  of
 arithmetic  sequences  (so  named  because  of  their   similarity   to
 arithmetic progressions in mathematics).  The following list summarises
@@ -2036,7 +2036,7 @@ The advantages of the functional notation in this case are clear:
 
 
 .ST 10.2 List comprehensions
--------------------------
+
 List comprehensions provide another very powerful and compact  notation
 for describing certain kinds of list expression.  The basic form  of  a
 list comprehension is:
@@ -2180,7 +2180,7 @@ practice:
 
 
 .ST 10.3 Lambda expressions
-------------------------
+
 In addition to  named  function  definitions,  Gofer  also  allows  the
 definition and use of unnamed functions using a `lambda expression'  of
 the form:
@@ -2230,7 +2230,7 @@ approach to I/O described in section 12.
 
 
 .ST 10.4 Case expressions
----------------------
+
 A case expression can be used to evaluate an expression and,  depending
 on the result, return one of a number of  possible  values.   As  such,
 case statements are a  straightforward  generalisation  of  conditional
@@ -2308,7 +2308,7 @@ Jones book [2] for more details of this.
 
 
 .ST 10.5 Operator sections
-----------------------
+
 As we have seen, most functions in Gofer taking more than one  argument
 are treated as a function of a  single  argument,  whose  result  is  a
 function which can then be applied to the  remaining  arguments.   Thus
@@ -2351,7 +2351,7 @@ where "subtract" is the function defined in the standard prelude using:
 
 
 .ST 10.6 Explicitly typed expressions
-----------------------------------
+
 As described in section 9.12, it is often useful to be able to  declare
 the type of a variable defined in a function or pattern  binding.   For
 much the same reasons, Gofer allows expressions of the form:
@@ -2400,7 +2400,7 @@ overloaded functions and values as described in section 14.
 .ST 11. USER-DEFINED DATATYPES AND TYPE SYNONYMS
 
 .ST 11.1 Datatype definitions
--------------------------
+
 In addition to the  wide  range  of  built-in  datatypes  described  in
 section 7, Gofer also allows the  definition  of  new  datatypes  using
 declarations of the form:
@@ -2509,7 +2509,7 @@ Using the binary tree above as an example:
 
 
 .ST 11.2 Type synonyms
-------------------
+
 Type synonyms are used to provide  convenient  abbreviations  for  type
 expressions.  A type synonym is introduced  by  a  declaration  of  the
 form:
@@ -2576,7 +2576,7 @@ it allows  the  use  of  such  programs  without  loss  of  referential
 transparency.
 
 .ST 12.1 Basic description
-----------------------
+
 Programs using the I/O facilities in Gofer are modelled by functions of
 type Dialogue, defined by the type synonym:
 
@@ -2787,7 +2787,7 @@ is based on a similar example in the Haskell report [5]:
 
 
 .ST 12.2 Continuation style I/O
----------------------------
+
 As an alternative to the `stream-based' approach to programs using  the
 I/O facilities in Gofer, the  standard  prelude  defines  a  family  of
 functions which enables such programs to be written in a `continuation'
@@ -2922,7 +2922,7 @@ previous section are written as:
 
 
 .ST 12.3 Interactive programs
--------------------------
+
 One of the principal motivations for including facilities  for  I/O  in
 Gofer programs was to provide a way of using  interactive  programs  as
 described in [1].  An interactive program is represented by a  function
@@ -2983,7 +2983,7 @@ for these functions using the stream based approach from section 12.1.]
 .ST 13. LAYOUT
 
 .ST 13.1 Comments
--------------
+
 Comments provide an informal but useful way  of  annotating  a  program
 with  a  description  of  its  purpose,  structure   and   development.
 Following  the  definition  of  Haskell,  two  styles  of  comment  are
@@ -3038,7 +3038,7 @@ are both equivalent to the list expression [2,3,4].
 
 
 .ST 13.2 The layout rule
---------------------
+
 In a tradition dating back at least a quarter of a century to  Landin's
 ISWIM family of languages,  most  Gofer  programs  use  indentation  to
 indicate the structure of a program.  For example, in a definition such
@@ -3233,7 +3233,7 @@ indicating briefly how they can be used and how they are implemented.
 
 
 .ST 14.1 Type classes and predicates
---------------------------------
+
 A type class can be thought of as a family of types (or more  generally
 as a family of tuples of types) whose elements are called instances  of
 the class.  If C is the name of  an  n-parameter  type  class  then  an
@@ -3265,7 +3265,7 @@ Gofer.
 
 
 .ST 14.2 The type class Eq
-----------------------
+
 The type class Eq is a simple and useful example, whose  instances  are
 precisely those types whose elements can be tested for  equality.   The
 declaration of this class given in the standard prelude is as follows:
@@ -3312,7 +3312,7 @@ example we have:
 
 
 .ST 14.2.1 Implicit overloading
----------------------------
+
 Member functions are clearly marked as overloaded  functions  by  their
 definition as part of a class declaration, but this is not the only way
 in which overloaded  functions  occur  in  Gofer;  the  restriction  to
@@ -3349,7 +3349,7 @@ which is the type that would be assigned to "f" in a Haskell system.
 
 
 .ST 14.2.2 Instances of class Eq
-----------------------------
+
 Instances of a type class are defined  using  declarations  similar  to
 those used to define  the  corresponding  type  class.   The  following
 examples, taken from the standard prelude, give the definitions  for  a
@@ -3467,7 +3467,7 @@ the corresponding `=>' symbol.
 
 
 .ST 14.2.3 Testing equality of represented values
----------------------------------------------
+
 Instances of  Eq  can  also  be  defined  for  other  types,  including
 user-defined datatypes, and unlike the instances described  above,  the
 definition of (==) need not be used to  determine  whether  the  values
@@ -3499,7 +3499,7 @@ A couple of examples illustrate the use of this definition:
 
 
 .ST 14.2.4 Instance declarations without members
---------------------------------------------
+
 It is possible to give an instance declaration without  specifying  any
 definitions for the member functions of the class.  For example:
 
@@ -3519,7 +3519,7 @@ defined in terms of (==):
 
 
 .ST 14.2.5 Equality on function types
----------------------------------
+
 If an expression requires an  instance  of  a  class  which  cannot  be
 obtained using the rules in the given instance  declarations,  then  an
 error message will be produced when  the  expression  is  type-checked.
@@ -3578,7 +3578,7 @@ that their result type is also an instance of Eq).
 
 
 .ST 14.2.6 Non-overlapping instances
---------------------------------
+
 Other instance declarations for types of the form a -> b can be used at
 the same time, so  long  as  no  pair  of  declarations  overlap.   For
 example, adding the following instance declaration
@@ -3632,7 +3632,7 @@ form:
 
 
 .ST 14.3 Dictionaries
------------------
+
 In order to understand some of the messages produced by Gofer, as  well
 as  some  of  the  more  subtle  problems  associated  with  overloaded
 functions, it is useful to have a  rough  idea  of  the  way  in  which
@@ -3815,7 +3815,7 @@ translation, becomes "(==) d3 (2,[1]) (2,[1,3])":
 
 
 .ST 14.3.1 Superclasses
--------------------
+
 In general, a type class declaration has the form:
 
              class  context => Class a1 ... an  where
@@ -3910,7 +3910,7 @@ translation of the default definition for (<) which is equivalent to:
 
 
 .ST 14.3.2 Combining classes
-------------------------
+
 In general, a dictionary is made up of three separate parts:
 
      +-------------------+-------------------+-------------------+
@@ -3960,7 +3960,7 @@ obtained, so long as corresponding instances for C and D can be found.
 
 
 .ST 14.3.3 Simplified contexts
---------------------------
+
 Consider the function defined by the following equation:
 
     eg1 x   =   [x] == [x]  ||  x == x
@@ -4034,10 +4034,10 @@ translation which needs only one dictionary parameter:
 
 .cc 8
 .ST 14.4 Other issues
------------------
+
 
 .ST 14.4.1 Unresolved overloading
------------------------------
+
 Consider  the  use  of  the  (==)  operator  in  the  following   three
 situations:
 
@@ -4236,7 +4236,7 @@ ambiguity.]
 
 
 .ST 14.4.2 `Recursive' dictionaries
--------------------------------
+
 Unlike Haskell, there are no restrictions on the form of the predicates
 that may appear in the context  part  of  a  Gofer  class  or  instance
 declaration.  This has a  number  of  potentially  useful  applications
@@ -4267,6 +4267,7 @@ If we then give instance declarations:
 and try to evaluate the expression "2==3" then the following system  of
 dictionaries will be generated:
 
+    a
         d1 :: Eq Int                   d2 :: Neq Int
         +-----------+-----------+      +-----------+-----------+
         |           |           |      |           |           |
@@ -4354,7 +4355,7 @@ checking of the contexts appearing in class and instance  declarations.
 
 
 .ST 14.4.3 Classes with multiple parameters
----------------------------------------
+
 Gofer is the first language to support the use  of  type  classes  with
 multiple parameters.  This again is  an  experimental  feature  of  the
 language, intended to make it possible to explore  the  claims  from  a
@@ -4387,7 +4388,7 @@ following instance declaration:
 
 For example, the dictionary structure created in order to evaluate the
 expression "iso 2 = 3" is:
-
+               a
                    d :: Iso Int Int
                    +--------------+--------------+
                    |              |              |
@@ -4485,7 +4486,7 @@ which cannot be resolved, even with an explicit type declaration.
 
 
 .ST 14.4.4 Overloading and numeric values
--------------------------------------
+
 One of the most common uses of overloading is to allow the use  of  the
 standard arithmetic operators such as (+), (*) etc. on the elements  of
 a range of numeric types including integers and floating  point  values
@@ -4630,7 +4631,7 @@ the fromInteger function.
 
 
 .ST 14.4.5 Constants in dictionaries
---------------------------------
+
 The Gofer system constructs new dictionaries as necessary, and  deletes
 them when they are no longer required.  At any one time,  there  is  at
 most one dictionary for each instance of a class.   Coupled  with  lazy
@@ -4726,7 +4727,7 @@ give:
 
 
 .ST 14.4.6 The monomorphism restriction
------------------------------------
+
 This section  describes  a  technique  used  to  limit  the  amount  of
 overloading used in the definition of certain values to avoid a  number
 of technical problems.  This particular topic has attracted quite a lot
@@ -4747,7 +4748,7 @@ abstract approach, based on observations about  the  implementation  of
 overloaded functions.
 
 Basic ideas:
-------------
+
 As we have seen,  the  implementation  of  overloading  used  by  Gofer
 depends on being able to add extra arguments to a  function  definition
 to supply the required dictionary parameters.   For  example,  given  a
@@ -4774,7 +4775,7 @@ step from being used for certain kinds of value binding.
 
 .cc 5
 Declaration groups:
--------------------
+
 Before giving the full details, it  is  worth  pointing  out  that,  in
 general,  the  monomorphism  restriction  affects   groups   of   value
 declarations rather than just individual  definitions.   To  illustrate
@@ -4818,7 +4819,7 @@ parameters were not permitted for g then they could not be added to f.]
 
 .cc 5
 Restricted bindings:
---------------------
+
 There are three main reasons for avoiding adding dictionary  parameters
 to a particular value binding:
 
@@ -4951,7 +4952,7 @@ to a particular value binding:
 
 
 Formal definition:
-------------------
+
 The  examples  above  describe  the  motivation  for  the  monomorphism
 restriction, captured by the following definition:
 
@@ -5009,7 +5010,7 @@ The following terminal symbols are used but not defined by the grammar:
 
 
 Top-level grammar
------------------
+
 
     <module>   ::= "{" <topdecls> "}"               module
 
@@ -5036,7 +5037,7 @@ Top-level grammar
                 |  <var> <string>                   primitive binding
 
 Type expressions
-----------------
+
 
     <sigType>  ::= [<context> => ] <type>           [qualified] type
 
@@ -5054,7 +5055,7 @@ Type expressions
                 |  "[" <type> "]"                   list type
 
 Class and instance declarations
--------------------------------
+
 
     <class>    ::= class [<context> =>] <pred> [<cbody>]
     <cbody>    ::= where "{" <cdecls> "}"           class body
@@ -5068,7 +5069,7 @@ Class and instance declarations
                 |  <fun> <rhs> [<where>]            member definition
 
 Value declarations
-------------------
+
 
     <decls>  ::= <decls>; <decls>                 multiple declarations
               |  <var> {, <var>} :: <sigType>     type declaration
@@ -5090,7 +5091,7 @@ Value declarations
               |  "(" <fun> ")"                    parenthesised lhs
 
 Expressions
------------
+
 
     <exp>    ::= \ <apat> {<apat>} -> <exp>       lambda expression
               |  let "{" <decls> "}" in <exp>     local definition
@@ -5135,7 +5136,7 @@ Expressions
     <gdAlt>  ::= "|" <exp> -> <exp>               guarded alternative
 
 Patterns
---------
+
 
     <pat>    ::= <pat> <conop> <pat>              operator application
               |  <var> + <integer>                (n+k) pattern
@@ -5158,7 +5159,7 @@ Patterns
               |  "(" <pat>, <pat> {, <pat>} ")"   tuple
 
 Variables and operators
------------------------
+
 
     <var>    ::= <varid>  |  "(" - ")"            variable
     <op>     ::= <varop>  |  <conop>   |  -       operator
@@ -5186,7 +5187,7 @@ section 2.
 
 .cc 5
 Haskell features not included in Gofer:
----------------------------------------
+
   o  Modules
 
   o  Arrays
@@ -5224,7 +5225,7 @@ Haskell features not included in Gofer:
 
 .cc 5
 Gofer features not supported in Haskell:
-----------------------------------------
+
   o  Type classes may have multiple parameters.
 
   o  Predicates  in  type  expressions  may  involve   arbitrary   type
@@ -5250,7 +5251,7 @@ Gofer features not supported in Haskell:
 
 .cc 5
 Other differences:
-------------------
+
   o  Whilst superficially similar the approach to type classes in Gofer
      is quite different from that used in Haskell.  In particular,  the
      approach used in Gofer ensures that all necessary dictionaries are
@@ -5309,7 +5310,7 @@ Other differences:
 
 .cc 5
 Known problems in Gofer:
-------------------------
+
   o  The null escape sequence "\&" is not generated  in  the  printable
      representations of strings produced by both the primitive function
      primPrint (used to implement the show' function) and  the  version
@@ -5340,7 +5341,7 @@ Known problems in Gofer:
 
 .cc 5
 Areas for possible future improvement:
---------------------------------------
+
   o  Relaxing the restriction on type synonyms in predicates.
 
   o  General  purpose  automatic  default  mechanism  for   eliminating
