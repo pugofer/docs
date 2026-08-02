@@ -1,5 +1,5 @@
 #+begin_example
-a
+
      __________   __________   __________   __________   ________
     /  _______/  /  ____   /  /  _______/  /  _______/  /  ____  \
    /  / _____   /  /   /  /  /  /______   /  /______   /  /___/  /
@@ -4681,7 +4681,7 @@ and try to evaluate the expression "2==3" then the following system of
 dictionaries will be generated:
 
 #+begin_example
-a
+
     d1 :: Eq Int                   d2 :: Neq Int
     +-----------+-----------+      +-----------+-----------+
     |           |           |      |           |           |
@@ -4819,7 +4819,7 @@ For example, the dictionary structure created in order to evaluate the
 expression "iso 2 = 3" is:
 
 #+begin_example
-a
+
     d :: Iso Int Int
     +--------------+--------------+
     |              |              |
