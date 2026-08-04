@@ -1,7 +1,10 @@
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/setup/html-theme-readtheorg.setup
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
+#+SUBTITLE: 1991 original by Mark P Jones
 #+TITLE: Gofer User Guide
+#+SUBTITLE: HTML-ized by Rustom P Mody
+#+AUTHOR: Rustom P Mody
 ** Front matter
 :PROPERTIES:
 :UNNUMBERED:
@@ -187,7 +190,7 @@ The file name ~/gofer/prelude~ mentioned in the output above is the name
 of a file of standard definitions which are loaded into Gofer each time
 that the interpreter is started. By default, Gofer reads these
 definitions from a file called ~prelude~ in the current working
-directory. Alternatively you can set the environment variable GOFER to
+directory. Alternatively you can set the environment variable ~GOFER~ to
 the name of the standard prelude file, which will then be used, whatever
 the current working directory might be.
 
@@ -207,7 +210,7 @@ described in appendix F.
 Note that the interrupt key (~^C~ on most systems) can be used at any time
 whilst using Gofer to abandon the process of reading in a file of
 function definitions or the evaluation of an expression. When the
-interrupt key is detected, Gofer prints the string "{Interrupted!}" and
+interrupt key is detected, Gofer prints the string ~{Interrupted!}~ and
 prints the ~?~ prompt so that further commands can be entered.
 
 * USING GOFER — A BASIC INTRODUCTION
@@ -332,7 +335,7 @@ of n objects is given by n! / (r! * (n-r)!). In Gofer, this function can
 be defined by:
 
 #+begin_example
-comb n r = fact n /(fact r * fact (n-r))
+comb n r = fact n / (fact r * fact (n-r))
 #+end_example
 
 In order to use this function, we can either edit the file ~fact~ which
@@ -341,7 +344,7 @@ of ~comb~ on a new line, or we can include the definition as part of an
 expression entered whilst using Gofer:
 
 #+begin_example
-? comb 5 2 where comb n r = fact n /(fact r * fact (n-r))
+? comb 5 2 where comb n r = fact n / (fact r * fact (n-r))
 10
 (110 reductions, 161 cells)
 ? 
@@ -2777,8 +2780,6 @@ sequence:
 #+begin_example
 BadSynonym ==> [BadSynonym] ==> [[BadSynonym]] ==> ....
 #+end_example
-
-* @@@TODO@@@
 * DIALOGUES: INPUT AND OUTPUT
 The Gofer system implements a subset of the facilities for programs
 involving I/O described in the Haskell report [5]. In particular, this
@@ -2793,7 +2794,7 @@ Programs using the I/O facilities in Gofer are modelled by functions of
 type Dialogue, defined by the type synonym:
 
 #+begin_example
-type Dialogue    =  [Response] -> [Request]
+type Dialogue  =  [Response] -> [Request]
 #+end_example
 
 In other words, a Gofer program produces a list of output values, each
@@ -2838,7 +2839,7 @@ The following list describes the kind of I/O behaviour specified by each
 form of Request and indicates the possible Response values that may be
 obtained in each case:
 
-- ReadFile string: Read contents of file named by "string". Possible
++ ~ReadFile string~ :: Read contents of file named by "string". Possible
   responses to this request are:
   - Str contents if the request is successful, where "contents" is a
     string (evaluated lazily) containing the contents of the file
@@ -2847,68 +2848,68 @@ obtained in each case:
   - Failure (ReadError name) occurs if some other error occurs whilst
     opening the file "name".
 
-- WriteFile name string: Write the given "string" to the file "name". If
++ ~WriteFile name string~ :: Write the given ~string~ to the file ~name~. If
   the file does not already exist, it is created before attempting to
   write the value to file. If the file already exists then it will be
   truncated to zero length before the write begins. No response is
   obtained until the string argument has been fully evaluated and its
   contents written to file. Possible responses are:
-  - Success if the write to file was completed successfully.
-  - Failure (WriteError msg) if an error was detected whilst trying to
+  - ~Success~ if the write to file was completed successfully.
+  - ~Failure (WriteError msg)~ if an error was detected whilst trying to
     perform the output. If the problem occurred whilst attempting to
-    open the specified file, then "msg" contains the filename, otherwise
+    open the specified file, then ~msg~ contains the filename, otherwise
     it contains a printable representation of the evaluation error which
     occurred.
 
-- AppendFile name string: Similar to the WriteFile request except that
-  the value of the given "string" is appended onto the file "name" if
++ ~AppendFile name string~ :: Similar to the ~WriteFile~ request except that
+  the value of the given ~string~ is appended onto the file ~name~ if
   that file already exists. The responses that may be obtained from this
-  request are the same as those for WriteFile.
+  request are the same as those for ~WriteFile~.
 
-- ReadChan name: Read from the input stream "name". Note that it is an
++ ~ReadChan name~ :: Read from the input stream ~name~. Note that it is an
   error to attempt to read from the same channel more than once in the
   same program. Possible responses are:
-  - Str contents if the request is successful, where "contents" is a
+  - ~Str contents~ if the request is successful, where ~contents~ is a
     string (evaluated lazily) containing the list of characters entered
     on the input stream.
-  - Failure (SearchError name) if the named channel cannot be found. The
+  - ~Failure (SearchError name)~ if the named channel cannot be found. The
     only input channel known to Gofer is the standard input channel
-    "stdin". For convenience, the standard prelude defines the variable
-    stdin bound to this string.
-  - Failure (ReadError name) if a ReadChan request for the named channel
+    ~stdin~. For convenience, the standard prelude defines the variable
+    ~stdin~ bound to this string.
+  - ~Failure (ReadError name)~ if a ~ReadChan~ request for the named channel
     has already been given by a previous request.
 
-- AppendChan name string: Output "string" on channel "name". No response
++ ~AppendChan name string~ :: Output ~string~ on channel ~name~. No response
   is obtained until the string has been fully evaluated and written to
   the named channel. Possible responses are:
-  - Success if the append to channel was completed successfully.
-  - Failure (SearchError name) if the named channel cannot be found. The
-    only output channels known to Gofer are "stdout", "stderr" and
-    "stdecho" (which is actually just another name for "stdout" in
+  - ~Success~ if the append to channel was completed successfully.
+  - ~Failure (SearchError name)~ if the named channel cannot be found. The
+    only output channels known to Gofer are ~stdout~, ~stderr~ and
+    ~stdecho~ (which is actually just another name for ~stdout~ in
     Gofer). For convenience, the standard prelude defines variables
-    stdout, stderr and stdecho bound to the corresponding string values.
-  - Failure (WriteError msg) if an error is detected whilst trying to
-    perform the output. The string "msg" contains a printable
+    ~stdout~, ~stderr~ and ~stdecho~ bound to the corresponding string values.
+  - ~Failure (WriteError msg)~ if an error is detected whilst trying to
+    perform the output. The string ~msg~ contains a printable
     representation of the evaluation error which occurred.
 
-- Echo status: Set the echo status on the standard input channel stdin
++ ~Echo status~ :: Set the echo status on the standard input channel ~stdin~
   to the given boolean value. If the echo status is True, then user
   input will be echoed onto the screen as it is typed and the usual line
   editing facilities (such a backspace or delete) provided by the host
   system can be used to edit the input lines as they are entered. If the
-  echo status is False, then individual characters may be read from the
+  echo status is ~False~, then individual characters may be read from the
   standard input channel without any echo or line editing features.
 
   Note that at most one Echo request can be used in a program, and must
   precede any ReadChan request for stdin. If not set by an explicit Echo
   request, the echo status defaults to True. Possible responses are:
 
-  - Success if the request was completed successfully.
-  - Failure (OtherError msg) if the request could not be completed
+  - ~Success~ if the request was completed successfully.
+  - ~Failure (OtherError msg)~ if the request could not be completed
     either because a readChannel request for stdin has already been
     processed, or because a previous Echo request has already been
-    given. The corresponding values of "msg" are "stdin already in use"
-    and "repeated Echo request" respectively.
+    given. The corresponding values of ~msg~ are ~stdin already in use~
+    and ~repeated Echo request~ respectively.
 
 A simple example of a program using these facilities to output a short
 message on the standard output stream is:
@@ -2918,7 +2919,7 @@ helloWorld      :: Dialogue
 helloWorld resps = [AppendChan stdout "hello, world"]
 #+end_example
 
-Any expression entered into Gofer of type "Dialogue" will be treated as
+Any expression entered into Gofer of type ~Dialogue~ will be treated as
 a Gofer program using I/O and will be executed accordingly:
 
 #+begin_example
@@ -2946,9 +2947,8 @@ hello, world
 #+end_example
 
 In many cases the structure of an expression is enough to fully
-determine its type as Dialogue (or equivalently as [Response] ->
-[Request]), in which case no explicit types are required to ensure that
-the expression is treated as a Gofer program using I/O:
+determine its type as Dialogue (or equivalently as
+~[Response] -> [Request])~, in which case no explicit types are required to ensure that the expression is treated as a Gofer program using I/O:
 
 @@@TODO@@@
 #+begin_example
@@ -3020,13 +3020,13 @@ readFile name fail succ ~(r:rs) = ReadFile name : rest rs
 #+end_example
 
 The first thing to happen when a dialogue expression of the form
-"readFile name fail succ" is evaluated is that the corresponding request
-"ReadFile name" is added to the list of I/O requests. A new dialogue
-value "rest" is chosen, depending on the response to the ReadFile
+~readFile name fail succ~ is evaluated is that the corresponding request
+~ReadFile name~ is added to the list of I/O requests. A new dialogue
+value ~rest~ is chosen, depending on the response to the ~ReadFile~
 request, and the program continues by passing the remaining part of the
-response list to "rest". The functions "succ" and "fail" (called the
+response list to ~rest~. The functions ~succ~ and ~fail~ (called the
 success and failure continuations respectively) describe the way in
-which the new dialogue "rest" is obtained.
+which the new dialogue ~rest~ is obtained.
 
 The following example (edited a little to fit within the margins of this
 document) shows how the readFile function described above can be used to
@@ -3041,15 +3041,15 @@ This is a test message
 ?
 #+end_example
 
-The success continuation "(\s resps->[AppendChan stdout s])" used here
-receives the contents of the file "test" in the the parameter "s" and
+The success continuation ~(\s resps->[AppendChan stdout s])~ used here
+receives the contents of the file ~test~ in the the parameter ~s~ and
 uses an AppendChan request to output that string on the display. As this
 example shows, the stream based approach of the previous section can be
 combined with the continuation based style of I/O without any
-difficulty. The failure continuation "(\ioerror resps -> [])" ignores
-the error condition "ioerror" which caused the request to fail and gives
+difficulty. The failure continuation ~(\ioerror resps -> [])~ ignores
+the error condition ~ioerror~ which caused the request to fail and gives
 a dialogue which terminates immediately without any action. For example,
-assuming that the file "Test" cannot be found:
+assuming that the file ~Test~ cannot be found:
 
 #+begin_example
 ? readFile "Test" (\ioerror resps -> [])
@@ -3072,7 +3072,7 @@ SearchError "Test"
 #+end_example
 
 In each of the examples above, the failure continuation has type
-"FailCont" as defined by the following type synonym in the standard
+~FailCont~ as defined by the following type synonym in the standard
 prelude:
 
 #+begin_example
@@ -3080,7 +3080,7 @@ type FailCont  =  IOError -> Dialogue
 #+end_example
 
 Similarly, the success continuation, which takes a string representing
-an input string and produces a new Dialogue has type "StrCont":
+an input string and produces a new Dialogue has type ~StrCont~:
 
 #+begin_example
 type StrCont  =  String -> Dialogue
@@ -3111,7 +3111,7 @@ echo       :: Bool -> FailCont -> SuccCont -> Dialogue
 As an illustration of the use of these functions, we show how each of
 the example programs from the previous section can be rewritten using
 the continuation based style of I/O, starting with the program
-"helloWorld":
+~helloWorld~:
 
 #+begin_example
 helloWorld :: Dialogue
@@ -3120,10 +3120,10 @@ helloWorld  = appendChan stdout "hello, world" abort done
 
 In this case, the explicit type declaration is not actually required
 since the type of the expression is completely determined by the type of
-"appendChan". The failure continuation "abort" is equivalent to the
-function "(\ioerror resps -> [])" described above and terminates the
+~appendChan~. The failure continuation "abort" is equivalent to the
+function ~(\ioerror resps -> [])~ described above and terminates the
 program if an error occurs without any further action. In a similar way,
-"done" is the trivial dialogue which terminates immediately without any
+~done~ is the trivial dialogue which terminates immediately without any
 action. Both of these values are defined in the standard prelude:
 
 #+begin_example
@@ -3134,7 +3134,7 @@ abort        :: FailCont
 abort ioerror = done
 #+end_example
 
-Using the same approach, the "showFile" and "main" programs from the
+Using the same approach, the ~showFile~ and ~main~ programs from the
 previous section are written as:
 
 #+begin_example
@@ -3165,7 +3165,7 @@ the keyboard into an output string to be displayed on the screen.
 There are two functions defined in the standard prelude which can be
 used to `execute' functions of this kind as interactive programs:
 
-- "interact f" executes f::String->String as an interactive program with
+- ~interact f~ executes ~f :​: String->String~ as an interactive program with
   echo on. This means that characters are read from the keyboard a line
   at a time. The usual editing characters such as backspace can be used
   to correct mistakes which are noticed before the return key is pressed
@@ -3181,7 +3181,7 @@ used to `execute' functions of this kind as interactive programs:
   ?
   #+end_example
 
-- "run f" behaves like "interact f" except that echo is turned off. In
+- ~run f~ behaves like ~interact f~ except that echo is turned off. In
   this case, the only way of terminating the input stream without
   reaching the end of the string produced by "f" is to use the interrupt
   key:
@@ -3196,20 +3196,20 @@ used to `execute' functions of this kind as interactive programs:
   ?
   #+end_example
 
-[ASIDE: of these two functions, only "interact" is also included in the
-standard prelude for Haskell, although "run" may also be added to a
+[ASIDE: of these two functions, only ~interact~ is also included in the
+standard prelude for Haskell, although ~run~ may also be added to a
 Haskell system using the definition below.]
 
-The definitions of "interact" and "run" provide further examples of
+The definitions of ~interact~ and ~run~ provide further examples of
 Gofer programs using simple I/O facilities:
 
 #+begin_example
-interact        :: (String -> String) -> Dialogue
-interact f       = readChan stdin abort
-                        (\s -> appendChan stdout (f s) abort done)
+interact    :: (String -> String) -> Dialogue
+interact f   = readChan stdin abort
+                     (\s -> appendChan stdout (f s) abort done)
 
-run             :: (String -> String) -> Dialogue
-run f            = echo False abort (interact f)
+run        :: (String -> String) -> Dialogue
+run f       = echo False abort (interact f)
 #+end_example
 
 [EXERCISE for the interested reader: construct alternative definitions
@@ -3221,9 +3221,9 @@ Comments provide an informal but useful way of annotating a program with
 a description of its purpose, structure and development. Following the
 definition of Haskell, two styles of comment are supported by Gofer:
 
-- A one line comment begins with the two characters "--" and is
+- A one line comment begins with the two characters "~--~" and is
   terminated at the end of the same line. Note that an operator symbol
-  cannot begin with "--" as this will be treated as the beginning of a
+  cannot begin with "~--~" as this will be treated as the beginning of a
   comment. It is however possible to use the two characters "--" at any
   other position within an operator symbol. Thus a line such as:
 
@@ -3245,25 +3245,25 @@ definition of Haskell, two styles of comment are supported by Gofer:
   #+end_example
 
   does not contain any comments (although it will cause an error unless
-  ">-->" has been defined using an appropriate infixl or infixr
+  ~>-->~ has been defined using an appropriate ~infixl~ or ~infixr~
   declaration).
 
-- A nested comment begins with the characters "{-", ends with the
-  characters "-}" and may span any number of lines. [N.B. the initial
-  "{-" string cannot overlap with the terminating "-}" string so that
-  the shortest possible nested comment is "{--}", and not "{-}"]. An
+- A nested comment begins with the characters "~{-~", ends with the
+  characters "~-}~" and may span any number of lines. [N.B. the initial
+  "~{-~" string cannot overlap with the terminating "~-}~" string so that
+  the shortest possible nested comment is "~{--}~", and not "~{-}~"]. An
   unterminated nested comment will be treated as an error.
 
-  As the name suggests, comments of this kind may be nested so that "{-
-  {- ... -} ... {- ... -} -}" is treated as a single comment. This makes
+  As the name suggests, comments of this kind may be nested so that
+  "~{- {- ... -} ... {- ... -} -}~" is treated as a single comment. This makes
   nested comments particularly convenient for enclosing parts of a
   program which may already contain other nested comments.
 
 Both kinds of comment may be used in expressions entered directly into
 the Gofer system, or more usually, in files of definitions loaded into
 Gofer. The two styles of comment may be mixed within the same expression
-or program, remembering that the string "--" has no special significance
-within a nested comment and that the strings "{-" and "-}" have no
+or program, remembering that the string "~--~" has no special significance
+within a nested comment and that the strings "~{-~" and "~-}~" have no
 special significance in a single line comment. Thus:
 
 #+begin_example
@@ -3302,9 +3302,9 @@ to determine the structure of a program:
 
 - At the top-level of a file of definitions.
 - In a group of local declarations following either of the keywords
-  "let" or "where".
+  ~let~ or ~where~.
 - In a group of alternatives in a case expression, following the keyword
-  "of".
+  ~of~.
 
 In each case, Gofer actually expects to find a list of items enclosed
 between braces `{' and `}' with individual items separated from one
@@ -3588,9 +3588,9 @@ overloading in the corresponding value. Gofer does not support the
 concept of implicit overloading used in some languages where a value of
 a particular type might automatically be coerced to a value of some
 supertype. An example of this would be the automatic translation of a
-badly typed expression "1.0 == 1" to a well-typed expression of the form
-"1.0 == float 1" for some (potentially overloaded) coercion function
-"float" mapping numeric values to elements of type Float.]
+badly typed expression ~1.0 =​= 1~ to a well-typed expression of the form
+~1.0 == float 1~ for some (potentially overloaded) coercion function
+~float~ mapping numeric values to elements of type ~Float~.]
 
 Note also that the types appearing in the context of a qualified type
 reflect the types at which overloaded functions are used. Thus:
@@ -3599,14 +3599,14 @@ reflect the types at which overloaded functions are used. Thus:
 f x ys  =  [x] == ys
 #+end_example
 
-has type Eq [a] => a -> [a] -> Bool, and not Eq a => a -> [a] -> Bool,
+has type ~Eq [a] => a -> [a] -> Bool~, and not ~Eq a => a -> [a] -> Bool~,
 which is the type that would be assigned to "f" in a Haskell system.
 
 *** Instances of class Eq
 Instances of a type class are defined using declarations similar to
 those used to define the corresponding type class. The following
 examples, taken from the standard prelude, give the definitions for a
-number of simple instances of the class Eq:
+number of simple instances of the class ~Eq~:
 
 #+begin_example
 instance Eq Int  where  (==) = primEqInt
@@ -3630,17 +3630,17 @@ instance Eq a => Eq [a] where
 
 The interpretation of these declarations is as follows:
 
-- The first declaration makes Int an instance of class Eq. The function
-  "primEqInt" is a primitive Gofer function which tests the equality of
-  two integer values and has type Int -> Int -> Bool.
+- The first declaration makes Int an instance of class ~Eq~. The function
+  ~primEqInt~ is a primitive Gofer function which tests the equality of
+  two integer values and has type ~Int -> Int -> Bool~.
 
-- The second declaration makes Bool an instance of class Eq with a
+- The second declaration makes ~Bool~ an instance of class ~Eq~ with a
   simple definition involving pattern matching.
 
-- The third declaration makes Char an instance of class Eq. This
+- The third declaration makes ~Char~ an instance of class ~Eq~. This
   definition indicates that a pair of characters are equal if they have
-  the same ASCII value, which is obtained using the "ord" function. Note
-  that the two occurrences of the symbol (==) in the equation:
+  the same ASCII value, which is obtained using the ~ord~ function. Note
+  that the two occurrences of the symbol ~(==​)~ in the equation:
 
   #+begin_example
   c == d  =  ord c == ord d
@@ -3651,10 +3651,11 @@ The interpretation of these declarations is as follows:
   integers (elements of type Int).
 
 - The fourth declaration provides an equality operation on pairs. Given
-  two elements (x,y) and (u,v) of type (a,b) for some a, b, it must be
-  possible to check that both x==u and y==v before we can be sure that
-  the two pairs are indeed equal. In other words, both a and b must also
-  be instances of Eq in order to make (a,b) an instance of Eq. This
+  two elements ~(x,y)~ and ~(u,v)~ of type ~(a,b)~ for some ~a~, ~b~,
+  it must be
+  possible to check that both ~x==u~ and ~y==v~ before we can be sure that
+  the two pairs are indeed equal. In other words, both ~a~ and ~b~ must also
+  be instances of ~Eq~ in order to make ~(a,b)~ an instance of ~Eq~. This
   requirement is described by the first line in the instance declaration
   using the expression:
 
@@ -3662,21 +3663,21 @@ The interpretation of these declarations is as follows:
   (Eq a, Eq b) => Eq (a,b)
   #+end_example
 
-- The fifth declaration makes [a] an instance of Eq, whenever a is
-  itself an instance of Eq in a similar way to the previous example. The
-  context Eq a is used in the last equation in the declaration:
+- The fifth declaration makes ~[a]~ an instance of ~Eq~, whenever ~a~ is
+  itself an instance of ~Eq~ in a similar way to the previous example. The
+  context ~Eq a~ is used in the last equation in the declaration:
 
   #+begin_example
   (x:xs) == (y:ys)  =  x==y && xs==ys
   #+end_example
 
-  which contains three occurrences of the (==) operator; the first and
-  third are used to compare lists of type [a], whilst the second is used
-  to compare elements of type a, using the instance Eq a.
+  which contains three occurrences of the ~(=​=​)~ operator; the first and
+  third are used to compare lists of type ~[a]~, whilst the second is used
+  to compare elements of type ~a~, using the instance ~Eq a~.
 
-Combining these five declarations, we obtain definitions for (==) on an
-infinite family of types including Int, Char, Bool, (Int,Bool),
-(Char,Int), [Char], (Bool,[Int]), [(Bool,Int)], etc...:
+Combining these five declarations, we obtain definitions for ~(=​=​)~ on an
+infinite family of types including ~Int~, ~Char~, ~Bool~, ~(Int,Bool)~,
+~(Char,Int)~, ~[Char]~, ~(Bool,[Int])~, ~[(Bool,Int)]~, etc...:
 
 #+begin_example
 ? 2 == 3                            -- using Eq Int
@@ -3688,7 +3689,7 @@ True
 ?
 #+end_example
 
-On the other hand, any attempt to use (==) to compare elements of some
+On the other hand, any attempt to use ~(=​=​)~ to compare elements of some
 type not covered by a suitable instance declaration will result in an
 error. For example, the standard prelude does not define the equality
 operation on triples of values:
@@ -3729,7 +3730,7 @@ The context part of the declaration gives a list of predicates which
 must be satisfied for the predicate on the right hand side of the `=>'
 sign to be valid. Constant predicates (i.e. predicates not involving any
 type variables) required by an instance declaration (such as the
-predicate Eq Int required by the third declaration) need not be included
+predicate ~Eq Int~ required by the third declaration) need not be included
 in the context. If the resulting context is empty (as in the first three
 declarations above) then it may be omitted, together with the
 corresponding `=>' symbol.
@@ -3737,10 +3738,10 @@ corresponding `=>' symbol.
 *** Testing equality of represented values
 Instances of Eq can also be defined for other types, including
 user-defined datatypes, and unlike the instances described above, the
-definition of (==) need not be used to determine whether the values
+definition of ~(==) need not be used to determine whether the values
 being compared have the same structure; it is often more useful to check
 that they represent the same value. As an example, suppose that we
-introduce a type constructor Set for representing sets of values, using
+introduce a type constructor ~Set~ for representing sets of values, using
 a list to store the values held in the set:
 
 #+begin_example
@@ -3779,9 +3780,9 @@ definitions for the member functions of the class. For example:
 instance Eq ()
 #+end_example
 
-In this case, the definition of (==) for the instance Eq () is left
+In this case, the definition of ~(=​=​)~ for the instance ~Eq ()~ is left
 completely undefined, and hence so is the definition of (/=), which is
-defined in terms of (==):
+defined in terms of ~(=​=​)~:
 
 #+begin_example
 ? () == ()
@@ -3846,7 +3847,7 @@ contains precisely one type constructor symbol.]
 
 Using this instance declaration once for each argument, we can now test
 two functions taking boolean arguments for equality (assuming of course
-that their result type is also an instance of Eq).
+that their result type is also an instance of ~Eq~).
 
 #+begin_example
 ? (&&) == (||)
@@ -5747,13 +5748,13 @@ Other differences:
   (subtraction) operator of the same name.
 - In Haskell, the character `-' can only be used as the first character
   of an operator symbol. In Gofer, this character may appear in any
-  position in an operator (except for symbols beginning with "--", which
+  position in an operator (except for symbols beginning with "~--~", which
   indicates the start of a comment). The only problems that I am aware
-  of with this is that a lambda expression such as "\-2->2" will be
+  of with this is that a lambda expression such as ~\-2->2~ will be
   parsed as such by a Haskell system, but cause a syntax error in Gofer.
   This form of lambda expression is sufficiently unusual that I do not
   believe this will cause any problems in practice; in any case, the
-  parsing problem can be solved by inserting a space: "\ -2->2".
+  parsing problem can be solved by inserting a space: ~\ -2->2~.
 - Pattern bindings are not currently permitted in either instance or
   class declarations. This restriction has been made simply for ease of
   implementation, is not an inherent problem with the type class system
@@ -5767,7 +5768,7 @@ Other differences:
   Gofer, although I am not convinced that proper use can be made of such
   member functions without some form of nested instance declarations
   (yuk!).
-- The definition of the class Text given in the standard prelude does
+- The definition of the ~class Text~ given in the standard prelude does
   not include the Haskell functions for reading/parsing values from
   strings; the only reason for omitting these functions was to try to
   avoid unnecessary complexity in the standard prelude. The standard
@@ -5967,17 +5968,17 @@ points are particularly useful for this:
 :PROPERTIES:
 :UNNUMBERED:
 :END:
-- <expr>   ::  Analyse expression for errors, typecheck and evaluate. If the expression has type Dialogue, execute as a program using the I/O facilities as described in section 12. If the expression has type String, evaluate and print result as a lazy list of characters. In any other case, the standard prelude function show' is applied to the expression and used to print the value of the result in the form of a string, as in the previous case.
-- ~:t~ <expr>  :: Analyse expression for errors,  typecheck  and  print  the translation and inferred type of the term.                 
+- <expr>               ::  Analyse expression for errors, typecheck and evaluate. If the expression has type Dialogue, execute as a program using the I/O facilities as described in section 12. If the expression has type String, evaluate and print result as a lazy list of characters. In any other case, the standard prelude function show' is applied to the expression and used to print the value of the result in the form of a string, as in the previous case.
+- ~:t~ <expr>          :: Analyse expression for errors,  typecheck  and  print  the translation and inferred type of the term.                 
 - ~:type~ <expr>, ~:T~ :: alternates to ~:t~
-- ~:q~  :: Exit Gofer interpreter.                                    
-- ~:quit~, ~:Q~ :: alternates to :q
-- ~:?~ :: Display summary of interpreter commands.                   
-- ~:h, ~:H~ :: alternates to ~:?~
-- ~:l f1 .. fn~ ::  Removes any previously loaded  files  of  definitions  and attempts to load the contents of the files ~f1~ upto ~fn~  one after the other.
-- ~:L~ :: Remove any previously loaded files of  definitions.   Only those functions and values defined in the standard prelude will still be be available.
-- ~:load~, ~:L~ :: Equivalent forms of the ~:l~ command.
-- ~:a f1 .. fn~ ::  Load the contents of the files ~f1~ upto ~fn~ in addition to any previously loaded files. If any of the files of definitions which have already been loaded have been modified since they were last read then they are automatically reloaded before any of the files f1 upto fn are read.                                                  
+- ~:q~                 :: Exit Gofer interpreter.                                    
+- ~:quit~, ~:Q~        :: alternates to :q
+- ~:?~                 :: Display summary of interpreter commands.                   
+- ~:h~, ~:H~           :: alternates to ~:?~
+- ~:l f1 .. fn~        ::  Removes any previously loaded  files  of  definitions  and attempts to load the contents of the files ~f1~ upto ~fn~  one after the other.
+- ~:L~                 :: Remove any previously loaded files of  definitions.   Only those functions and values defined in the standard prelude will still be be available.
+- ~:load~, ~:L~        :: Equivalent forms of the ~:l~ command.
+- ~:a f1 .. fn~        ::  Load the contents of the files ~f1~ upto ~fn~ in addition to any previously loaded files. If any of the files of definitions which have already been loaded have been modified since they were last read then they are automatically reloaded before any of the files f1 upto fn are read.                                                  
                                                                           
                If successful, a command of  the  form  ~:l  f1  ..fn~  is equivalent to the sequence of commands:\\
                ~:l~\\
@@ -5985,19 +5986,19 @@ points are particularly useful for this:
                .\\
                .\\
                ~:a fn~
-- ~:also~, ~:A~ :: Equivalent forms of the :a command.
-- ~:r~ :: Repeat the last load command, attempting to reload any files which have subsequently been modified. Since later files may depend on the definitions in earlier ones, once one file has been reloaded, all subsequent files will also need to be reloaded.                                    
-- ~:reload~, ~:R~  :: Equivalent forms of the :r command.                        
-- ~:e file~ :: Suspend current Gofer session and start an editor  program to modify or view the named file.  The Gofer session  will be resumed when the editor  program  terminates,  and  any script files that  have  been  changed  will  be  reloaded automatically.
+- ~:also~, ~:A~   :: Equivalent forms of the :a command.
+- ~:r~            :: Repeat the last load command, attempting to reload any files which have subsequently been modified. Since later files may depend on the definitions in earlier ones, once one file has been reloaded, all subsequent files will also need to be reloaded.                                    
+- ~:reload~, ~:R~ :: Equivalent forms of the :r command.                        
+- ~:e file~       :: Suspend current Gofer session and start an editor  program to modify or view the named file.  The Gofer session  will be resumed when the editor  program  terminates,  and  any script files that  have  been  changed  will  be  reloaded automatically.
 
                  Note that a separate editor program is required and that Gofer must be properly installed to use this feature.  The default editor is usually vi (Calvin version 2.0 is a good substitute for a PC), although this may have been changed when your system was installed.  In any case, you can always substitute an editor of your choice by setting the environment variable EDITOR to the name of your favourite editor program.
 
                  There are a number of factors which will affect your choice of editor.  On a slow machine, with only a limited amount of memory, you will probably need to choose a relatively small editor which can be loaded reasonably quickly and does not require too much memory.  On a more powerful system, you may find it more convenient to use Gofer from a window based environment, running your editor in one window with Gofer in another.
 
-- ~:e~ ::  Using the :e command without specifying a particular file to be edited starts up an editor program as described above either for the file of definitions most recently loaded into Gofer or, if an error occurred whilst loading a file of definitions, for the file of definitions in which the error was last detected.
+- ~:e~            ::  Using the :e command without specifying a particular file to be edited starts up an editor program as described above either for the file of definitions most recently loaded into Gofer or, if an error occurred whilst loading a file of definitions, for the file of definitions in which the error was last detected.
 
          With many editor programs, it is even possible to start the editor at the line where the error occurred.  As before, it is possible to change the default behaviour of Gofer in this case by setting the environment variable EDITLINE to a command string which can be used to start the editor program with a given file at a specific line number.  The positions in the string at which the file name and line number values should be inserted should be indicated by the strings ~%s~ and ~%d~ respectively, and may appear in either order.  The default command string, which is used if EDITLINE is not set is ~vi +%d %s~.
-- ~:edit~, ~:E~ :: Equivalent forms of the :e command.
+- ~:edit~, ~:E~   :: Equivalent forms of the :e command.
 
 * APPENDIX G: BIBLIOGRAPHY
 :PROPERTIES:
