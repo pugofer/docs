@@ -2,7 +2,10 @@
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
 #+TITLE: Gofer User Guide
-* Front matter
+** Front matter
+:PROPERTIES:
+:UNNUMBERED:
+:END:
 #+begin_example
      __________   __________   __________   __________   ________
     /  _______/  /  ____   /  /  _______/  /  _______/  /  ____  \
@@ -5442,7 +5445,10 @@ either:  G includes a pattern binding
 If neither of these conditions hold, then equivalent sets of dictionary
 parameters will be added to each declaration in the group.
 
-* A: SUMMARY OF GRAMMAR
+* APPENDIX A: SUMMARY OF GRAMMAR
+:PROPERTIES:
+:UNNUMBERED:
+:END:
 This section gives a summary of the grammar for the language used by
 Gofer. The non-terminals <interp> and <module> describe the syntax of
 expressions that can be entered into the Gofer interpreter and that of
@@ -5652,8 +5658,14 @@ Variables and operators
 <conop>  ::= CONOP    |  ` CONID `            constructor operator
 #+end_example
 
-* B: CONTENTS OF STANDARD PRELUDE
-* C: RELATIONSHIP WITH HASKELL 1.1
+* APPENDIX B: CONTENTS OF STANDARD PRELUDE
+:PROPERTIES:
+:UNNUMBERED:
+:END:
+* APPENDIX C: RELATIONSHIP WITH HASKELL 1.1
+:PROPERTIES:
+:UNNUMBERED:
+:END:
 The language supported by Gofer is both syntactically and semantically
 similar to that of the functional programming language Haskell as
 defined in the report for Haskell version 1.1 [5]. This section details
@@ -5800,7 +5812,10 @@ Areas for possible future improvement:
 - Separate interpreter and compiler programs for creating standalone
   applications using Gofer.
 
-* D: USING GOFER WITH BIRD+WADLER
+* APPENDIX D: USING GOFER WITH BIRD+WADLER
+:PROPERTIES:
+:UNNUMBERED:
+:END:
 Bird and Wadler's textbook [1] gives an excellent introduction to
 functional programming, providing an insight into both basic techniques
 and matters of programming style as well as describing the underlying
@@ -5877,115 +5892,81 @@ points are particularly useful for this:
   Examples that are particularly likely to occur include "in" and
   "then".
 
-* E: PRIMITIVES
-[WARNING: The features described in this appendix are typically only
-needed when alternative versions of the standard prelude are created.
-These features should only be used by expert users; misuse may lead to
-failure and runtime errors in the Gofer interpreter. It is not usually a
-good idea to use primitive functions directly in your programs.]
+* APPENDIX E: PRIMITIVES
+:PROPERTIES:
+:UNNUMBERED:
+:END:
 
-A number of primitive functions are builtin to the Gofer interpreter,
-and may be bound to function symbols using a declaration of the form:
+| Category   | code name string | type                           |
+|------------+------------------+--------------------------------|
+| integer    | ~primPlusInt~    | ~Int -> Int -> Int~            |
+| arithmetic | ~primMinusInt~   | ~Int -> Int -> Int~            |
+|            | ~primMulInt~     | ~Int -> Int -> Int~            |
+|            | ~primDivInt~     | ~Int -> Int -> Int~            |
+|            | ~primModInt~     | ~Int -> Int -> Int~            |
+|            | ~primRemInt~     | ~Int -> Int -> Int~            |
+|            | ~primNegInt~     | ~Int -> Int -> Int~            |
+|            |                  |                                |
+| floating   | ~primPlusFloat~  | ~Float -> Float -> Float~      |
+| point      | ~primMinusFloat~ | ~Float -> Float -> Float~      |
+| arithmetic | ~primMulFloat~   | ~Float -> Float -> Float~      |
+|            | ~primDivFloat~   | ~Float -> Float -> Float~      |
+|            | ~primNegFloat~   | ~Float -> Float -> Float~      |
+|            |                  |                                |
+| coercion   | ~primIntToChar~  | ~Int -> Char~                  |
+| functions  | ~primCharToInt~  | ~Char -> Int~                  |
+| [1]        | ~primIntToFloat~ | ~Int -> Float~                 |
+|            |                  |                                |
+| equality   | ~primEqInt~      | ~Int -> Int -> Bool~           |
+| and <=     | ~primLeInt~      | ~Int -> Int -> Bool~           |
+| primitives | ~primEqFloat~    | ~Float -> Float -> Bool~       |
+|            | ~primLeFloat~    | ~Float -> Float -> Bool~       |
+|            |                  |                                |
+| generic    | ~primGenericEq~  | ~a -> a -> Bool~               |
+| ordering   | ~primGenericNe~  | ~a -> a -> Bool~               |
+| primitives | ~primGenericGt~  | ~a -> a -> Bool~               |
+| [2]        | ~primGenericLe~  | ~a -> a -> Bool~               |
+|            | ~primGenericGe~  | ~a -> a -> Bool~               |
+|            | ~primGenericLt~  | ~a -> a -> Bool~               |
+|            |                  |                                |
+| output     | ~primPrint~      | ~Int -> a -> String -> String~ |
+| [3]        |                  |                                |
+|            |                  |                                |
+| sequencing | ~primStrict~     | ~(a -> b) -> a -> b~           |
+| [4]        |                  |                                |
 
-#+begin_example
-primitive name1 code1, name2 code2, ...., namen coden :: type
-#+end_example
 
-where each name is an identifier (or an operator symbol enclosed by
-parentheses) and each code is a string literal taken from the table
-below. The type specified to the right of the :: symbol must be a valid
-type for the functions being defined -- WARNING: GOFER DOES NOT ATTEMPT
-TO CHECK FOR SUITABILITY OF THE DECLARED TYPE. The following definition,
-taken from the standard prelude, illustrates the use of this feature to
-bind a function named primPrint to the primitive function with code name
-string "primPrint" and type Int -> a -> String -> String:
+- [1] :: chr in the standard prelude 
+    ord in the standard prelude 
+    primIntToFloat implements fromInteger      
+- [2] :: These functions implement the standard generic  (i.e.  non
+    overloaded) ordering primitives.  They are  not  currently
+    used in the standard prelude.  A simplified prelude may be
+    created by binding the  standard  operator  symbols  (==),
+    (/=),  (>),  (<=),  (>=)  and  (<)  to   these   functions
+    respectively.
+- [3] :: primPrint
+     This function is used to implement the show'  function  in
+     the standard prelude and is not usually used directly.
+   
+     primPrint d e s produces a textual representation  of  the
+     value of the expression e as a  string,  followed  by  the
+     string s.  The integer parameter d is used as an indicator
+     of the current precedence level.  The  primPrint  function
+     is the  standard  method  of  printing  the  value  of  an
+     expression whose type is not equivalent to the type String
+     sed by the top-level of the Gofer interpreter.
+- [4] :: primStrict
+     The primStrict function (bound to the identifier  "strict"
+     in the standard prelude)  forces  the  evaluation  of  its
+     second argument before the function supplied as the  first
+     argument is  applied  to  it.   See  section  9.4  for  an
+     illustration.
 
-#+begin_example
-primitive primPrint "primPrint"  :: Int -> a -> String -> String
-#+end_example
-
-The primitive functions currently available are:
-
-category code name string type -------- ---------------- ----
-
-integer primPlusInt Int -> Int -> Int arithmetic primMinusInt Int -> Int
--> Int
-
-#+begin_example
-primMulInt          Int -> Int -> Int
-primDivInt          Int -> Int -> Int
-primModInt          Int -> Int -> Int
-primRemInt          Int -> Int -> Int
-primNegInt          Int -> Int -> Int
-
-#+end_example
-
-floating primPlusFloat Float -> Float -> Float point primMinusFloat
-Float -> Float -> Float arithmetic primMulFloat Float -> Float -> Float
-
-#+begin_example
-primDivFloat        Float -> Float -> Float
-primNegFloat        Float -> Float -> Float
-
-#+end_example
-
-coercion primIntToChar Int -> Char -- chr in the standard prelude
-functions primCharToInt Char -> Int -- ord in the standard prelude
-
-#+begin_example
-primIntToFloat      Int -> Float -- implements fromInteger
-#+end_example
-
-equality primEqInt Int -> Int -> Bool and <= primLeInt Int -> Int ->
-Bool primitives primEqFloat Float -> Float -> Bool
-
-#+begin_example
-primLeFloat         Float -> Float -> Bool
-
-#+end_example
-
-generic primGenericEq a -> a -> Bool ordering primGenericNe a -> a ->
-Bool primitives primGenericGt a -> a -> Bool
-
-#+begin_example
-primGenericLe       a -> a -> Bool
-primGenericGe       a -> a -> Bool
-primGenericLt       a -> a -> Bool
-
-These functions implement the standard generic  (i.e.  non
-overloaded) ordering primitives.  They are  not  currently
-used in the standard prelude.  A simplified prelude may be
-created by binding the  standard  operator  symbols  (==),
-(/=),  (>),  (<=),  (>=)  and  (<)  to   these   functions
-respectively.
-#+end_example
-
-output primPrint Int -> a -> String -> String
-
-#+begin_example
-This function is used to implement the show'  function  in
-the standard prelude and is not usually used directly.
-
-primPrint d e s produces a textual representation  of  the
-value of the expression e as a  string,  followed  by  the
-string s.  The integer parameter d is used as an indicator
-of the current precedence level.  The  primPrint  function
-is the  standard  method  of  printing  the  value  of  an
-expression whose type is not equivalent to the type String
-used by the top-level of the Gofer interpreter.
-#+end_example
-
-sequencing primStrict (a -> b) -> a -> b
-
-#+begin_example
-The primStrict function (bound to the identifier  "strict"
-in the standard prelude)  forces  the  evaluation  of  its
-second argument before the function supplied as the  first
-argument is  applied  to  it.   See  section  9.4  for  an
-illustration.
-#+end_example
-
-* F: INTERPRETER COMMAND SUMMARY
+* APPENDIX F: INTERPRETER COMMAND SUMMARY
+:PROPERTIES:
+:UNNUMBERED:
+:END:
 - <expr>   ::  Analyse expression for errors, typecheck and evaluate. If the expression has type Dialogue, execute as a program using the I/O facilities as described in section 12. If the expression has type String, evaluate and print result as a lazy list of characters. In any other case, the standard prelude function show' is applied to the expression and used to print the value of the result in the form of a string, as in the previous case.
 - ~:t~ <expr>  :: Analyse expression for errors,  typecheck  and  print  the translation and inferred type of the term.                 
 - ~:type~ <expr>, ~:T~ :: alternates to ~:t~
@@ -6018,7 +5999,10 @@ illustration.
          With many editor programs, it is even possible to start the editor at the line where the error occurred.  As before, it is possible to change the default behaviour of Gofer in this case by setting the environment variable EDITLINE to a command string which can be used to start the editor program with a given file at a specific line number.  The positions in the string at which the file name and line number values should be inserted should be indicated by the strings ~%s~ and ~%d~ respectively, and may appear in either order.  The default command string, which is used if EDITLINE is not set is ~vi +%d %s~.
 - ~:edit~, ~:E~ :: Equivalent forms of the :e command.
 
-* G: BIBLIOGRAPHY
+* APPENDIX G: BIBLIOGRAPHY
+:PROPERTIES:
+:UNNUMBERED:
+:END:
 [1] Introduction to functional programming, Richard Bird and Philip Wadler, Prentice Hall International, 1989.
 
 [2] The Implementation of functional programming languages, Simon L. Peyton Jones, Prentice Hall International, 1987.
