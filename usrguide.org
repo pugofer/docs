@@ -1,5 +1,9 @@
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/setup/html-theme-readtheorg.setup
+#+OPTIONS: TOC:t
+#+LATEX_HEADER: \usepackage{upquote}
+#+TITLE: Gofer User Guide
+* Front matter
 #+begin_example
-
      __________   __________   __________   __________   ________
     /  _______/  /  ____   /  /  _______/  /  _______/  /  ____  \
    /  / _____   /  /   /  /  /  /______   /  /______   /  /___/  /
@@ -176,10 +180,10 @@ Type :? for help
 ?
 #+end_example
 
-The file name "/gofer/prelude" mentioned in the output above is the name
+The file name ~/gofer/prelude~ mentioned in the output above is the name
 of a file of standard definitions which are loaded into Gofer each time
 that the interpreter is started. By default, Gofer reads these
-definitions from a file called "prelude" in the current working
+definitions from a file called ~prelude~ in the current working
 directory. Alternatively you can set the environment variable GOFER to
 the name of the standard prelude file, which will then be used, whatever
 the current working directory might be.
@@ -188,24 +192,24 @@ Most commands in Gofer take the form of a colon followed by one or more
 characters which distinguish one command from another. There are two
 commands which are particularly worth remembering:
 
-- :q exits the Gofer interpreter. On most systems, you can also exit
-  from Gofer by typing the end of file character (^Z on an MS-DOS
-  machine, usually ^D on a unix based machine).
-- :? prints a list of all the commands, which can be useful if you
+- ~:q~ exits the Gofer interpreter. On most systems, you can also exit
+  from Gofer by typing the end of file character (~^Z~ on an MS-DOS
+  machine, usually ~^D~ on a unix based machine).
+- ~:?~ prints a list of all the commands, which can be useful if you
   forget the name of the command that you want to use.
 
 The complete range of commands supported by the Gofer interpreter is
 described in appendix F.
 
-Note that the interrupt key (^C on most systems) can be used at any time
+Note that the interrupt key (~^C~ on most systems) can be used at any time
 whilst using Gofer to abandon the process of reading in a file of
 function definitions or the evaluation of an expression. When the
 interrupt key is detected, Gofer prints the string "{Interrupted!}" and
-prints the "? " prompt so that further commands can be entered.
+prints the ~?~ prompt so that further commands can be entered.
 
-* USING GOFER - A BASIC INTRODUCTION
+* USING GOFER — A BASIC INTRODUCTION
 Using Gofer is rather like using a high-level programmable calculator;
-Once the interpreter is loaded, the system prints a prompt "?" and waits
+Once the interpreter is loaded, the system prints a prompt ~?~ and waits
 for you to enter an expression, and then press the enter (return) key.
 Once the input is complete, Gofer evaluates the expression and prints
 its value on the terminal, before returning to the original prompt and
@@ -221,17 +225,17 @@ waiting for the next expression. For example:
 ? 
 #+end_example
 
-In the first example, the user entered the expression "(2+3)*8", which
-was evaluated by Gofer and the result "40" printed on the terminal. At
+In the first example, the user entered the expression ~(2+3)*8~, which
+was evaluated by Gofer and the result ~40~ printed on the terminal. At
 the end of any calculation, Gofer displays the number of reductions (a
 measure of the amount of work) and cells (a measure of the amount of
 memory) that were used during the calculation. These figures can be
 useful for comparing the performance of different ways of carrying out
 the same calculation.
 
-In the second example, the user typed the expression "sum [1..10]". The
-notation "[1..10]" represents the list of integers between 1 and 10
-inclusive, and "sum" is a standard function which can be used to
+In the second example, the user typed the expression ~sum [1..10]~. The
+notation ~[1..10]~ represents the list of integers between 1 and 10
+inclusive, and ~sum~ is a standard function which can be used to
 determine the sum of a list of integers. Thus the result obtained by
 Gofer is:
 
@@ -252,31 +256,31 @@ and this calculation is certainly more efficient as it uses only 1/9th
 of the number of reductions and 1/5th of the number of cells as the
 original calculation. On the other hand, the original expression is much
 shorter and you are much less likely to make a mistake typing in the
-expression "sum [1..200]" than you would be if you tried to enter the
+expression ~sum [1..200]~ than you would be if you tried to enter the
 sum of the integers from 1 to 200 directly.
 
 You will learn more about the kind of expressions that can be entered
 into Gofer in the rest of this document.
 
 * STANDARD AND USER-DEFINED FUNCTIONS
-The function "sum" used in the examples above, and indeed the addition
-and multiplication functions (+) and (*), are all standard functions
+The function ~sum~ used in the examples above, and indeed the addition
+and multiplication functions ~(+)~ and ~(*)~, are all standard functions
 which are included as part of a large collection of functions called the
 `standard prelude' which are loaded into the Gofer system each time that
 you start the interpreter. Quite a number of useful calculations can be
 carried out using these functions alone, but for more general use you
 can also define your own functions and store the definitions in a file
 so that these functions can be loaded and used by by the Gofer system.
-For example, suppose that you create a file "fact" containing the
+For example, suppose that you create a file ~fact~ containing the
 following definition:
 
 #+begin_example
 fact n = product [1..n]
 #+end_example
 
-The "product" function is another standard function which can be used to
+The ~product~ function is another standard function which can be used to
 calculate the product of a list of integers, and so the line above
-defines a function "fact" which calculates the factorial of its
+defines a function ~fact~ which calculates the factorial of its
 argument. In standard mathematical notation, fact n = n! which is
 usually defined informally by an equation of the form:
 
@@ -290,7 +294,7 @@ similar to this informal mathematical definition.
 
 In order to use this definition from the Gofer interpreter, we must
 first load the definitions of the file into the interpreter. The
-simplest way to do this uses the ":l" command:
+simplest way to do this uses the ~:l~ command:
 
 #+begin_example
 ? :l fact
@@ -306,7 +310,7 @@ fact
 ?
 #+end_example
 
-Notice the list of filenames displayed after "Gofer session for:"; this
+Notice the list of filenames displayed after ~Gofer session for:~; this
 tells you which files of definitions are currently being used by Gofer,
 the first of which is the file containing the definitions for the
 standard prelude. Since the file containing the definition of the
@@ -328,9 +332,9 @@ be defined by:
 comb n r = fact n /(fact r * fact (n-r))
 #+end_example
 
-In order to use this function, we can either edit the file "fact" which
+In order to use this function, we can either edit the file ~fact~ which
 contains the definition of the factorial function, adding the definition
-of "comb" on a new line, or we can include the definition as part of an
+of ~comb~ on a new line, or we can include the definition as part of an
 expression entered whilst using Gofer:
 
 #+begin_example
@@ -341,22 +345,22 @@ expression entered whilst using Gofer:
 #+end_example
 
 The ability to define a function as part of an expression like this is
-often quite useful. However, if the function "comb" were likely to be
+often quite useful. However, if the function ~comb~ were likely to be
 wanted on a number of occasions, it would be more sensible to add its
-definition to the contents of the file "fact", instead of having to
+definition to the contents of the file ~fact~, instead of having to
 repeat the definition each time it is used.
 
 You will learn more about the functions defined in the standard prelude
 and find out how to define your own functions in the following sections.
 
-* FUNCTION NAMES - IDENTIFIERS AND OPERATORS
+* FUNCTION NAMES — IDENTIFIERS AND OPERATORS
 As the examples of the previous section show, there are two kinds of
-name that can be used for a function; identifiers such as "sum" and
-operator symbols such as "+" and "*". Choosing the appropriate kind of
+name that can be used for a function; identifiers such as ~sum~ and
+operator symbols such as ~+~ and ~*~. Choosing the appropriate kind of
 name for a particular function can often help to make expressions
 involving that function easier to read. If for example the addition
-function was represented by the name "plus" rather than the operator
-symbol "+" then the sum of the integers from 1 to 5 would have to be
+function was represented by the name ~plus~ rather than the operator
+symbol ~+~ then the sum of the integers from 1 to 5 would have to be
 written as:
 
 #+begin_example
@@ -369,9 +373,9 @@ In this particular case, another way of writing the same sum is:
 plus 1 (plus 2 (plus 3 (plus 4 5)))
 #+end_example
 
-Not only does the use of the identifier "plus" make these expressions
+Not only does the use of the identifier ~plus~ make these expressions
 larger and more difficult to read than the equivalent expressions using
-"+"; it also makes it very much harder to see that these two expressions
+~+~; it also makes it very much harder to see that these two expressions
 do actually have the same value.
 
 Gofer distinguishes between the two types of name according to the way
@@ -393,11 +397,10 @@ that they are written:
   The following identifiers are reserved words in Gofer and cannot be
   used as the name of a function or variable:
 
-  #+begin_example
-  case      of         where      let        in         if
-  then      else       data       type       infix      infixl
-  infixr    primitive  class      instance
-  #+end_example
+  | ~case~   | ~of~        | ~where~ | ~let~      | ~in~    | ~if~     |
+  | ~then~   | ~else~      | ~data~  | ~type~     | ~infix~ | ~infixl~ |
+  | ~infixr~ | ~primitive~ | ~class~ | ~instance~ |         |          |
+
 
 - An operator symbol is written using one or more of the following
   symbol characters:
@@ -438,16 +441,16 @@ identifier as an operator symbol, or an operator symbol as an
 identifier:
 
 - Any identifier will be treated as an operator symbol if it is enclosed
-  in backquotes (`) -- for example, the expressions using the "plus"
+  in backquotes (`) -- for example, the expressions using the ~plus~
   function above are a little easier to read using this technique:
 
   #+begin_example
   (((1 `plus` 2) `plus` 3) `plus` 4) `plus` 5
   #+end_example
 
-  In general, an expression of the form "x `op` y" is equivalent to the
-  corresponding expression "op x y", whilst an expression such as "f x y
-  z" can also be written as "(x `f` y) z".
+  In general, an expression of the form =x `op` y= is equivalent to the
+  corresponding expression ~op x y~, whilst an expression such as ~f x y
+  z~ can also be written as ~(x `f` y) z~.
 
   [NOTE: For those using Gofer on a PC, you may find that your keyboard
   does not have a backquote key! In this case you should still be able
@@ -457,40 +460,40 @@ identifier:
 
 - Any operator symbol can be treated as an identifier by enclosing it in
   parentheses. For example, the addition function denoted by the
-  operator symbol "+" is often written as "(+)". Any expression of the
-  form "x + y" can also be written in the form "(+) x y".
+  operator symbol ~+~ is often written as ~(+​)~. Any expression of the
+  form ~x + y~ can also be written in the form ~(+) x y~.
 
 There are two more technical problems which have to be dealt with when
 working with operator symbols:
 
-- Precedence: Given operator symbols (+) and (*), should "2 * 3 + 4" be
-  treated as either "(2 * 3) + 4" or "2 * (3 + 4)"?
+- Precedence: Given operator symbols (+) and (*), should ~2 * 3 + 4~ be
+  treated as either ~(2 * 3) + 4~ or ~2 * (3 + 4)~?
 
   This problem is solved by assigning each operator a precedence value
   (an integer in the range 0 to 9). In a situation such as the above, we
   simply compare the precedence values of the operators involved, and
   carry out the calculation associated with the highest precedence
-  operator first. The standard precedence values for (+) and (*) are 6
+  operator first. The standard precedence values for ~(+)~ and ~(*)~ are 6
   and 7 respectively so that the expression above will actually be
-  treated as "(2 * 3) + 4".
+  treated as ~(2 * 3) + 4~.
 
 - Grouping: The above rule is only useful when the operator symbols
   involved have distinct precedences. For example, should the expression
-  "1 - 2 - 3" be treated as either "(1 - 2) - 3" giving a result of -4,
-  or as "1 - (2 - 3)" giving a result of 2?
+  ~1 - 2 - 3~ be treated as either ~(1 - 2) - 3~ giving a result of ~-4~,
+  or as ~1 - (2 - 3)~ giving a result of ~2~?
 
   This problem is solved by giving each operator a `grouping' (sometimes
   called its associativity). An operator symbol (-) is said to:
 
-  - group to the left if "x - y - z" is treated as "(x - y) - z"
-  - group to the right if "x - y - z" is treated as "x - (y - z)"
+  - group to the left if ~x - y - z~ is treated as ~(x - y) - z~
+  - group to the right if ~x - y - z~ is treated as ~x - (y - z)~
 
-  A third possibility is that an expression of the form "x - y - z" is
+  A third possibility is that an expression of the form ~x - y - z~ is
   to be treated as ambiguous and will be flagged as a syntax error. In
   this case we say that the operator (-) is non-associative.
 
   The standard approach in Gofer is to treat (-) as grouping to the left
-  so that "1 - 2 - 3" will actually be treated as "(1-2)-3".
+  so that ~1 - 2 - 3~ will actually be treated as ~(1-2)-3~.
 
 By default, every operator symbol in Gofer is treated as non-associative
 with precedence 9. These values can be changed by a declaration of one
@@ -564,10 +567,10 @@ y `elem` z:zs   y `elem` (z:zs)  (:) has higher precedence than elem.
 #+end_example
 
 Note that function application always binds more tightly than any infix
-operator symbol. For example, the expression "f x + g y" is equivalent
-to "(f x) + (g y)". Another example which often causes problems is the
-expression "f x + 1", which is treated as "(f x) + 1" and not as "f
-(x+1)" as is sometimes expected.
+operator symbol. For example, the expression ~f x + g y~ is equivalent
+to ~(f x) + (g y)~. Another example which often causes problems is the
+expression ~f x + 1~, which is treated as ~(f x) + 1~ and not as ~f
+(x+1)~ as is sometimes expected.
 
 * BUILT-IN TYPES
 An important part of Gofer is the type system which is used to detect
@@ -580,10 +583,10 @@ In general we write object :: type to indicate that a particular
 expression has the indicated type. For example:
 
 #+begin_example
-42   :: Int         indicating that  42  is an  integer (Int is the
+42   :: Int         indicating that  ~42~  is an  integer (Int is the
                     name for the type of integer values).
 
-fact :: Int -> Int  indicating  that  "fact"  is a  function  which
+fact :: Int -> Int  indicating  that  ~fact~  is a  function  which
                     takes  an  integer  argument  and  returns   an
                     integer value (its factorial).
 #+end_example
@@ -599,23 +602,18 @@ types as well as types acting as abbreviations for complicated type
 expressions as described in section 11.
 
 ** Functions
-If t1 and t2 are types then t1 -> t2 is the type of a function which,
-given an argument of type t1 produces a result of type t2. A function of
-type t1 -> t2 is said to have argument type t1 and result type t2.
+If ~t1~ and ~t2~ are types then ~t1 -> t2~ is the type of a function which,
+given an argument of type ~t1~ produces a result of type ~t2~. A function of
+type ~t1 -> t2~ is said to have argument type ~t1~ and result type ~t2~.
 
-In mathematics, the result of applying a function f to an argument x is
-traditionally written as f(x). In many situations, these parentheses are
+In mathematics, the result of applying a function /f/ to an argument /x/ is
+traditionally written as /f(x)/. In many situations, these parentheses are
 unnecessary and may be omitted when using Gofer.
 
-e.g. if f :: t1 -> t2 and x :: t1 then f x is the result of applying
-
-#+begin_example
-f to x and has type t2.
-
-#+end_example
+e.g. if ~f :: t1 -> t2~ and ~x :: t1~ then ~f x~ is the result of applying
+~f~ to ~x~ and has type ~t2~.
 
 If t1, t2, ..., tn are type expressions then:
-
 #+begin_example
 t1 -> t2 -> ... -> tn
 #+end_example
@@ -626,42 +624,38 @@ can be used as an abbreviation for the type:
 t1 -> (t2 -> ( ... -> tn) ...)
 #+end_example
 
-In a similar way, an expression of the form f x1 x2 ... xn is simply an
-abbreviation for the expression ( ... ((f x1) x2) ... xn).
+In a similar way, an expression of the form ~f x1 x2 ... xn~ is simply an
+abbreviation for the expression ~( ... ((f x1) x2) ... xn)~.
 
 These two conventions allow us to deal with functions taking more than
 one argument rather elegantly. For example, the type of the addition
-function (+) is:
+function ~(+)~ is ~Int -> Int -> Int~.
 
-#+begin_example
-Int -> Int -> Int
-#+end_example
 
-In other words, "(+)" is a function which takes an integer argument and
-returns a value of type (Int -> Int). For example, "(+) 5" is the
+In other words, ~(+​)~ is a function which takes an integer argument and
+returns a value of type (Int -> Int). For example, ~(+) 5~ is the
 function which takes an integer value n and returns the value of the
-integer n plus 5. Hence "(+) 5 4", which is equivalent to "5 + 4",
+integer n plus 5. Hence ~(+) 5 4~, which is equivalent to ~5 + 4~,
 evaluates to the integer 9 as expected.
 
 ** Booleans
-Represented by the type "Bool", there are two boolean values written as
-"True" and "False". The standard prelude includes several useful
+Represented by the type ~Bool~, there are two boolean values written as
+~True~ and ~False~. The standard prelude includes several useful
 functions for manipulating boolean values:
 
-#+begin_example
+#+Begin_example
 (&&), (||) :: Bool -> Bool -> Bool
-
-    The value of the expression b && d is True if and only if  both
-    b and d are True.  If b is False then d is not evaluated.
-
-    The value of the expression b || d is True if either of b or  d
-    is True.  If b is True then d is not evaluated.
-
 not  :: Bool -> Bool
+#+End_example
 
-    The value of the expression not b is the opposite boolean value
-    to that of b; not True = False, not False = True.
-#+end_example
+The value of the expression ~b && d~ is ~True~ if and only if  both
+~b~ and ~d~ are ~True~.  If ~b~ is ~False~ then ~d~ is not evaluated.
+
+The value of the expression ~b || d~ is ~True~ if either of ~b~ or ~d~
+is ~True~.  If ~b~ is ~True~ then ~d~ is not evaluated.
+
+The value of the expression ~not b~ is the opposite boolean value
+to that of ~b~; ~not True = False~, ~not False = True~.
 
 Gofer includes a special form of `conditional expression' which enables
 an expression to select between two alternatives according to the value
@@ -671,14 +665,14 @@ of a boolean expression:
 if b then t else f 
 #+end_example
 
-is an expression which is equivalent to t if b evaluates to True, or to
-f if b evaluates to False. Note that an expression of this form is only
-acceptable if b is an expression of type Bool and if the types of t and
-f are the same, in which case the whole expression also has that type.
+is an expression which is equivalent to t if ~b~ evaluates to ~True~, or to
+~f~ if ~b~ evaluates to ~False~. Note that an expression of this form is only
+acceptable if ~b~ is an expression of type ~Bool~ and if the types of ~t~ and
+~f~ are the same, in which case the whole expression also has that type.
 
 ** Integers
-Represented by the type "Int", the integer type includes both positive
-and negative integers such as -273, 0 and 383. Like many computer
+Represented by the type ~Int~, the integer type includes both positive
+and negative integers such as ~-273~, ~0 and ~383~. Like many computer
 systems, the range of integer values that can be used is restricted and
 calculations using large positive or negative numbers may lead to
 (undetected) overflow.
@@ -719,25 +713,25 @@ gcd 32 12 == 4,    abs (-2) == 2,        signum 12 == 1
 #+end_example
 
 ** Floating point numbers
-Represented by the type "Float", elements of this type can be used to
+Represented by the type ~Float~, elements of this type can be used to
 represent fractional values as well as very large or very small
 quantities. Such values are however usually only accurate to a fixed
 number of digits and rounding errors may occur in some calculations
 making significant use of floating point quantities. A numeric value in
 an input expression will only be treated as a floating point number if
-it either includes a decimal point such as 3.14159, or if the number is
-too large to be stored as a value of type Int. Scientific notation may
-also be used to enter floating point quantities; for example 1.0e3 is
-equivalent to 1000.0, whilst 5.0e-2 is equivalent to 0.05.
+it either includes a decimal point such as ~3.14159~, or if the number is
+too large to be stored as a value of type ~Int~. Scientific notation may
+also be used to enter floating point quantities; for example ~1.0e3~ is
+equivalent to ~1000.0~, whilst ~5.0e-2~ is equivalent to ~0.05~.
 
 [N.B. floating point numbers are not included in all implementations of
 Gofer].
 
 ** Characters
-Represented by the type "Char", elements of this type represent
+Represented by the type ~Char~, elements of this type represent
 individual characters such as those entered at a keyboard. Character
 values are written as single characters enclosed by apostrophe
-characters: e.g. 'a', '0', 'Z'. Some special characters must be entered
+characters: e.g. ~'a'~, ~'0'~, ~'Z'~. Some special characters must be entered
 using an `escape code'; each of these begins with a backslash character
 '\', followed by one or more characters to select the required
 character. Some of the most useful escape codes are:
@@ -796,51 +790,41 @@ from an ASCII value to the corresponding character:
 'A'
 (2 reductions, 7 cells)
 ?         
-
 #+end_example
 
 ** Lists
-If a is a type then [a] is the type whose elements are lists of values
-of type a. There are several ways of writing list expressions:
+If ~a~ is a type then ~[a]~ is the type whose elements are lists of values
+of type ~a~. There are several ways of writing list expressions:
 
-- The simplest list of any type is the empty list, written [].
+- The simplest list of any type is the empty list, written ~[]~.
 
 - Non-empty lists can be constructed either by explicitly listing
-
-  #+begin_example
-  the members of the list (for example: [1,3,10]) or  by  adding  a
-  single element onto the front  of  another  list  using  the  (:)
+  the members of the list (for example: ~[1,3,10]~) or  by  adding  a
+  single element onto the front  of  another  list  using  the  ~(:)~
   operator (pronounced "cons").  These notations are equivalent:
 
-   [1,3,10]  =  1 : [3,10]  =  1 : 3 : [10]  =  1 : 3 : 10 : []
-
-  (the (:) operator groups to the right so 1 :  3  :  10  :  []  is
-  equivalent to (1:(3:(10:[]))) -- a list whose first element is 1,
-  second element is 3 and last element is 10).
+  #+begin_example
+  [1,3,10]  =  1 : [3,10]  =  1 : 3 : [10]  =  1 : 3 : 10 : []
   #+end_example
+
+  (the ~(:)~ operator groups to the right so ~1 :  3  :  10  :  []~  is
+  equivalent to ~(1:(3:(10:[])))~ -- a list whose first element is ~1~,
+  second element is ~3~ and last element is ~10~).
+
 
 The standard prelude includes a wide range of functions for calculations
 involving lists. For example:
 
-- length xs returns the number of elements in the list xs.
+- ~length xs~ returns the number of elements in the list ~xs~.
 
-- xs ++ ys returns the list of elements in xs followed by the
-
-  #+begin_example
-  elements in ys
-  #+end_example
-
-- concat xss returns the list of elements in each of the lists in
-
-  #+begin_example
+- ~xs ++ ys~ returns the list of elements in ~xs~ followed by the
+  elements in ~ys~
+  
+- ~concat xss~ returns the list of elements in each of the lists in
   xss
-  #+end_example
 
-- map f xs returns the list of values obtained by applying the
-
-  #+begin_example
-  function f to each of the values in the list xs in turn.
-  #+end_example
+- ~map f xs~ returns the list of values obtained by applying the
+  function ~f~ to each of the values in the list ~xs~ in turn.
 
 Here are some examples using these functions:
 
@@ -865,22 +849,22 @@ Here are some examples using these functions:
 #+end_example
 
 Note that all of the elements in a list must be of the same type, so
-that an expression such as ['a', 2, False] is not permitted.
+that an expression such as ~['a', 2, False]~ is not permitted.
 
 [ASIDE: At this point it might be useful to mention an informal
 convention that is used by a number of functional programmers when
 choosing names for variables representing elements of lists, lists
 themselves, lists of lists and so on. If for example, a typical element
-of a list is called x, then it is often useful to use the name xs for a
-list of such values, suggesting that a list contains a number of "x"s.
-Similarly, a list of lists might be called xss. Once you have understood
+of a list is called ~x~, then it is often useful to use the name ~xs~ for a
+list of such values, suggesting that a list contains a number of ~x~-s.
+Similarly, a list of lists might be called ~xss~. Once you have understood
 this convention it is much easier to remember the relationship between
-the variables in the expression (x:xs) than it would be if different
-names had been used such as (a:b).]
+the variables in the expression ~(x:xs)~ than it would be if different
+names had been used such as ~(a:b)~.]
 
 ** Strings
 A string is treated as a list of characters and the type String is
-simply an abbreviation for the type [Char]. Strings are written as
+simply an abbreviation for the type ~[Char]~. Strings are written as
 sequences of characters enclosed between speech marks. All of the escape
 codes that can be used for characters may also be used in a string:
 
@@ -896,7 +880,7 @@ world
 ?
 #+end_example
 
-In addition, strings may contain the escape sequence "\&" which can be
+In addition, strings may contain the escape sequence ~\&~ which can be
 used to separate otherwise ambiguous pairs of characters within a
 string:
 
@@ -920,10 +904,10 @@ Notice that strings are printed differently from other values, which
 gives the programmer complete control over the format of the output
 produced by a program. The only values that Gofer can in fact display on
 the terminal are strings. If the type of an expression entered into
-Gofer is equivalent to String then the expression is printed directly by
+Gofer is equivalent to ~String~ then the expression is printed directly by
 evaluating and printing each character in the list in sequence.
-Otherwise, the expression to be evaluated, e, is replaced by the
-expression show' e where show' is a built-in function (defined as part
+Otherwise, the expression to be evaluated, ~e~, is replaced by the
+expression ~show' e~ where ~show'~ is a built-in function (defined as part
 of the standard prelude) which converts any value to a printable
 representation. The only way of printing a string value in the same way
 as any other value is by explicitly using the show' function:
@@ -969,10 +953,9 @@ supercalifragilistic
 #+end_example
 
 ** Tuples and the unit type
-If t1, t2, ..., tn are types and n>=2, then there is a type of n-tuples
-written (t1, t2, ..., tn) whose elements are also written in the form
-(x1, x2, ..., xn) where the expressions x1, x2, ..., xn have types t1,
-t2, ..., tn respectively.
+If ~t1~, ~t2~, ..., ~tn~ are types and n>=2, then there is a type of n-tuples
+written ~(t1, t2, ..., tn)~ whose elements are also written in the form
+~(x1, x2, ..., xn)~ where the expressions ~x1~, ~x2~, ..., ~xn~ have types ~t1~, ~t2~, ..., ~tn~ respectively.
 
 #+begin_example
 e.g.  (1, [2], 3)   :: (Int, [Int], Int)
@@ -983,8 +966,8 @@ e.g.  (1, [2], 3)   :: (Int, [Int], Int)
 Note that, unlike lists, the elements in a tuple may have different
 types, although the number of elements in the tuple is fixed.
 
-The unit type is written () and has a single element which is also
-written as (). The unit type is of particular interest in theoretical
+The unit type is written ~()~ and has a single element which is also
+written as ~()~. The unit type is of particular interest in theoretical
 treatments of the type system of Gofer, although you may occasionally
 find a use for it in practical programs.
 
@@ -1024,7 +1007,7 @@ examples of the kind of problem that might occur:
   calculate the factorial of an integer, it is clearly meaningless to
   try to determine the factorial of a character value. This kind of
   problem can be detected using the types of the components of an
-  expression. In the expression "fact 'A'", we can see that the argument
+  expression. In the expression ~fact 'A'~, we can see that the argument
   'A' has type Char which does not match the argument type Int of the
   factorial function. This error will be detected by Gofer if you try to
   evaluate the expression:
@@ -1057,7 +1040,7 @@ braces `{' and `}':
 ? 
 #+end_example
 
-[The function "primDivInt" which appears here is a primitive function
+[The function ~primDivInt~ which appears here is a primitive function
 used to divide one integer (its first argument) by another (the
 second)]. If an error occurs in just one part of an expression, only the
 part causing the problem will be displayed:
@@ -1069,7 +1052,7 @@ part causing the problem will be displayed:
 ? 
 #+end_example
 
-A standard function called "error" is defined in the standard prelude
+A standard function called ~error~ is defined in the standard prelude
 which is often useful for ensuring that appropriate error messages are
 produced when an error occurs:
 
@@ -1084,19 +1067,19 @@ produced when an error occurs:
 ** Simple pattern matching
 Although the Gofer standard prelude includes many useful functions, you
 will usually need to define a collection of new functions for specific
-problems and calculations. The declaration of a function "f" usually
+problems and calculations. The declaration of a function ~f~ usually
 takes the form of a number of equations of the form:
 
 #+begin_example
 f <pat1> <pat2> ... <patn>  =   <rhs>
 #+end_example
 
-(or an equivalent expression, if "f" is written as by an operator
+(or an equivalent expression, if ~f~ is written as by an operator
 symbol). Each of the expressions <pat1>, <pat2>, ..., <patn> represents
-an argument to the function "f" and is called a `pattern'. The number of
-such arguments is called the arity of "f". If "f" is defined by more
+an argument to the function ~f~ and is called a `pattern'. The number of
+such arguments is called the arity of ~f~. If ~f~ is defined by more
 than one equation then they must be entered together and each one must
-give the same arity for "f".
+give the same arity for ~f~.
 
 When a function is defined by more than one equation, it will usually be
 necessary to evaluate one or more of the arguments to the function to
@@ -1109,14 +1092,14 @@ factorial function defined in section 5:
 fact n = product [1..n]
 #+end_example
 
-If we then wish to evaluate the expression "fact 6" we first match the
-expression "6" against the pattern "n" and then evaluate the expression
-obtained from "product [1..n]" by replacing the variable "n" with the
-expression "6". The process of matching the arguments of a function
+If we then wish to evaluate the expression ~fact 6~ we first match the
+expression ~6~ against the pattern ~n~ and then evaluate the expression
+obtained from ~product [1..n]~ by replacing the variable ~n~ with the
+expression ~6~. The process of matching the arguments of a function
 against the patterns in its definition and obtaining another expression
 to be evaluated is called a `reduction'. Using Gofer, it is easy to
-verify that the evaluation of "fact 6" takes one more reduction than
-that of "product [1..6]":
+verify that the evaluation of ~fact 6~ takes one more reduction than
+that of ~product [1..6]~:
 
 #+begin_example
 ? fact 6
@@ -1130,21 +1113,21 @@ that of "product [1..6]":
 
 Many kinds of constants such as the boolean values True and False can
 also be used in patterns, as in the following definition of the function
-"not" taken from the standard prelude:
+~not~ taken from the standard prelude:
 
 #+begin_example
 not True  = False
 not False = True
 #+end_example
 
-In order to determine the value of an expression of the form "not b", we
-must first evaluate the expression "b". If the result is "True" then we
-use the first equation and the value of "not b" will be "False". If the
-value of "b" is "False", then the second equation is used and the value
-of "not b" will be "True".
+In order to determine the value of an expression of the form ~not b~, we
+must first evaluate the expression ~b~. If the result is ~True~ then we
+use the first equation and the value of ~not b~ will be ~False~. If the
+value of ~b~ is ~False~, then the second equation is used and the value
+of ~not b~ will be ~True~.
 
 Other constants, including integers, characters and strings may also be
-used in patterns. For example, if we define a function "hello" by:
+used in patterns. For example, if we define a function ~hello~ by:
 
 #+begin_example
 hello "Mark"  =  "Howdy"
@@ -1258,8 +1241,8 @@ Each of the equations in a function definition may contain `guards'
 which require certain conditions on the values of the function's
 arguments to be met. As an example, here is a function which uses the
 standard prelude function even :: Int -> Bool to determine whether its
-argument is an even integer or not, and returns the string "even" or
-"odd" as appropriate:
+argument is an even integer or not, and returns the string ~even~ or
+~odd~ as appropriate:
 
 #+begin_example
 oddity n | even n    = "even"
@@ -1277,10 +1260,10 @@ f x1 x2 ... xn | condition1  =  e1
 #+end_example
 
 This equation is used by evaluating each of the conditions in turn until
-one of them evaluates to "True", in which case the value of the function
+one of them evaluates to ~True~, in which case the value of the function
 is given by the corresponding expression e on the right hand side of the
-`=' sign. In Gofer, the variable "otherwise" is defined to be equal to
-"True", so that writing "otherwise" as the condition in a guard means
+`=' sign. In Gofer, the variable ~otherwise~ is defined to be equal to
+~True~, so that writing ~otherwise~ as the condition in a guard means
 that the corresponding expression will always be used if no previous
 guard has been satisfied.
 
@@ -1306,13 +1289,13 @@ Consider the following function which calculates the number of distinct
 real roots for a quadratic equation of the form a*x*x + b*x + c = 0:
 
 #+begin_example
-numberOfRoots a b c | discr>0   =  2
-                    | discr==0  =  1
-                    | discr<0   =  0
+numberOfRoots a b c | discr > 0   =  2
+                    | discr == 0  =  1
+                    | discr < 0   =  0
                       where discr = b*b - 4*a*c
 #+end_example
 
-[ASIDE: The operator (==) is used to test whether two values are equal
+[ASIDE: The operator ~(=​=​)~ is used to test whether two values are equal
 or not. You should take care not to confuse this with the single `='
 sign used in function definitions].
 
@@ -1364,7 +1347,7 @@ requires the calculation of (n-2)! etc... However, if we start with some
 positive value for the variable n, then we will eventually reach the
 case where the value of 0! is required -- and this does not require any
 further calculation. The following diagram illustrates how 6! is
-evaluated using "fact1":
+evaluated using ~fact1~:
 
 #+begin_example
 fact1 6  ==>  6 * fact1 5
@@ -1383,7 +1366,7 @@ fact1 6  ==>  6 * fact1 5
 #+end_example
 
 Incidentally, there are several other ways of writing the recursive
-definition of "fact1" above in Gofer. For example, using guards:
+definition of ~fact1~ above in Gofer. For example, using guards:
 
 #+begin_example
 fact2 n
@@ -1416,23 +1399,21 @@ fact5 n | n==0  =  1
 #+end_example
 
 [COMMENT: Although each of the above definitions gives the same result
-as the original "fact" function for each non-negative integer, the
+as the original ~fact~ function for each non-negative integer, the
 functions can still be distinguished by the values obtained when they
 are applied to negative integers:
 
-- "fact (-1)" evaluates to the integer 1.
+- ~fact (-1)~ evaluates to the integer 1.
 
-- "fact1 (-1)" causes Gofer to enter an infinite loop, which is only
+- ~fact1 (-1)~ causes Gofer to enter an infinite loop, which is only
   eventually terminated when Gofer runs out of `stack space'.
 
-- "fact4 (-1)" causes an evaluation error and prints the
+- ~fact4 (-1)~ causes an evaluation error and prints the
+  message ~{fact4 (-1)}~ on the screen.
 
-  #+begin_example
-  message {fact4 (-1)} on the screen.
-  #+end_example
 
-To most people, this suggests that the definition of "fact4" is perhaps
-preferable to that of either "fact" or "fact1" as it neither gives the
+To most people, this suggests that the definition of ~fact4~ is perhaps
+preferable to that of either ~fact~ or ~fact1~ as it neither gives the
 wrong answer without allowing this to be detected nor causes a
 potentially non-terminating computation.]
 
@@ -1441,8 +1422,8 @@ The same kind of technique that can be used to define recursive
 functions with integers can also be used to define recursive functions
 on lists. As an example, suppose that we wish to define a function to
 calculate the length of a list. As the standard prelude already includes
-such a function called "length", we will call the function developed
-here "len" to avoid any conflict. Now suppose that we wish to find the
+such a function called ~length~, we will call the function developed
+here ~len~ to avoid any conflict. Now suppose that we wish to find the
 length of a given list. There are two cases to consider:
 
 - If the list is empty then it has length 0
@@ -1501,8 +1482,8 @@ The first of these ideas is illustrated by the following function:
 ignoreArgument x = "I didn't need to evaluate x"
 #+end_example
 
-Since the result of the function "ignoreArgument" doesn't depend on the
-value of its argument "x", that argument will not be evaluated:
+Since the result of the function ~ignoreArgument~ doesn't depend on the
+value of its argument ~x~, that argument will not be evaluated:
 
 #+begin_example
 ? ignoreArgument (1/0)
@@ -1513,9 +1494,9 @@ I didn't need to evaluate x
 
 In some situations, it is useful to be able to force Gofer to evaluate
 the argument to a function before the function is applied. This can be
-achieved using the function "strict" defined in the standard prelude; An
-expression of the form "strict f x" is evaluated by first evaluating the
-argument "x" and then applying the function "f" to the result:
+achieved using the function ~strict~ defined in the standard prelude; An
+expression of the form ~strict f x~ is evaluated by first evaluating the
+argument ~x~ and then applying the function ~f~ to the result:
 
 #+begin_example
 ? strict ignoreArgument (1/0)
@@ -1562,7 +1543,7 @@ used to determine the result of an expression. The following example is
 often used to illustrate this point.
 
 Consider the task of finding the smallest element of a list of integers.
-The standard prelude includes a function "minimum" which can be used for
+The standard prelude includes a function ~minimum~ which can be used for
 this very purpose:
 
 #+begin_example
@@ -1572,13 +1553,13 @@ this very purpose:
 ?
 #+end_example
 
-(The expression [100,99..1] denotes the list of integers from 1 to 100
+(The expression ~[100,99..1]~ denotes the list of integers from ~1~ to ~100~
 arranged in decreasing order, as described in section 10.1).
 
 A rather different approach involves sorting the elements of the list
-into increasing order (using the function "sort" defined in the standard
+into increasing order (using the function ~sort~ defined in the standard
 prelude) and then take the element at the head of the resulting list
-(using the standard function "head"). Of course, sorting the list in its
+(using the standard function ~head~). Of course, sorting the list in its
 entirety is likely to require significantly more work than the previous
 approach:
 
@@ -1591,7 +1572,7 @@ approach:
 
 However, thanks to lazy-evaluation, calculating just the first element
 of the sorted list actually requires less work in this particular case
-than the first solution using "minimum":
+than the first solution using ~minimum~:
 
 #+begin_example
 ? head (sort [100,99..1])
@@ -1601,7 +1582,7 @@ than the first solution using "minimum":
 #+end_example
 
 Incidentally, it is probably worth pointing out that this example
-depends rather heavily on the particular algorithm used to "sort" a list
+depends rather heavily on the particular algorithm used to ~sort~ a list
 of elements. The results are rather different if we compare the same two
 approaches used to calculate the maximum value in the list:
 
@@ -1616,7 +1597,7 @@ approaches used to calculate the maximum value in the list:
 #+end_example
 
 This difference is caused by the fact that each element in the list
-produced by "sort" is only known once the values of all of the preceding
+produced by ~sort~ is only known once the values of all of the preceding
 elements are also known. Thus the complete list must be sorted in order
 to obtain the last element.
 
@@ -1636,7 +1617,7 @@ to produce infinite lists of integer values:
 countFrom n = n : countFrom (n+1)
 #+end_example
 
-If we evaluate the expression "countFrom 1", Gofer just prints the list
+If we evaluate the expression ~countFrom 1~, Gofer just prints the list
 of integer values beginning with 1 until it is interrupted. Once each
 element in the list has been printed, the storage used to hold that
 element can be reused to hold later elements in the list. Evaluating
@@ -1653,8 +1634,8 @@ list of integers in an imperative programming language:
 For practical applications, we are usually only interested in using a
 finite portion of an infinite data structure (just as loops in an
 imperative programming language are usually terminated after finitely
-many iterations). For example, using "countFrom" together with the
-function "take" defined in the standard prelude, we can repeat the
+many iterations). For example, using ~countFrom~ together with the
+function ~take~ defined in the standard prelude, we can repeat the
 calculation from section 4 to find the sum of the integers 1 to 10:
 
 #+begin_example
@@ -1664,16 +1645,16 @@ calculation from section 4 to find the sum of the integers 1 to 10:
 ?
 #+end_example
 
-[ASIDE: The expression "take n xs" evaluates to a list containing the
-first n elements of the list xs (or to xs itself if the list contains
-fewer than n elements). Thus "countFrom 1" generates the infinite list
-of integers, "take 10" ensures that only the first ten elements are
-calculated, and "sum" calculates the sum of those integers as before.]
+[ASIDE: The expression ~take n xs~ evaluates to a list containing the
+first ~n~ elements of the list ~xs~ (or to ~xs~ itself if the list contains
+fewer than ~n~ elements). Thus ~countFrom 1~ generates the infinite list
+of integers, ~take 10~ ensures that only the first ten elements are
+calculated, and ~sum~ calculates the sum of those integers as before.]
 
 A particular advantage of using infinite data structures is that it
 enables us to describe an object without being tied to one particular
 application of that object. Consider the following definition for the
-infinite list of powers of two [1, 2, 4, 8, ...]:
+infinite list of powers of two ~[1, 2, 4, 8, ...]~:
 
 #+begin_example
 powersOfTwo = 1 : map double powersOfTwo 
@@ -1689,7 +1670,7 @@ integer n:
 twoToThe n = powersOfTwo !! n 
 #+end_example
 
-Alternatively, we can use the list "powersOfTwo" to define a function
+Alternatively, we can use the list ~powersOfTwo~ to define a function
 mapping lists of bits (represented by integers 0 and 1) to the
 corresponding decimal number: simply reverse the order of the digits,
 multiply each by the corresponding power of two and calculate the sum.
@@ -1713,13 +1694,13 @@ For example:
 #+end_example
 
 ** Polymorphism
-Given the definition of "product" in section 9.5, it is easy to see that
+Given the definition of ~product~ in section 9.5, it is easy to see that
 product takes a single argument which is a list of integers and returns
 a single integer value -- the product of the elements of the list. In
-other words, "product" has type [Int] -> Int. On the other hand, it is
-not immediately clear what the type of the function "map" should be.
-Clearly the first argument of "map" must be a function and both the
-second argument and the result are lists, so that the type of "map" must
+other words, ~product~ has type ~[Int] -> Int~. On the other hand, it is
+not immediately clear what the type of the function ~map~ should be.
+Clearly the first argument of ~map~ must be a function and both the
+second argument and the result are lists, so that the type of ~map~ must
 be of the form:
 
 #+begin_example
@@ -1734,23 +1715,23 @@ argument "f"     argument "xs"    "map f xs"
 
 But what can be said about the types a, b, c and d? One possibility
 would be to choose a = b = c = d = Int which would be acceptable for
-expressions such as "map fact [1,2,3,4]", but this would not be suitable
-in an expression such as "map chr [65,75,32]" because the "chr" function
+expressions such as ~map fact [1,2,3,4]~, but this would not be suitable
+in an expression such as ~map chr [65,75,32]~ because the ~chr~ function
 does not have type Int -> Int.
 
-Notice however that the argument type of "f" must be the same as the
-type of elements in the second argument (i.e. a = c) since "f" is
-applied to each element in that list. Similarly, the result type of "f"
+Notice however that the argument type of ~f~ must be the same as the
+type of elements in the second argument (i.e. a = c) since ~f~ is
+applied to each element in that list. Similarly, the result type of ~f~
 must be the same as the type of elements in the result list (i.e. b = d)
 since each element in this list is obtained as a result of applying the
-function "f" to some value. It is therefore reasonable to treat the
-"map" function as having any type of the form:
+function ~f~ to some value. It is therefore reasonable to treat the
+~map~ function as having any type of the form:
 
 #+begin_example
 (a -> b)  ->  [a]  ->  [b]
 #+end_example
 
-The letters "a" and "b" used in this type expression represent arbitrary
+The letters ~a~ and ~b~ used in this type expression represent arbitrary
 types and are called type variables. An object whose type includes one
 or more type variables can be thought of as having many different types
 and is often described as having a `polymorphic type' (literally: its
@@ -1767,7 +1748,7 @@ length :: [a] -> Int
 concat :: [[a]] -> [a]
 #+end_example
 
-Thus we can use precisely the same "length" function to determine both
+Thus we can use precisely the same ~length~ function to determine both
 the length of a list of integers as well as finding the length of a
 string:
 
@@ -1832,7 +1813,7 @@ that word:
 #+end_example
 
 Another solution is to first find the length of each word in the list
-(using the "map" function to apply "length" to each word) and then
+(using the ~map~ function to apply ~length~ to each word) and then
 calculate the sum of these individual lengths:
 
 #+begin_example
@@ -1862,11 +1843,11 @@ val = sum [1..100]
 
 Note that variables defined like this at the top level of a file of
 definitions will be evaluated using lazy evaluation. The first time we
-refer to the variable "val" defined above (either directly or
+refer to the variable ~val~ defined above (either directly or
 indirectly), Gofer evaluates the sum of the integers from 1 to 100 and
-overwrites the definition of "val" with this number. This calculation
-can then be avoided for each subsequent use of "val" (unless the file
-containing the definition of "val" is reloaded).
+overwrites the definition of ~val~ with this number. This calculation
+can then be avoided for each subsequent use of ~val~ (unless the file
+containing the definition of ~val~ is reloaded).
 
 #+begin_example
 ? val
@@ -1888,12 +1869,12 @@ storage space. If we load a file of definitions including the line:
 longList = [1..10000]
 #+end_example
 
-and then evaluate the expression "length longList" (eventually obtaining
+and then evaluate the expression ~length longList~ (eventually obtaining
 the expected result of 10000), then Gofer will evaluate the definition
-of "longList" and replace it with the complete list of integers from 1
+of ~longList~ and replace it with the complete list of integers from 1
 upto 10000. Unlike other memory used during a calculation, it will not
 be possible to reuse this space for other calculations without reloading
-the file defining "longList", or loading other files instead.
+the file defining ~longList~, or loading other files instead.
 
 ** Pattern bindings and irrefutable patterns
 Another useful way of defining variables uses `pattern bindings' which
@@ -1905,14 +1886,14 @@ pat = rhs
 
 where the expression on the left hand side is a pattern as described in
 section 9.1. As a simple example of pattern bindings, here is one
-possible definition for the function "head" which returns the first
+possible definition for the function ~head~ which returns the first
 element in a list of values:
 
 #+begin_example
 head xs  =  x  where  (x:ys) = xs
 #+end_example
 
-[The definition "head (x:_) = x" used in the standard prelude is
+[The definition ~head (x:_) = x~ used in the standard prelude is
 slightly more efficient, but otherwise equivalent.]
 
 [ASIDE: Note that pattern bindings are treated quite differently from
@@ -1927,7 +1908,7 @@ definition for the operator symbol (+).]
 Pattern bindings are often useful for defining functions which we might
 think of as `returning more than one value' -- although they are
 actually packaged up in a single value such as a tuple. As an example,
-consider the function "span" defined in the standard prelude.
+consider the function ~span~ defined in the standard prelude.
 
 #+begin_example
 span :: (a -> Bool) -> [a] -> ([a],[a])
@@ -1937,7 +1918,7 @@ If xs is a list of values and p is a predicate, then span p xs returns
 the pair of lists (ys,zs) such that ys++zs == xs, all of the elements in
 ys satisfy the predicate p and the first element of zs does not satisfy
 p. A suitable definition, using a pattern binding to obtain the two
-lists resulting from the recursive call to "span" is as follows:
+lists resulting from the recursive call to ~span~ is as follows:
 
 #+begin_example
 span p []               = ([],[])
@@ -1965,7 +1946,7 @@ an error if we attempt to evaluate the variable xs:
 ?
 #+end_example
 
-The variable name "v120" appearing in this expression is the name of a
+The variable name ~v120~ appearing in this expression is the name of a
 function called a `conformality check' which is defined automatically by
 Gofer to ensure that the value on the right hand side of the pattern
 binding conforms with the pattern on the left.
@@ -1986,8 +1967,8 @@ are actually required. The reason for this difference is that the
 arguments supplied to a function must be evaluated to determine which
 equation in the definition of the function should be used. The error
 produced by the example above was caused by the fact that the argument
-[1] does not match the pattern used in the equation defining "example"
-(represented by an internal Gofer function called "v126").
+[1] does not match the pattern used in the equation defining ~example~
+(represented by an internal Gofer function called ~v126~).
 
 A different kind of behaviour can be obtained using a pattern of the
 form ~pat, known as an irrefutable (or lazy) pattern. This pattern can
@@ -2003,7 +1984,7 @@ f ~pat = rhs     is equivalent to     f v = rhs where pat=v
 
 The following examples, based very closely on those given in the Haskell
 report [5], illustrate the use of irrefutable patterns. The variable
-"undefined" used in these examples is included in the standard prelude
+~undefined~ used in these examples is included in the standard prelude
 and causes a run-time error each time it is evaluated (technically
 speaking, it represents the bottom element of the relevant semantic
 domain, and is the only value having all possible types):
@@ -2025,7 +2006,7 @@ domain, and is the only value having all possible types):
 Irrefutable patterns are not used very frequently, although they are
 particularly convenient in some situations (see section 12 for some
 examples). Be careful not to use irrefutable patterns where they are not
-appropriate. An attempt to define a map function "map'" using:
+appropriate. An attempt to define a map function ~map'~ using:
 
 #+begin_example
 map' f ~(x:xs) = f x : map' f xs
@@ -2076,10 +2057,10 @@ of this kind in a program:
   idInt x  =  x
   #+end_example
 
-  Without an explicit type declaration, Gofer treats "idInt" as a
-  polymorphic function of type a -> a and the expression "idInt 'A'"
+  Without an explicit type declaration, Gofer treats ~idInt~ as a
+  polymorphic function of type a -> a and the expression ~idInt 'A'~
   does not cause a type error. This problem can be solved by using an
-  explicit type declaration to restrict the type of "idInt" to a
+  explicit type declaration to restrict the type of ~idInt~ to a
   particular instance of the polymorphic type a -> a:
 
   #+begin_example
@@ -2092,9 +2073,9 @@ of this kind in a program:
   idInt :: Int -> a
   #+end_example
 
-  is not a valid type for the function "idInt" (the value of the
-  expression "idInt 42" is an integer and cannot be treated as having an
-  arbitrary type, depending on the value of the type variable "a"), and
+  is not a valid type for the function ~idInt~ (the value of the
+  expression ~idInt 42~ is an integer and cannot be treated as having an
+  arbitrary type, depending on the value of the type variable ~a~), and
   hence will not be accepted by Gofer.
 
 - Consistency check: As illustrated above, declared types are always
@@ -2192,7 +2173,7 @@ Arithmetic sequences such as those described above play the same role in
 functional programming languages as the iterative `for' constructs in
 traditional imperative languages. A good example of this is the example
 in section 4 used to calculate the sum of the integers from 1 upto 10 --
-"sum [1..10]". An equivalent program in an imperative language might
+~sum [1..10]~. An equivalent program in an imperative language might
 look something like (especially if you think of C!):
 
 #+begin_example
@@ -2345,8 +2326,8 @@ The following examples illustrate how this definition works in practice:
 
 - Changing the order of qualifiers has a direct effect on efficiency.
   The following two examples produce the same result, but the first uses
-  more reductions and cells because it repeats the evaluation of "even
-  x" for each possible value of "y".
+  more reductions and cells because it repeats the evaluation of ~even
+  x~ for each possible value of ~y~.
 
   #+begin_example
   ? [ (x,y) | x<-[1..3], y<-[1..2], even x ]
@@ -2360,8 +2341,8 @@ The following examples illustrate how this definition works in practice:
   #+end_example
 
   The following example illustrates a similar kind of behaviour with
-  local definitions; in the first case the expression "fact x" is
-  evaluated twice for each possible value of "x", whilst the second
+  local definitions; in the first case the expression ~fact x~ is
+  evaluated twice for each possible value of ~x~, whilst the second
   expression uses a local definition to ensure that the evaluation is
   not repeated:
 
@@ -2416,7 +2397,7 @@ following expression using a local definition:
 (let newName <atomic patterns> = <expr> in newName)
 #+end_example
 
-where "newName" is a new variable name, chosen to avoid conflicts with
+where ~newName~ is a new variable name, chosen to avoid conflicts with
 other variables that are already in use. This name will be printed if
 you enter an expression involving a lambda expression without supplying
 the full number of parameters for that function:
@@ -2436,7 +2417,7 @@ approach to I/O described in section 12.
 A case expression can be used to evaluate an expression and, depending
 on the result, return one of a number of possible values. As such, case
 statements are a straightforward generalisation of conditional
-expressions. Indeed, an expression of the form "if e then t else f" is
+expressions. Indeed, an expression of the form ~if e then t else f~ is
 in fact equivalent to the case expression:
 
 #+begin_example
@@ -2445,7 +2426,7 @@ case e of
   False -> f
 #+end_example
 
-In general, a case expression takes the form "case exp of alts" where
+In general, a case expression takes the form ~case exp of alts~ where
 exp is the expression to be evaluated and alts is a list of
 alternatives, each of which is of the form:
 
@@ -2462,12 +2443,12 @@ or: pat | condition1 -> rhs1      using guard expressions as
 #+end_example
 
 In Gofer, a case expression of the form case e of alts is implemented by
-choosing a new function name "newName" as in the previous section and
+choosing a new function name ~newName~ as in the previous section and
 using the alternatives in alts to construct an appropriate definition
 for this function (essentially by replacing each `->' symbol with a `='
 symbol). The complete case expression is then treated as being
-equivalent to the expression "newName e". A simple example of this is
-the "scanl" function whose definition in the standard prelude:
+equivalent to the expression ~newName e~. A simple example of this is
+the ~scanl~ function whose definition in the standard prelude:
 
 #+begin_example
 scanl f q xs = q : (case xs of
@@ -2484,7 +2465,7 @@ scanl f q xs = q : scanl' xs
 #+end_example
 
 This latter form is precisely the definition used in [1] (but using the
-name "scan" where Gofer uses "scanl").
+name ~scan~ where Gofer uses ~scanl~).
 
 Evaluating a case expression in which none of the alternatives match the
 value of the discriminant results in an error such as the following:
@@ -2496,15 +2477,15 @@ value of the discriminant results in an error such as the following:
 ?
 #+end_example
 
-The function name "v117" which appears here is the name of the function
+The function name ~v117~ which appears here is the name of the function
 which is used internally by Gofer to implement the case expression
-whilst the expression "[1, 2]" gives the discriminant value which could
+whilst the expression ~[1, 2]~ gives the discriminant value which could
 not be matched.
 
 By combining case expressions with the lambda expressions introduced in
 the previous section, any function declaration can be translated into a
 single equation of the form <functionName> = <expr>. For example, the
-standard function "map" whose definition is usually written as:
+standard function ~map~ whose definition is usually written as:
 
 #+begin_example
 map f []     = []
@@ -2526,11 +2507,11 @@ Jones book [2] for more details of this.
 ** Operator sections
 As we have seen, most functions in Gofer taking more than one argument
 are treated as a function of a single argument, whose result is a
-function which can then be applied to the remaining arguments. Thus "(+)
-1" denotes the function which takes an integer argument "n" and returns
-the integer value "1+n". Functions of this kind involving operator
+function which can then be applied to the remaining arguments. Thus ~(+)
+1~ denotes the function which takes an integer argument ~n~ and returns
+the integer value ~1+n~. Functions of this kind involving operator
 symbols are sufficiently common that Gofer provides a special syntax for
-them. Using e to denote an atomic expression and the symbol "*" to
+them. Using e to denote an atomic expression and the symbol ~*~ to
 represent an arbitrary infix operator, there are functions (e *) and (*
 e), known as `sections of the operator (*)' defined by:
 
@@ -2559,8 +2540,8 @@ of its argument plus 1,
        singleton list containing that element.
 #+end_example
 
-In Gofer, the expressions "(e *)" and "(* e)" are actually treated as
-abbreviations for "(*) e" and "flip (*) e" respectively, where "flip" is
+In Gofer, the expressions ~(e *)~ and ~(* e)~ are actually treated as
+abbreviations for ~(*) e~ and ~flip (*) e~ respectively, where ~flip~ is
 the function defined by:
 
 #+begin_example
@@ -2569,10 +2550,10 @@ flip  f x y  =  f y x
 #+end_example
 
 There is an important special case which occurs with an expression of
-the form (- e); this is interpreted as "negate e" and not as the section
-which subtracts the value of "e" from its argument. The latter function
-can be written as the section (+ (- e)) or as "subtract e" where
-"subtract" is the function defined in the standard prelude using:
+the form (- e); this is interpreted as ~negate e~ and not as the section
+which subtracts the value of ~e~ from its argument. The latter function
+can be written as the section (+ (- e)) or as ~subtract e~ where
+~subtract~ is the function defined in the standard prelude using:
 
 #+begin_example
 subtract = flip (-)
@@ -2826,6 +2807,7 @@ sequence:
 BadSynonym ==> [BadSynonym] ==> [[BadSynonym]] ==> ....
 #+end_example
 
+* @@@TODO@@@
 * DIALOGUES: INPUT AND OUTPUT
 The Gofer system implements a subset of the facilities for programs
 involving I/O described in the Haskell report [5]. In particular, this
@@ -2997,6 +2979,7 @@ determine its type as Dialogue (or equivalently as [Response] ->
 [Request]), in which case no explicit types are required to ensure that
 the expression is treated as a Gofer program using I/O:
 
+@@@TODO@@@
 #+begin_example
 ? \~[Success] -> [AppendChan stdout "hello, world"]
 hello, world
@@ -3004,7 +2987,7 @@ hello, world
 ?
 #+end_example
 
-Note the use of the irrefutable pattern ~[Success] for the lambda
+Note the use of the irrefutable pattern =~[Success]= for the lambda
 expression in the last example; without this, the usual rules of pattern
 matching as described in section 9 would force Gofer to try to match the
 pattern [Success] against the list of responses, before the
@@ -4747,9 +4730,9 @@ instance Bad Int where bad = id
 instance Bad [a] where bad = id
 #+end_example
 
-then any attempt to construct a dictionary for Bad Int will also require
-a dictionary for the superclass Bad [Int] and then for the superclass of
-that instance Bad [[Int]] etc... Since Gofer has only a finite amount of
+then any attempt to construct a dictionary for ~Bad Int~ will also require
+a dictionary for the superclass ~Bad [Int]~ and then for the superclass of
+that instance ~Bad [[Int]]~ etc... Since Gofer has only a finite amount of
 space for storing dictionaries, this process will eventually terminate
 when that space has been used up:
 
