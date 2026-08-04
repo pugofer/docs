@@ -2820,7 +2820,7 @@ data Request  =  -- file system requests:
 #+end_example
 
 Each response is an element of the type defined by the following
-datatype definition, using an auxiliary datatype IOError to describe a
+datatype definition, using an auxiliary datatype ~IOError~ to describe a
 variety of error conditions that may occur:
 
 #+begin_example
@@ -2839,16 +2839,16 @@ The following list describes the kind of I/O behaviour specified by each
 form of Request and indicates the possible Response values that may be
 obtained in each case:
 
-+ ~ReadFile string~ :: Read contents of file named by "string". Possible
+- ~ReadFile string~ :: Read contents of file named by ~string~. Possible
   responses to this request are:
-  - Str contents if the request is successful, where "contents" is a
+  - Str contents if the request is successful, where ~contents~ is a
     string (evaluated lazily) containing the contents of the file
     specified by the ReadFile request.
-  - Failure (SearchError name) occurs if file "name" cannot be accessed.
-  - Failure (ReadError name) occurs if some other error occurs whilst
-    opening the file "name".
+  - ~Failure (SearchError name)~ occurs if file ~name~ cannot be accessed.
+  - ~Failure (ReadError name)~ occurs if some other error occurs whilst
+    opening the file ~name~.
 
-+ ~WriteFile name string~ :: Write the given ~string~ to the file ~name~. If
+- ~WriteFile name string~ :: Write the given ~string~ to the file ~name~. If
   the file does not already exist, it is created before attempting to
   write the value to file. If the file already exists then it will be
   truncated to zero length before the write begins. No response is
@@ -2861,7 +2861,7 @@ obtained in each case:
     it contains a printable representation of the evaluation error which
     occurred.
 
-+ ~AppendFile name string~ :: Similar to the ~WriteFile~ request except that
+- ~AppendFile name string~ :: Similar to the ~WriteFile~ request except that
   the value of the given ~string~ is appended onto the file ~name~ if
   that file already exists. The responses that may be obtained from this
   request are the same as those for ~WriteFile~.
@@ -2879,7 +2879,7 @@ obtained in each case:
   - ~Failure (ReadError name)~ if a ~ReadChan~ request for the named channel
     has already been given by a previous request.
 
-+ ~AppendChan name string~ :: Output ~string~ on channel ~name~. No response
+- ~AppendChan name string~ :: Output ~string~ on channel ~name~. No response
   is obtained until the string has been fully evaluated and written to
   the named channel. Possible responses are:
   - ~Success~ if the append to channel was completed successfully.
@@ -2892,7 +2892,7 @@ obtained in each case:
     perform the output. The string ~msg~ contains a printable
     representation of the evaluation error which occurred.
 
-+ ~Echo status~ :: Set the echo status on the standard input channel ~stdin~
+- ~Echo status~ :: Set the echo status on the standard input channel ~stdin~
   to the given boolean value. If the echo status is True, then user
   input will be echoed onto the screen as it is typed and the usual line
   editing facilities (such a backspace or delete) provided by the host
@@ -2950,7 +2950,7 @@ In many cases the structure of an expression is enough to fully
 determine its type as Dialogue (or equivalently as
 ~[Response] -> [Request])~, in which case no explicit types are required to ensure that the expression is treated as a Gofer program using I/O:
 
-@@@TODO@@@
+@@@TODO handle ~ inside ~ @@@
 #+begin_example
 ? \~[Success] -> [AppendChan stdout "hello, world"]
 hello, world
@@ -2961,7 +2961,7 @@ hello, world
 Note the use of the irrefutable pattern =~[Success]= for the lambda
 expression in the last example; without this, the usual rules of pattern
 matching as described in section 9 would force Gofer to try to match the
-pattern [Success] against the list of responses, before the
+pattern ~[Success]~ against the list of responses, before the
 corresponding request had been produced:
 
 #+begin_example
@@ -3011,7 +3011,7 @@ are functions describing "what to do next", one of which is used if the
 request is successful, the other if the request fails.
 
 As an example, the ReadFile request is represented by the function
-"readFile" whose definition is equivalent to:
+~readFile~ whose definition is equivalent to:
 
 #+begin_example
 readFile name fail succ ~(r:rs) = ReadFile name : rest rs
