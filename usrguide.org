@@ -499,11 +499,11 @@ By default, every operator symbol in Gofer is treated as non-associative
 with precedence 9. These values can be changed by a declaration of one
 of the following forms:
 
-#+begin_example
-infixl digit ops      to declare operators which group to the left
-infixr digit ops      to declare operators which group to the right
-infix  digit ops      to declare non-associative operators
-#+end_example
+| Command          | Meaning                                       |
+|------------------+-----------------------------------------------|
+| ~infixl dig ops~ | to declare operators which group to the left  |
+| ~infixr dig ops~ | to declare operators which group to the right |
+| ~infix  dig ops~ | to declare non-associative operators          |
 
 In each of these declarations ops represents a list of one or more
 operator symbols separated by commas and digit is an integer between 0
@@ -552,25 +552,25 @@ infixr 2 ||
 
 and their use is illustrated by the following examples:
 
-#+begin_example
-Expression:     Equivalent to:   Reasons:
------------     --------------   --------
-1 + 2 - 3       (1 + 2) - 3      (+) and (-) have the same  precedence
-                                 and group to the left.
-x : ys ++ zs    x : (ys ++ zs)   (:) and (++) have the same precedence
-                                 and group to the right
-x == y || z     (x == y) || z    (==) has higher precedence than (||).
-3 * 4 + 5       (3 * 4) + 5      (*) has higher precedence than (+).
-y `elem` z:zs   y `elem` (z:zs)  (:) has higher precedence than elem.
-12 / 6 / 3      syntax error     ambiguous  use  of  (/);  could  mean
-                                 either (12/6)/3 or 12/(6/3).
-#+end_example
+
+| Expression:     | Equivalent to:    | 3 Reasons:                                 |
+|-----------------+-------------------+--------------------------------------------|
+| ~1 + 2 - 3~     | ~(1 + 2) - 3~     | ~(+)~ and ~(-)~ have the same  precedence  |
+|                 |                   | and group to the left.                     |
+| ~x : ys ++ zs~  | ~x : (ys ++ zs)~  | ~(:)~ and ~(++)~ have the same precedence  |
+|                 |                   | and group to the right                     |
+| ~x == y ∣∣ z~  | ~(x == y) ∣∣ z~  | ~(==)~ has higher precedence than ~(∣∣)~. |
+| ~3 * 4 + 5~     | ~(3 * 4) + 5~     | ~(*)~ has higher precedence than ~(+)~.    |
+| ~y `elem` z:zs~ | ~y `elem` (z:zs)~ | ~(:)~ has higher precedence than elem.     |
+| ~12 / 6 / 3~    | syntax error      | ambiguous  use  of  ~(/)~;  could  mean    |
+|                 |                   | either ~(12/6)/3~ or ~12/(6/3)~.           |
+
 
 Note that function application always binds more tightly than any infix
 operator symbol. For example, the expression ~f x + g y~ is equivalent
 to ~(f x) + (g y)~. Another example which often causes problems is the
-expression ~f x + 1~, which is treated as ~(f x) + 1~ and not as ~f
-(x+1)~ as is sometimes expected.
+expression ~f x + 1~, which is treated as ~(f x) + 1~ and not as
+~f (x+1)~ as is sometimes expected.
 
 * BUILT-IN TYPES
 An important part of Gofer is the type system which is used to detect
@@ -579,22 +579,22 @@ expressions such as numeric constants, Gofer assigns a type to each
 expression that describes the kind of value represented by the
 expression.
 
-In general we write object :: type to indicate that a particular
+In general we write <​/object/​> ~::~ <​/type/​> to indicate that a particular
 expression has the indicated type. For example:
 
-#+begin_example
-42   :: Int         indicating that  ~42~  is an  integer (Int is the
-                    name for the type of integer values).
-
-fact :: Int -> Int  indicating  that  ~fact~  is a  function  which
-                    takes  an  integer  argument  and  returns   an
-                    integer value (its factorial).
-#+end_example
+| Typing expr          | Meaning                                             |
+|----------------------+----------------------------------------------------- |
+| ~42 :: Int~          | indicating that  ~42~  is an  integer (~Int~ is the |
+|                      | name for the type of integer values).               |
+|                      |                                                     |
+| ~fact :: Int -> Int~ | indicating  that  ~fact~  is a  function  which     |
+|                      | takes  an  integer  argument  and  returns   an     |
+|                      | integer value (its factorial).                      |
 
 The most important property of the type system is that it is possible to
 determine the type of an expression without having to evaluate it. For
 example, the information given above is sufficient to determine that
-fact 42 :: Int without needing to calculate 42! first.
+~fact 42 :: Int~ without needing to calculate 42! first.
 
 Gofer has a wide range of built-in types, described in the following
 sections. In addition, Gofer also includes facilities for defining new
@@ -610,10 +610,11 @@ In mathematics, the result of applying a function /f/ to an argument /x/ is
 traditionally written as /f(x)/. In many situations, these parentheses are
 unnecessary and may be omitted when using Gofer.
 
-e.g. if ~f :: t1 -> t2~ and ~x :: t1~ then ~f x~ is the result of applying
+e.g. if ~f :: t1 -> t2~ and ~x :: t1~\\
+then ~f x~ is the result of applying
 ~f~ to ~x~ and has type ~t2~.
 
-If t1, t2, ..., tn are type expressions then:
+If ~t1~, ~t2~, ..., ~tn~ are type expressions then:
 #+begin_example
 t1 -> t2 -> ... -> tn
 #+end_example
@@ -978,18 +979,16 @@ evaluate it, Gofer carries out a number of checks to make sure that the
 expression that you typed does not contain any errors. Here are some
 examples of the kind of problem that might occur:
 
-- Syntax errors. The most common situation in which this happens is when
+- Syntax errors :: The most common situation in which this happens is when
   you make a typing mistake, either leaving out some characters, or
   perhaps pressing the wrong keys instead. In the following example, the
   user has missed out a `[' character:
-
   #+begin_example
   ? sum 1..100]
   ERROR: Syntax error in input (unexpected `..')
   ?
   #+end_example
-
-- Undefined variables. This happens when you enter an expression using a
+- Undefined variables :: This happens when you enter an expression using a
   variable or function name that is not defined in any of the files of
   definitions loaded into Gofer. This can often mean that you have
   misspelt the name of a function, or that the files defining a function
@@ -1000,8 +999,7 @@ examples of the kind of problem that might occur:
   ERROR: Undefined variable "n"
   ? 
   #+end_example
-
-- Type errors. Certain expressions are sensible only when the functions
+- Type errors :: Certain expressions are sensible only when the functions
   used in those expressions are applied to values of the appropriate
   type. For example, whilst the factorial function can be used to
   calculate the factorial of an integer, it is clearly meaningless to
@@ -1011,18 +1009,18 @@ examples of the kind of problem that might occur:
   'A' has type Char which does not match the argument type Int of the
   factorial function. This error will be detected by Gofer if you try to
   evaluate the expression:
-
-  #+begin_example
-  ? fact 'A'
-  ERROR: Type error in application
-  ,*** expression     : fact 'A'
-  ,*** term           : 'A'
-  ,*** type           : Char
-  ,*** does not match : Int
-
-  ?
-
-  #+end_example
+           
+          #+begin_example
+          ? fact 'A'
+          ERROR: Type error in application
+          ,*** expression     : fact 'A'
+          ,*** term           : 'A'
+          ,*** type           : Char
+          ,*** does not match : Int
+           
+          ?
+           
+          #+end_example
 
 ** Errors during evaluation
 If no errors are detected in an input expression, Gofer then begins to
@@ -1171,52 +1169,29 @@ Hello Fred, nice to meet you!
 There are a number of other useful kinds of pattern, some of which are
 illustrated by the following examples:
 
-- Wildcard: _ matches any value at all; it is like a
-
-  #+begin_example
+- Wildcard :: ~_~ matches any value at all; it is like a
   variable pattern, except that there is no
   way of referring to the matched value.
-  #+end_example
-
-- Tuples: (x,y) matches a pair whose first and second
-
-  #+begin_example
-  elements are called x and y respectively.
-  #+end_example
-
-- Lists: [x] matches a list with precisely one element
-
-  #+begin_example
+- Tuples :: ~(x,y)~ matches a pair whose first and second
+  elements are called ~x~ and ~y~ respectively.
+- Lists :: ~[x]~ matches a list with precisely one element
   called x.
-  #+end_example
 
-  #+begin_example
-  [_,2,_]  matches  a   list  with   precisely three
-           elements,  the  second  of  which  is the
-           integer 2.
-  []       matches the empty list.
-  (x:xs)   matches a non-empty  list with head x and
-           tail xs.
-  #+end_example
+   | ~[_,2,_]~ | matches a list with precisely three elements,        |
+   |           | the second of which is the integer ~2~.              |
+   | ~[]~      | matches the empty list                               |
+   | ~(x:xs)~  | matches a non-empty list with head ~x~ and tail ~xs~ |
 
-- As patterns: p@(x,y) matches a pair whose first and second
 
-  #+begin_example
-  components  are  called  x  and  y.   The
+- As patterns :: ~p@(x,y)~ matches a pair whose first and second
+  components  are  called  ~x~  and  ~y~.   The
   complete pair can  also  be  referred  to
   directly as p.
-  #+end_example
-
-- (n+k) patterns: (m+1) matches an integer value greater than or
-
-  #+begin_example
+- ~(n+k)~ patterns :: ~(m+1)~ matches an integer value greater than or
   equal to 1.  The value referred to by the
-  variable m is one  less  than  the  value
-  matched.
-  #+end_example
-
-A further kind of pattern (called an irrefutable pattern) is introduced
-in section 9.11.
+  variable m is one less than  the  value matched.
+- irrefutable patterns :: A further kind of pattern (called an irrefutable pattern)
+  is introduced in section 9.11.
 
 Note that no variable name can be used more than once on the left hand
 side of each equation in a function definition. The following example:
@@ -1240,7 +1215,7 @@ areTheyTheSame x y
 Each of the equations in a function definition may contain `guards'
 which require certain conditions on the values of the function's
 arguments to be met. As an example, here is a function which uses the
-standard prelude function even :: Int -> Bool to determine whether its
+standard prelude function ~even :: Int -> Bool~ to determine whether its
 argument is an even integer or not, and returns the string ~even~ or
 ~odd~ as appropriate:
 
@@ -6011,14 +5986,10 @@ illustration.
 #+end_example
 
 * F: INTERPRETER COMMAND SUMMARY
-| Command      | Description                                                |
-
-
 - <expr>   ::  Analyse expression for errors, typecheck and evaluate. If the expression has type Dialogue, execute as a program using the I/O facilities as described in section 12. If the expression has type String, evaluate and print result as a lazy list of characters. In any other case, the standard prelude function show' is applied to the expression and used to print the value of the result in the form of a string, as in the previous case.
-
 - ~:t~ <expr>  :: Analyse expression for errors,  typecheck  and  print  the translation and inferred type of the term.                 
 - ~:type~ <expr>, ~:T~ :: alternates to ~:t~
-- ~:q~    ::        Exit Gofer interpreter.                                    
+- ~:q~  :: Exit Gofer interpreter.                                    
 - ~:quit~, ~:Q~ :: alternates to :q
 - ~:?~ :: Display summary of interpreter commands.                   
 - ~:h, ~:H~ :: alternates to ~:?~
