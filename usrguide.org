@@ -1,4 +1,5 @@
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/setup/html-theme-readtheorg.setup
+# #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/setup/html-theme-readtheorg.setup
+#+SETUPFILE: ./inl.setup
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
 #+SUBTITLE: 1991 original by Mark P Jones
@@ -5997,7 +5998,7 @@ points are particularly useful for this:
 
 - ~:e~            ::  Using the :e command without specifying a particular file to be edited starts up an editor program as described above either for the file of definitions most recently loaded into Gofer or, if an error occurred whilst loading a file of definitions, for the file of definitions in which the error was last detected.
 
-         With many editor programs, it is even possible to start the editor at the line where the error occurred.  As before, it is possible to change the default behaviour of Gofer in this case by setting the environment variable EDITLINE to a command string which can be used to start the editor program with a given file at a specific line number.  The positions in the string at which the file name and line number values should be inserted should be indicated by the strings ~%s~ and ~%d~ respectively, and may appear in either order.  The default command string, which is used if EDITLINE is not set is ~vi +%d %s~.
+         With many editor programs, it is even possible to start the editor at the line where the error occurred.  As before, it is possible to change the default behaviour of Gofer in this case by setting the environment variable ~EDITLINE~ to a command string which can be used to start the editor program with a given file at a specific line number.  The positions in the string at which the file name and line number values should be inserted should be indicated by the strings ~%s~ and ~%d~ respectively, and may appear in either order.  The default command string, which is used if ~EDITLINE~ is not set is ~vi +%d %s~.
 - ~:edit~, ~:E~   :: Equivalent forms of the :e command.
 
 * APPENDIX G: BIBLIOGRAPHY
