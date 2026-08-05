@@ -1,10 +1,11 @@
 # #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/setup/html-theme-readtheorg.setup
 #+SETUPFILE: ./inl.setup
+#+EXPORT_FILE_NAME: index.html
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
-#+SUBTITLE: 1991 original by Mark P Jones
 #+TITLE: Gofer User Guide
-#+SUBTITLE: HTML-ized by Rustom P Mody
+#+SUBTITLE: Original by Mark P Jones — 1991\\
+#+SUBTITLE: HTML-ized by Rustom P Mody — 2026
 #+AUTHOR: Rustom P Mody
 ** Front matter
 :PROPERTIES:
