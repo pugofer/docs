@@ -1,3 +1,7 @@
+My additions
+1. Functional Programming
+
+Original
 71:my research into /qualified types/. Nevertheless, the system is
 277:/standard prelude/ which are loaded into the Gofer system each time that
 397:  special kind of function called a /constructor function/ described in

@@ -5,7 +5,8 @@
 #+LATEX_HEADER: \usepackage{upquote}
 #+TITLE: Gofer User Guide
 #+SUBTITLE: Original Text Doc by Mark P Jones — 1991\\
-#+SUBTITLE: HTML-ized by Rustom P Mody — 2026
+#+SUBTITLE: HTML-ized by Rustom P Mody — 2026\\
+#+SUBTITLE: Beyond formatting, minimal changes introduced
 #+AUTHOR: Rustom P Mody
 ** Front matter
 :PROPERTIES:
@@ -2187,12 +2188,12 @@ list comprehension is:
 
 There are three kinds of qualifier that can be used in Gofer:
 
-- Generators: A qualifier of the form pat<-exp is used to extract each
+- Generators: A qualifier of the form ~pat<-exp~ is used to extract each
   element that matches the pattern pat from the list exp in the order
   that they elements appear in that list. A simple example of this is
-  the expression [x*x | x<-[1..10]] which denotes the list of the
+  the expression ~[x*x | x<-[1..10]]~ which denotes the list of the
   squares of the integers between 1 and 10 inclusive and evaluates to
-  [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] as expected.
+  ~[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]~ as expected.
 
   Formally, we can define the meaning of a list comprehension with a
   single generator by the equation:
