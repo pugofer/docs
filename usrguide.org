@@ -1,4 +1,4 @@
-# #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/setup/html-theme-readtheorg.setup
+# #+SETUPFILE: 
 #+SETUPFILE: ./inl.setup
 #+EXPORT_FILE_NAME: index.html
 #+OPTIONS: TOC:t
@@ -68,7 +68,7 @@ Gofer is provided "as is" without express or implied warranty.
 * INTRODUCTION
 Gofer is a functional programming environment (in other words, an
 interpreter) that I have implemented for my own personal use as part of
-my research into `qualified types'. Nevertheless, the system is
+my research into ‘qualified types’. Nevertheless, the system is
 sufficiently complete for me to believe that Gofer may be of interest
 and use to others interested in the field of functional programming.
 
@@ -169,7 +169,7 @@ of the basic ideas that I have used were inspired by his original paper
 motivating the use of type classes [4].
 
 * STARTING GOFER
-The Gofer interpreter is usually entered by giving the command `gofer',
+The Gofer interpreter is usually entered by giving the command ‘gofer’,
 after which a display something like the following will normally be
 produced:
 
@@ -274,7 +274,7 @@ into Gofer in the rest of this document.
 The function ~sum~ used in the examples above, and indeed the addition
 and multiplication functions ~(+)~ and ~(*)~, are all standard functions
 which are included as part of a large collection of functions called the
-`standard prelude' which are loaded into the Gofer system each time that
+‘standard prelude’ which are loaded into the Gofer system each time that
 you start the interpreter. Quite a number of useful calculations can be
 carried out using these functions alone, but for more general use you
 can also define your own functions and store the definitions in a file
@@ -394,7 +394,7 @@ that they are written:
   digit, an apostrophe (') or an underbar (_). Identifiers representing
   functions or variables must begin with a lower case letter
   (identifiers beginning with an upper case letter are used to denote a
-  special kind of function called a `constructor function' described in
+  special kind of function called a ‘constructor function’ described in
   section 11.1). The following identifiers are examples of Gofer
   variable and function names:
 
@@ -490,7 +490,7 @@ working with operator symbols:
   ~1 - 2 - 3~ be treated as either ~(1 - 2) - 3~ giving a result of ~-4~,
   or as ~1 - (2 - 3)~ giving a result of ~2~?
 
-  This problem is solved by giving each operator a `grouping' (sometimes
+  This problem is solved by giving each operator a ‘grouping’ (sometimes
   called its associativity). An operator symbol (-) is said to:
 
   - group to the left if ~x - y - z~ is treated as ~(x - y) - z~
@@ -541,7 +541,7 @@ precedence 9.
 
 The following operator declarations are taken from the standard prelude:
 
-#+begin_example
+#+begin_src haskell
 -- Operator precedence table
 
 infixl 9 !!
@@ -556,7 +556,7 @@ infix  4 ==, /=, <, <=, >=, >
 infix  4 `elem`, `notElem`
 infixr 3 &&
 infixr 2 ||
-#+end_example
+#+end_src
 
 and their use is illustrated by the following examples:
 
@@ -666,7 +666,7 @@ is ~True~.  If ~b~ is ~True~ then ~d~ is not evaluated.
 The value of the expression ~not b~ is the opposite boolean value
 to that of ~b~; ~not True = False~, ~not False = True~.
 
-Gofer includes a special form of `conditional expression' which enables
+Gofer includes a special form of ‘conditional expression’ which enables
 an expression to select between two alternatives according to the value
 of a boolean expression:
 
@@ -741,7 +741,7 @@ Represented by the type ~Char~, elements of this type represent
 individual characters such as those entered at a keyboard. Character
 values are written as single characters enclosed by apostrophe
 characters: e.g. ~'a'~, ~'0'~, ~'Z'~. Some special characters must be entered
-using an `escape code'; each of these begins with a backslash character
+using an ‘escape code’; each of these begins with a backslash character
 '\', followed by one or more characters to select the required
 character. Some of the most useful escape codes are:
 
@@ -775,7 +775,7 @@ Additional escape characters include:
                  specified by the given 'hexadecimal' number.
 
 '\name'          named ASCII control character, where
-                 `name' is replaced by one of the standard
+                 ‘name’ is replaced by one of the standard
                  ascii names e.g. `\DC3`.
 #+end_example
 
@@ -810,7 +810,7 @@ of type ~a~. There are several ways of writing list expressions:
 - Non-empty lists can be constructed either by explicitly listing
   the members of the list (for example: ~[1,3,10]~) or  by  adding  a
   single element onto the front  of  another  list  using  the  ~(:)~
-  operator (pronounced "cons").  These notations are equivalent:
+  operator (pronounced ‘cons’).  These notations are equivalent:
 
   #+begin_example
   [1,3,10]  =  1 : [3,10]  =  1 : 3 : [10]  =  1 : 3 : 10 : []
@@ -990,7 +990,7 @@ examples of the kind of problem that might occur:
 - Syntax errors :: The most common situation in which this happens is when
   you make a typing mistake, either leaving out some characters, or
   perhaps pressing the wrong keys instead. In the following example, the
-  user has missed out a `[' character:
+  user has missed out a ‘[’ character:
   #+begin_example
   ? sum 1..100]
   ERROR: Syntax error in input (unexpected `..')
@@ -1018,17 +1018,16 @@ examples of the kind of problem that might occur:
   factorial function. This error will be detected by Gofer if you try to
   evaluate the expression:
            
-          #+begin_example
-          ? fact 'A'
-          ERROR: Type error in application
-          ,*** expression     : fact 'A'
-          ,*** term           : 'A'
-          ,*** type           : Char
-          ,*** does not match : Int
-           
-          ?
-           
-          #+end_example
+  #+begin_example
+  ? fact 'A'
+  ERROR: Type error in application
+  ,*** expression     : fact 'A'
+  ,*** term           : 'A'
+  ,*** type           : Char
+  ,*** does not match : Int
+   
+  ?
+  #+end_example
 
 ** Errors during evaluation
 If no errors are detected in an input expression, Gofer then begins to
@@ -1037,7 +1036,7 @@ before the evaluation begins, it is still possible for an error to occur
 during the evaluation of an expression. A typical example of this is an
 attempt to divide a number by zero. In this case, Gofer prints the part
 of the expression being evaluated that caused the error, surrounded by
-braces `{' and `}':
+braces ‘{’ and ‘}’:
 
 #+begin_example
 ? 3/0
@@ -1082,7 +1081,7 @@ f <pat1> <pat2> ... <patn>  =   <rhs>
 
 (or an equivalent expression, if ~f~ is written as by an operator
 symbol). Each of the expressions <pat1>, <pat2>, ..., <patn> represents
-an argument to the function ~f~ and is called a `pattern'. The number of
+an argument to the function ~f~ and is called a ‘pattern’. The number of
 such arguments is called the arity of ~f~. If ~f~ is defined by more
 than one equation then they must be entered together and each one must
 give the same arity for ~f~.
@@ -1090,7 +1089,7 @@ give the same arity for ~f~.
 When a function is defined by more than one equation, it will usually be
 necessary to evaluate one or more of the arguments to the function to
 determine which equation applies. This process is called
-`pattern-matching'. In all of the previous examples we have used only
+‘pattern-matching’. In all of the previous examples we have used only
 the simplest kind of pattern -- a variable. As an example, consider the
 factorial function defined in section 5:
 
@@ -1103,7 +1102,7 @@ expression ~6~ against the pattern ~n~ and then evaluate the expression
 obtained from ~product [1..n]~ by replacing the variable ~n~ with the
 expression ~6~. The process of matching the arguments of a function
 against the patterns in its definition and obtaining another expression
-to be evaluated is called a `reduction'. Using Gofer, it is easy to
+to be evaluated is called a ‘reduction’. Using Gofer, it is easy to
 verify that the evaluation of ~fact 6~ takes one more reduction than
 that of ~product [1..6]~:
 
@@ -1220,7 +1219,7 @@ areTheyTheSame x y
 #+end_example
 
 ** Guarded equations
-Each of the equations in a function definition may contain `guards'
+Each of the equations in a function definition may contain ‘guards’
 which require certain conditions on the values of the function's
 arguments to be met. As an example, here is a function which uses the
 standard prelude function ~even :: Int -> Bool~ to determine whether its
@@ -1245,7 +1244,7 @@ f x1 x2 ... xn | condition1  =  e1
 This equation is used by evaluating each of the conditions in turn until
 one of them evaluates to ~True~, in which case the value of the function
 is given by the corresponding expression e on the right hand side of the
-`=' sign. In Gofer, the variable ~otherwise~ is defined to be equal to
+~=~ sign. In Gofer, the variable ~otherwise~ is defined to be equal to
 ~True~, so that writing ~otherwise~ as the condition in a guard means
 that the corresponding expression will always be used if no previous
 guard has been satisfied.
@@ -1279,7 +1278,7 @@ numberOfRoots a b c | discr > 0   =  2
 #+end_example
 
 [ASIDE: The operator ~(=​=​)~ is used to test whether two values are equal
-or not. You should take care not to confuse this with the single `='
+or not. You should take care not to confuse this with the single ~=~
 sign used in function definitions].
 
 Local definitions can also be introduced at an arbitrary point in an
@@ -1389,7 +1388,7 @@ are applied to negative integers:
 - ~fact (-1)~ evaluates to the integer 1.
 
 - ~fact1 (-1)~ causes Gofer to enter an infinite loop, which is only
-  eventually terminated when Gofer runs out of `stack space'.
+  eventually terminated when Gofer runs out of ‘stack space’.
 
 - ~fact4 (-1)~ causes an evaluation error and prints the
   message ~{fact4 (-1)}~ on the screen.
@@ -1452,7 +1451,7 @@ map f (x:xs)  =  f x : map f xs
 
 ** Lazy evaluation
 Gofer evaluates expressions using a technique sometimes described as
-`lazy evaluation' which means that:
+‘lazy evaluation’ which means that:
 
 - No expression is evaluated until its value is needed.
 - No shared expression is evaluated more than once; if the expression is
@@ -1586,7 +1585,7 @@ to obtain the last element.
 
 ** Infinite data structures
 One particular benefit of lazy evaluation is that it makes it possible
-for functions in Gofer to manipulate `infinite' data structures.
+for functions in Gofer to manipulate ‘infinite’ data structures.
 Obviously we cannot hope either to construct or store an infinite object
 in its entirety -- the advantage of lazy evaluation is that it allows us
 to construct infinite objects piece by piece as necessary (and to reuse
@@ -1604,7 +1603,7 @@ If we evaluate the expression ~countFrom 1~, Gofer just prints the list
 of integer values beginning with 1 until it is interrupted. Once each
 element in the list has been printed, the storage used to hold that
 element can be reused to hold later elements in the list. Evaluating
-this expression is equivalent to using an `infinite' loop to print the
+this expression is equivalent to using an ‘infinite’ loop to print the
 list of integers in an imperative programming language:
 
 #+begin_example
@@ -1687,13 +1686,10 @@ second argument and the result are lists, so that the type of ~map~ must
 be of the form:
 
 #+begin_example
-(a -> b)   ->      [c]      ->     [d]
-\______/          \___/           \___/
-#+end_example
-
-#+begin_example
-type of 1st      type of 2nd      type of result
-argument "f"     argument "xs"    "map f xs"
+     (a -> b)   ->      [c]      ->     [d]
+     \______/          \___/           \___/
+   type of 1st      type of 2nd      type of result
+   argument "f"     argument "xs"    "map f xs"
 #+end_example
 
 But what can be said about the types a, b, c and d? One possibility
@@ -1717,8 +1713,8 @@ function ~f~ to some value. It is therefore reasonable to treat the
 The letters ~a~ and ~b~ used in this type expression represent arbitrary
 types and are called type variables. An object whose type includes one
 or more type variables can be thought of as having many different types
-and is often described as having a `polymorphic type' (literally: its
-type has `many shapes').
+and is often described as having a ‘polymorphic type’ (literally: its
+type has ‘many shapes’).
 
 The ability to define and use polymorphic functions in Gofer turns out
 to be very useful. Here are the types of some of the other polymorphic
@@ -1752,7 +1748,7 @@ kind of value; in particular, they can be used both as arguments to, and
 results of other functions.
 
 Functions which manipulate other functions in this way are often
-described as `higher-order functions'. Consider the following example,
+described as ‘higher-order functions’. Consider the following example,
 taken from the standard prelude:
 
 #+begin_example
@@ -1860,7 +1856,7 @@ be possible to reuse this space for other calculations without reloading
 the file defining ~longList~, or loading other files instead.
 
 ** Pattern bindings and irrefutable patterns
-Another useful way of defining variables uses `pattern bindings' which
+Another useful way of defining variables uses ‘pattern bindings’ which
 are equations of the form:
 
 #+begin_example
@@ -1889,7 +1885,7 @@ being a variable declaration whilst the latter will be treated as a
 definition for the operator symbol (+).]
 
 Pattern bindings are often useful for defining functions which we might
-think of as `returning more than one value' -- although they are
+think of as ‘returning more than one value’ -- although they are
 actually packaged up in a single value such as a tuple. As an example,
 consider the function ~span~ defined in the standard prelude.
 
@@ -1930,7 +1926,7 @@ an error if we attempt to evaluate the variable xs:
 #+end_example
 
 The variable name ~v120~ appearing in this expression is the name of a
-function called a `conformality check' which is defined automatically by
+function called a ‘conformality check’ which is defined automatically by
 Gofer to ensure that the value on the right hand side of the pattern
 binding conforms with the pattern on the left.
 
@@ -2153,7 +2149,7 @@ enumerate lists of characters or floating point values:
 #+end_example
 
 Arithmetic sequences such as those described above play the same role in
-functional programming languages as the iterative `for' constructs in
+functional programming languages as the iterative ~for~ constructs in
 traditional imperative languages. A good example of this is the example
 in section 4 used to calculate the sum of the integers from 1 upto 10 --
 ~sum [1..10]~. An equivalent program in an imperative language might
@@ -2257,7 +2253,7 @@ There are three kinds of qualifier that can be used in Gofer:
   experiment with this facility in their own programs.]
 
 The real power of this notation is that it is possible to use several
-qualifiers, separated by commas on the right of the vertical bar `|'
+qualifiers, separated by commas on the right of the vertical bar ~|~
 symbol in a list comprehension. Formally, if qs1 and qs2 are two such
 lists of qualifiers, then we can define the meaning of multiple
 qualifiers using:
@@ -2343,7 +2339,7 @@ The following examples illustrate how this definition works in practice:
 
 ** Lambda expressions
 In addition to named function definitions, Gofer also allows the
-definition and use of unnamed functions using a `lambda expression' of
+definition and use of unnamed functions using a ‘~|’ of
 the form:
 
 #+begin_example
@@ -2354,14 +2350,14 @@ the form:
 used in most theoretical treatments of functional programming and dating
 back to the pioneering work of logicians including Alonzo Church and
 Haskell Curry, from whom the programming language takes its name. The
-`\' character used at the beginning of a Gofer lambda expression has
+‘~|’ character used at the beginning of a Gofer lambda expression has
 been chosen for its resemblance to the greek letter lambda that might be
 used if the standard character set were a little larger.]
 
 This expression denotes a function taking a number of parameters (one
 for each pattern) and producing the result specified by the expression
 to the right of the -> symbol. For example, (\x->x*x) represents the
-function which takes a single integer argument `x' and produces the
+function which takes a single integer argument ~x~ and produces the
 square of that number as its result. Another example is the lambda
 expression (\x y->x+y) which takes two integer arguments and outputs
 their sum; this expression is in fact equivalent to the (+) operator:
@@ -2425,10 +2421,10 @@ or: pat | condition1 -> rhs1      using guard expressions as
         | conditionn -> rhsn
 #+end_example
 
-In Gofer, a case expression of the form case e of alts is implemented by
+In Gofer, a case expression of the form @@@ ~case~ e ~of~ alts is implemented by
 choosing a new function name ~newName~ as in the previous section and
 using the alternatives in alts to construct an appropriate definition
-for this function (essentially by replacing each `->' symbol with a `='
+for this function (essentially by replacing each ~->~ symbol with a ~=~
 symbol). The complete case expression is then treated as being
 equivalent to the expression ~newName e~. A simple example of this is
 the ~scanl~ function whose definition in the standard prelude:
@@ -2496,7 +2492,7 @@ the integer value ~1+n~. Functions of this kind involving operator
 symbols are sufficiently common that Gofer provides a special syntax for
 them. Using e to denote an atomic expression and the symbol ~*~ to
 represent an arbitrary infix operator, there are functions (e *) and (*
-e), known as `sections of the operator (*)' defined by:
+e), known as ‘sections of the operator (*)’ defined by:
 
 #+begin_example
 (e *) x  = e * x
@@ -2581,15 +2577,15 @@ sum . map length :: [String] -> Int
 Note that an error occurs if the type declared in an explicitly typed
 expression is not compatible with the type inferred by Gofer:
 
-#+begin_example
-? :t (\x -> [x]) :: Int -> a
-ERROR: Declared type too general
-,*** Expression    : \x -> [x]
-,*** Declared type : Int -> a
-,*** Inferred type : Int -> [Int]
-
-?
-#+end_example
+  #+begin_example
+  ? :t (\x -> [x]) :: Int -> a
+  ERROR: Declared type too general
+  *** Expression    : \x -> [x]
+  *** Declared type : Int -> a
+  *** Inferred type : Int -> [Int]
+   
+  ?
+   #+end_example
 
 Explicitly typed expressions are most commonly used together with
 overloaded functions and values as described in section 14.
@@ -2679,20 +2675,20 @@ For example, (Lf 12 :^: (Lf 23 :^: Lf 13)) :^: Lf 10 has type Tree Int
 and represents the binary tree:
 
 #+begin_example
-                     ,--- 12
-                  ,--|
-                  |  |  ,--- 23
-                  |  `--|
-                  |     `--- 13
-                --|
-                  `--- 10
+             ,--- 12
+          ,--|
+          |  |  ,--- 23
+          |  `--|
+          |     `--- 13
+        --|
+          `--- 10
 #+end_example
 
 As an example of a function defined on trees, here are two definitions
 using recursion and pattern matching on tree valued expressions which
 calculate the list of elements at the leaves of a tree traversing the
 branches of the tree from left to right. The first definition uses a
-simple definition, whilst the second uses an `accumulating parameter'
+simple definition, whilst the second uses an ‘accumulating parameter’
 giving a more efficient algorithm:
 
 #+begin_example
@@ -3003,9 +2999,9 @@ main ~(Success : ~(Str userInput : ~(r3 : _)))
 #+end_example
 
 ** Continuation style I/O
-As an alternative to the `stream-based' approach to programs using the
+As an alternative to the ‘stream-based’ approach to programs using the
 I/O facilities in Gofer, the standard prelude defines a family of
-functions which enables such programs to be written in a `continuation'
+functions which enables such programs to be written in a ‘continuation’
 style. The basic idea is to define a function corresponding to each
 different kind of request, whose parameters include the values required
 to make the request together with two continuations. The continuations
@@ -3165,7 +3161,7 @@ type String -> String mapping an input string of characters entered at
 the keyboard into an output string to be displayed on the screen.
 
 There are two functions defined in the standard prelude which can be
-used to `execute' functions of this kind as interactive programs:
+used to ‘execute’ functions of this kind as interactive programs:
 
 - ~interact f~ executes ~f :​: String->String~ as an interactive program with
   echo on. This means that characters are read from the keyboard a line
@@ -3251,7 +3247,8 @@ definition of Haskell, two styles of comment are supported by Gofer:
   declaration).
 
 - A nested comment begins with the characters "~{-~", ends with the
-  characters "~-}~" and may span any number of lines. [N.B. the initial
+  characters "~-}~" and may span any number of lines.\\
+  [N.B. the initial
   "~{-~" string cannot overlap with the terminating "~-}~" string so that
   the shortest possible nested comment is "~{--}~", and not "~{-}~"]. An
   unterminated nested comment will be treated as an error.
@@ -3269,12 +3266,12 @@ within a nested comment and that the strings "~{-~" and "~-}~" have no
 special significance in a single line comment. Thus:
 
 #+begin_example
-[ 2, -- {-                 [ 2, {-
-  3, -- -}                   -- -} 3,
-  4 ]                        4 ]
-#+end_example
+[ 2, -- {-            [ 2, {-
+  3, -- -}              -- -} 3,
+  4 ]                   4 ]
+#+end_example   
 
-are both equivalent to the list expression [2,3,4].
+are both equivalent to the list expression ~[2,3,4]~.
 
 ** The layout rule
 In a tradition dating back at least a quarter of a century to Landin's
@@ -3289,8 +3286,8 @@ f x y = g (x + w)
               w   = 2 + y
 #+end_example
 
-it is clear from the layout that the definition of w is intended to be
-local to f rather than to g. Another example where layout plays an
+it is clear from the layout that the definition of ~w~ is intended to be
+local to ~f~ rather than to ~g~. Another example where layout plays an
 important role is in distinguishing the two definitions:
 
 #+begin_example
@@ -3309,10 +3306,10 @@ to determine the structure of a program:
   ~of~.
 
 In each case, Gofer actually expects to find a list of items enclosed
-between braces `{' and `}' with individual items separated from one
-another by semicolons `;'. However, if the leading brace is not found
-then Gofer uses the layout rule described below to arrange for `{', `}'
-and `;' tokens to be inserted into the input stream automatically
+between braces ~{~ and ~}~ with individual items separated from one
+another by semicolons ~;~. However, if the leading brace is not found
+then Gofer uses the layout rule described below to arrange for ~{~, ~}~
+and ~;~ tokens to be inserted into the input stream automatically
 according to the indentation of each line.
 
 In this way, the first example above will in fact be treated as if the
@@ -3332,25 +3329,25 @@ or, equivalently, just:
 f x y = g (x + w) where {g u = u + v where {v = u * u}; w = 2 + y}
 #+end_example
 
-where the additional punctuation using the `{', `}' and `;' characters
+where the additional punctuation using the ~{~, ~}~ and ~;~ characters
 makes the intended grouping clear, regardless of indentation.
 
 The layout rule used in Gofer is the same as that of Haskell, and can be
 described as follows:
 
-- An opening brace `{' is inserted in front of the first token at the
-  beginning of a file or following one of the keywords "where", "let" or
-  "of", unless that token is itself an opening brace.
+- An opening brace ~{~ is inserted in front of the first token at the
+  beginning of a file or following one of the keywords ~where~, ~let~ or
+  ~of~, unless that token is itself an opening brace.
 
-- A `;' token is inserted in front of the first token in any subsequent
+- A ~;~ token is inserted in front of the first token in any subsequent
   line with exactly the same indentation as the token in front of which
   the opening brace was inserted.
 
-- The layout rule ends and a `}' token is inserted in front of the first
+- The layout rule ends and a ~}~ token is inserted in front of the first
   token in a subsequent line whose indentation is strictly less than
   that of the token in front of which the opening brace was inserted.
 
-- A closing brace `}' will also be inserted at any point where an
+- A closing brace ~}~ will also be inserted at any point where an
   otherwise unexpected token is encountered. This part of the rule makes
   it possible to use expressions such as:
 
@@ -3421,7 +3418,7 @@ will be treated by Gofer as if it has been written:
 
 Note that some of the more sophisticated forms of expression cannot be
 written on a single line (and hence entered directly into the Gofer
-system) without explicit use of the layout characters `{', `}' and `;':
+system) without explicit use of the layout characters ~{~, ~}~ and ~;~:
 
 #+begin_example
 ? len [1..10] where len [] = 0;  len (x:xs) = 1 + len xs
@@ -3468,7 +3465,7 @@ gained with the overloading system in one language can readily by
 applied to the other.
 
 The differences embodied in the Gofer system of classes stem from my
-own, theoretically based investigations into `qualified types' some of
+own, theoretically based investigations into ‘qualified types’ some of
 which is detailed in references [8-12]. In my personal opinion, the
 Gofer system has some significant advantages over the Haskell approach
 (see [12] for details) and one of the principal motivations behind the
@@ -3528,13 +3525,13 @@ class Eq a where
 There are three parts in any class declaration. For this particular
 example we have:
 
-- The first line (called the `header') of the declaration introduces a
-  name Eq for the class and indicates that it has a single parameter,
-  represented by the type variable a.
+- The first line (called the ‘header’) of the declaration introduces a
+  name ~Eq~ for the class and indicates that it has a single parameter,
+  represented by the type variable ~a~.
 
-- The second line of the declaration (the `signature part') indicates
+- The second line of the declaration (the ‘signature part’) indicates
   that there are functions denoted by the operator symbols (==) and (/=)
-  of type a -> a -> Bool for each instance a of class Eq. Using the
+  of type ~a -> a -> Bool~ for each instance ~a~ of class ~Eq~. Using the
   notation introduced in the previous section, both of these operators
   have type:
 
@@ -3542,10 +3539,10 @@ example we have:
   Eq a => a -> a -> Bool
   #+end_example
 
-  These functions are called the `members' (or `member functions') of
-  the class. [This terminology, taken from Haskell, is rather
+  These functions are called the ‘members’ (or ‘member functions’) of
+  the class. [Note: This terminology, taken from Haskell, is rather
   unfortunate; thinking of a type class as a set of types, the elements
-  of the class are called `instances', whilst the `members' of the class
+  of the class are called ‘instances’, whilst the ‘members’ of the class
   correspond more closely to the instance variables that are used in the
   terminology of object-oriented programming.]
 
@@ -3555,7 +3552,7 @@ example we have:
   include related groups of functions within a single type class in this
   way is a useful tool in program design.
 
-- The third line of the class declaration (the `default definitions')
+- The third line of the class declaration (the ‘default definitions’)
   provides a default definition of the (/=) operator in terms of the
   (==) operator. Thus it is only necessary to give a definition for the
   (==) operator in order to define all of the member functions for the
@@ -3729,13 +3726,13 @@ instance  context => predicate  where
 #+end_example
 
 The context part of the declaration gives a list of predicates which
-must be satisfied for the predicate on the right hand side of the `=>'
+must be satisfied for the predicate on the right hand side of the ~=>~
 sign to be valid. Constant predicates (i.e. predicates not involving any
 type variables) required by an instance declaration (such as the
 predicate ~Eq Int~ required by the third declaration) need not be included
 in the context. If the resulting context is empty (as in the first three
 declarations above) then it may be omitted, together with the
-corresponding `=>' symbol.
+corresponding ~=>~ symbol.
 
 *** Testing equality of represented values
 Instances of Eq can also be defined for other types, including
@@ -3844,7 +3841,7 @@ instance Eq a => Eq (Bool -> a) where
 #+end_example
 
 [ASIDE: This instance declaration would not be accepted in a Haskell
-program which insists that the predicate on the right of the `=>' symbol
+program which insists that the predicate on the right of the ~=>~ symbol
 contains precisely one type constructor symbol.]
 
 Using this instance declaration once for each argument, we can now test
@@ -3939,7 +3936,7 @@ The basic idea is that a function with a qualified type context => type
 where context is a non-empty list of predicates is implemented by a
 function which takes an extra argument for each predicate in the
 context. When the function is used, each of these parameters is filled
-by a `dictionary' which gives the values of each of the member functions
+by a ‘dictionary’ which gives the values of each of the member functions
 in the appropriate class. None of these extra parameters is entered by
 the programmer. Instead, they are inserted automatically during
 type-checking.
@@ -3972,7 +3969,7 @@ notations for printing expressions involving dictionaries:
          displayed).
 
 dnnn     a dictionary variable representing an unknown dictionary is
-         printed as a lower case letter `d' followed by an  integer;
+         printed as a lower case letter ‘d’ followed by an  integer;
          e.g. d231.
 #+end_example
 
@@ -4142,7 +4139,7 @@ class  context => Class a1 ... an  where
 where Class is the name of the new type class which takes n arguments,
 represented by distinct type variables a1, ..., an. As in the case of
 instance declarations, the context that appears on the left hand side of
-the `=>' symbol specifies a list of predicates that must be satisfied in
+the ~=>~ symbol specifies a list of predicates that must be satisfied in
 order to construct any instance of "Class".
 
 The predicates in the context part of a class declaration are called the
@@ -4384,30 +4381,30 @@ translation which needs only one dictionary parameter:
 *** Unresolved overloading
 Consider the use of the (==) operator in the following three situations:
 
-- In the expression "2 == 3", it is clear that the appropriate value for
-  the equality operator in this case is primIntEq as defined by the
-  instance declaration for Eq Int. The expression can therefore be
-  translated to "primEqInt 2 3".
+- In the expression ~2 == 3~, it is clear that the appropriate value for
+  the equality operator in this case is ~primIntEq~ as defined by the
+  instance declaration for ~Eq Int~. The expression can therefore be
+  translated to ~primEqInt 2 3~.
 
-- In the function definition "f x = x==x", we cannot completely
-  determine the appropriate value for (==) because it depends on the
-  type assigned to the variable "x", which may itself vary with
-  different uses of the function "f". It is however possible to add an
-  extra parameter to the definition, giving "f d x = (==) d x x" and
-  taking the type of "f" to be Eq a => a -> Bool.
+- In the function definition ~f x = x==x~, we cannot completely
+  determine the appropriate value for ~(==)~ because it depends on the
+  type assigned to the variable ~x~, which may itself vary with
+  different uses of the function ~f~. It is however possible to add an
+  extra parameter to the definition, giving ~f d x = (==) d x x~ and
+  taking the type of ~f~ to be ~Eq a => a -> Bool~.h
 
   In this way, the problem of finding the appropriate definition for the
-  (==) operator is deferred until the function is actually used.
+  ~(==)~ operator is deferred until the function is actually used.
 
-- In the expression "[]==[]", the appropriate value for (==) must be
-  obtained from the dictionary for some instance of the form Eq [a], but
+- In the expression ~[]==[]~, the appropriate value for ~(==)~ must be
+  obtained from the dictionary for some instance of the form ~Eq [a]~, but
   there is not sufficient information in the expression to determine
   what the value of the type variable a should be.
 
-  Looking back to the instance declaration for Eq [a], we find that the
-  definition of (==) depends on the value of the dictionary for the
-  instance Eq a. In this particular case, it is clear that the
-  expression will always evaluate to True, regardless of the value of
+  Looking back to the instance declaration for ~Eq [a]~, we find that the
+  definition of ~(==)~ depends on the value of the dictioanary for the
+  instance ~Eq a~. In this particular case, it is clear that the
+  expression will always evaluate to ~True~, regardless of the value of
   this dictionary. Unfortunately, the only way that this can be detected
   is by evaluating the expression to see if the calculation can be
   completed without reference to the dictionary value (see the comments
@@ -4427,12 +4424,12 @@ Consider the use of the (==) operator in the following three situations:
   #+end_example
 
   Note that the expression has been converted into a lambda expression
-  using the dictionary variable d129 to represent the dictionary for the
-  unknown instance Eq [a].
+  using the dictionary variable ~d129~ to represent the dictionary for the
+  unknown instance ~Eq [a]~.
 
   One simple way to resolve the overloading in an expression of this
   kind is to use an explicit type signature. For example, if we specify
-  that the second empty list is an empty list of type [Int]:
+  that the second empty list is an empty list of type ~[Int]~:
 
   #+begin_example
   ? [] == ([]::[Int])
@@ -4442,7 +4439,7 @@ Consider the use of the (==) operator in the following three situations:
   #+end_example
 
 The same problem occurs in Haskell, where it is described using the idea
-of an `ambiguous type' -- i.e. a type expression of the form context =>
+of an ‘ambiguous type’ -- i.e. a type expression of the form @@@ context ~=>~
 type where one or more of the type variables appearing in the given
 context do not appear in the remaining part of the type expression.
 
@@ -4459,7 +4456,7 @@ whose member functions provide methods for obtaining the string
 representation of an element of an instance type, and for converting
 such representations back into the original values. (The standard
 Haskell Text class contains similar functions.) Now consider the
-expression "parse . unparse" which maps values from some instance of
+expression ~parse . unparse~ which maps values from some instance of
 Reader to values of another instance via an intermediate string
 representation.
 
@@ -4472,7 +4469,7 @@ ERROR: Unresolved overloading
 #+end_example
 
 One of the first things that might surprise the reader here is that the
-value produced by "parse . unparse" does not have to be of the same type
+value produced by ~parse . unparse~ does not have to be of the same type
 as the argument; for example, we would not usually expect to have any
 sensible interpretation for a floating point number obtained from the
 string representation of a boolean value!
@@ -4499,7 +4496,7 @@ function is actually used:
 ?
 #+end_example
 
-A more serious problem occurs with the expression "unparse . parse"
+A more serious problem occurs with the expression ~unparse . parse~
 which maps string values to string values via some intermediate type.
 Clearly this will lead to a problem with unresolved overloading:
 
@@ -4512,12 +4509,12 @@ ERROR: Unresolved overloading
 #+end_example
 
 Notice that the type obtained in this case is ambiguous; the type
-variable a which appears in the predicate Reader a does not appear in
-the type String -> String. There are a number of ways of resolving this
+variable ~a~ which appears in the predicate Reader a does not appear in
+the type ~String -> String~. There are a number of ways of resolving this
 kind of ambiguity:
 
-- Using an explicitly typed expression: Assuming for example that Char
-  is an instance of Reader, we can write:
+- Using an explicitly typed expression: Assuming for example that ~Char~
+  is an instance of ~Reader~, we can write:
 
   #+begin_example
   ? unparse . (parse :: String -> Char)
@@ -4550,25 +4547,25 @@ kind of ambiguity:
   f = unparse . parse
   #+end_example
 
-  we can introduce an additional dummy parameter `x' which is not used
+  we can introduce an additional dummy parameter ~x~ which is not used
   except to determine the type of the result produced by parse in f:
 
   #+begin_example
   f x  =  unparse . (parse `asTypeOf` (\""->x))
   #+end_example
 
-  where the standard prelude operator `asTypeOf` defined by:
+  where the standard prelude operator ~asTypeOf~ defined by:
 
   #+begin_example
   asTypeOf      :: a -> a -> a
   x `asTypeOf` _ = x
   #+end_example
 
-  is used to ensure that the type of parse in the definition of f is the
-  same as that of the function (\""->x) -- in other words, the type must
-  be String -> a where a is the type of the variable x.
+  is used to ensure that the type of parse in the definition of ~f~ is the
+  same as that of the function ~(\""->x)~ -- in other words, the type must
+  be ~String -> a~ where a is the type of the variable ~x~.
 
-  The resulting type for f is:
+  The resulting type for ~f~ is:
 
   #+begin_example
   f :: Reader a => a -> String -> String
@@ -4577,13 +4574,13 @@ kind of ambiguity:
   Notice how the addition of the dummy parameter has been used to
   eliminate the ambiguity present in the original type.
 
-  This kind of `coding trick' is rather messy and is not recommended for
+  This kind of ‘coding trick’ is rather messy and is not recommended for
   anything but the simplest examples.
 
 [ASIDE: The idea of evaluating an expression with an ambiguous type to
 see if it does actually need the unspecified dictionaries could have
 been implemented quite easily in Gofer using an otherwise unused
-datatype Unresolved and generating instance declarations such as:
+datatype ~Unresolved~ and generating instance declarations such as:
 
 #+begin_example
 instance Eq Unresolved where
@@ -4602,17 +4599,17 @@ of any unresolved polymorphism when the program is type checked,
 avoiding the possibility that a program might contain an undetected
 ambiguity.]
 
-*** `Recursive' dictionaries
+*** ‘Recursive’ dictionaries
 Unlike Haskell, there are no restrictions on the form of the predicates
 that may appear in the context part of a Gofer class or instance
 declaration. This has a number of potentially useful applications
-because it enables the Gofer programs to use mutually `recursive'
+because it enables the Gofer programs to use mutually ‘recursive’
 systems of dictionaries.
 
 One example of this is the ability to implement a large family of
 related functions using a group of classes instead of having to use a
 single class. The following example illustrates the technique with an
-alternative definition for the class Eq in which the (==) and (/=)
+alternative definition for the class @@@ ~Eq~ in which the ~(​=​=​)​~ and ~(/=)~
 operators are placed in different classes:
 
 #+begin_example
@@ -4634,7 +4631,7 @@ instance Eq Int  where (==) = primEqInt
 instance Neq Int
 #+end_example
 
-and try to evaluate the expression "2==3" then the following system of
+and try to evaluate the expression ~2==3~ then the following system of
 dictionaries will be generated:
 
 #+begin_example
@@ -4649,14 +4646,14 @@ dictionaries will be generated:
 +------------------------------<-------------------------------+
 #+end_example
 
-where the function "defNeq" is derived from the default definition in
+where the function ~defNeq~ is derived from the default definition in
 the class Neq and is equivalent to:
 
 #+begin_example
 defNeq d x y  =  not ((==) (#2 d) x y)
 #+end_example
 
-Incidentally, if the instance declaration for Neq Int above had been
+Incidentally, if the instance declaration for ~Neq Int~ above had been
 replaced by:
 
 #+begin_example
@@ -4664,10 +4661,10 @@ instance Neq a
 #+end_example
 
 then the effect of these declarations would be similar to the standard
-definition of the class Eq, except that it would not be possible to
-override the default definition for (/=). In other words, this approach
-would give the same effect as defining (/=) as a top-level function
-rather than a member function in the class Eq:
+definition of the ~class Eq~, except that it would not be possible to
+override the default definition for ~(/=)~. In other words, this approach
+would give the same effect as defining ~(/=)~ as a top-level function
+rather than a member function in the class ~Eq~:
 
 #+begin_example
 class Eq a  where  (==) :: a -> a -> Bool
@@ -4686,8 +4683,8 @@ pathological) cases. As an example, consider the class:
 class Bad [a] => Bad a  where  bad :: a -> a
 #+end_example
 
-Without defining any instances of Bad, it is not possible to construct
-any dictionaries for instances of Bad:
+Without defining any instances of ~Bad~, it is not possible to construct
+any dictionaries for instances of ~Bad~:
 
 #+begin_example
 ? bad 2
@@ -4706,7 +4703,7 @@ instance Bad [a] where bad = id
 
 then any attempt to construct a dictionary for ~Bad Int~ will also require
 a dictionary for the superclass ~Bad [Int]~ and then for the superclass of
-that instance ~Bad [[Int]]~ etc... Since Gofer has only a finite amount of
+that instance ~Bad [[Int]​]~ etc... Since Gofer has only a finite amount of
 space for storing dictionaries, this process will eventually terminate
 when that space has been used up:
 
@@ -4718,8 +4715,13 @@ ERROR: Dictionary storage space exhausted
 
 [ASIDE: depending on the configuration of your particular version of
 Gofer and on the nature of the class and instance declarations that are
-involved, an alternative error message "ERROR: Too many type variables
-in type checker" may be produced instead of the message shown above.]
+involved, an alternative error message
+
+#+begin_example
+ERROR: Too many type variables in type checker
+#+end_example
+
+may be produced instead of the message shown above.]
 
 From a practical point of view, this problem is unlikely to cause too
 many real difficulties:
@@ -4735,7 +4737,7 @@ many real difficulties:
 It remains to see what impact (if any) this has on realistic programs,
 and if later versions of Gofer should be modified to impose some
 syntactic restrictions (as in Haskell) or perhaps some form of static
-checking of the contexts appearing in class and instance declarations.
+checking of the contexts appearing in ~class~ and ~instance~ declarations.
 
 *** Classes with multiple parameters
 Gofer is the first language to support the use of type classes with
@@ -4758,10 +4760,10 @@ pairs of isomorphic types:
 class Iso b a => Iso a b  where  iso :: a -> b
 #+end_example
 
-The single member function "iso" represents the isomorphism mapping
-elements of type a to corresponding elements of type b. Note the
-`superclass' context in this declaration which formalises the idea that
-if a is isomorphic to b then b is also isomorphic to a. The class Iso
+The single member function ~iso~ represents the isomorphism mapping
+elements of type ~a~ to corresponding elements of type ~b~. Note the
+‘superclass’ context in this declaration which formalises the idea that
+if ~a~ is isomorphic to ~b~ then ~b~ is also isomorphic to ~a~. The class ~Iso~
 therefore provides further examples of the recursive dictionaries
 described in the previous section.
 
@@ -5031,8 +5033,8 @@ ERROR: Unresolved overloading
 #+end_example
 
 Once again, Haskell provides a solution to this problem in the form of a
-`default mechanism' for numeric types which, once the following problem
-has been detected, will typically `default' the unknown type represented
+‘default mechanism’ for numeric types which, once the following problem
+has been detected, will typically ‘default’ the unknown type represented
 by the type variable a above to be Int, so that the result is actually
 equivalent to the following:
 
@@ -5046,7 +5048,7 @@ equivalent to the following:
 There are a number of problems with the Haskell default mechanism; both
 theoretical and practical. In addition, if a default mechanism of some
 form is used then it should also be capable of dealing with arbitrary
-user-defined type classes, rather than a small group of `standard'
+user-defined type classes, rather than a small group of ‘standard’
 classes, in order to provide solutions to the unresolved overloading
 problems described in previous sections. Therefore, for the time being,
 Gofer does not support any form of default mechanism and overloaded
@@ -5098,7 +5100,7 @@ no additional type information is required, as in the following example:
 ?
 #+end_example
 
-We can also use the technique of passing a `dummy' parameter to resolve
+We can also use the technique of passing a ‘dummy’ parameter to resolve
 overloading problems in a function definition:
 
 #+begin_example
@@ -5168,7 +5170,7 @@ This section describes a technique used to limit the amount of
 overloading used in the definition of certain values to avoid a number
 of technical problems. This particular topic has attracted quite a lot
 of attention within the Haskell community where it is affectionately
-known as the `dreaded monomorphism restriction'. Although the initial
+known as the ‘dreaded monomorphism restriction’. Although the initial
 formulation of the rule was rather cumbersome and limiting, the current
 version used in both Gofer and Haskell is unlikely to cause any problems
 in practice. In addition, many of the examples used to motivate the need
@@ -5183,7 +5185,7 @@ discussion, the description given here uses an equivalent, but less
 abstract approach, based on observations about the implementation of
 overloaded functions.
 
-Basic ideas:
+**** Basic ideas
 
 As we have seen, the implementation of overloading used by Gofer depends
 on being able to add extra arguments to a function definition to supply
@@ -5215,7 +5217,7 @@ isElement d x (y:ys) = (==) d x y || isElement d x ys
 The monomorphism restriction imposes conditions which prevent this last
 step from being used for certain kinds of value binding.
 
-Declaration groups:
+**** Declaration groups
 
 Before giving the full details, it is worth pointing out that, in
 general, the monomorphism restriction affects groups of value
@@ -5266,170 +5268,170 @@ the other bindings in the group. [Adding the extra parameter to f in the
 example forces us to add an extra parameter for g; if extra parameters
 were not permitted for g then they could not be added to f.]
 
-Restricted bindings:
+**** Restricted bindings
 
 There are three main reasons for avoiding adding dictionary parameters
 to a particular value binding:
 
-- Dictionary parameters unnecessary. If the dictionary values are
-  completely determined by context then it is not necessary to pass the
-  appropriate values as dictionary parameters. For example, the function
-  definition:
+1. Dictionary parameters unnecessary. If the dictionary values are
+   completely determined by context then it is not necessary to pass the
+   appropriate values as dictionary parameters. For example, the function
+   definition:
 
-  #+begin_example
-  f x  =   x == 0  ||  x == 2
-  #+end_example
+   #+begin_example
+   f x  =   x == 0  ||  x == 2
+   #+end_example
+    
+   can be translated as:
+    
+   #+begin_example
+   f x  =   (==) {dict} x 0  ||  (==) {dict} x 2
+   #+end_example
+    
+   where, in both cases, the symbol {dict} denotes the dictionary for Eq
+   Int. As a further optimisation, once the dictionary is fully
+   determined, this can be simplified to:
+    
+   #+begin_example
+   f x  =   primEqInt x 0 || primEqInt x 2
+   #+end_example
 
-  can be translated as:
+2. Dictionary parameters cannot be added in a pattern binding. One
+   potential solution to this problem would be to replace the pattern
+   binding by an equivalent set of function bindings. In practice, we do
+   not use this technique because it typically causes ambiguity problems,
+   as illustrated by the pattern binding:
 
-  #+begin_example
-  f x  =   (==) {dict} x 0  ||  (==) {dict} x 2
-  #+end_example
+   #+begin_example
+   (plus,times) = ((+), (*))
+   #+end_example
+    
+   Translating this into a group of function bindings gives:
+    
+   #+begin_example
+   newVariable  = ((+), (*))
+   plus         = fst newVariable     -- fst (x,_) = x
+   times        = snd newVariable     -- snd (_,y) = y
+   #+end_example
+    
+   The type of newVariable is (Num a, Num b) => (a->a->a, b->b->b) so
+   that the correct translation of these bindings using two dictionary
+   variables gives:
+    
+   #+begin_example
+   newVariable da db = ((+) da, (*) db)
+   plus da db        = fst (newVariable da db)
+   times da db       = snd (newVariable da db)
+   #+end_example
+    
+   and hence the correct types for plus and times are:
+    
+   #+begin_example
+   plus  :: (Num a, Num b) => a -> a -> a
+   times :: (Num a, Num b) => b -> b -> b
+   #+end_example
+    
+   both of which are ambiguous.
 
-  where, in both cases, the symbol {dict} denotes the dictionary for Eq
-  Int. As a further optimisation, once the dictionary is fully
-  determined, this can be simplified to:
+3. Adding dictionary parameters may translate a variable definition into
+   a function definition, loosing the benefits of shared evaluation. As
+   an example, consider the following definition using the function
+   "size" and the class Finite described in the previous section:
+    
+   #+begin_example
+   twiceSize x = n + n  where n = size x
+   #+end_example
+    
+   Since the variable n is defined using a local definition, we would not
+   expect to have to evaluate size x more than once to determine the
+   value of twiceSize. However, adding extra dictionary parameters
+   without restriction gives:
+    
+   #+begin_example
+   twiceSize d x  = n d + n d  where  n d = size d x
+   #+end_example
+    
+   Now that n has been replaced by a function, the evaluation will be
+   repeated, once for each occurrence of the expression "n d". In order
+   to avoid this kind of problem, the monomorphism restriction does not
+   usually allow extra parameters to be added to a variable definition.
+   Thus the original definition above will be translated to give:
+    
+   #+begin_example
+   twiceSize d x  =  n + n  where n = size d x
+   #+end_example
+    
+   Note that the same rule is applied to variable definitions at the
+   top-level of a file of definitions, resulting in an error if any
+   dictionary parameters are required for the right hand side of the
+   definition. As an example of this:
+    
+   #+begin_example
+   twiceMembers = members ++ members
+   #+end_example
+    
+   which produces an error message of the form:
+    
+   #+begin_example
+   ERROR "ex" (line 157): Unresolved top-level overloading
+   *** Binding             : twiceMembers
+   *** Inferred type       : [_7]
+   *** Outstanding context : Finite _7
+   ?
+   #+end_example
+    
+   [COMMENT: A type expression of the form _n (such as _7 in this
+   particular example) represents a fixed (i.e. monomorphic) type
+   variable.]
+    
+   In the case of a variable declaration, the monomorphism restriction
+   can be overcome by giving an explicit type signature including an
+   appropriate context, to indicate that the variable defined is intended
+   to be used as an overloaded value. In this case, we need only include
+   the declaration:
+    
+   #+begin_example
+   twiceMembers :: Finite a => [a]
+   #+end_example
+    
+   in the file containing the definition for twiceMembers to suppress the
+   previous error message and allow the function to be used as a fully
+   overloaded variable.
+    
+   Note that the monomorphism restriction interferes with the use of
+   polymorphism. For example, the definition:
+    
+   #+begin_example
+   aNumber = length (twiceMembers::[Bool]) +
+             length (twiceMembers::[(Bool,Bool)])
+             where twiceMembers = members ++ members
+   #+end_example
+    
+   will not be accepted because the monomorphism restriction forces the
+   local definition of "twiceMembers" to be restricted to a single
+   overloading (the dictionary parameter supplied to each use of members
+   must be constant throughout the local definition):
+    
+   #+begin_example
+   ERROR "ex" (line 12): Type error in type signature expression
+   *** term           : twiceMembers
+   *** type           : [(Bool,Bool)]
+   *** does not match : [Bool]
+   ?
+   #+end_example
+    
+   Once again, this problem can be fixed using an explicit type
+   declaration:
+    
+   #+begin_example
+   aNumber = length (twiceMembers::[Bool]) +
+             length (twiceMembers::[(Bool,Bool)])  
+             where twiceMembers :: Finite a => [a]
+                   twiceMembers  = members ++ members
+    
+   #+end_example
 
-  #+begin_example
-  f x  =   primEqInt x 0 || primEqInt x 2
-  #+end_example
-
-- Dictionary parameters cannot be added in a pattern binding. One
-  potential solution to this problem would be to replace the pattern
-  binding by an equivalent set of function bindings. In practice, we do
-  not use this technique because it typically causes ambiguity problems,
-  as illustrated by the pattern binding:
-
-  #+begin_example
-  (plus,times) = ((+), (*))
-  #+end_example
-
-  Translating this into a group of function bindings gives:
-
-  #+begin_example
-  newVariable  = ((+), (*))
-  plus         = fst newVariable     -- fst (x,_) = x
-  times        = snd newVariable     -- snd (_,y) = y
-  #+end_example
-
-  The type of newVariable is (Num a, Num b) => (a->a->a, b->b->b) so
-  that the correct translation of these bindings using two dictionary
-  variables gives:
-
-  #+begin_example
-  newVariable da db = ((+) da, (*) db)
-  plus da db        = fst (newVariable da db)
-  times da db       = snd (newVariable da db)
-  #+end_example
-
-  and hence the correct types for plus and times are:
-
-  #+begin_example
-  plus  :: (Num a, Num b) => a -> a -> a
-  times :: (Num a, Num b) => b -> b -> b
-  #+end_example
-
-  both of which are ambiguous.
-
-- Adding dictionary parameters may translate a variable definition into
-  a function definition, loosing the benefits of shared evaluation. As
-  an example, consider the following definition using the function
-  "size" and the class Finite described in the previous section:
-
-  #+begin_example
-  twiceSize x = n + n  where n = size x
-  #+end_example
-
-  Since the variable n is defined using a local definition, we would not
-  expect to have to evaluate size x more than once to determine the
-  value of twiceSize. However, adding extra dictionary parameters
-  without restriction gives:
-
-  #+begin_example
-  twiceSize d x  = n d + n d  where  n d = size d x
-  #+end_example
-
-  Now that n has been replaced by a function, the evaluation will be
-  repeated, once for each occurrence of the expression "n d". In order
-  to avoid this kind of problem, the monomorphism restriction does not
-  usually allow extra parameters to be added to a variable definition.
-  Thus the original definition above will be translated to give:
-
-  #+begin_example
-  twiceSize d x  =  n + n  where n = size d x
-  #+end_example
-
-  Note that the same rule is applied to variable definitions at the
-  top-level of a file of definitions, resulting in an error if any
-  dictionary parameters are required for the right hand side of the
-  definition. As an example of this:
-
-  #+begin_example
-  twiceMembers = members ++ members
-  #+end_example
-
-  which produces an error message of the form:
-
-  #+begin_example
-  ERROR "ex" (line 157): Unresolved top-level overloading
-  ,*** Binding             : twiceMembers
-  ,*** Inferred type       : [_7]
-  ,*** Outstanding context : Finite _7
-  ?
-  #+end_example
-
-  [COMMENT: A type expression of the form _n (such as _7 in this
-  particular example) represents a fixed (i.e. monomorphic) type
-  variable.]
-
-  In the case of a variable declaration, the monomorphism restriction
-  can be overcome by giving an explicit type signature including an
-  appropriate context, to indicate that the variable defined is intended
-  to be used as an overloaded value. In this case, we need only include
-  the declaration:
-
-  #+begin_example
-  twiceMembers :: Finite a => [a]
-  #+end_example
-
-  in the file containing the definition for twiceMembers to suppress the
-  previous error message and allow the function to be used as a fully
-  overloaded variable.
-
-  Note that the monomorphism restriction interferes with the use of
-  polymorphism. For example, the definition:
-
-  #+begin_example
-  aNumber = length (twiceMembers::[Bool]) +
-            length (twiceMembers::[(Bool,Bool)])
-            where twiceMembers = members ++ members
-  #+end_example
-
-  will not be accepted because the monomorphism restriction forces the
-  local definition of "twiceMembers" to be restricted to a single
-  overloading (the dictionary parameter supplied to each use of members
-  must be constant throughout the local definition):
-
-  #+begin_example
-  ERROR "ex" (line 12): Type error in type signature expression
-  ,*** term           : twiceMembers
-  ,*** type           : [(Bool,Bool)]
-  ,*** does not match : [Bool]
-  ?
-  #+end_example
-
-  Once again, this problem can be fixed using an explicit type
-  declaration:
-
-  #+begin_example
-  aNumber = length (twiceMembers::[Bool]) +
-            length (twiceMembers::[(Bool,Bool)])  
-            where twiceMembers :: Finite a => [a]
-                  twiceMembers  = members ++ members
-
-  #+end_example
-
-Formal definition:
+**** Formal definition
 
 The examples above describe the motivation for the monomorphism
 restriction, captured by the following definition:
@@ -5665,6 +5667,7 @@ Variables and operators
 :PROPERTIES:
 :UNNUMBERED:
 :END:
+#+INCLUDE: "./standard.prelude" src haskell
 * APPENDIX C: RELATIONSHIP WITH HASKELL 1.1
 :PROPERTIES:
 :UNNUMBERED:
@@ -5678,28 +5681,22 @@ section 2.
 Haskell features not included in Gofer:
 
 - Modules
-
 - Arrays
-
 - Derived instances for standard classes -- the ability to construct
   instances of particular classes automatically.
-
 - Default mechanism for eliminating unresolved overloading involving
   numeric and standard classes. Since Gofer is an experimental system,
   it can be used with a range of completely different prelude files;
-  there is no concept of `standard classes'.
-
+  there is no concept of ‘standard classes’.
 - Overloaded numeric constants. In the absence of a defaulting mechanism
   as mentioned in the previous item, problems with unresolved
   overloading make implicitly typed programming involving numeric
   constants impractical in an interpreter based system.
-
 - Full range of numeric types and classes. Gofer has only two primitive
-  numeric types Int and Float (the second of which is not supported in
-  the PC version). Although is would be possible to modify the standard
+  numeric types ~Int~ and ~Float~ (the second of which is not supported in
+  the PC version). Although it would be possible to modify the standard
   prelude so that Gofer uses the same class hierarchy as Haskell, this
   is unnecessarily sophisticated for the intended uses of Gofer.
-
 - Datatype definitions in Haskell may involve class constraints such as:
 
   #+begin_example
@@ -5748,7 +5745,7 @@ Other differences:
   but lower than that of function application. In Haskell, the
   precedence of unary minus is the same as that of the infix
   (subtraction) operator of the same name.
-- In Haskell, the character `-' can only be used as the first character
+- In Haskell, the character ~-~ can only be used as the first character
   of an operator symbol. In Gofer, this character may appear in any
   position in an operator (except for symbols beginning with "~--~", which
   indicates the start of a comment). The only problems that I am aware
@@ -5831,25 +5828,25 @@ points are particularly useful for this:
 - Type constructors in Gofer begin with capital letters (e.g. Bool, Char
   etc..) where lower case is used in [1] (e.g. bool, char, etc..). Note
   that Gofer has no general numeric type "num" as used in [1]; Use
-  either Int, Float, or overloading in Gofer as appropriate.
+  either ~Int~, ~Float~, or overloading in Gofer as appropriate.
 
-- Datatype definitions in [1] are written in the form lhs::=constrs. The
-  equivalent definition in Gofer is: data lhs = constrs.
+- Datatype definitions in [1] are written in the form lhs ::= constrs. The
+  equivalent definition in Gofer is: ~data lhs = constrs~.
 
   Similarly, a type synonym definition in [1] of the form lhs == rhs can
-  be written in Gofer as: type lhs = rhs.
+  be written in Gofer as: ~type lhs = rhs~.
 
 - The differences between the syntax used for guarded equations in Gofer
   compared with the notation used in [1] have already been discussed in
   section 9.2. For example:
 
-  Using the notation of [1]: Using Gofer:
-
-  filter p (x:xs) filter p (x:xs)
-
   #+begin_example
-  = x : filter p xs, if p x         | p x       = x : filter p xs
-  = filter p xs,     otherwise      | otherwise = filter p xs
+    Using the notation of [1]:       Using Gofer:
+
+    filter p (x:xs)                  filter p (x:xs)
+       = x : filter p xs, if p x         | p x       = x : filter p xs
+       = filter p xs,     otherwise      | otherwise = filter p xs
+
   #+end_example
 
 - In Gofer, list comprehension qualifiers are separated by commas rather
@@ -5878,15 +5875,15 @@ points are particularly useful for this:
   The version of foldl using "strict" which appears in [1] is available
   in Gofer as the function "foldl'".
 
-  The role of "zip" and "zipwith" in [1] is filled by the "zip" and
-  "zipWith" families of functions in Gofer. An expression of the form
-  "zip (xs,ys)" in [1] is equivalent to "zip xs ys" in Gofer etc...
+  The role of ~zip~ and ~zipwith~ in [1] is filled by the ~zip~ and
+  ~zipWith~ families of functions in Gofer. An expression of the form
+  ~zip (xs,ys)~ in [1] is equivalent to ~zip xs ys~ in Gofer etc...
 
 - Gofer does not enforce the condition assumed in [1] that the left hand
   sides of each of the equations defining a function must be disjoint.
 
-- The equality operator in Gofer is written as "==" and the single
-  equality character "=" is a reserved symbol used to separate left and
+- The equality operator in Gofer is written as ~==~ and the single
+  equality character ~=~ is a reserved symbol used to separate left and
   right hand sides of equations. Many C programmers will be familiar
   with this kind of notation (together with the kinds of problems it can
   create!).
@@ -5900,43 +5897,43 @@ points are particularly useful for this:
 :UNNUMBERED:
 :END:
 
-| Category   | code name string | type                           |
-|------------+------------------+--------------------------------|
-| integer    | ~primPlusInt~    | ~Int -> Int -> Int~            |
-| arithmetic | ~primMinusInt~   | ~Int -> Int -> Int~            |
-|            | ~primMulInt~     | ~Int -> Int -> Int~            |
-|            | ~primDivInt~     | ~Int -> Int -> Int~            |
-|            | ~primModInt~     | ~Int -> Int -> Int~            |
-|            | ~primRemInt~     | ~Int -> Int -> Int~            |
-|            | ~primNegInt~     | ~Int -> Int -> Int~            |
-|            |                  |                                |
-| floating   | ~primPlusFloat~  | ~Float -> Float -> Float~      |
-| point      | ~primMinusFloat~ | ~Float -> Float -> Float~      |
-| arithmetic | ~primMulFloat~   | ~Float -> Float -> Float~      |
-|            | ~primDivFloat~   | ~Float -> Float -> Float~      |
-|            | ~primNegFloat~   | ~Float -> Float -> Float~      |
-|            |                  |                                |
-| coercion   | ~primIntToChar~  | ~Int -> Char~                  |
-| functions  | ~primCharToInt~  | ~Char -> Int~                  |
-| [1]        | ~primIntToFloat~ | ~Int -> Float~                 |
-|            |                  |                                |
-| equality   | ~primEqInt~      | ~Int -> Int -> Bool~           |
-| and <=     | ~primLeInt~      | ~Int -> Int -> Bool~           |
-| primitives | ~primEqFloat~    | ~Float -> Float -> Bool~       |
-|            | ~primLeFloat~    | ~Float -> Float -> Bool~       |
-|            |                  |                                |
-| generic    | ~primGenericEq~  | ~a -> a -> Bool~               |
-| ordering   | ~primGenericNe~  | ~a -> a -> Bool~               |
-| primitives | ~primGenericGt~  | ~a -> a -> Bool~               |
-| [2]        | ~primGenericLe~  | ~a -> a -> Bool~               |
-|            | ~primGenericGe~  | ~a -> a -> Bool~               |
-|            | ~primGenericLt~  | ~a -> a -> Bool~               |
-|            |                  |                                |
-| output     | ~primPrint~      | ~Int -> a -> String -> String~ |
-| [3]        |                  |                                |
-|            |                  |                                |
-| sequencing | ~primStrict~     | ~(a -> b) -> a -> b~           |
-| [4]        |                  |                                |
+| Category   | code name string | type                      |
+|------------+------------------+---------------------------|
+| integer    | ~primPlusInt~    | ~Int -> Int -> Int~       |
+| arithmetic | ~primMinusInt~   | ~Int -> Int -> Int~       |
+|            | ~primMulInt~     | ~Int -> Int -> Int~       |
+|            | ~primDivInt~     | ~Int -> Int -> Int~       |
+|            | ~primModInt~     | ~Int -> Int -> Int~       |
+|            | ~primRemInt~     | ~Int -> Int -> Int~       |
+|            | ~primNegInt~     | ~Int -> Int -> Int~       |
+|            |                  |                           |
+| floating   | ~primPlusFloat~  | ~Float -> Float -> Float~ |
+| point      | ~primMinusFloat~ | ~Float -> Float -> Float~ |
+| arithmetic | ~primMulFloat~   | ~Float -> Float -> Float~ |
+|            | ~primDivFloat~   | ~Float -> Float -> Float~ |
+|            | ~primNegFloat~   | ~Float -> Float -> Float~ |
+|            |                  |                           |
+| coercion   | ~primIntToChar~  | ~Int -> Char~             |
+| functions  | ~primCharToInt~  | ~Char -> Int~             |
+| [1]        | ~primIntToFloat~ | ~Int -> Float~            |
+|            |                  |                           |
+| equality   | ~primEqInt~      | ~Int -> Int -> Bool~      |
+| and <=     | ~primLeInt~      | ~Int -> Int -> Bool~      |
+| primitives | ~primEqFloat~    | ~Float -> Float -> Bool~  |
+|            | ~primLeFloat~    | ~Float -> Float -> Bool~  |
+|            |                  |                           |
+| generic    | ~primGenericEq~  | ~a -> a -> Bool~          |
+| ordering   | ~primGenericNe~  | ~a -> a -> Bool~          |
+| primitives | ~primGenericGt~  | ~a -> a -> Bool~          |
+| [2]        | ~primGenericLe~  | ~a -> a -> Bool~          |
+|            | ~primGenericGe~  | ~a -> a -> Bool~          |
+|            | ~primGenericLt~  | ~a -> a -> Bool~          |
+|            |                  |                           |
+| output     | ~primPrint~      | ~Int -> a -> String~      |
+| [3]        |                  |        ~-> String~        |
+|            |                  |                           |
+| sequencing | ~primStrict~     | ~(a -> b) -> a -> b~      |
+| [4]        |                  |                           |
 
 
 - [1] :: chr in the standard prelude 
