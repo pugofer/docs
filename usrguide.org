@@ -4,7 +4,7 @@
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
 #+TITLE: Gofer User Guide
-#+SUBTITLE: Original by Mark P Jones — 1991\\
+#+SUBTITLE: Original Text Doc by Mark P Jones — 1991\\
 #+SUBTITLE: HTML-ized by Rustom P Mody — 2026
 #+AUTHOR: Rustom P Mody
 ** Front matter
@@ -68,7 +68,7 @@ Gofer is provided "as is" without express or implied warranty.
 * INTRODUCTION
 Gofer is a functional programming environment (in other words, an
 interpreter) that I have implemented for my own personal use as part of
-my research into ‘qualified types’. Nevertheless, the system is
+my research into /qualified types/. Nevertheless, the system is
 sufficiently complete for me to believe that Gofer may be of interest
 and use to others interested in the field of functional programming.
 
@@ -274,7 +274,7 @@ into Gofer in the rest of this document.
 The function ~sum~ used in the examples above, and indeed the addition
 and multiplication functions ~(+)~ and ~(*)~, are all standard functions
 which are included as part of a large collection of functions called the
-‘standard prelude’ which are loaded into the Gofer system each time that
+/standard prelude/ which are loaded into the Gofer system each time that
 you start the interpreter. Quite a number of useful calculations can be
 carried out using these functions alone, but for more general use you
 can also define your own functions and store the definitions in a file
@@ -394,7 +394,7 @@ that they are written:
   digit, an apostrophe (') or an underbar (_). Identifiers representing
   functions or variables must begin with a lower case letter
   (identifiers beginning with an upper case letter are used to denote a
-  special kind of function called a ‘constructor function’ described in
+  special kind of function called a /constructor function/ described in
   section 11.1). The following identifiers are examples of Gofer
   variable and function names:
 
@@ -490,8 +490,8 @@ working with operator symbols:
   ~1 - 2 - 3~ be treated as either ~(1 - 2) - 3~ giving a result of ~-4~,
   or as ~1 - (2 - 3)~ giving a result of ~2~?
 
-  This problem is solved by giving each operator a ‘grouping’ (sometimes
-  called its associativity). An operator symbol (-) is said to:
+  This problem is solved by giving each operator a /grouping/ (sometimes
+  called its /associativity/). An operator symbol (-) is said to:
 
   - group to the left if ~x - y - z~ is treated as ~(x - y) - z~
   - group to the right if ~x - y - z~ is treated as ~x - (y - z)~
@@ -666,7 +666,7 @@ is ~True~.  If ~b~ is ~True~ then ~d~ is not evaluated.
 The value of the expression ~not b~ is the opposite boolean value
 to that of ~b~; ~not True = False~, ~not False = True~.
 
-Gofer includes a special form of ‘conditional expression’ which enables
+Gofer includes a special form of /conditional expression/ which enables
 an expression to select between two alternatives according to the value
 of a boolean expression:
 
@@ -741,7 +741,7 @@ Represented by the type ~Char~, elements of this type represent
 individual characters such as those entered at a keyboard. Character
 values are written as single characters enclosed by apostrophe
 characters: e.g. ~'a'~, ~'0'~, ~'Z'~. Some special characters must be entered
-using an ‘escape code’; each of these begins with a backslash character
+using an /escape code/; each of these begins with a backslash character
 '\', followed by one or more characters to select the required
 character. Some of the most useful escape codes are:
 
@@ -1081,7 +1081,7 @@ f <pat1> <pat2> ... <patn>  =   <rhs>
 
 (or an equivalent expression, if ~f~ is written as by an operator
 symbol). Each of the expressions <pat1>, <pat2>, ..., <patn> represents
-an argument to the function ~f~ and is called a ‘pattern’. The number of
+an argument to the function ~f~ and is called a /pattern/. The number of
 such arguments is called the arity of ~f~. If ~f~ is defined by more
 than one equation then they must be entered together and each one must
 give the same arity for ~f~.
@@ -1089,7 +1089,7 @@ give the same arity for ~f~.
 When a function is defined by more than one equation, it will usually be
 necessary to evaluate one or more of the arguments to the function to
 determine which equation applies. This process is called
-‘pattern-matching’. In all of the previous examples we have used only
+/pattern-matching/. In all of the previous examples we have used only
 the simplest kind of pattern -- a variable. As an example, consider the
 factorial function defined in section 5:
 
@@ -1102,7 +1102,7 @@ expression ~6~ against the pattern ~n~ and then evaluate the expression
 obtained from ~product [1..n]~ by replacing the variable ~n~ with the
 expression ~6~. The process of matching the arguments of a function
 against the patterns in its definition and obtaining another expression
-to be evaluated is called a ‘reduction’. Using Gofer, it is easy to
+to be evaluated is called a /reduction/. Using Gofer, it is easy to
 verify that the evaluation of ~fact 6~ takes one more reduction than
 that of ~product [1..6]~:
 
@@ -1219,7 +1219,7 @@ areTheyTheSame x y
 #+end_example
 
 ** Guarded equations
-Each of the equations in a function definition may contain ‘guards’
+Each of the equations in a function definition may contain /guards/
 which require certain conditions on the values of the function's
 arguments to be met. As an example, here is a function which uses the
 standard prelude function ~even :: Int -> Bool~ to determine whether its
@@ -1451,7 +1451,7 @@ map f (x:xs)  =  f x : map f xs
 
 ** Lazy evaluation
 Gofer evaluates expressions using a technique sometimes described as
-‘lazy evaluation’ which means that:
+/lazy evaluation/ which means that:
 
 - No expression is evaluated until its value is needed.
 - No shared expression is evaluated more than once; if the expression is
@@ -1585,7 +1585,7 @@ to obtain the last element.
 
 ** Infinite data structures
 One particular benefit of lazy evaluation is that it makes it possible
-for functions in Gofer to manipulate ‘infinite’ data structures.
+for functions in Gofer to manipulate /infinite/ data structures.
 Obviously we cannot hope either to construct or store an infinite object
 in its entirety -- the advantage of lazy evaluation is that it allows us
 to construct infinite objects piece by piece as necessary (and to reuse
@@ -1713,7 +1713,7 @@ function ~f~ to some value. It is therefore reasonable to treat the
 The letters ~a~ and ~b~ used in this type expression represent arbitrary
 types and are called type variables. An object whose type includes one
 or more type variables can be thought of as having many different types
-and is often described as having a ‘polymorphic type’ (literally: its
+and is often described as having a /polymorphic type/ (literally: its
 type has ‘many shapes’).
 
 The ability to define and use polymorphic functions in Gofer turns out
@@ -1748,7 +1748,7 @@ kind of value; in particular, they can be used both as arguments to, and
 results of other functions.
 
 Functions which manipulate other functions in this way are often
-described as ‘higher-order functions’. Consider the following example,
+described as /higher-order functions/. Consider the following example,
 taken from the standard prelude:
 
 #+begin_example
@@ -1856,7 +1856,7 @@ be possible to reuse this space for other calculations without reloading
 the file defining ~longList~, or loading other files instead.
 
 ** Pattern bindings and irrefutable patterns
-Another useful way of defining variables uses ‘pattern bindings’ which
+Another useful way of defining variables uses /pattern bindings/ which
 are equations of the form:
 
 #+begin_example
@@ -1926,7 +1926,7 @@ an error if we attempt to evaluate the variable xs:
 #+end_example
 
 The variable name ~v120~ appearing in this expression is the name of a
-function called a ‘conformality check’ which is defined automatically by
+function called a /conformality check/ which is defined automatically by
 Gofer to ensure that the value on the right hand side of the pattern
 binding conforms with the pattern on the left.
 
@@ -2339,7 +2339,7 @@ The following examples illustrate how this definition works in practice:
 
 ** Lambda expressions
 In addition to named function definitions, Gofer also allows the
-definition and use of unnamed functions using a ‘~|’ of
+definition and use of unnamed functions using a /lambda expression/ of
 the form:
 
 #+begin_example
@@ -2350,17 +2350,17 @@ the form:
 used in most theoretical treatments of functional programming and dating
 back to the pioneering work of logicians including Alonzo Church and
 Haskell Curry, from whom the programming language takes its name. The
-‘~|’ character used at the beginning of a Gofer lambda expression has
-been chosen for its resemblance to the greek letter lambda that might be
+‘\\’ character used at the beginning of a Gofer lambda expression has
+been chosen for its resemblance to the greek letter lambda (λ) that might be
 used if the standard character set were a little larger.]
 
 This expression denotes a function taking a number of parameters (one
 for each pattern) and producing the result specified by the expression
-to the right of the -> symbol. For example, (\x->x*x) represents the
+to the right of the -> symbol. For example, ~(\x->x*x)~ represents the
 function which takes a single integer argument ~x~ and produces the
 square of that number as its result. Another example is the lambda
-expression (\x y->x+y) which takes two integer arguments and outputs
-their sum; this expression is in fact equivalent to the (+) operator:
+expression ~(\x y->x+y)~ which takes two integer arguments and outputs
+their sum; this expression is in fact equivalent to the ~(+)~ operator:
 
 #+begin_example
 ? (\x y->x+y) 2 3
@@ -2492,7 +2492,7 @@ the integer value ~1+n~. Functions of this kind involving operator
 symbols are sufficiently common that Gofer provides a special syntax for
 them. Using e to denote an atomic expression and the symbol ~*~ to
 represent an arbitrary infix operator, there are functions (e *) and (*
-e), known as ‘sections of the operator (*)’ defined by:
+e), known as /sections of the operator (*)/ defined by:
 
 #+begin_example
 (e *) x  = e * x
@@ -2688,7 +2688,7 @@ As an example of a function defined on trees, here are two definitions
 using recursion and pattern matching on tree valued expressions which
 calculate the list of elements at the leaves of a tree traversing the
 branches of the tree from left to right. The first definition uses a
-simple definition, whilst the second uses an ‘accumulating parameter’
+simple definition, whilst the second uses an /accumulating parameter/
 giving a more efficient algorithm:
 
 #+begin_example
@@ -2999,9 +2999,9 @@ main ~(Success : ~(Str userInput : ~(r3 : _)))
 #+end_example
 
 ** Continuation style I/O
-As an alternative to the ‘stream-based’ approach to programs using the
+As an alternative to the /stream-based/ approach to programs using the
 I/O facilities in Gofer, the standard prelude defines a family of
-functions which enables such programs to be written in a ‘continuation’
+functions which enables such programs to be written in a /continuation/
 style. The basic idea is to define a function corresponding to each
 different kind of request, whose parameters include the values required
 to make the request together with two continuations. The continuations
@@ -3465,7 +3465,7 @@ gained with the overloading system in one language can readily by
 applied to the other.
 
 The differences embodied in the Gofer system of classes stem from my
-own, theoretically based investigations into ‘qualified types’ some of
+own, theoretically based investigations into /qualified types/ some of
 which is detailed in references [8-12]. In my personal opinion, the
 Gofer system has some significant advantages over the Haskell approach
 (see [12] for details) and one of the principal motivations behind the
@@ -3492,18 +3492,15 @@ arbitrary types for each of the type variables in its type. In Gofer, a
 type expression may be qualified by one or more predicates which
 restrict the range of types at which a value can be used:
 
-e.g. a function of type C a => a -> a -> a can be treated as a function
+e.g. a function of type ~C a => a -> a -> a~ can be treated as a function
+of type ~t -> t -> t~ for any instance t of the class ~C~.
 
-#+begin_example
-of type t -> t -> t for any instance t of the class C.
-#+end_example
-
-The predicate C a in the type expression in the previous example is
+The predicate ~C a~ in the type expression in the previous example is
 called the context of the type. Contexts may contain more than one
 predicate in which case the predicates involved must be separated by
-commas and the context enclosed in parentheses as in (C a, D b). The
-empty context is written () and any type expression t is equivalent to
-the qualified type () => t. For uniformity, a context with only one
+commas and the context enclosed in parentheses as in ~(C a, D b)~. The
+empty context is written ~()~ and any type expression ~t~ is equivalent to
+the qualified type ~() => t~. For uniformity, a context with only one
 element may also be enclosed by parentheses.
 
 For technical reasons, type synonyms are not currently permitted in
@@ -3512,7 +3509,7 @@ but may be relaxed, at least in certain cases, in later versions of
 Gofer.
 
 ** The type class Eq
-The type class Eq is a simple and useful example, whose instances are
+The type class ~Eq~ is a simple and useful example, whose instances are
 precisely those types whose elements can be tested for equality. The
 declaration of this class given in the standard prelude is as follows:
 
@@ -3539,10 +3536,10 @@ example we have:
   Eq a => a -> a -> Bool
   #+end_example
 
-  These functions are called the ‘members’ (or ‘member functions’) of
+  These functions are called the /members/ (or /member functions/) of
   the class. [Note: This terminology, taken from Haskell, is rather
   unfortunate; thinking of a type class as a set of types, the elements
-  of the class are called ‘instances’, whilst the ‘members’ of the class
+  of the class are called /instances/, whilst the /members/ of the class
   correspond more closely to the instance variables that are used in the
   terminology of object-oriented programming.]
 
@@ -3552,7 +3549,7 @@ example we have:
   include related groups of functions within a single type class in this
   way is a useful tool in program design.
 
-- The third line of the class declaration (the ‘default definitions’)
+- The third line of the class declaration (the /default definitions/)
   provides a default definition of the (/=) operator in terms of the
   (==) operator. Thus it is only necessary to give a definition for the
   (==) operator in order to define all of the member functions for the
@@ -3936,7 +3933,7 @@ The basic idea is that a function with a qualified type context => type
 where context is a non-empty list of predicates is implemented by a
 function which takes an extra argument for each predicate in the
 context. When the function is used, each of these parameters is filled
-by a ‘dictionary’ which gives the values of each of the member functions
+by a /dictionary/ which gives the values of each of the member functions
 in the appropriate class. None of these extra parameters is entered by
 the programmer. Instead, they are inserted automatically during
 type-checking.
@@ -3969,7 +3966,7 @@ notations for printing expressions involving dictionaries:
          displayed).
 
 dnnn     a dictionary variable representing an unknown dictionary is
-         printed as a lower case letter ‘d’ followed by an  integer;
+         printed as a lower case letter /d/ followed by an  integer;
          e.g. d231.
 #+end_example
 
@@ -4439,7 +4436,7 @@ Consider the use of the (==) operator in the following three situations:
   #+end_example
 
 The same problem occurs in Haskell, where it is described using the idea
-of an ‘ambiguous type’ -- i.e. a type expression of the form @@@ context ~=>~
+of an /ambiguous type/ -- i.e. a type expression of the form @@@ context ~=>~
 type where one or more of the type variables appearing in the given
 context do not appear in the remaining part of the type expression.
 
@@ -5048,8 +5045,8 @@ equivalent to the following:
 There are a number of problems with the Haskell default mechanism; both
 theoretical and practical. In addition, if a default mechanism of some
 form is used then it should also be capable of dealing with arbitrary
-user-defined type classes, rather than a small group of ‘standard’
-classes, in order to provide solutions to the unresolved overloading
+user-defined type classes, rather than a small group of /standard classes,/
+in order to provide solutions to the unresolved overloading
 problems described in previous sections. Therefore, for the time being,
 Gofer does not support any form of default mechanism and overloaded
 numeric constants can only be obtained by explicit use of the
@@ -5170,7 +5167,7 @@ This section describes a technique used to limit the amount of
 overloading used in the definition of certain values to avoid a number
 of technical problems. This particular topic has attracted quite a lot
 of attention within the Haskell community where it is affectionately
-known as the ‘dreaded monomorphism restriction’. Although the initial
+known as the /dreaded monomorphism restriction/. Although the initial
 formulation of the rule was rather cumbersome and limiting, the current
 version used in both Gofer and Haskell is unlikely to cause any problems
 in practice. In addition, many of the examples used to motivate the need
@@ -5687,7 +5684,8 @@ Haskell features not included in Gofer:
 - Default mechanism for eliminating unresolved overloading involving
   numeric and standard classes. Since Gofer is an experimental system,
   it can be used with a range of completely different prelude files;
-  there is no concept of ‘standard classes’.
+  there is no concept of /standard classes/.
+  @@@ On contrary, this is gofer's strongest feature@@@
 - Overloaded numeric constants. In the absence of a defaulting mechanism
   as mentioned in the previous item, problems with unresolved
   overloading make implicitly typed programming involving numeric

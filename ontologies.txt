@@ -1,0 +1,35 @@
+71:my research into /qualified types/. Nevertheless, the system is
+277:/standard prelude/ which are loaded into the Gofer system each time that
+397:  special kind of function called a /constructor function/ described in
+493:  This problem is solved by giving each operator a /grouping/ (sometimes
+494:  called its /associativity/). An operator symbol (-) is said to:
+590:In general we write <​/object/​> ~::~ <​/type/​> to indicate that a particular
+617:In mathematics, the result of applying a function /f/ to an argument /x/ is
+618:traditionally written as /f(x)/. In many situations, these parentheses are
+669:Gofer includes a special form of /conditional expression/ which enables
+744:using an /escape code/; each of these begins with a backslash character
+1084:an argument to the function ~f~ and is called a /pattern/. The number of
+1092:/pattern-matching/. In all of the previous examples we have used only
+1105:to be evaluated is called a /reduction/. Using Gofer, it is easy to
+1222:Each of the equations in a function definition may contain /guards/
+1454:/lazy evaluation/ which means that:
+1588:for functions in Gofer to manipulate /infinite/ data structures.
+1716:and is often described as having a /polymorphic type/ (literally: its
+1751:described as /higher-order functions/. Consider the following example,
+1859:Another useful way of defining variables uses /pattern bindings/ which
+1929:function called a /conformality check/ which is defined automatically by
+2342:definition and use of unnamed functions using a /lambda expression/ of
+2495:e), known as /sections of the operator (*)/ defined by:
+2691:simple definition, whilst the second uses an /accumulating parameter/
+3002:As an alternative to the /stream-based/ approach to programs using the
+3004:functions which enables such programs to be written in a /continuation/
+3468:own, theoretically based investigations into /qualified types/ some of
+3539:  These functions are called the /members/ (or /member functions/) of
+3542:  of the class are called /instances/, whilst the /members/ of the class
+3552:- The third line of the class declaration (the /default definitions/)
+3936:by a /dictionary/ which gives the values of each of the member functions
+3969:         printed as a lower case letter /d/ followed by an  integer;
+4439:of an /ambiguous type/ -- i.e. a type expression of the form @@@ context ~=>~
+5048:user-defined type classes, rather than a small group of /standard classes,/
+5170:known as the /dreaded monomorphism restriction/. Although the initial
+5687:  there is no concept of /standard classes/.
