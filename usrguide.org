@@ -4,9 +4,10 @@
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
 #+TITLE: Gofer User Guide
-#+SUBTITLE: Original Text Doc by Mark P Jones — 1991\\
-#+SUBTITLE: HTML-ized by Rustom P Mody — 2026\\
-#+SUBTITLE: Beyond formatting, minimal changes introduced
+#+SUBTITLE: Original text by Mark P. Jones — 1991\\
+#+SUBTITLE: HTML-ized by Rustom P. Mody — 2026\\
+#+SUBTITLE: Minimal changes beyond formatting and markup\\
+#+SUBTITLE: The forthcoming Pug Manual is a separate document, in preparation
 #+AUTHOR: Rustom P Mody
 ** Front matter
 :PROPERTIES:
