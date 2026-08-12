@@ -4,11 +4,12 @@
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
 #+TITLE: Gofer User Guide
-#+SUBTITLE: Original text by Mark P. Jones — 1991\\
-#+SUBTITLE: HTML-ized by Rustom P. Mody — 2026\\
-#+SUBTITLE: Minimal changes beyond formatting and markup\\
-#+SUBTITLE: The forthcoming Pug Manual is a separate document, in preparation
-#+AUTHOR: Rustom P Mody
+#+DATE: 6th August, 2026
+#+SUBTITLE: Original text by Mark P. Jones, 1991\\
+#+SUBTITLE: HTML-ized by Rustom P. Mody, 6th August, 2026\\
+#+SUBTITLE: Minimal changes, mostly formatting, markup and hyperlinking\\
+#+SUBTITLE: The Pug Manual is a separate document, in preparation
+#+AUTHOR: Rustom P. Mody
 ** Front matter
 :PROPERTIES:
 :UNNUMBERED:
@@ -5673,8 +5674,7 @@ defined in the report for Haskell version 1.1 [[[bib-5][5]]]. This section detai
 the differences between the two languages, outlined briefly in
 [[*BACKGROUND AND ACKNOWLEDGEMENTS][section 2]].
 
-Haskell features not included in Gofer:
-
+** Haskell features not included in Gofer
 - Modules
 - Arrays
 - Derived instances for standard classes -- the ability to construct
@@ -5704,8 +5704,7 @@ Haskell features not included in Gofer:
   Gofer) in such a way to make them useful whilst avoiding unwanted
   ambiguity problems.
 
-Gofer features not supported in Haskell:
-
+** Gofer features not supported in Haskell
 - Type classes may have multiple parameters.
 - Predicates in type expressions may involve arbitrary type expressions,
   not just type variables as used in Haskell.
@@ -5722,9 +5721,7 @@ Gofer features not supported in Haskell:
   evaluation and supposedly non-terminating dictionary constructions
   will actually generate an error due to the limited amount of space
   available for holding dictionaries (see [[*‘Recursive’ dictionaries][section 14.4.2]]).
-
-Other differences:
-
+** Other differences
 - Whilst superficially similar the approach to type classes in Gofer is
   quite different from that used in Haskell. In particular, the approach
   used in Gofer ensures that all necessary dictionaries are constructed
@@ -5743,7 +5740,7 @@ Other differences:
   (subtraction) operator of the same name.
 - In Haskell, the character ~-~ can only be used as the first character
   of an operator symbol. In Gofer, this character may appear in any
-  position in an operator (except for symbols beginning with "~--~", which
+  position in an operator (except for symbols beginning with ~--~, which
   indicates the start of a comment). The only problems that I am aware
   of with this is that a lambda expression such as ~\-2->2~ will be
   parsed as such by a Haskell system, but cause a syntax error in Gofer.
@@ -5769,51 +5766,45 @@ Other differences:
   avoid unnecessary complexity in the standard prelude. The standard
   prelude can be modified to include the appropriate additional
   definitions if these are required.
-
-Known problems in Gofer:
-
-- The null escape sequence "\&" is not generated in the printable
+** Known problems in Gofer
+- The null escape sequence \&~ is not generated in the printable
   representations of strings produced by both the primitive function
-  primPrint (used to implement the show' function) and the version of
+  primPrint (used to implement the ~show'~ function) and the version of
   show defined in the standard prelude. This means that certain strings
-  values are not printed correctly e.g. show' "\245\&123" produces the
-  string "\245123". This is unlikely to cause too many problems in
+  values are not printed correctly e.g. ~show' "\245\&123"~ produces the
+  string ~"\245123"~. This is unlikely to cause too many problems in
   practice.
-- Unification of a type variable a with a type expression of the form T
-  a where T is a synonym name whose expansion does not involve a will
-  fail. It is not entirely clear whether this behaviour is correct or
-  not.
-- Formfeeds '\f' and vertical tabs '\v' are not treated as valid
+- Unification of a type variable ~a~ with a type expression of the form
+  ~T a~ where ~T~ is a synonym name whose expansion does not involve
+  ~a~ will fail. It is not entirely clear whether this behaviour is correct or not.
+- Formfeeds ~\f~ and vertical tabs ~\v~ are not treated as valid
   whitespace characters in the way suggested by the Haskell report.
 - Inability to recover from program stack overlow errors in some
   situations. This problem only affects the PC implementation of Gofer.
-- Implementation of ReadFile may lose referential transparency; the
-  response to a particular ReadFile request may be affected by a later
-  WriteFile or AppendFile request for the same file. Whilst this problem
+- Implementation of ~ReadFile~ may lose referential transparency; the
+  response to a particular ~ReadFile~ request may be affected by a later
+  WriteFile or ~AppendFile~ request for the same file. Whilst this problem
   can be solved for UNIX based implementations, I have not yet found a
   portable solution suitable for all of the systems on which Gofer can
   be used.
-
-Areas for possible future improvement:
-
+** Areas for possible future improvement
 - Relaxing the restriction on type synonyms in predicates.
 - General purpose automatic default mechanism for eliminating certain
   forms of unresolved overloading.
 - Improved checking and use of superclass and instance constraints
   during static analysis and type checking.
 - Simple facility to force dictionary construction at load-time.
-- Provision for shell escapes :! etc within the Gofer interpreter.
+- Provision for shell escapes ~:!~ etc within the Gofer interpreter.
 - Debugging facilities, including breakpoints and tracing from within
   interpreter.
 - Separate interpreter and compiler programs for creating standalone
   applications using Gofer.
-
 * APPENDIX D: USING GOFER WITH BIRD+WADLER
 :PROPERTIES:
 :UNNUMBERED:
 :END:
 Bird and Wadler's textbook [[[bib-1][1]]] gives an excellent introduction to
-functional programming, providing an insight into both basic techniques
+/Functional Programming/, providing an insight into both basic techniques
 and matters of programming style as well as describing the underlying
 mathematics and its use for program development and derivation. Most of
 the programs in that book can be used with Gofer although there are a
@@ -5821,17 +5812,14 @@ number of differences between the two notations. Fortunately, it is not
 difficult to translate from one notation to the other. The following
 points are particularly useful for this:
 
-- Type constructors in Gofer begin with capital letters (e.g. Bool, Char
-  etc..) where lower case is used in [[[bib-1][1]]] (e.g. bool, char, etc..). Note
-  that Gofer has no general numeric type "num" as used in [[[bib-1][1]]]; Use
+- Type constructors in Gofer begin with capital letters (e.g. ~Bool~, ~Char~
+  etc..) where lower case is used in [[[bib-1][1]]] (e.g. bool, char, etc..).
+  Note: Gofer has no general numeric type "num" as used in [[[bib-1][1]]]; Use
   either ~Int~, ~Float~, or overloading in Gofer as appropriate.
-
 - Datatype definitions in [[[bib-1][1]]] are written in the form lhs ::= constrs. The
   equivalent definition in Gofer is: ~data lhs = constrs~.
-
   Similarly, a type synonym definition in [[[bib-1][1]]] of the form lhs == rhs can
   be written in Gofer as: ~type lhs = rhs~.
-
 - The differences between the syntax used for guarded equations in Gofer
   compared with the notation used in [[[bib-1][1]]] have already been discussed in
   [[*Guarded equations][section 9.2]]. For example:
@@ -5995,10 +5983,11 @@ points are particularly useful for this:
          With many editor programs, it is even possible to start the editor at the line where the error occurred.  As before, it is possible to change the default behaviour of Gofer in this case by setting the environment variable ~EDITLINE~ to a command string which can be used to start the editor program with a given file at a specific line number.  The positions in the string at which the file name and line number values should be inserted should be indicated by the strings ~%s~ and ~%d~ respectively, and may appear in either order.  The default command string, which is used if ~EDITLINE~ is not set is ~vi +%d %s~.
 - ~:edit~, ~:E~   :: Equivalent forms of the :e command.
 
-h* APPENDIX G: BIBLIOGRAPHY
+* APPENDIX G: BIBLIOGRAPHY
 :PROPERTIES:
 :UNNUMBERED:
 :END:
+#+attr_html: :style list-style-type: none;
 - <<bib-1>> [1] Introduction to functional programming, Richard Bird and Philip Wadler, Prentice Hall International, 1989.
 
 - <<bib-2>> [2] The Implementation of functional programming languages, Simon L. Peyton Jones, Prentice Hall International, 1987.
