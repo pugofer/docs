@@ -1,5 +1,4 @@
-# #+SETUPFILE: 
-#+SETUPFILE: ./inl.setup
+#+SETUPFILE: ./readtheorg.setup
 #+EXPORT_FILE_NAME: index.html
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
@@ -2717,8 +2716,8 @@ of two forms:
 [N.B. only the type variables ~a1~, ..., ~an~ may appear in the type
 expressions in each constr in the definition of ~DatatypeName~.]
 
-As a simple example, the following definition introduces a new type Day
-with elements Sun, Mon, Tue, Wed, Thu, Fri and Sat:
+As a simple example, the following definition introduces a new type ~Day~
+with elements ~Sun~, ~Mon~, ~Tue~, ~Wed~, ~Thu~, ~Fri~ and ~Sat~:
 
 #+begin_example
 data Day = Sun | Mon | Tue | Wed | Thu | Fri | Sat
