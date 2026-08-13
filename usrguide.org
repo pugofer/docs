@@ -65,10 +65,90 @@ obligation.
 Gofer is provided "as is" without express or implied warranty.
 --------------------------------------------------------------------
                    T A B L E   O F   C O N T E N T S 
+1. INTRODUCTION
+2. BACKGROUND AND ACKNOWLEDGEMENTS
+3. STARTING GOFER
+4. USING GOFER — A BASIC INTRODUCTION
+5. STANDARD AND USER-DEFINED FUNCTIONS
+6. FUNCTION NAMES — IDENTIFIERS AND OPERATORS
+7. BUILT-IN TYPES
+.. 1. Functions
+.. 2. Booleans
+.. 3. Integers
+.. 4. Floating point numbers
+.. 5. Characters
+.. 6. Lists
+.. 7. Strings
+.. 8. Tuples and the unit type
+8. ERRORS
+.. 1. Errors detected on input
+.. 2. Errors during evaluation
+9. MORE ABOUT VALUE DECLARATIONS
+.. 1. Simple pattern matching
+.. 2. Guarded equations
+.. 3. Local definitions
+.. 4. Recursion with integers
+.. 5. Recursion with lists
+.. 6. Lazy evaluation
+.. 7. Infinite data structures
+.. 8. Polymorphism
+.. 9. Higher-order functions
+.. 10. Variable declarations
+.. 11. Pattern bindings and irrefutable patterns
+.. 12. Type declarations
+10. INCREASING YOUR POWER OF EXPRESSION
+.. 1. Arithmetic sequences
+.. 2. List comprehensions
+.. 3. Lambda expressions
+.. 4. Case expressions
+.. 5. Operator sections
+.. 6. Explicitly typed expressions
+11. USER-DEFINED DATATYPES AND TYPE SYNONYMS
+.. 1. Datatype definitions
+.. 2. Type synonyms
+12. DIALOGUES: INPUT AND OUTPUT
+.. 1. Basic description
+.. 2. Continuation style I/O
+.. 3. Interactive programs
+13. LAYOUT
+.. 1. Comments
+.. 2. The layout rule
+14. OVERLOADING IN GOFER
+.. 1. Type classes and predicates
+.. 2. The type class Eq
+..... 1. Implicit overloading
+..... 2. Instances of class Eq
+..... 3. Testing equality of represented values
+..... 4. Instance declarations without members
+..... 5. Equality on function types
+..... 6. Non-overlapping instances
+.. 3. Dictionaries
+..... 1. Superclasses
+..... 2. Combining classes
+..... 3. Simplified contexts
+.. 4. Other issues
+..... 1. Unresolved overloading
+..... 2. ‘Recursive’ dictionaries
+..... 3. Classes with multiple parameters
+..... 4. Overloading and numeric values
+..... 5. Constants in dictionaries
+..... 6. The monomorphism restriction
+APPENDIX A: SUMMARY OF GRAMMAR
+APPENDIX B: CONTENTS OF STANDARD PRELUDE
+APPENDIX C: RELATIONSHIP WITH HASKELL 1.1
+.. Haskell features not included in Gofer
+.. Gofer features not supported in Haskell
+.. Other differences
+.. Known problems in Gofer
+.. Areas for possible future improvement
+APPENDIX D: USING GOFER WITH BIRD+WADLER
+APPENDIX E: PRIMITIVES
+APPENDIX F: INTERPRETER COMMAND SUMMARY
+APPENDIX G: BIBLIOGRAPHY
 
 #+end_example
 
-* INTRODUCTION
+* Introduction
 Gofer is a functional programming environment (in other words, an
 interpreter) that I have implemented for my own personal use as part of
 my research into /qualified types/. Nevertheless, the system is
@@ -98,7 +178,7 @@ itself). Please let me know if you discover any errors, or if you find
 particular sections of these notes rather hard to follow. Suggestions
 for improvements or extensions are more than welcome.
 
-* BACKGROUND AND ACKNOWLEDGEMENTS
+* Background And Acknowledgements
 The language supported by Gofer is both syntactically and semantically
 similar to that of the functional programming language Haskell [[[bib-5][5]]]. My
 principal task in the implementation of Gofer has therefore been to
@@ -172,7 +252,7 @@ encouragement that he has given me with my work on qualified types. Many
 of the basic ideas that I have used were inspired by his original paper
 motivating the use of type classes [[[bib-4][4]]].
 
-* STARTING GOFER
+* Starting Gofer
 The Gofer interpreter is usually entered by giving the command ‘gofer’,
 after which a display something like the following will normally be
 produced:
@@ -219,7 +299,7 @@ function definitions or the evaluation of an expression. When the
 interrupt key is detected, Gofer prints the string ~{Interrupted!}~ and
 prints the ~?~ prompt so that further commands can be entered.
 
-* USING GOFER — A BASIC INTRODUCTION
+* Using Gofer — A Basic Introduction
 Using Gofer is rather like using a high-level programmable calculator;
 Once the interpreter is loaded, the system prints a prompt ~?~ and waits
 for you to enter an expression, and then press the enter (return) key.
@@ -274,7 +354,7 @@ sum of the integers from 1 to 200 directly.
 You will learn more about the kind of expressions that can be entered
 into Gofer in the rest of this document.
 
-* STANDARD AND USER-DEFINED FUNCTIONS
+* Standard And User-Defined Functions
 The function ~sum~ used in the examples above, and indeed the addition
 and multiplication functions ~(+)~ and ~(*)~, are all standard functions
 which are included as part of a large collection of functions called the
@@ -365,7 +445,7 @@ repeat the definition each time it is used.
 You will learn more about the functions defined in the standard prelude
 and find out how to define your own functions in the following sections.
 
-* FUNCTION NAMES — IDENTIFIERS AND OPERATORS
+* Function Names — Identifiers And Operators
 As the examples of the previous section show, there are two kinds of
 name that can be used for a function; identifiers such as ~sum~ and
 operator symbols such as ~+~ and ~*~. Choosing the appropriate kind of
@@ -478,8 +558,9 @@ identifier:
 There are two more technical problems which have to be dealt with when
 working with operator symbols:
 
-- Precedence: Given operator symbols (+) and (*), should ~2 * 3 + 4~ be
-  treated as either ~(2 * 3) + 4~ or ~2 * (3 + 4)~?
+- Precedence: Given operator symbols ~(+)~ and ~(*)~, should ~2 * 3 + 4~ be
+  treated as either\\
+  ~(2 * 3) + 4~ or ~2 * (3 + 4)~?
 
   This problem is solved by assigning each operator a precedence value
   (an integer in the range 0 to 9). In a situation such as the above, we
@@ -495,7 +576,7 @@ working with operator symbols:
   or as ~1 - (2 - 3)~ giving a result of ~2~?
 
   This problem is solved by giving each operator a /grouping/ (sometimes
-  called its /associativity/). An operator symbol (-) is said to:
+  called its /associativity/). An operator symbol ~(-)~ is said to:
 
   - group to the left if ~x - y - z~ is treated as ~(x - y) - z~
   - group to the right if ~x - y - z~ is treated as ~x - (y - z)~
@@ -584,7 +665,7 @@ to ~(f x) + (g y)~. Another example which often causes problems is the
 expression ~f x + 1~, which is treated as ~(f x) + 1~ and not as
 ~f (x+1)~ as is sometimes expected.
 
-* BUILT-IN TYPES
+* Built-In Types
 An important part of Gofer is the type system which is used to detect
 errors in expressions and function definitions. Starting with primitive
 expressions such as numeric constants, Gofer assigns a type to each
@@ -644,10 +725,10 @@ These two conventions allow us to deal with functions taking more than
 one argument rather elegantly. For example, the type of the addition
 function ~(+)~ is ~Int -> Int -> Int~.
 
-
+@@@ eg 2 Seems like typo
 In other words, ~(+​)~ is a function which takes an integer argument and
-returns a value of type (Int -> Int). For example, ~(+) 5~ is the
-function which takes an integer value n and returns the value of the
+returns a value of type ~(Int -> Int)~. For example, ~(+) 5~ is the
+function which takes an integer value ~n~ and returns the value of the
 integer n plus 5. Hence ~(+) 5 4~, which is equivalent to ~5 + 4~,
 evaluates to the integer 9 as expected.
 
@@ -661,14 +742,15 @@ functions for manipulating boolean values:
 not  :: Bool -> Bool
 #+End_example
 
-The value of the expression ~b && d~ is ~True~ if and only if  both
-~b~ and ~d~ are ~True~.  If ~b~ is ~False~ then ~d~ is not evaluated.
-
-The value of the expression ~b || d~ is ~True~ if either of ~b~ or ~d~
-is ~True~.  If ~b~ is ~True~ then ~d~ is not evaluated.
-
-The value of the expression ~not b~ is the opposite boolean value
-to that of ~b~; ~not True = False~, ~not False = True~.
+- The value of the expression ~b && d~ is ~True~ if and only if  both
+  ~b~ and ~d~ are ~True~.\\
+  If ~b~ is ~False~ then ~d~ is not evaluated.
+- The value of the expression ~b || d~ is ~True~ if either of ~b~ or ~d~
+  is ~True~.\\
+  If ~b~ is ~True~ then ~d~ is not evaluated.
+- The value of the expression ~not b~ is the opposite boolean value
+  to that of ~b~;\\
+  ~not True = False~, ~not False = True~.
 
 Gofer includes a special form of /conditional expression/ which enables
 an expression to select between two alternatives according to the value
@@ -693,27 +775,37 @@ calculations using large positive or negative numbers may lead to
 A wide range of operators and functions are defined in the standard
 prelude for use with integers:
 
-#+begin_example
-(+)     addition.
-(*)     multiplication.
-(-)     subtraction.
-(^)     raise to power.
-negate  unary negation.  An expression of the form "-x" is treated
-        as the expression "negate x".
-(/)     integer division.
-div        "        "
-rem     remainder, related to integer division by the law:
-                 (x `div` y)*y + (x `rem` y) == x
-mod     modulo, like remainder except that the modulo has the same
-        sign as the divisor.
-odd     returns True if argument is odd, False otherwise.
-even    returns True if argument is even, False otherwise.
-gcd     returns the greatest common divisor of its two arguments.
-lcm     returns the least common multiple of its two arguments.
-abs     returns the absolute value of its argument.
-signum  returns -1, 0 or 1 indicating that its argument is negative,
+#+begin_export html
+<style>
+  #int-op-list { display: grid;
+                 grid-template-columns: max-content auto;
+                 gap: 7px 5px;
+                 margin-bottom: 1em; }
+  #int-op-list dt { margin: 0; }
+  #int-op-list dd { margin: 0; }
+</style>
+#+end_export
+
+#+attr_html: :id int-op-list
+- ~(+)~ ::    addition.
+- ~(*)~ ::    multiplication.
+- ~(-)~ ::    subtraction.
+- ~(^)~ ::    raise to power.
+- ~negate~ :: unary negation.  An expression of the form ~-x~ is treated as the expression ~negate x~.
+- ~(/)~ ::    integer division.
+- ~div~ ::    ditto integer division
+- ~rem~ ::  remainder, related to integer division by the law:
+             ~(x `div` y)*y + (x `rem` y)~ = ~x~
+- ~mod~ ::    modulo, like remainder except that the modulo has the same
+           sign as the divisor.
+- ~odd~ ::    returns ~True~ if argument is odd, ~False~ otherwise.
+- ~even~ ::    returns ~True~ if argument is even, ~False~ otherwise.
+- ~gcd~ ::    returns the greatest common divisor of its two arguments.
+- ~lcm~ ::    returns the least common multiple of its two arguments.
+- ~abs~ ::    returns the absolute value of its argument.
+- ~signum~ :: returns ~-1~, ~0~ or ~1~ indicating that its argument is negative, a
         zero or positive respectively.
-#+end_example
+
 
 The less familiar operators are illustrated by the following identities:
 
@@ -984,7 +1076,7 @@ written as ~()~. The unit type is of particular interest in theoretical
 treatments of the type system of Gofer, although you may occasionally
 find a use for it in practical programs.
 
-* ERRORS
+* Errors
 ** Errors detected on input
 After an expression has been entered, but before any attempt is made to
 evaluate it, Gofer carries out a number of checks to make sure that the
@@ -1072,7 +1164,7 @@ produced when an error occurs:
 ? 
 #+end_example
 
-* MORE ABOUT VALUE DECLARATIONS
+* More About Value Declarations
 ** Simple pattern matching
 Although the Gofer standard prelude includes many useful functions, you
 will usually need to define a collection of new functions for specific
@@ -2072,7 +2164,7 @@ of this kind in a program:
   of problems associated with overloaded functions and values. See
   [[*OVERLOADING IN GOFER][section 14]] for further details.
 
-* INCREASING YOUR POWER OF EXPRESSION
+* Increasing Your Power Of Expression
 This section describes a number of useful extensions to the basic range
 of expressions used in the previous sections. None of these add any
 extra computational power to Gofer -- anything that can be done with
@@ -2596,7 +2688,7 @@ expression is not compatible with the type inferred by Gofer:
 Explicitly typed expressions are most commonly used together with
 overloaded functions and values as described in [[*OVERLOADING IN GOFER][section 14]].
 
-* USER-DEFINED DATATYPES AND TYPE SYNONYMS
+* User-Defined Datatypes And Type Synonyms
 ** Datatype definitions
 In addition to the wide range of built-in datatypes described in section
 7, Gofer also allows the definition of new datatypes using declarations
@@ -2785,7 +2877,7 @@ sequence:
 #+begin_example
 BadSynonym ==> [BadSynonym] ==> [[BadSynonym]] ==> ....
 #+end_example
-* DIALOGUES: INPUT AND OUTPUT
+* Dialogues: Input And Output
 The Gofer system implements a subset of the facilities for programs
 involving I/O described in the Haskell report [[[bib-5][5]]]. In particular, this
 makes it possible for Gofer programs to be run interactively, and to
@@ -3220,7 +3312,7 @@ run f       = echo False abort (interact f)
 [EXERCISE for the interested reader: construct alternative definitions
 for these functions using the stream based approach from section [[*Basic description][12.1.]]]
 
-* LAYOUT
+* Layout
 ** Comments
 Comments provide an informal but useful way of annotating a program with
 a description of its purpose, structure and development. Following the
@@ -3456,7 +3548,7 @@ in a file start in the same column (the first column is usually the most
 convenient). COBOL and Fortran programmers are not likely to find this
 problem too distressing :-)
 
-* OVERLOADING IN GOFER
+* Overloading In Gofer
 One of the biggest differences between Gofer and most other programming
 languages (with the exception of Haskell) is the approach to
 overloading; enabling the definition and use of functions in which the
@@ -5454,7 +5546,7 @@ either:  G includes a pattern binding
 If neither of these conditions hold, then equivalent sets of dictionary
 parameters will be added to each declaration in the group.
 
-* APPENDIX A: SUMMARY OF GRAMMAR
+* Appendix A: Summary Of Grammar
 :PROPERTIES:
 :UNNUMBERED:
 :END:
@@ -5659,12 +5751,12 @@ Variables and operators
 <conop>  ::= CONOP    |  ` CONID `            constructor operator
 #+end_example
 
-* APPENDIX B: CONTENTS OF STANDARD PRELUDE
+* Appendix B: Contents Of Standard Prelude
 :PROPERTIES:
 :UNNUMBERED:
 :END:
-#+INCLUDE: "./standard.prelude" src haskell
-* APPENDIX C: RELATIONSHIP WITH HASKELL 1.1
+#+INCLUDE: "./standard.prelude" example
+* Appendix C: Relationship With Haskell 1.1
 :PROPERTIES:
 :UNNUMBERED:
 :END:
@@ -5799,7 +5891,7 @@ the differences between the two languages, outlined briefly in
   interpreter.
 - Separate interpreter and compiler programs for creating standalone
   applications using Gofer.
-* APPENDIX D: USING GOFER WITH BIRD+WADLER
+* Appendix D: Using Gofer With Bird+Wadler
 :PROPERTIES:
 :UNNUMBERED:
 :END:
@@ -5876,7 +5968,7 @@ points are particularly useful for this:
   Examples that are particularly likely to occur include "in" and
   "then".
 
-* APPENDIX E: PRIMITIVES
+* Appendix E: Primitives
 :PROPERTIES:
 :UNNUMBERED:
 :END:
@@ -5947,7 +6039,7 @@ points are particularly useful for this:
      argument is  applied  to  it.   See [[*Recursion with integers][section 9.4]]  for  an
      illustration.
 
-* APPENDIX F: INTERPRETER COMMAND SUMMARY
+* Appendix F: Interpreter Command Summary
 :PROPERTIES:
 :UNNUMBERED:
 :END:
@@ -5983,7 +6075,7 @@ points are particularly useful for this:
          With many editor programs, it is even possible to start the editor at the line where the error occurred.  As before, it is possible to change the default behaviour of Gofer in this case by setting the environment variable ~EDITLINE~ to a command string which can be used to start the editor program with a given file at a specific line number.  The positions in the string at which the file name and line number values should be inserted should be indicated by the strings ~%s~ and ~%d~ respectively, and may appear in either order.  The default command string, which is used if ~EDITLINE~ is not set is ~vi +%d %s~.
 - ~:edit~, ~:E~   :: Equivalent forms of the :e command.
 
-* APPENDIX G: BIBLIOGRAPHY
+* Appendix G: Bibliography
 :PROPERTIES:
 :UNNUMBERED:
 :END:
