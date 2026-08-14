@@ -3602,7 +3602,7 @@ example we have:
   represented by the type variable ~a~.
 
 - The second line of the declaration (the ‘signature part’) indicates
-  that there are functions denoted by the operator symbols (==) and (/=)
+  that there are functions denoted by the operator symbols ~(=​=​)~ and ~(/=)~
   of type ~a -> a -> Bool~ for each instance ~a~ of class ~Eq~. Using the
   notation introduced in the previous section, both of these operators
   have type:
