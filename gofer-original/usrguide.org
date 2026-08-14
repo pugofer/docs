@@ -2381,8 +2381,8 @@ There are three kinds of qualifier that can be used in Gofer:
 
   The full definition is needed for those cases where the pattern pat
   may not match all of the elements in the list exp. This is the case in
-  expressions such as [ y | (3,y)<-[(1,2),(3,4),(5,6)] ] which evaluates
-  to the singleton list [4].
+  expressions such as ~[y | (3,y)<-[(1,2),(3,4),(5,6)]]~ which evaluates
+  to the singleton list ~[4]~.
 
 - Filters :: A boolean valued expression may also be used as a qualifier
   in which case it is often called a filter. We can define the meaning
