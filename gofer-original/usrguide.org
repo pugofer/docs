@@ -1277,23 +1277,23 @@ illustrated by the following examples:
   way of referring to the matched value.
 - Tuples :: ~(x,y)~ matches a pair whose first and second
   elements are called ~x~ and ~y~ respectively.
-- Lists :: ~[x]~ matches a list with precisely one element
-  called x.
+- Lists ::
+        | Pattern   | Semantics                                            |
+        |-----------+------------------------------------------------------|
+        | ~[x]~     | matches a list with precisely one element called x.  |
+        | ~[_,2,_]~ | matches a list with precisely three elements,        |
+        |           | the second of which is the integer ~2~.              |
+        | ~[]~      | matches the empty list                               |
+        | ~(x:xs)~  | matches a non-empty list with head ~x~ and tail ~xs~ |
 
-   | ~[_,2,_]~ | matches a list with precisely three elements,        |
-   |           | the second of which is the integer ~2~.              |
-   | ~[]~      | matches the empty list                               |
-   | ~(x:xs)~  | matches a non-empty list with head ~x~ and tail ~xs~ |
 
-
-- As patterns :: ~p@(x,y)~ matches a pair whose first and second
-  components  are  called  ~x~  and  ~y~.   The
-  complete pair can  also  be  referred  to
-  directly as p.
+- ‘As’ patterns :: ~p@(x,y)~ matches a pair whose first and second
+  components are called ~x~ and ~y~.  The
+  complete pair can also be referred to directly *AS* p.
 - ~(n+k)~ patterns :: ~(m+1)~ matches an integer value greater than or
   equal to 1.  The value referred to by the
   variable m is one less than  the  value matched.
-- irrefutable patterns :: A further kind of pattern (called an irrefutable pattern)
+- Irrefutable patterns :: A further kind of pattern (called an irrefutable pattern)
   is introduced in [[*Pattern bindings and irrefutable patterns][section 9.11]].
 
 Note that no variable name can be used more than once on the left hand
@@ -2045,6 +2045,7 @@ produced by the example above was caused by the fact that the argument
 [1] does not match the pattern used in the equation defining ~example~
 (represented by an internal Gofer function called ~v126~).
 
+@@How to escape ~ in ~~?\\
 A different kind of behaviour can be obtained using a pattern of the
 form ~pat, known as an irrefutable (or lazy) pattern. This pattern can
 initially be matched against any value, delaying the check that this
@@ -2064,6 +2065,7 @@ and causes a run-time error each time it is evaluated (technically
 speaking, it represents the bottom element of the relevant semantic
 domain, and is the only value having all possible types):
 
+@@'=' should be ->; also the examples dont quite work
 #+begin_example
 (\ (x,y) -> 0) undefined = {undefined}
 (\~(x,y) -> 0) undefined = 0
@@ -2116,52 +2118,55 @@ var1, ..., varn :: type
 #+end_example
 
 which enable the programmer to declare the intended types of the
-variables var1, ..., varn defined in either function or pattern
+variables ~var1~, ..., ~varn~ defined in either function or pattern
 bindings. There are a number of benefits of including type declarations
 of this kind in a program:
 
-- Documentation: The type of a function often provides useful
-  information about the way in which a function is to be used --
-  including the number and order of its arguments.
+- Documentation ::
+     The type of a function often provides useful
+     information about the way in which a function is to be used --
+     including the number and order of its arguments.
 
-- Restriction: In some situations, the type of a function inferred by
-  Gofer is more general than is required. As an example, consider the
-  following function, intended to act as the identity on integer values:
+- Restriction ::
+     In some situations, the type of a function inferred by
+     Gofer is more general than is required. As an example, consider the
+     following function, intended to act as the identity on integer values:
 
-  #+begin_example
-  idInt x  =  x
-  #+end_example
+     #+begin_example
+     idInt x  =  x
+     #+end_example
 
-  Without an explicit type declaration, Gofer treats ~idInt~ as a
-  polymorphic function of type a -> a and the expression ~idInt 'A'~
-  does not cause a type error. This problem can be solved by using an
-  explicit type declaration to restrict the type of ~idInt~ to a
-  particular instance of the polymorphic type a -> a:
+     Without an explicit type declaration, Gofer treats ~idInt~ as a
+     polymorphic function of type a -> a and the expression ~idInt 'A'~
+     does not cause a type error. This problem can be solved by using an
+     explicit type declaration to restrict the type of ~idInt~ to a
+     particular instance of the polymorphic type a -> a:
+    
+     #+begin_example
+     idInt :: Int -> Int
+     #+end_example
+    
+     Note that a declaration such as:
+    
+     #+begin_example
+     idInt :: Int -> a
+     #+end_example
+     is not a valid type for the function ~idInt~ (the value of the
+     expression ~idInt 42~ is an integer and cannot be treated as having an
+     arbitrary type, depending on the value of the type variable ~a~), and
+     hence will not be accepted by Gofer.
 
-  #+begin_example
-  idInt :: Int -> Int
-  #+end_example
+- Consistency check ::
+      As illustrated above, declared types are always
+      checked against the definition of a value to make sure that they are
+      compatible. Thus Gofer can be used to check that the programmer's
+      intentions (as described by the types assigned to variables in type
+      declarations) are consistent with the definitions of those values.
 
-  Note that a declaration such as:
-
-  #+begin_example
-  idInt :: Int -> a
-  #+end_example
-
-  is not a valid type for the function ~idInt~ (the value of the
-  expression ~idInt 42~ is an integer and cannot be treated as having an
-  arbitrary type, depending on the value of the type variable ~a~), and
-  hence will not be accepted by Gofer.
-
-- Consistency check: As illustrated above, declared types are always
-  checked against the definition of a value to make sure that they are
-  compatible. Thus Gofer can be used to check that the programmer's
-  intentions (as described by the types assigned to variables in type
-  declarations) are consistent with the definitions of those values.
-
-- Overloading: Explicit type declarations can be used to solve a number
-  of problems associated with overloaded functions and values. See
-  [[*OVERLOADING IN GOFER][section 14]] for further details.
+- Overloading ::
+     Explicit type declarations can be used to solve a number
+     of problems associated with overloaded functions and values. See
+     [[*OVERLOADING IN GOFER][section 14]] for further details.
 
 * Increasing Your Power Of Expression
 This section describes a number of useful extensions to the basic range
@@ -2177,59 +2182,38 @@ A number of useful lists can be generated using the notation of
 arithmetic sequences (so named because of their similarity to arithmetic
 progressions in mathematics). The following list summarises the four
 forms of sequence expression that can be used in Gofer, together with
-their translation using the standard functions enumFrom, enumFromTo,
-enumFromThen and enumFromThenTo:
+their translation using the standard functions ~enumFrom~, ~enumFromTo~,
+~enumFromThen~ and ~enumFromThenTo~:
 
-#+begin_example
-[ n .. ]         enumFrom n
+| Expression  | Function                | Explanation and egs                                                              |
+|-------------+-------------------------+----------------------------------------------------------------------------------|
+| ~[n..]~     | ~enumFrom n~            | Produces the (potentially infinite) list of values                               |
+|             |                         | starting with the value of n and increasing in single steps.                     |
+|             |                         | e.g. ~[1..]~ = ~[1, 2, 3, 4, 5, 6, 7, 8, 9, etc...~                              |
+| ~[n..m]~    | ~enumFromTo n m~        | Produces the list of elements from ~n~ upto and including ~m~ in single steps.   |
+|             |                         | If ~m~ is less than ~n~ then the list is empty.                                  |
+|             |                         | e.g. ~[-3..3]~ = ~[-3, -2, -1, 0, 1, 2, 3]~                                      |
+|             |                         | ~[1..1]~  = ~[1]~                                                                |
+|             |                         | ~[9..0]~  = ~[]~                                                                 |
+| ~[n,m..]~   | ~enumFromThen n m~      | Produces the (potentially infinite) list of values whose first two               |
+|             |                         | elements are given by the values ~n~ and ~m~.  If m is greater than n then       |
+|             |                         | the following elements of the list are increasing in steps of the same           |
+|             |                         | size.  A similar result is obtained if ~m~ is less than ~n~ in which case        |
+|             |                         | the elements of ~[n,m..]~ will be decreasing.  If ~n~ and ~m~ are equal then     |
+|             |                         | ~[n,m..]~ is an infinite list in which each element is equal to ~n~.             |
+|             |                         | e.g. ~[1,3..]~ = ~[1, 3, 5, 7, 9, 11, 13, etc...~                                |
+|             |                         | ~[0,0..]~ = ~[0, 0, 0, 0, 0, 0, 0, etc...~                                       |
+|             |                         | ~[5,4..]~ = ~[5, 4, 3, 2, 1, 0, -1, etc...~                                      |
+| ~[n,n'..m]~ | ~enumFromThenTo n n' m~ | Produces the list of elements from ~[n,n'..]~  upto the limit value ~m~.         |
+|             |                         | If ~m~ is less than ~n~ and ~[n,n'..]~ is increasing, or ~m~ is greater than ~n~ |
+|             |                         | and ~[n,n'..]~ is decreasing the resulting list will be empty.                   |
+|             |                         | e.g. ~[1,3..12]~ = ~[1, 3, 5, 7, 9, 11]~                                         |
+|             |                         | ~[0,0..10]~ = ~[0, 0, 0, 0, 0, 0, 0, etc...~                                     |
+|             |                         | ~[5,4..1]~  = ~[5, 4, 3, 2, 1]~                                                  |
 
-                 Produces the (potentially infinite) list of values
-                 starting with the value of  n  and  increasing  in
-                 single steps.
 
-                 e.g. [1..] = [1, 2, 3, 4, 5, 6, 7, 8, 9, etc...
-
-[ n .. m ]       enumFromTo n m
-
-                 Produces the list of  elements  from  n  upto  and
-                 including m in single steps.  If m is less than  n
-                 then the list is empty.
-
-                 e.g. [-3..3] = [-3, -2, -1, 0, 1, 2, 3]
-                      [1..1]  = [1]
-                      [9..0]  = []
-
-[ n, m .. ]      enumFromThen n m
-
-                 Produces the (potentially infinite) list of values
-                 whose first two elements are given by the values n
-                 and m.  If m is greater than n then the  following
-                 elements of the list are increasing  in  steps  of
-                 the same size.  A similar result is obtained if  m
-                 is less than n  in  which  case  the  elements  of
-                 [n,m..] will be decreasing.  If n and m are  equal
-                 then [n,m..] is an infinite  list  in  which  each
-                 element is equal to n.
-
-                 e.g. [1,3..] = [1, 3, 5, 7, 9, 11, 13, etc...
-                      [0,0..] = [0, 0, 0, 0, 0, 0, 0, etc...
-                      [5,4..] = [5, 4, 3, 2, 1, 0, -1, etc...
-
-[ n, n' .. m ]   enumFromThenTo n n' m
-
-                 Produces the list of elements from  [n,n'..]  upto
-                 the limit value m.   If  m  is  less  than  n  and
-                 [n,n'..] is increasing, or m is greater than n and
-                 [n,n'..] is decreasing the  resulting list will be
-                 empty.
-
-                 e.g. [1,3..12] = [1, 3, 5, 7, 9, 11]
-                      [0,0..10] = [0, 0, 0, 0, 0, 0, 0, etc...
-                      [5,4..1]  = [5, 4, 3, 2, 1]
-#+end_example
-
-In the standard prelude, the functions enumFrom, enumFromTo,
-enumFromThen and enumFromThenTo are overloaded and may also be used to
+In the standard prelude, the functions ~enumFrom~, ~enumFromTo~,
+~enumFromThen~ and ~enumFromThenTo~ are overloaded and may also be used to
 enumerate lists of characters or floating point values:
 
 #+begin_example
@@ -2261,16 +2245,9 @@ return total;
 
 The advantages of the functional notation in this case are clear:
 
-#+begin_example
-o  It is more compact.
-
-o  It separates the task of  generating  the  sequence  of  integers
-   [1..10] from the task of finding their sum.
-
-o  It does not require the declaration or use of auxiliary variables
-   such as "i" and "total" in the above.
-
-#+end_example
+- It is more compact.
+- It separates the task of generating the sequence of integers ~[1..10]~ from the task of finding their sum.
+- It does not require the declaration or use of auxiliary variables such as ~i~ and ~total~ in the above.
 
 ** List comprehensions
 List comprehensions provide another very powerful and compact notation
@@ -2283,7 +2260,7 @@ list comprehension is:
 
 There are three kinds of qualifier that can be used in Gofer:
 
-- Generators: A qualifier of the form ~pat<-exp~ is used to extract each
+- Generators :: A qualifier of the form ~pat<-exp~ is used to extract each
   element that matches the pattern pat from the list exp in the order
   that they elements appear in that list. A simple example of this is
   the expression ~[x*x | x<-[1..10]]~ which denotes the list of the
@@ -2313,7 +2290,7 @@ There are three kinds of qualifier that can be used in Gofer:
   expressions such as [ y | (3,y)<-[(1,2),(3,4),(5,6)] ] which evaluates
   to the singleton list [4].
 
-- Filters: A boolean valued expression may also be used as a qualifier
+- Filters :: A boolean valued expression may also be used as a qualifier
   in which case it is often called a filter. We can define the meaning
   of a list comprehension with a single filter by the equation:
 
@@ -2325,7 +2302,7 @@ There are three kinds of qualifier that can be used in Gofer:
   stands, it is more common to use filters in conjunction with
   generators as described below.
 
-- Local definitions: A qualifier of the form pat=expr can be used to
+- Local definitions :: A qualifier of the form pat=expr can be used to
   introduce a local definition within a list comprehension. Its meaning
   can be defined formally using the equation:
 
@@ -2452,7 +2429,7 @@ used if the standard character set were a little larger.]
 
 This expression denotes a function taking a number of parameters (one
 for each pattern) and producing the result specified by the expression
-to the right of the -> symbol. For example, ~(\x->x*x)~ represents the
+to the right of the ~->~ symbol. For example, ~(\x->x*x)~ represents the
 function which takes a single integer argument ~x~ and produces the
 square of that number as its result. Another example is the lambda
 expression ~(\x y->x+y)~ which takes two integer arguments and outputs
@@ -5359,9 +5336,9 @@ As the example above shows, if one (or more) of the bindings in a given
 declaration group is affected by the monomorphism restriction so that
 the appropriate dictionary parameters cannot be added as parameters for
 that definition, then the same condition must also be imposed on all of
-the other bindings in the group. [Adding the extra parameter to f in the
-example forces us to add an extra parameter for g; if extra parameters
-were not permitted for g then they could not be added to f.]
+the other bindings in the group. [Adding the extra parameter to ~f~ in the
+example forces us to add an extra parameter for ~g~; if extra parameters
+were not permitted for ~g~ then they could not be added to ~f~.]
 
 **** Restricted bindings
 
@@ -5383,8 +5360,8 @@ to a particular value binding:
    f x  =   (==) {dict} x 0  ||  (==) {dict} x 2
    #+end_example
     
-   where, in both cases, the symbol {dict} denotes the dictionary for Eq
-   Int. As a further optimisation, once the dictionary is fully
+   where, in both cases, the symbol {dict} denotes the dictionary for
+   ~Eq Int~. As a further optimisation, once the dictionary is fully
    determined, this can be simplified to:
     
    #+begin_example
@@ -5409,7 +5386,7 @@ to a particular value binding:
    times        = snd newVariable     -- snd (_,y) = y
    #+end_example
     
-   The type of newVariable is (Num a, Num b) => (a->a->a, b->b->b) so
+   The type of newVariable is ~(Num a, Num b) => (a->a->a, b->b->b)~ so
    that the correct translation of these bindings using two dictionary
    variables gives:
     
@@ -5431,13 +5408,13 @@ to a particular value binding:
 3. Adding dictionary parameters may translate a variable definition into
    a function definition, loosing the benefits of shared evaluation. As
    an example, consider the following definition using the function
-   "size" and the class Finite described in the previous section:
+   ~size~ and the class ~Finite~ described in the previous section:
     
    #+begin_example
    twiceSize x = n + n  where n = size x
    #+end_example
     
-   Since the variable n is defined using a local definition, we would not
+   Since the variable ~n~ is defined using a local definition, we would not
    expect to have to evaluate size x more than once to determine the
    value of twiceSize. However, adding extra dictionary parameters
    without restriction gives:
@@ -5446,8 +5423,8 @@ to a particular value binding:
    twiceSize d x  = n d + n d  where  n d = size d x
    #+end_example
     
-   Now that n has been replaced by a function, the evaluation will be
-   repeated, once for each occurrence of the expression "n d". In order
+   Now that ~n~ has been replaced by a function, the evaluation will be
+   repeated, once for each occurrence of the expression ~n d~. In order
    to avoid this kind of problem, the monomorphism restriction does not
    usually allow extra parameters to be added to a variable definition.
    Thus the original definition above will be translated to give:
@@ -5475,7 +5452,7 @@ to a particular value binding:
    ?
    #+end_example
     
-   [COMMENT: A type expression of the form _n (such as _7 in this
+   [COMMENT: A type expression of the form ~_n~ (such as ~_7~ in this
    particular example) represents a fixed (i.e. monomorphic) type
    variable.]
     
@@ -5489,7 +5466,7 @@ to a particular value binding:
    twiceMembers :: Finite a => [a]
    #+end_example
     
-   in the file containing the definition for twiceMembers to suppress the
+   in the file containing the definition for ~twiceMembers~ to suppress the
    previous error message and allow the function to be used as a fully
    overloaded variable.
     
@@ -5503,7 +5480,7 @@ to a particular value binding:
    #+end_example
     
    will not be accepted because the monomorphism restriction forces the
-   local definition of "twiceMembers" to be restricted to a single
+   local definition of ~twiceMembers~ to be restricted to a single
    overloading (the dictionary parameter supplied to each use of members
    must be constant throughout the local definition):
     
@@ -5534,13 +5511,10 @@ restriction, captured by the following definition:
 Dictionary variables will not be used as extra parameters in the
 definition of a value in a given declaration group G if:
 
-#+begin_example
-either:  G includes a pattern binding
-
-    or:  G includes a variable declaration, but does not include  an
+- either ::  G includes a pattern binding
+- or ::  G includes a variable declaration, but does not include  an
          explicit type signature for any of  the  variables  in  the
          group.
-#+end_example
 
 If neither of these conditions hold, then equivalent sets of dictionary
 parameters will be added to each declaration in the group.
@@ -5557,29 +5531,26 @@ files of definitions that can be loaded into Gofer respectively.
 The following notational conventions are used in the Grammar which is
 specified using a variant of BNF:
 
-#+begin_example
-o <angle brackets> are used to distinguish names of nonterminals from
-  keywords.
-o vertical | bars  are used to separate alternatives.
-o {braces} enclose items which may be repeated zero or more times.
-o [brackets] are used for optional items.
-o (parentheses) are used for grouping.
-o "quotes" surround characters which might otherwise be confused with
+- ~<angle brackets>~ are used to distinguish names of nonterminals from keywords.
+- ~vertical | bars~  are used to separate alternatives.
+- ~{braces}~ enclose items which may be repeated zero or more times.
+- ~[brackets]~ are used for optional items.
+- ~(parentheses)~ are used for grouping.
+- ~"quotes"~ surround characters which might otherwise be confused with
   the notations introduced above.
-#+end_example
 
 The following terminal symbols are used but not defined by the grammar:
 
-| Terminal | Description                                                                 |
-|----------+-----------------------------------------------------------------------------|
-| VARID    | identifier beginning with lower case letter as described in [[*FUNCTION NAMES — IDENTIFIERS AND OPERATORS][section 6]].      |
-| CONID    | like VARID, but beginning with upper case letter.                           |
-| VAROP    | operator symbol not beginning with a colon, as described in [[FUNCTION NAMES — IDENTIFIERS AND OPERATORS][section 6]].      |
-| CONOP    | constructor function operator, like VAROP, but beginning with a colon (~:~) |
-| INTEGER  | integer constant, as described in [[*Integers][section 7.3]].                              |
-| FLOAT    | floating point constant, as described in [[*Floating point numbers][section 7.4]].                       |
-| CHAR     | string constant, as described in [[*Strings][section 7.7]].                               |
-| STRING   | character constant, as described in [[*Characters][section 7.5]].                            |
+| Terminal  | Description                                                                |
+|-----------+----------------------------------------------------------------------------|
+| ~VARID~   | identifier beginning with lower case letter as described in [[*FUNCTION NAMES — IDENTIFIERS AND OPERATORS][section 6]].     |
+| ~CONID~   | like ~VARID~, but beginning with upper case letter.                        |
+| ~VAROP~   | operator symbol not beginning with a colon ~:~, as described in [[FUNCTION NAMES — IDENTIFIERS AND OPERATORS][section 6]]. |
+| ~CONOP~   | constructor function operator, like VAROP, but beginning with a colon ~:~  |
+| ~INTEGER~ | integer constant, as described in [[*Integers][section 7.3]].                             |
+| ~FLOAT~   | floating point constant, as described in [[*Floating point numbers][section 7.4]].                      |
+| ~CHAR~    | string constant, as described in [[*Strings][section 7.7]].                              |
+| ~STRING~  | character constant, as described in [[*Characters][section 7.5]].                           |
 
 
 Top-level grammar
