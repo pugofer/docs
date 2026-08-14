@@ -11,14 +11,14 @@
 #+AUTHOR: Rustom P. Mody
 ** Front matter
 :PROPERTIES:
-:UNNUMBERED:
+:UNNUMBERED: Front matter
 :END:
 #+begin_example
      __________   __________   __________   __________   ________
     /  _______/  /  ____   /  /  _______/  /  _______/  /  ____  \
    /  / _____   /  /   /  /  /  /______   /  /______   /  /___/  /
   /  / /_   /  /  /   /  /  /  _______/  /  _______/  /  __   __/
- /  /___/  /  /  /___/  /  /  /         /  /______   /  /  \  \ 
+ /  /___/  /  /  /___/  /  /  /         /  /______   /  /  \  \
 /_________/  /_________/  /__/         /_________/  /__/    \__\
 
 Functional programming environment, Version 2.20
@@ -63,7 +63,7 @@ obligation.
 
 Gofer is provided "as is" without express or implied warranty.
 --------------------------------------------------------------------
-                   T A B L E   O F   C O N T E N T S 
+                   T A B L E   O F   C O N T E N T S
 1. INTRODUCTION
 2. BACKGROUND AND ACKNOWLEDGEMENTS
 3. STARTING GOFER
@@ -148,6 +148,9 @@ APPENDIX G: BIBLIOGRAPHY
 #+end_example
 
 * Introduction
+:PROPERTIES:
+:CUSTOM_ID: introduction
+:END:
 Gofer is a functional programming environment (in other words, an
 interpreter) that I have implemented for my own personal use as part of
 my research into /qualified types/. Nevertheless, the system is
@@ -165,7 +168,7 @@ general introduction to the use, techniques and theory of functional
 programming. Although their notation is a little different from the
 language used by Gofer, it is a relatively straightforward task to
 translate between the two, and some suggestions for this are given in a
-[[*Appendix D: USING GOFER WITH BIRD+WADLER][Appendix D]]. More importantly, the underlying semantics of Gofer do
+[[#appendix_D][Appendix D]]. More importantly, the underlying semantics of Gofer do
 correspond to those expected by the authors of [[[bib-1][1]]].
 
 Whereas the work involved in investigating and implementing the ideas on
@@ -178,7 +181,10 @@ particular sections of these notes rather hard to follow. Suggestions
 for improvements or extensions are more than welcome.
 
 * Background And Acknowledgements
-The language supported by Gofer is both syntactically and semantically
+:PROPERTIES:
+:CUSTOM_ID: background_and_acknowledgements
+:END:
+The language supported by Gofer  is both syntactically and semantically
 similar to that of the functional programming language Haskell [[[bib-5][5]]]. My
 principal task in the implementation of Gofer has therefore been to
 decide which features I should omit and then to implement what remains.
@@ -219,7 +225,7 @@ These extensions stem from my own research
 [[[bib-8][8]], [[bib-9][9]], [[bib-10][10]], [[bib-11][11]], [[bib-12][12]]] and were
 among the principal motivations for the development of Gofer. Full
 details of the differences between Gofer and Haskell 1.1 are given in
-[[*APPENDIX C: RELATIONSHIP WITH HASKELL 1.1][Appendix C]].
+[[#appendix_C][Appendix C]].
 
 Gofer would not have been implemented without my original introduction
 to functional programming using Orwell [[[bib-6][6]]], and I am particularly
@@ -252,6 +258,9 @@ of the basic ideas that I have used were inspired by his original paper
 motivating the use of type classes [[[bib-4][4]]].
 
 * Starting Gofer
+:PROPERTIES:
+:CUSTOM_ID: starting_gofer
+:END:
 The Gofer interpreter is usually entered by giving the command ‘gofer’,
 after which a display something like the following will normally be
 produced:
@@ -290,7 +299,7 @@ commands which are particularly worth remembering:
   forget the name of the command that you want to use.
 
 The complete range of commands supported by the Gofer interpreter is
-described in [[*APPENDIX F: INTERPRETER COMMAND SUMMARY][Appendix F]].
+described in [[#appendix_F][Appendix F]].
 
 Note that the interrupt key (~^C~ on most systems) can be used at any time
 whilst using Gofer to abandon the process of reading in a file of
@@ -299,6 +308,9 @@ interrupt key is detected, Gofer prints the string ~{Interrupted!}~ and
 prints the ~?~ prompt so that further commands can be entered.
 
 * Using Gofer — A Basic Introduction
+:PROPERTIES:
+:CUSTOM_ID: using_gofer_a_basic_introduction
+:END:
 Using Gofer is rather like using a high-level programmable calculator;
 Once the interpreter is loaded, the system prints a prompt ~?~ and waits
 for you to enter an expression, and then press the enter (return) key.
@@ -313,7 +325,7 @@ waiting for the next expression. For example:
 ? sum [1..10]
 55
 (91 reductions, 130 cells)
-? 
+?
 #+end_example
 
 In the first example, the user entered the expression ~(2+3)*8~, which
@@ -340,7 +352,7 @@ We could have typed this sum into Gofer directly:
 ? 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
 55
 (10 reductions, 23 cells)
-? 
+?
 #+end_example
 
 and this calculation is certainly more efficient as it uses only 1/9th
@@ -354,7 +366,10 @@ You will learn more about the kind of expressions that can be entered
 into Gofer in the rest of this document.
 
 * Standard And User-Defined Functions
-The function ~sum~ used in the examples above, and indeed the addition
+:PROPERTIES:
+:CUSTOM_ID: standard_and_user_defined_functions
+:END:
+The f unction ~sum~ used in the examples above, and indeed the addition
 and multiplication functions ~(+)~ and ~(*)~, are all standard functions
 which are included as part of a large collection of functions called the
 /standard prelude/ which are loaded into the Gofer system each time that
@@ -432,7 +447,7 @@ expression entered whilst using Gofer:
 ? comb 5 2 where comb n r = fact n / (fact r * fact (n-r))
 10
 (110 reductions, 161 cells)
-? 
+?
 #+end_example
 
 The ability to define a function as part of an expression like this is
@@ -445,7 +460,10 @@ You will learn more about the functions defined in the standard prelude
 and find out how to define your own functions in the following sections.
 
 * Function Names — Identifiers And Operators
-As the examples of the previous section show, there are two kinds of
+:PROPERTIES:
+:CUSTOM_ID: function_names_identifiers_and_operators
+:END:
+As th e examp les of the previous section show, there are two kinds of
 name that can be used for a function; identifiers such as ~sum~ and
 operator symbols such as ~+~ and ~*~. Choosing the appropriate kind of
 name for a particular function can often help to make expressions
@@ -478,7 +496,7 @@ that they are written:
   functions or variables must begin with a lower case letter
   (identifiers beginning with an upper case letter are used to denote a
   special kind of function called a /constructor function/ described in
-  [[*Datatype definitions][section 11.1]]). The following identifiers are examples of
+  [[#datatype_definitions][section 11.1]] ). The following identifiers are examples of
   /Gofer variable and function names/:
 
   #+begin_example
@@ -665,6 +683,9 @@ expression ~f x + 1~, which is treated as ~(f x) + 1~ and not as
 ~f (x+1)~ as is sometimes expected.
 
 * Built-In Types
+:PROPERTIES:
+:CUSTOM_ID: built_in_types
+:END:
 An important part of Gofer is the type system which is used to detect
 errors in expressions and function definitions. Starting with primitive
 expressions such as numeric constants, Gofer assigns a type to each
@@ -691,9 +712,12 @@ example, the information given above is sufficient to determine that
 Gofer has a wide range of built-in types, described in the following
 sections. In addition, Gofer also includes facilities for defining new
 types as well as types acting as abbreviations for complicated type
-expressions as described in [[*USER-DEFINED DATATYPES AND TYPE SYNONYMS][section 11]].
+expressions as described in [[#user_defined_datatypes_and_type_synonyms][section 11]].
 
 ** Functions
+:PROPERTIES:
+:CUSTOM_ID: functions
+:END:
 If ~t1~ and ~t2~ are types then ~t1 -> t2~ is the type of a function which,
 given an argument of type ~t1~ produces a result of type ~t2~. A function of
 type ~t1 -> t2~ is said to have argument type ~t1~ and result type ~t2~.
@@ -732,6 +756,9 @@ integer n plus 5. Hence ~(+) 5 4~, which is equivalent to ~5 + 4~,
 evaluates to the integer 9 as expected.
 
 ** Booleans
+:PROPERTIES:
+:CUSTOM_ID: booleans
+:END:
 Represented by the type ~Bool~, there are two boolean values written as
 ~True~ and ~False~. The standard prelude includes several useful
 functions for manipulating boolean values:
@@ -756,7 +783,7 @@ an expression to select between two alternatives according to the value
 of a boolean expression:
 
 #+begin_example
-if b then t else f 
+if b then t else f
 #+end_example
 
 is an expression which is equivalent to t if ~b~ evaluates to ~True~, or to
@@ -765,6 +792,9 @@ acceptable if ~b~ is an expression of type ~Bool~ and if the types of ~t~ and
 ~f~ are the same, in which case the whole expression also has that type.
 
 ** Integers
+:PROPERTIES:
+:CUSTOM_ID: integers
+:END:
 Represented by the type ~Int~, the integer type includes both positive
 and negative integers such as ~-273~, ~0 and ~383~. Like many computer
 systems, the range of integer values that can be used is restricted and
@@ -817,6 +847,9 @@ gcd 32 12 == 4,    abs (-2) == 2,        signum 12 == 1
 #+end_example
 
 ** Floating point numbers
+:PROPERTIES:
+:CUSTOM_ID: floating_point_numbers
+:END:
 Represented by the type ~Float~, elements of this type can be used to
 represent fractional values as well as very large or very small
 quantities. Such values are however usually only accurate to a fixed
@@ -832,6 +865,9 @@ equivalent to ~1000.0~, whilst ~5.0e-2~ is equivalent to ~0.05~.
 Gofer].
 
 ** Characters
+:PROPERTIES:
+:CUSTOM_ID: characters
+:END:
 Represented by the type ~Char~, elements of this type represent
 individual characters such as those entered at a keyboard. Character
 values are written as single characters enclosed by apostrophe
@@ -893,10 +929,13 @@ from an ASCII value to the corresponding character:
 ? chr 65
 'A'
 (2 reductions, 7 cells)
-?         
+?
 #+end_example
 
 ** Lists
+:PROPERTIES:
+:CUSTOM_ID: lists
+:END:
 If ~a~ is a type then ~[a]~ is the type whose elements are lists of values
 of type ~a~. There are several ways of writing list expressions:
 
@@ -920,10 +959,8 @@ The standard prelude includes a wide range of functions for calculations
 involving lists. For example:
 
 - ~length xs~ returns the number of elements in the list ~xs~.
-
 - ~xs ++ ys~ returns the list of elements in ~xs~ followed by the
   elements in ~ys~
-  
 - ~concat xss~ returns the list of elements in each of the lists in
   xss
 
@@ -967,6 +1004,9 @@ the variables in the expression ~(x:xs)~ than it would be if different
 names had been used such as ~(a:b)~.]
 
 ** Strings
+:PROPERTIES:
+:CUSTOM_ID: strings
+:END:
 A string is treated as a list of characters and the type String is
 simply an abbreviation for the type ~[Char]~. Strings are written as
 sequences of characters enclosed between speech marks. All of the escape
@@ -1001,7 +1041,7 @@ backslash characters:
 ? "hell\   \o"
 hello
 (0 reductions, 6 cells)
-? 
+?
 #+end_example
 
 Notice that strings are printed differently from other values, which
@@ -1052,11 +1092,14 @@ supercalifragilistic
 [72, 101, 108, 108, 111]
 (22 reductions, 69 cells)
 
-? 
+?
 
 #+end_example
 
 ** Tuples and the unit type
+:PROPERTIES:
+:CUSTOM_ID: tuples_and_the_unit_type
+:END:
 If ~t1~, ~t2~, ..., ~tn~ are types and n>=2, then there is a type of n-tuples
 written ~(t1, t2, ..., tn)~ whose elements are also written in the form
 ~(x1, x2, ..., xn)~ where the expressions ~x1~, ~x2~, ..., ~xn~ have types ~t1~, ~t2~, ..., ~tn~ respectively.
@@ -1076,7 +1119,13 @@ treatments of the type system of Gofer, although you may occasionally
 find a use for it in practical programs.
 
 * Errors
+:PROPERTIES:
+:CUSTOM_ID: errors
+:END:
 ** Errors detected on input
+:PROPERTIES:
+:CUSTOM_ID: errors_detected_on_input
+:END:
 After an expression has been entered, but before any attempt is made to
 evaluate it, Gofer carries out a number of checks to make sure that the
 expression that you typed does not contain any errors. Here are some
@@ -1100,7 +1149,7 @@ examples of the kind of problem that might occur:
   #+begin_example
   ? sum [1..n]
   ERROR: Undefined variable "n"
-  ? 
+  ?
   #+end_example
 - Type errors :: Certain expressions are sensible only when the functions
   used in those expressions are applied to values of the appropriate
@@ -1112,7 +1161,6 @@ examples of the kind of problem that might occur:
   'A' has type Char which does not match the argument type Int of the
   factorial function. This error will be detected by Gofer if you try to
   evaluate the expression:
-           
   #+begin_example
   ? fact 'A'
   ERROR: Type error in application
@@ -1120,11 +1168,13 @@ examples of the kind of problem that might occur:
   ,*** term           : 'A'
   ,*** type           : Char
   ,*** does not match : Int
-   
+
   ?
   #+end_example
-
 ** Errors during evaluation
+:PROPERTIES:
+:CUSTOM_ID: errors_during_evaluation
+:END:
 If no errors are detected in an input expression, Gofer then begins to
 evaluate that expression. Despite all of the checks that are carried out
 before the evaluation begins, it is still possible for an error to occur
@@ -1137,7 +1187,7 @@ braces ‘{’ and ‘}’:
 ? 3/0
 {primDivInt 3 0}
 (4 reductions, 30 cells)
-? 
+?
 #+end_example
 
 [The function ~primDivInt~ which appears here is a primitive function
@@ -1149,7 +1199,7 @@ part causing the problem will be displayed:
 ? 4 + (5/0)
 {primDivInt 5 0}
 (5 reductions, 32 cells)
-? 
+?
 #+end_example
 
 A standard function called ~error~ is defined in the standard prelude
@@ -1160,11 +1210,16 @@ produced when an error occurs:
 ? error "Problem has occurred"
 {error "Problem has occurred"}
 (23 reductions, 99 cells)
-? 
+?
 #+end_example
-
 * More About Value Declarations
+:PROPERTIES:
+:CUSTOM_ID: more_about_value_declarations
+:END:
 ** Simple pattern matching
+:PROPERTIES:
+:CUSTOM_ID: simple_pattern_matching
+:END:
 Although the Gofer standard prelude includes many useful functions, you
 will usually need to define a collection of new functions for specific
 problems and calculations. The declaration of a function ~f~ usually
@@ -1187,7 +1242,7 @@ determine which equation applies. This process is called
 /pattern-matching/. In all of the previous examples we have used only
 the simplest kind of pattern -- a variable. As an example, consider the
 factorial function defined in
-[[*STANDARD AND USER-DEFINED FUNCTIONS][section 5]]:
+[[#standard_and_user_defined_functions][section 5]]:
 
 #+begin_example
 fact n = product [1..n]
@@ -1209,7 +1264,7 @@ that of ~product [1..6]~:
 ? product [1..6]
 720
 (56 reductions, 85 cells)
-? 
+?
 #+end_example
 
 Many kinds of constants such as the boolean values True and False can
@@ -1294,14 +1349,14 @@ illustrated by the following examples:
   equal to 1.  The value referred to by the
   variable m is one less than  the  value matched.
 - Irrefutable patterns :: A further kind of pattern (called an irrefutable pattern)
-  is introduced in [[*Pattern bindings and irrefutable patterns][section 9.11]].
+  is introduced in [[#pattern_bindings_and_irrefutable_patterns][section 9.11]].
 
 Note that no variable name can be used more than once on the left hand
 side of each equation in a function definition. The following example:
 
 #+begin_example
-areTheyTheSame x x = True 
-areTheyTheSame _ _ = False 
+areTheyTheSame x x = True
+areTheyTheSame _ _ = False
 #+end_example
 
 will not be accepted by the Gofer system, but should instead be defined
@@ -1313,8 +1368,10 @@ areTheyTheSame x y
         | otherwise = False
 
 #+end_example
-
 ** Guarded equations
+:PROPERTIES:
+:CUSTOM_ID: guarded_equations
+:END:
 Each of the equations in a function definition may contain /guards/
 which require certain conditions on the values of the function's
 arguments to be met. As an example, here is a function which uses the
@@ -1333,7 +1390,7 @@ In general, an equation using guards takes the form:
 f x1 x2 ... xn | condition1  =  e1
                | condition2  =  e2
                .
-               . 
+               .
                | conditionm  =  em
 #+end_example
 
@@ -1361,6 +1418,9 @@ f x1 x2 ... xn  = e1,     if condition1
 Translation between the two notations is relatively straightforward.]
 
 ** Local definitions
+:PROPERTIES:
+:CUSTOM_ID: local_definitions
+:END:
 Function definitions may include local definitions for variables which
 can be used both in guards and on the right hand side of an equation.
 Consider the following function which calculates the number of distinct
@@ -1398,11 +1458,14 @@ For example:
 #+end_example
 
 ** Recursion with integers
+:PROPERTIES:
+:CUSTOM_ID: recursion_with_integers
+:END:
 Recursion is a particularly important and powerful technique in
 functional programming which is useful for defining functions involving
 a wide range of datatypes. In this section, we describe one particular
 application of recursion to give an alternative definition for the
-factorial function from [[*STANDARD AND USER-DEFINED FUNCTIONS][section 5]].
+factorial function from [[#standard_and_user_defined_functions][section 5]].
 
 Suppose that we wish to calculate the factorial of a given integer n. We
 can split the problem up into two special cases:
@@ -1462,7 +1525,7 @@ fact3 n         =  n * fact3 (n-1)
 Which of these you use is largely a matter of personal taste.
 
 Yet another style of definition uses the (n+k) patterns mentioned in
-[[*Simple pattern matching][[section 9.1]]:
+[[#simple_pattern_matching][section 9.1]]:
 
 #+begin_example
 fact4 0         =  1
@@ -1496,6 +1559,9 @@ wrong answer without allowing this to be detected nor causes a
 potentially non-terminating computation.]
 
 ** Recursion with lists
+:PROPERTIES:
+:CUSTOM_ID: recursion_with_lists
+:END:
 The same kind of technique that can be used to define recursive
 functions with integers can also be used to define recursive functions
 on lists. As an example, suppose that we wish to define a function to
@@ -1546,6 +1612,9 @@ map f (x:xs)  =  f x : map f xs
 #+end_example
 
 ** Lazy evaluation
+:PROPERTIES:
+:CUSTOM_ID: lazy_evaluation
+:END:
 Gofer evaluates expressions using a technique sometimes described as
 /lazy evaluation/ which means that:
 
@@ -1632,7 +1701,7 @@ this very purpose:
 #+end_example
 
 (The expression ~[100,99..1]~ denotes the list of integers from ~1~ to ~100~
-arranged in decreasing order, as described in [[*Arithmetic sequences][section 10.1]]).
+arranged in decreasing order, as described in [[#arithmetic_sequences][section 10.1]]).
 
 A rather different approach involves sorting the elements of the list
 into increasing order (using the function ~sort~ defined in the standard
@@ -1680,6 +1749,9 @@ elements are also known. Thus the complete list must be sorted in order
 to obtain the last element.
 
 ** Infinite data structures
+:PROPERTIES:
+:CUSTOM_ID: infinite_data_structures
+:END:
 One particular benefit of lazy evaluation is that it makes it possible
 for functions in Gofer to manipulate /infinite/ data structures.
 Obviously we cannot hope either to construct or store an infinite object
@@ -1714,7 +1786,7 @@ finite portion of an infinite data structure (just as loops in an
 imperative programming language are usually terminated after finitely
 many iterations). For example, using ~countFrom~ together with the
 function ~take~ defined in the standard prelude, we can repeat the
-calculation from [[*USING GOFER — A BASIC INTRODUCTION][section 4]] to find the sum of the integers 1 to 10:
+calculation from [[#using_gofer_a_basic_introduction][section 4]] to find the sum of the integers 1 to 10:
 
 #+begin_example
 ? sum (take 10 (countFrom 1))
@@ -1735,7 +1807,7 @@ application of that object. Consider the following definition for the
 infinite list of powers of two ~[1, 2, 4, 8, ...]~:
 
 #+begin_example
-powersOfTwo = 1 : map double powersOfTwo 
+powersOfTwo = 1 : map double powersOfTwo
               where double n = 2*n
 #+end_example
 
@@ -1745,7 +1817,7 @@ xs], we can define a function to find the nth power of 2 for any given
 integer n:
 
 #+begin_example
-twoToThe n = powersOfTwo !! n 
+twoToThe n = powersOfTwo !! n
 #+end_example
 
 Alternatively, we can use the list ~powersOfTwo~ to define a function
@@ -1772,7 +1844,10 @@ For example:
 #+end_example
 
 ** Polymorphism
-Given the definition of ~product~ in [[*Recursion with lists][section 9.5]], it is easy to see that
+:PROPERTIES:
+:CUSTOM_ID: polymorphism
+:END:
+Given the definition of ~product~ in [[#recursion_with_lists][section 9.5]], it is easy to see that
 product takes a single argument which is a list of integers and returns
 a single integer value -- the product of the elements of the list. In
 other words, ~product~ has type ~[Int] -> Int~. On the other hand, it is
@@ -1834,11 +1909,14 @@ string:
 ? length "Hello"
 5
 (22 reductions, 36 cells)
-? 
+?
 
 #+end_example
 
 ** Higher-order functions
+:PROPERTIES:
+:CUSTOM_ID: higher_order_functions
+:END:
 In Gofer, function values are treated in much the same way as any other
 kind of value; in particular, they can be used both as arguments to, and
 results of other functions.
@@ -1867,7 +1945,7 @@ provides one solution:
 
 #+begin_example
 countChars []     = 0
-countChars (w:ws) = length w + countChars ws 
+countChars (w:ws) = length w + countChars ws
 
 ? countChars ["super","cali","fragi","listic"]
 20
@@ -1898,8 +1976,10 @@ calculate the sum of these individual lengths:
 ?
 
 #+end_example
-
 ** Variable declarations
+:PROPERTIES:
+:CUSTOM_ID: variable_declarations
+:END:
 A variable declaration is a special form of function definition, almost
 always consisting of a single equation of the form:
 
@@ -1952,6 +2032,9 @@ be possible to reuse this space for other calculations without reloading
 the file defining ~longList~, or loading other files instead.
 
 ** Pattern bindings and irrefutable patterns
+:PROPERTIES:
+:CUSTOM_ID: pattern_bindings_and_irrefutable_patterns
+:END:
 Another useful way of defining variables uses /pattern bindings/ which
 are equations of the form:
 
@@ -1960,7 +2043,7 @@ pat = rhs
 #+end_example
 
 where the expression on the left hand side is a pattern as described in
-[[*Simple pattern matching][section 9.1]]. As a simple example of pattern bindings, here is one
+[[#simple_pattern_matching][section 9.1]]. As a simple example of pattern bindings, here is one
 possible definition for the function ~head~ which returns the first
 element in a list of values:
 
@@ -2081,7 +2164,7 @@ domain, and is the only value having all possible types):
 #+end_example
 
 Irrefutable patterns are not used very frequently, although they are
-particularly convenient in some situations (see [[*DIALOGUES: INPUT AND OUTPUT][section 12]] for some
+particularly convenient in some situations (see [[#dialogues_input_and_output][section 12]] for some
 examples). Be careful not to use irrefutable patterns where they are not
 appropriate. An attempt to define a map function ~map'~ using:
 
@@ -2107,6 +2190,9 @@ and will not behave as you might have intended:
 #+end_example
 
 ** Type declarations
+:PROPERTIES:
+:CUSTOM_ID: type_declarations
+:END:
 The type system used in Gofer is sufficiently powerful to enable Gofer
 to determine the type of any function without the need to declare the
 types of its arguments and the return value as in some programming
@@ -2141,13 +2227,12 @@ of this kind in a program:
      does not cause a type error. This problem can be solved by using an
      explicit type declaration to restrict the type of ~idInt~ to a
      particular instance of the polymorphic type a -> a:
-    
      #+begin_example
      idInt :: Int -> Int
      #+end_example
-    
+
      Note that a declaration such as:
-    
+
      #+begin_example
      idInt :: Int -> a
      #+end_example
@@ -2166,9 +2251,12 @@ of this kind in a program:
 - Overloading ::
      Explicit type declarations can be used to solve a number
      of problems associated with overloaded functions and values. See
-     [[*OVERLOADING IN GOFER][section 14]] for further details.
+     [[#overloading_in_gofer][section 14]] for further details.
 
 * Increasing Your Power Of Expression
+:PROPERTIES:
+:CUSTOM_ID: increasing_your_power_of_expression
+:END:
 This section describes a number of useful extensions to the basic range
 of expressions used in the previous sections. None of these add any
 extra computational power to Gofer -- anything that can be done with
@@ -2178,6 +2266,9 @@ expressions and function definitions to be written more clearly and
 concisely than the equivalent expressions without these notations.
 
 ** Arithmetic sequences
+:PROPERTIES:
+:CUSTOM_ID: arithmetic_sequences
+:END:
 A number of useful lists can be generated using the notation of
 arithmetic sequences (so named because of their similarity to arithmetic
 progressions in mathematics). The following list summarises the four
@@ -2231,7 +2322,7 @@ enumerate lists of characters or floating point values:
 Arithmetic sequences such as those described above play the same role in
 functional programming languages as the iterative ~for~ constructs in
 traditional imperative languages. A good example of this is the example
-in [[*USING GOFER — A BASIC INTRODUCTION][section 4]] used to calculate the sum of the integers from 1 upto 10 --
+in [[#using_gofer_a_basic_introduction][section 4]] used to calculate the sum of the integers from 1 upto 10 --
 ~sum [1..10]~. An equivalent program in an imperative language might
 look something like (especially if you think of C!):
 
@@ -2250,6 +2341,9 @@ The advantages of the functional notation in this case are clear:
 - It does not require the declaration or use of auxiliary variables such as ~i~ and ~total~ in the above.
 
 ** List comprehensions
+:PROPERTIES:
+:CUSTOM_ID: list_comprehensions
+:END:
 List comprehensions provide another very powerful and compact notation
 for describing certain kinds of list expression. The basic form of a
 list comprehension is:
@@ -2389,7 +2483,7 @@ The following examples illustrate how this definition works in practice:
   ? [ (x,y) | x<-[1..3], even x, y<-[1..2] ]
   [(2,1), (2,2)]
   (62 reductions, 118 cells)
-  ? 
+  ?
   #+end_example
 
   The following example illustrates a similar kind of behaviour with
@@ -2409,8 +2503,10 @@ The following examples illustrate how this definition works in practice:
   ?
 
   #+end_example
-
 ** Lambda expressions
+:PROPERTIES:
+:CUSTOM_ID: lambda_expressions
+:END:
 In addition to named function definitions, Gofer also allows the
 definition and use of unnamed functions using a /lambda expression/ of
 the form:
@@ -2463,7 +2559,7 @@ v117 42
 
 Lambda expressions are particularly useful for certain styles of
 functional programming; an example of this is the continuation-based
-approach to I/O described in [[*DIALOGUES: INPUT AND OUTPUT][section 12]].
+approach to I/O described in [[#dialogues_input_and_output][section 12]].
 
 ** Case expressions
 A case expression can be used to evaluate an expression and, depending
@@ -2473,7 +2569,7 @@ expressions. Indeed, an expression of the form ~if e then t else f~ is
 in fact equivalent to the case expression:
 
 #+begin_example
-case e of 
+case e of
   True  -> t
   False -> f
 #+end_example
@@ -2489,7 +2585,7 @@ pat -> rhs                    for a simple alternative
 @@@ Link doesnt work inside example
 #+begin_example
 or: pat | condition1 -> rhs1      using guard expressions as
-        | condition2 -> rhs2      described in [[*Guarded equations][section 9.2]] for
+        | condition2 -> rhs2      described in [[#guarded_equations][section 9.2]] for
               .                   function definitions
               .
         | conditionn -> rhsn
@@ -2573,7 +2669,7 @@ e), known as /sections of the operator (*)/ defined by:
 (* e) x  = x * e
 #+end_example
 
-or, using lambda expressions as introduced in [[*Lambda expressions][section 10.3]]:
+or, using lambda expressions as introduced in [[#lambda_expressions][section 10.3]]:
 
 #+begin_example
 (e *)    =  \x -> e * x
@@ -2603,17 +2699,18 @@ flip  f x y  =  f y x
 #+end_example
 
 There is an important special case which occurs with an expression of
-the form (- e); this is interpreted as ~negate e~ and not as the section
+the form ~(- e)~; this is interpreted as ~negate e~ and not as the section
 which subtracts the value of ~e~ from its argument. The latter function
-can be written as the section (+ (- e)) or as ~subtract e~ where
+can be written as the section ~(+ (- e))~ or as ~subtract e~ where
 ~subtract~ is the function defined in the standard prelude using:
-
 #+begin_example
 subtract = flip (-)
 #+end_example
-
 ** Explicitly typed expressions
-As described in [[*Type declarations][section 9.12]], it is often useful to be able to declare
+:PROPERTIES:
+:CUSTOM_ID: explicitly_typed_expressions 
+:END:
+As described in [[#type_declarations][section 9.12]], it is often useful to be able to declare
 the type of a variable defined in a function or pattern binding. For
 much the same reasons, Gofer allows expressions of the form:
 
@@ -2632,7 +2729,7 @@ that is inferred by Gofer:
 ? :t  sum . map length
 sum . map length :: [[a]] -> Int
 
-? 
+?
 #+end_example
 
 The types inferred in each case can be modified by including explicit
@@ -2657,15 +2754,20 @@ expression is not compatible with the type inferred by Gofer:
   *** Expression    : \x -> [x]
   *** Declared type : Int -> a
   *** Inferred type : Int -> [Int]
-   
   ?
    #+end_example
 
 Explicitly typed expressions are most commonly used together with
-overloaded functions and values as described in [[*OVERLOADING IN GOFER][section 14]].
+overloaded functions and values as described in [[#overloading_in_gofer][section 14]].
 
 * User-Defined Datatypes And Type Synonyms
+:PROPERTIES:
+:CUSTOM_ID: user_defined_datatypes_and_type_synonyms
+:END:
 ** Datatype definitions
+:PROPERTIES:
+:CUSTOM_ID: datatype_definitions
+:END:
 In addition to the wide range of built-in datatypes described in section
 7, Gofer also allows the definition of new datatypes using declarations
 of the form:
@@ -2791,6 +2893,9 @@ Using the binary tree above as an example:
 #+end_example
 
 ** Type synonyms
+:PROPERTIES:
+:CUSTOM_ID: type_synonyms
+:END:
 Type synonyms are used to provide convenient abbreviations for type
 expressions. A type synonym is introduced by a declaration of the form:
 
@@ -2805,7 +2910,7 @@ synonym definition. Using this declaration any type expression of the
 form:
 
 #+begin_example
-Name type1 ... typen 
+Name type1 ... typen
 #+end_example
 
 is treated as an abbreviation of the type expression obtained from
@@ -2825,8 +2930,8 @@ standard prelude.]
 
 Note that the types of expressions inferred by Gofer will not usually
 contain any type synonyms unless an explicit type signature is given,
-either using an explicitly typed expression ([[*Explicitly typed expressions][section 10.6]]) or a type
-declaration ([[*Type declarations][section 9.12]]):
+either using an explicitly typed expression ([[#explicitly_typed_expressions][section 10.6]]) or a type
+declaration ([[#type_declarations][section 9.12]]):
 
 #+begin_example
 ? :t ['c']
@@ -2854,6 +2959,9 @@ sequence:
 BadSynonym ==> [BadSynonym] ==> [[BadSynonym]] ==> ....
 #+end_example
 * Dialogues: Input And Output
+:PROPERTIES:
+:CUSTOM_ID: dialogues_input_and_output
+:END:
 The Gofer system implements a subset of the facilities for programs
 involving I/O described in the Haskell report [[[bib-5][5]]]. In particular, this
 makes it possible for Gofer programs to be run interactively, and to
@@ -2863,6 +2971,9 @@ it allows the use of such programs without loss of referential
 transparency.
 
 ** Basic description
+:PROPERTIES:
+:CUSTOM_ID: basic_description
+:END:
 Programs using the I/O facilities in Gofer are modelled by functions of
 type Dialogue, defined by the type synonym:
 
@@ -2882,11 +2993,11 @@ following datatype definition, taken from the standard prelude:
 
 #+begin_example
 data Request  =  -- file system requests:
-                ReadFile      String         
+                ReadFile      String
               | WriteFile     String String
               | AppendFile    String String
                  -- channel system requests:
-              | ReadChan      String 
+              | ReadChan      String
               | AppendChan    String String
                  -- environment requests:
               | Echo          Bool
@@ -2898,7 +3009,7 @@ variety of error conditions that may occur:
 
 #+begin_example
 data Response = Success
-              | Str String 
+              | Str String
               | Failure IOError
 
 data IOError  = WriteError   String
@@ -3003,8 +3114,8 @@ hello, world
 #+end_example
 
 Notice that without the explicit type declaration, the type that would
-be inferred for helloWorld would be a -> [Request], and hence helloWorld
-would not be executed as a Dialogue program. This point can be
+be inferred for ~helloWorld~ would be ~a -> [Request]~, and hence ~helloWorld~
+would not be executed as a ~Dialogue~ program. This point can be
 illustrated using lambda expressions:
 
 #+begin_example
@@ -3016,7 +3127,7 @@ v128
 hello, world
 
 (1 reduction, 28 cells)
-? 
+?
 #+end_example
 
 In many cases the structure of an expression is enough to fully
@@ -3033,7 +3144,7 @@ hello, world
 
 Note the use of the irrefutable pattern =~[Success]= for the lambda
 expression in the last example; without this, the usual rules of pattern
-matching as described in [[*MORE ABOUT VALUE DECLARATIONS][section 9]] would force Gofer to try to match the
+matching as described in [[#more_about_value_declarations][section 9]] would force Gofer to try to match the
 pattern ~[Success]~ against the list of responses, before the
 corresponding request had been produced:
 
@@ -3050,10 +3161,10 @@ The next example takes a single string as a parameter and displays the
 contents of the corresponding file:
 
 #+begin_example
-showFile               :: String -> Dialogue 
-showFile name ~(read:_) = [ReadFile name, AppendChan stdout result] 
- where result = case read of Str contents -> contents 
-                             Failure _    -> "Can't open " ++ name 
+showFile               :: String -> Dialogue
+showFile name ~(read:_) = [ReadFile name, AppendChan stdout result]
+ where result = case read of Str contents -> contents
+                             Failure _    -> "Can't open " ++ name
 #+end_example
 
 With a few modifications, we can implement a similar program which
@@ -3062,10 +3173,10 @@ reads and displays the contents of that file as before. This program is
 based on a similar example in the Haskell report [[[bib-5][5]]]:
 
 #+begin_example
-main ~(Success : ~(Str userInput : ~(r3 : _)))  
-  = [ AppendChan stdout "Please type a filename: ", 
-      ReadChan stdin, 
-      ReadFile name, 
+main ~(Success : ~(Str userInput : ~(r3 : _)))
+  = [ AppendChan stdout "Please type a filename: ",
+      ReadChan stdin,
+      ReadFile name,
       AppendChan stdout (case r3 of Str contents -> contents
                                     Failure _    -> "Can't open "
                                                     ++ name)
@@ -3074,6 +3185,9 @@ main ~(Success : ~(Str userInput : ~(r3 : _)))
 #+end_example
 
 ** Continuation style I/O
+:PROPERTIES:
+:CUSTOM_ID: continuation_style_io
+:END:
 As an alternative to the /stream-based/ approach to programs using the
 I/O facilities in Gofer, the standard prelude defines a family of
 functions which enables such programs to be written in a /continuation/
@@ -3170,7 +3284,7 @@ type SuccCont =  Dialogue
 The following list gives the type of each of the six functions
 corresponding to the six different kinds of I/O request described in the
 previous section. Full definitions for each of these functions are given
-in [[*APPENDIX B: CONTENTS OF STANDARD PRELUDE][appendix B]]:
+in [[#appendix_B][Appendix B]]:
 
 #+begin_example
 readFile   :: String -> FailCont -> StrCont -> Dialogue
@@ -3229,6 +3343,9 @@ main  = appendChan stdout "Please type a filename: " abort
 #+end_example
 
 ** Interactive programs
+:PROPERTIES:
+:CUSTOM_ID: interactive_programs
+:END:
 One of the principal motivations for including facilities for I/O in
 Gofer programs was to provide a way of using interactive programs as
 described in [[[bib-1][1]]]. An interactive program is represented by a function of
@@ -3260,7 +3377,7 @@ used to ‘execute’ functions of this kind as interactive programs:
   key:
 
   #+begin_example
-  ? run (map toUpper)     
+  ? run (map toUpper)
   ALTHOUGH THIS IS ENTERED IN LOWER CASE, IT STILL
   APPEARS IN UPPER CASE !
   {Interrupted!}
@@ -3286,10 +3403,16 @@ run f       = echo False abort (interact f)
 #+end_example
 
 [EXERCISE for the interested reader: construct alternative definitions
-for these functions using the stream based approach from section [[*Basic description][12.1.]]]
+for these functions using the stream based approach from section [[#basic_description][12.1]]]
 
 * Layout
+:PROPERTIES:
+:CUSTOM_ID: layout
+:END:
 ** Comments
+:PROPERTIES:
+:CUSTOM_ID: comments
+:END:
 Comments provide an informal but useful way of annotating a program with
 a description of its purpose, structure and development. Following the
 definition of Haskell, two styles of comment are supported by Gofer:
@@ -3344,11 +3467,14 @@ special significance in a single line comment. Thus:
 [ 2, -- {-            [ 2, {-
   3, -- -}              -- -} 3,
   4 ]                   4 ]
-#+end_example   
+#+end_example
 
 are both equivalent to the list expression ~[2,3,4]~.
 
 ** The layout rule
+:PROPERTIES:
+:CUSTOM_ID: the_layout_rule
+:END:
 In a tradition dating back at least a quarter of a century to Landin's
 ISWIM family of languages, most Gofer programs use indentation to
 indicate the structure of a program. For example, in a definition such
@@ -3525,6 +3651,9 @@ convenient). COBOL and Fortran programmers are not likely to find this
 problem too distressing :-)
 
 * Overloading In Gofer
+:PROPERTIES:
+:CUSTOM_ID: overloading_in_gofer
+:END:
 One of the biggest differences between Gofer and most other programming
 languages (with the exception of Haskell) is the approach to
 overloading; enabling the definition and use of functions in which the
@@ -3554,6 +3683,9 @@ This section outlines the system of type classes used in Gofer,
 indicating briefly how they can be used and how they are implemented.
 
 ** Type classes and predicates
+:PROPERTIES:
+:CUSTOM_ID: type_classes_and_predicates 
+:END:
 A type class can be thought of as a family of types (or more generally
 as a family of tuples of types) whose elements are called instances of
 the class. If C is the name of an n-parameter type class then an
@@ -3584,6 +3716,9 @@ but may be relaxed, at least in certain cases, in later versions of
 Gofer.
 
 ** The type class Eq
+:PROPERTIES:
+:CUSTOM_ID: the_type_class_eq
+:END:
 The type class ~Eq~ is a simple and useful example, whose instances are
 precisely those types whose elements can be tested for equality. The
 declaration of this class given in the standard prelude is as follows:
@@ -3671,9 +3806,12 @@ f x ys  =  [x] == ys
 #+end_example
 
 has type ~Eq [a] => a -> [a] -> Bool~, and not ~Eq a => a -> [a] -> Bool~,
-which is the type that would be assigned to "f" in a Haskell system.
+which is the type that would be assigned to ~f~ in a Haskell system.
 
 *** Instances of class Eq
+:PROPERTIES:
+:CUSTOM_ID: instances_of_class_eq 
+:END:
 Instances of a type class are defined using declarations similar to
 those used to define the corresponding type class. The following
 examples, taken from the standard prelude, give the definitions for a
@@ -3807,6 +3945,9 @@ declarations above) then it may be omitted, together with the
 corresponding ~=>~ symbol.
 
 *** Testing equality of represented values
+:PROPERTIES:
+:CUSTOM_ID: testing_equality_of_represented_values
+:END:
 Instances of Eq can also be defined for other types, including
 user-defined datatypes, and unlike the instances described above, the
 definition of ~(==)~ need not be used to determine whether the values
@@ -3839,11 +3980,13 @@ False
 ? Set [1,2,3] == Set [1,2,2,2,1,3]
 True
 (157 reductions, 240 cells)
-? 
-
+?
 #+end_example
 
 *** Instance declarations without members
+:PROPERTIES:
+:CUSTOM_ID: instance_declarations_without_members
+:END:
 It is possible to give an instance declaration without specifying any
 definitions for the member functions of the class. For example:
 
@@ -3862,11 +4005,13 @@ defined in terms of ~(=​=​)~:
 ? () /= ()
 {undefined_member (==)}
 (4 reductions, 36 cells)
-? 
-
+?
 #+end_example
 
 *** Equality on function types
+:PROPERTIES:
+:CUSTOM_ID: equality_on_function_types
+:END:
 If an expression requires an instance of a class which cannot be
 obtained using the rules in the given instance declarations, then an
 error message will be produced when the expression is type-checked. For
@@ -3890,7 +4035,7 @@ type-checked, you can use an instance declaration to specify the
 required behaviour. For example:
 
 #+begin_example
-instance Eq (a -> b) where 
+instance Eq (a -> b) where
     (==) = error "Equality not defined between functions"
 #+end_example
 
@@ -3901,7 +4046,7 @@ been included now produces the following result:
 ? (1==) == (\x->1==x)
 {error "Equality not defined between functions"}
 (42 reductions, 173 cells)
-? 
+?
 #+end_example
 
 A limited form of equality can be defined for functions of type (a->b)
@@ -3930,11 +4075,13 @@ True
 ? (&&) == (\x y-> if x then y else False)
 True
 (16 reductions, 30 cells)
-? 
-
+?
 #+end_example
 
 *** Non-overlapping instances
+:PROPERTIES:
+:CUSTOM_ID: non_overlapping_instances
+:END:
 Other instance declarations for types of the form a -> b can be used at
 the same time, so long as no pair of declarations overlap. For example,
 adding the following instance declaration
@@ -3949,7 +4096,7 @@ enables us to evaluate expressions such as:
 ? (\()->"Hello") == const "Hello"
 True
 (30 reductions, 55 cells)
-? 
+?
 #+end_example
 
 If however, we try to use instance declarations for types of the form (a
@@ -3962,7 +4109,7 @@ ERROR "file" (line 37): Overlapping instances for class "Eq"
 ,*** Overlaps with   : Eq (Bool -> a)
 ,*** Common instance : Eq (Bool -> a)
 
-? 
+?
 #+end_example
 
 indicating that, given the task of testing two values of type (Bool->a)
@@ -3999,6 +4146,9 @@ cat ["file1", "file2", ..., "filen"].
 #+end_example
 
 ** Dictionaries
+:PROPERTIES:
+:CUSTOM_ID: dictionaries
+:END:
 In order to understand some of the messages produced by Gofer, as well
 as some of the more subtle problems associated with overloaded
 functions, it is useful to have a rough idea of the way in which
@@ -4128,10 +4278,10 @@ If an instance is obtained from an instance declaration with a non-empty
 context, then the basic two element dictionary used in the examples
 above is extended with an extra dictionary value for each predicate in
 the context. As an example, the diagram below shows the dictionaries
-that will be created from the instance definitions in  [[*Instances of class Eq][section 14.2.2]] for
-the instance ~Eq (Int, [Int])~. The functions "eqPair" and "eqList" which
-are used in these dictionaries are obtained from the definitions of (==)
-given in the instance declarations for Eq (a,b) and Eq [a] respectively:
+that will be created from the instance definitions in  [[#instances_of_class_eq][section 14.2.2]] for
+the instance ~Eq (Int, [Int])~. The functions ~eqPair~ and ~eqList~ which
+are used in these dictionaries are obtained from the definitions of ~(==)~
+given in the instance declarations for ~Eq (a,b)~ and ~Eq [a]~ respectively:
 
 #+begin_example
 eqPair d (x,y) (u,v)   = (==) (#3 d) x u && (==) (#4 d) y v
@@ -4157,7 +4307,7 @@ d3 :: Eq (Int, [Int])
                                 |            |
                  +--------------+            |
                  |                           |
-                 |        d2 :: Eq [Int]     V 
+                 |        d2 :: Eq [Int]     V
                  |        +------------+------------+------------+
                  |        |            |            |            |
                  |        | eqList d2  | defNeq d2  | d1::Eq Int |
@@ -4267,7 +4417,7 @@ There are two reasons for defining Eq as a superclass of Ord:
 
   As an example, the following definitions provide an alternative way to
   implement the equality operation on elements of the Set datatype
-  described in [[*Testing equality of represented values][section 14.2.3]], in terms of the subset ordering defined
+  described in [[#testing_equality_of_represented_values][section 14.2.3]], in terms of the subset ordering defined
   in class Ord:
 
   #+begin_example
@@ -4450,7 +4600,13 @@ translation which needs only one dictionary parameter:
 #+end_example
 
 ** Other issues
+:PROPERTIES:
+:CUSTOM_ID: other_issues
+:END:
 *** Unresolved overloading
+:PROPERTIES:
+:CUSTOM_ID: unresolved_overloading
+:END:
 Consider the use of the (==) operator in the following three situations:
 
 - In the expression ~2 == 3~, it is clear that the appropriate value for
@@ -4519,8 +4675,8 @@ Further examples of unresolved overloading occur with other classes. As
 an example consider the class Reader defined by:
 
 #+begin_example
-class Reader a where 
-    parse   :: String -> a   
+class Reader a where
+    parse   :: String -> a
     unparse :: a -> String
 #+end_example
 
@@ -4672,6 +4828,9 @@ avoiding the possibility that a program might contain an undetected
 ambiguity.]
 
 *** ‘Recursive’ dictionaries
+:PROPERTIES:
+:CUSTOM_ID: recursive_dictionaries
+:END:
 Unlike Haskell, there are no restrictions on the form of the predicates
 that may appear in the context part of a Gofer class or instance
 declaration. This has a number of potentially useful applications
@@ -4812,6 +4971,9 @@ syntactic restrictions (as in Haskell) or perhaps some form of static
 checking of the contexts appearing in ~class~ and ~instance~ declarations.
 
 *** Classes with multiple parameters
+:PROPERTIES:
+:CUSTOM_ID: classes_with_multiple_parameters
+:END:
 Gofer is the first language to support the use of type classes with
 multiple parameters. This again is an experimental feature of the
 language, intended to make it possible to explore the claims from a
@@ -4865,7 +5027,7 @@ expression "iso 2 = 3" is:
 ? iso 2 == 3
 False
 (4 reductions, 11 cells)
-? 
+?
 #+end_example
 
 Our first taste of the problems to come occurs when we try to evaluate
@@ -4890,7 +5052,7 @@ needed to describe the (approximate) isomorphism between lists of pairs
 and pairs of lists:
 
 #+begin_example
-instance Iso [(a,b)] ([a],[b]) where  
+instance Iso [(a,b)] ([a],[b]) where
     iso xs = (map fst xs, map snd xs)
 
 instance Iso ([a],[b]) [(a,b)] where
@@ -4964,8 +5126,10 @@ actually produces a function with ambiguous type:
 #+end_example
 
 which cannot be resolved, even with an explicit type declaration.
-
 *** Overloading and numeric values
+:PROPERTIES:
+:CUSTOM_ID: overloading_and_numeric_values
+:END:
 One of the most common uses of overloading is to allow the use of the
 standard arithmetic operators such as (+), (*) etc. on the elements of a
 range of numeric types including integers and floating point values in
@@ -5013,7 +5177,7 @@ instance Num Float where
     (+)         = primPlusFloat
     (-)         = primMinusFloat
     (*)         = primMulFloat
-    (/)         = primDivFloat 
+    (/)         = primDivFloat
     negate      = primNegFloat
     fromInteger = primIntToFloat
 #+end_example
@@ -5128,11 +5292,14 @@ numeric constants can only be obtained by explicit use of the
 fromInteger function.
 
 *** Constants in dictionaries
+:PROPERTIES:
+:CUSTOM_ID: constants_in_dictionaries
+:END:
 The Gofer system constructs new dictionaries as necessary, and deletes
 them when they are no longer required. At any one time, there is at most
 one dictionary for each instance of a class. Coupled with lazy
 evaluation, this has a number of advantages for classes in which member
-functions are defined by variable declarations as in [[*Variable declarations][section 9.10]]. As an
+functions are defined by variable declarations as in [[#variable_declarations][section 9.10]]. As an
 example, consider the class Finite defined by:
 
 #+begin_example
@@ -5238,6 +5405,9 @@ definition, the first two attempts to evaluate "size (True,False)" give:
 #+end_example
 
 *** The monomorphism restriction
+:PROPERTIES:
+:CUSTOM_ID: the_monomorphism_restriction
+:END:
 This section describes a technique used to limit the amount of
 overloading used in the definition of certain values to avoid a number
 of technical problems. This particular topic has attracted quite a lot
@@ -5247,7 +5417,7 @@ formulation of the rule was rather cumbersome and limiting, the current
 version used in both Gofer and Haskell is unlikely to cause any problems
 in practice. In addition, many of the examples used to motivate the need
 for the monomorphism restriction in Haskell occur as a result of the use
-of implicitly overloaded numeric constants, described in [[*Overloading and numeric values][section 14.4.4]],
+of implicitly overloaded numeric constants, described in [[#overloading_and_numeric_values][section 14.4.4]],
 and hence do not occur in Gofer.
 
 The monomorphism restriction takes its name from the way in which it
@@ -5258,7 +5428,9 @@ abstract approach, based on observations about the implementation of
 overloaded functions.
 
 **** Basic ideas
-
+:PROPERTIES:
+:CUSTOM_ID: basic_ideas
+:END:
 As we have seen, the implementation of overloading used by Gofer depends
 on being able to add extra arguments to a function definition to supply
 the required dictionary parameters. For example, given a function
@@ -5290,7 +5462,9 @@ The monomorphism restriction imposes conditions which prevent this last
 step from being used for certain kinds of value binding.
 
 **** Declaration groups
-
+:PROPERTIES:
+:CUSTOM_ID: declaration_groups
+:END:
 Before giving the full details, it is worth pointing out that, in
 general, the monomorphism restriction affects groups of value
 declarations rather than just individual definitions. To illustrate this
@@ -5341,7 +5515,9 @@ example forces us to add an extra parameter for ~g~; if extra parameters
 were not permitted for ~g~ then they could not be added to ~f~.]
 
 **** Restricted bindings
-
+:PROPERTIES:
+:CUSTOM_ID: restricted_bindings
+:END:
 There are three main reasons for avoiding adding dictionary parameters
 to a particular value binding:
 
@@ -5353,17 +5529,17 @@ to a particular value binding:
    #+begin_example
    f x  =   x == 0  ||  x == 2
    #+end_example
-    
+
    can be translated as:
-    
+
    #+begin_example
    f x  =   (==) {dict} x 0  ||  (==) {dict} x 2
    #+end_example
-    
+
    where, in both cases, the symbol {dict} denotes the dictionary for
    ~Eq Int~. As a further optimisation, once the dictionary is fully
    determined, this can be simplified to:
-    
+
    #+begin_example
    f x  =   primEqInt x 0 || primEqInt x 2
    #+end_example
@@ -5377,73 +5553,73 @@ to a particular value binding:
    #+begin_example
    (plus,times) = ((+), (*))
    #+end_example
-    
+
    Translating this into a group of function bindings gives:
-    
+
    #+begin_example
    newVariable  = ((+), (*))
    plus         = fst newVariable     -- fst (x,_) = x
    times        = snd newVariable     -- snd (_,y) = y
    #+end_example
-    
+
    The type of newVariable is ~(Num a, Num b) => (a->a->a, b->b->b)~ so
    that the correct translation of these bindings using two dictionary
    variables gives:
-    
+
    #+begin_example
    newVariable da db = ((+) da, (*) db)
    plus da db        = fst (newVariable da db)
    times da db       = snd (newVariable da db)
    #+end_example
-    
+
    and hence the correct types for plus and times are:
-    
+
    #+begin_example
    plus  :: (Num a, Num b) => a -> a -> a
    times :: (Num a, Num b) => b -> b -> b
    #+end_example
-    
+
    both of which are ambiguous.
 
 3. Adding dictionary parameters may translate a variable definition into
    a function definition, loosing the benefits of shared evaluation. As
    an example, consider the following definition using the function
    ~size~ and the class ~Finite~ described in the previous section:
-    
+
    #+begin_example
    twiceSize x = n + n  where n = size x
    #+end_example
-    
+
    Since the variable ~n~ is defined using a local definition, we would not
    expect to have to evaluate size x more than once to determine the
    value of twiceSize. However, adding extra dictionary parameters
    without restriction gives:
-    
+
    #+begin_example
    twiceSize d x  = n d + n d  where  n d = size d x
    #+end_example
-    
+
    Now that ~n~ has been replaced by a function, the evaluation will be
    repeated, once for each occurrence of the expression ~n d~. In order
    to avoid this kind of problem, the monomorphism restriction does not
    usually allow extra parameters to be added to a variable definition.
    Thus the original definition above will be translated to give:
-    
+
    #+begin_example
    twiceSize d x  =  n + n  where n = size d x
    #+end_example
-    
+
    Note that the same rule is applied to variable definitions at the
    top-level of a file of definitions, resulting in an error if any
    dictionary parameters are required for the right hand side of the
    definition. As an example of this:
-    
+
    #+begin_example
    twiceMembers = members ++ members
    #+end_example
-    
+
    which produces an error message of the form:
-    
+
    #+begin_example
    ERROR "ex" (line 157): Unresolved top-level overloading
    *** Binding             : twiceMembers
@@ -5451,39 +5627,39 @@ to a particular value binding:
    *** Outstanding context : Finite _7
    ?
    #+end_example
-    
+
    [COMMENT: A type expression of the form ~_n~ (such as ~_7~ in this
    particular example) represents a fixed (i.e. monomorphic) type
    variable.]
-    
+
    In the case of a variable declaration, the monomorphism restriction
    can be overcome by giving an explicit type signature including an
    appropriate context, to indicate that the variable defined is intended
    to be used as an overloaded value. In this case, we need only include
    the declaration:
-    
+
    #+begin_example
    twiceMembers :: Finite a => [a]
    #+end_example
-    
+
    in the file containing the definition for ~twiceMembers~ to suppress the
    previous error message and allow the function to be used as a fully
    overloaded variable.
-    
+
    Note that the monomorphism restriction interferes with the use of
    polymorphism. For example, the definition:
-    
+
    #+begin_example
    aNumber = length (twiceMembers::[Bool]) +
              length (twiceMembers::[(Bool,Bool)])
              where twiceMembers = members ++ members
    #+end_example
-    
+
    will not be accepted because the monomorphism restriction forces the
    local definition of ~twiceMembers~ to be restricted to a single
    overloading (the dictionary parameter supplied to each use of members
    must be constant throughout the local definition):
-    
+
    #+begin_example
    ERROR "ex" (line 12): Type error in type signature expression
    *** term           : twiceMembers
@@ -5491,20 +5667,22 @@ to a particular value binding:
    *** does not match : [Bool]
    ?
    #+end_example
-    
+
    Once again, this problem can be fixed using an explicit type
    declaration:
-    
+
    #+begin_example
    aNumber = length (twiceMembers::[Bool]) +
-             length (twiceMembers::[(Bool,Bool)])  
+             length (twiceMembers::[(Bool,Bool)])
              where twiceMembers :: Finite a => [a]
                    twiceMembers  = members ++ members
-    
+
    #+end_example
 
 **** Formal definition
-
+:PROPERTIES:
+:CUSTOM_ID: formal_definition
+:END:
 The examples above describe the motivation for the monomorphism
 restriction, captured by the following definition:
 
@@ -5521,6 +5699,7 @@ parameters will be added to each declaration in the group.
 
 * Appendix A: Summary Of Grammar
 :PROPERTIES:
+:CUSTOM_ID: appendix_A
 :UNNUMBERED:
 :END:
 This section gives a summary of the grammar for the language used by
@@ -5543,14 +5722,14 @@ The following terminal symbols are used but not defined by the grammar:
 
 | Terminal  | Description                                                                |
 |-----------+----------------------------------------------------------------------------|
-| ~VARID~   | identifier beginning with lower case letter as described in [[*FUNCTION NAMES — IDENTIFIERS AND OPERATORS][section 6]].     |
+| ~VARID~   | identifier beginning with lower case letter as described in [[#function_names_identifiers_and_operators][section 6]].     |
 | ~CONID~   | like ~VARID~, but beginning with upper case letter.                        |
-| ~VAROP~   | operator symbol not beginning with a colon ~:~, as described in [[FUNCTION NAMES — IDENTIFIERS AND OPERATORS][section 6]]. |
+| ~VAROP~   | operator symbol not beginning with a colon ~:~, as described in [[#function_names_identifiers_and_operators][section 6]]. |
 | ~CONOP~   | constructor function operator, like VAROP, but beginning with a colon ~:~  |
-| ~INTEGER~ | integer constant, as described in [[*Integers][section 7.3]].                             |
-| ~FLOAT~   | floating point constant, as described in [[*Floating point numbers][section 7.4]].                      |
-| ~CHAR~    | string constant, as described in [[*Strings][section 7.7]].                              |
-| ~STRING~  | character constant, as described in [[*Characters][section 7.5]].                           |
+| ~INTEGER~ | integer constant, as described in [[#integers][section 7.3]].                             |
+| ~FLOAT~   | floating point constant, as described in [[#floating_point_numbers][section 7.4]].                      |
+| ~CHAR~    | string constant, as described in [[#strings][section 7.7]].                              |
+| ~STRING~  | character constant, as described in [[#characters][section 7.5]].                           |
 
 
 Top-level grammar
@@ -5723,18 +5902,20 @@ Variables and operators
 
 * Appendix B: Contents Of Standard Prelude
 :PROPERTIES:
+:CUSTOM_ID: appendix_B
 :UNNUMBERED:
 :END:
 #+INCLUDE: "./standard.prelude" example
 * Appendix C: Relationship With Haskell 1.1
 :PROPERTIES:
+:CUSTOM_ID: appendix_C
 :UNNUMBERED:
 :END:
 The language supported by Gofer is both syntactically and semantically
 similar to that of the functional programming language Haskell as
 defined in the report for Haskell version 1.1 [[[bib-5][5]]]. This section details
 the differences between the two languages, outlined briefly in
-[[*BACKGROUND AND ACKNOWLEDGEMENTS][section 2]].
+[[#background_and_acknowledgements][section 2]].
 
 ** Haskell features not included in Gofer
 - Modules
@@ -5771,9 +5952,9 @@ the differences between the two languages, outlined briefly in
 - Predicates in type expressions may involve arbitrary type expressions,
   not just type variables as used in Haskell.
 - Instances of type classes can be defined at non-overlapping, but
-  otherwise arbitrary types, as described in [[*Equality on function types][section 14.2.5]].
+  otherwise arbitrary types, as described in [[#equality_on_function_types][section 14.2.5]].
 - List comprehensions may include local definitions, specified by
-  qualifiers of the form <pat>=<expr> as described in [[*List comprehensions][section 10.2]].
+  qualifiers of the form <pat>=<expr> as described in [[#list_comprehensions][section 10.2]].
 - No restrictions are placed on the form of predicates that appear in
   the context for a class or instance declaration. This has a number of
   consequences, including the possibility of using (mutually) recursive
@@ -5782,7 +5963,7 @@ the differences between the two languages, outlined briefly in
   practice, since all dictionary construction is performed before
   evaluation and supposedly non-terminating dictionary constructions
   will actually generate an error due to the limited amount of space
-  available for holding dictionaries (see [[*‘Recursive’ dictionaries][section 14.4.2]]).
+  available for holding dictionaries (see [[#recursive_dictionaries][section 14.4.2]]).
 ** Other differences
 - Whilst superficially similar the approach to type classes in Gofer is
   quite different from that used in Haskell. In particular, the approach
@@ -5863,6 +6044,7 @@ the differences between the two languages, outlined briefly in
   applications using Gofer.
 * Appendix D: Using Gofer With Bird+Wadler
 :PROPERTIES:
+:CUSTOM_ID: appendix_D
 :UNNUMBERED:
 :END:
 Bird and Wadler's textbook [[[bib-1][1]]] gives an excellent introduction to
@@ -5884,7 +6066,7 @@ points are particularly useful for this:
   be written in Gofer as: ~type lhs = rhs~.
 - The differences between the syntax used for guarded equations in Gofer
   compared with the notation used in [[[bib-1][1]]] have already been discussed in
-  [[*Guarded equations][section 9.2]]. For example:
+  [[#guarded_equations][section 9.2]]. For example:
 
   #+begin_example
     Using the notation of [[[bib-1][1]]]:       Using Gofer:
@@ -5940,6 +6122,7 @@ points are particularly useful for this:
 
 * Appendix E: Primitives
 :PROPERTIES:
+:CUSTOM_ID: appendix_E
 :UNNUMBERED:
 :END:
 
@@ -5982,9 +6165,9 @@ points are particularly useful for this:
 | [4]        |                  |                           |
 
 
-- [1] :: chr in the standard prelude 
-    ord in the standard prelude 
-    primIntToFloat implements fromInteger      
+- [1] :: chr in the standard prelude
+    ord in the standard prelude
+    primIntToFloat implements fromInteger
 - [2] :: These functions implement the standard generic  (i.e.  non
     overloaded) ordering primitives.  They are  not  currently
     used in the standard prelude.  A simplified prelude may be
@@ -5994,7 +6177,7 @@ points are particularly useful for this:
 - [3] :: primPrint
      This function is used to implement the show'  function  in
      the standard prelude and is not usually used directly.
-   
+
      primPrint d e s produces a textual representation  of  the
      value of the expression e as a  string,  followed  by  the
      string s.  The integer parameter d is used as an indicator
@@ -6011,20 +6194,21 @@ points are particularly useful for this:
 
 * Appendix F: Interpreter Command Summary
 :PROPERTIES:
+:CUSTOM_ID: appendix_F
 :UNNUMBERED:
 :END:
-- <expr>               ::  Analyse expression for errors, typecheck and evaluate. If the expression has type Dialogue, execute as a program using the I/O facilities as described in [[*DIALOGUES: INPUT AND OUTPUT][section 12]]. If the expression has type String, evaluate and print result as a lazy list of characters. In any other case, the standard prelude function show' is applied to the expression and used to print the value of the result in the form of a string, as in the previous case.
-- ~:t~ <expr>          :: Analyse expression for errors,  typecheck  and  print  the translation and inferred type of the term.                 
+- <expr>               ::  Analyse expression for errors, typecheck and evaluate. If the expression has type Dialogue, execute as a program using the I/O facilities as described in [[#dialogues_input_and_output][section 12]]. If the expression has type String, evaluate and print result as a lazy list of characters. In any other case, the standard prelude function show' is applied to the expression and used to print the value of the result in the form of a string, as in the previous case.
+- ~:t~ <expr>          :: Analyse expression for errors,  typecheck  and  print  the translation and inferred type of the term.
 - ~:type~ <expr>, ~:T~ :: alternates to ~:t~
-- ~:q~                 :: Exit Gofer interpreter.                                    
+- ~:q~                 :: Exit Gofer interpreter.
 - ~:quit~, ~:Q~        :: alternates to :q
-- ~:?~                 :: Display summary of interpreter commands.                   
+- ~:?~                 :: Display summary of interpreter commands.
 - ~:h~, ~:H~           :: alternates to ~:?~
 - ~:l f1 .. fn~        ::  Removes any previously loaded  files  of  definitions  and attempts to load the contents of the files ~f1~ upto ~fn~  one after the other.
 - ~:L~                 :: Remove any previously loaded files of  definitions.   Only those functions and values defined in the standard prelude will still be be available.
 - ~:load~, ~:L~        :: Equivalent forms of the ~:l~ command.
-- ~:a f1 .. fn~        ::  Load the contents of the files ~f1~ upto ~fn~ in addition to any previously loaded files. If any of the files of definitions which have already been loaded have been modified since they were last read then they are automatically reloaded before any of the files f1 upto fn are read.                                                  
-                                                                          
+- ~:a f1 .. fn~        ::  Load the contents of the files ~f1~ upto ~fn~ in addition to any previously loaded files. If any of the files of definitions which have already been loaded have been modified since they were last read then they are automatically reloaded before any of the files f1 upto fn are read.
+
                If successful, a command of  the  form  ~:l  f1  ..fn~  is equivalent to the sequence of commands:\\
                ~:l~\\
                ~:a f1~\\
@@ -6032,8 +6216,8 @@ points are particularly useful for this:
                .\\
                ~:a fn~
 - ~:also~, ~:A~   :: Equivalent forms of the :a command.
-- ~:r~            :: Repeat the last load command, attempting to reload any files which have subsequently been modified. Since later files may depend on the definitions in earlier ones, once one file has been reloaded, all subsequent files will also need to be reloaded.                                    
-- ~:reload~, ~:R~ :: Equivalent forms of the :r command.                        
+- ~:r~            :: Repeat the last load command, attempting to reload any files which have subsequently been modified. Since later files may depend on the definitions in earlier ones, once one file has been reloaded, all subsequent files will also need to be reloaded.
+- ~:reload~, ~:R~ :: Equivalent forms of the :r command.
 - ~:e file~       :: Suspend current Gofer session and start an editor  program to modify or view the named file.  The Gofer session  will be resumed when the editor  program  terminates,  and  any script files that  have  been  changed  will  be  reloaded automatically.
 
                  Note that a separate editor program is required and that Gofer must be properly installed to use this feature.  The default editor is usually vi (Calvin version 2.0 is a good substitute for a PC), although this may have been changed when your system was installed.  In any case, you can always substitute an editor of your choice by setting the environment variable EDITOR to the name of your favourite editor program.
@@ -6047,29 +6231,19 @@ points are particularly useful for this:
 
 * Appendix G: Bibliography
 :PROPERTIES:
+:CUSTOM_ID: Appendix_G
 :UNNUMBERED:
 :END:
 #+attr_html: :style list-style-type: none;
 - <<bib-1>> [1] Introduction to functional programming, Richard Bird and Philip Wadler, Prentice Hall International, 1989.
-
 - <<bib-2>> [2] The Implementation of functional programming languages, Simon L. Peyton Jones, Prentice Hall International, 1987.
-
 - <<bib-3>> [3] Lambda Lifting: Transforming Programs to Recursive Equations, Thomas  Johnsson,  in  Lecture  Notes  in  Computer  Science  201, Springer Verlag, 1985.  [but try to get a copy of the  version  of this paper included in Johnsson's thesis which  benefits  from  an extended typeface and is a little easier to read!]
-
 - <<bib-4>> [4] How to make ad-hoc polymorphism less ad-hoc, Philip Wadler and Stephen Blott, University of Glasgow, in the proceedings of the 16th ACM annual symposium on Principles of Programming  Languages, Austin, Texas, January 1989.
-
 - <<bib-5>> [5] Report on the programming language Haskell, a non-strict purely functional language (Version 1.1), Paul Hudak,  Philip  Wadler  et al.  Technical report Yale University/Glasgow University.  August, 1991.
-
 - <<bib-6>> [6] Introduction to Orwell 6.00, Philip Wadler and Quentin Miller, University of Oxford, 1990.
-
-- <<bib-7>> [7] Lazy ML user's manual, Lennart Augustsson and Thomas Johnsson, 1990. 
-
+- <<bib-7>> [7] Lazy ML user's manual, Lennart Augustsson and Thomas Johnsson, 1990.
 - <<bib-8>> [8] Computing with lattices: An application of type classes, Mark P. Jones, Technical report PRG-TR-11-90, Programming Research  Group, Oxford University Computing Laboratory, June 1990.
-
 - <<bib-9>> [9] Towards a theory of qualified types, Mark P. Jones, Technical report PRG-TR-6-91, Programming Research Group, Oxford  University Computing Laboratory, April 1991.
-
 - <<bib-10>> [10] Type inference for qualified types, Mark P. Jones, Technical report PRG-TR-10-91, Programming Research Group, Oxford University Computing Laboratory, June 1991.
-
 - <<bib-11>> [11] A new approach to type classes, Mark P. Jones, distributed to Haskell mailing list 1991.
-
 - <<bib-12>> [12] Practical issues in the implementation of qualified types, Mark P. Jones, Forthcoming 1991.
