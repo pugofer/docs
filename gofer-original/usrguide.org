@@ -3618,17 +3618,17 @@ example we have:
   correspond more closely to the instance variables that are used in the
   terminology of object-oriented programming.]
 
-  The intention is that the (==) function will be used to implement an
-  equality test for each instance of the class, with the (/=) operator
+  The intention is that the ~(=​=​)~ function will be used to implement an
+  equality test for each instance of the class, with the ~(/=)~ operator
   providing the corresponding inequality function. The ability to
   include related groups of functions within a single type class in this
   way is a useful tool in program design.
 
 - The third line of the class declaration (the /default definitions/)
-  provides a default definition of the (/=) operator in terms of the
-  (==) operator. Thus it is only necessary to give a definition for the
-  (==) operator in order to define all of the member functions for the
-  class Eq. It is possible to override default member definitions by
+  provides a default definition of the ~(/=)~ operator in terms of the
+  ~(=​=​)~ operator. Thus it is only necessary to give a definition for the
+  ~(=​=​)~ operator in order to define all of the member functions for the
+  class ~Eq~. It is possible to override default member definitions by
   giving an alternative definition as appropriate for specific instances
   of the class.
 
