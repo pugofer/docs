@@ -3718,8 +3718,8 @@ The interpretation of these declarations is as follows:
   #+end_example
 
   have different meanings; the first denotes equality between characters
-  (elements of type Char), whilst the second denotes equality between
-  integers (elements of type Int).
+  (elements of type ~Char~), whilst the second denotes equality between
+  integers (elements of type ~Int~).
 
 - The fourth declaration provides an equality operation on pairs. Given
   two elements ~(x,y)~ and ~(u,v)~ of type ~(a,b)~ for some ~a~, ~b~,
@@ -3809,7 +3809,7 @@ corresponding ~=>~ symbol.
 *** Testing equality of represented values
 Instances of Eq can also be defined for other types, including
 user-defined datatypes, and unlike the instances described above, the
-definition of ~(==) need not be used to determine whether the values
+definition of ~(==)~ need not be used to determine whether the values
 being compared have the same structure; it is often more useful to check
 that they represent the same value. As an example, suppose that we
 introduce a type constructor ~Set~ for representing sets of values, using
@@ -3852,7 +3852,7 @@ instance Eq ()
 #+end_example
 
 In this case, the definition of ~(=​=​)~ for the instance ~Eq ()~ is left
-completely undefined, and hence so is the definition of (/=), which is
+completely undefined, and hence so is the definition of ~(/=)~, which is
 defined in terms of ~(=​=​)~:
 
 #+begin_example
@@ -3872,8 +3872,8 @@ obtained using the rules in the given instance declarations, then an
 error message will be produced when the expression is type-checked. For
 example, in general there is no sensible way to determine when a pair of
 functions are equal, and the standard prelude does not include a
-definition for an instance of the form Eq (a -> b) for any types a and
-b:
+definition for an instance of the form ~Eq (a -> b)~ for any types ~a~ and
+~b~:
 
 #+begin_example
 ? (1==) == (\x->1==x)
