@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-08-16 Sun 13:23 -->
+<!-- 2026-08-16 Sun 22:02 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Gofer User Guide</title>
@@ -246,8 +246,8 @@
 <ul>
 <li>
 <ul>
-<li><a href="#org9911833">About this document version</a></li>
-<li><a href="#org0fa6f02">Front matter</a></li>
+<li><a href="#orgc2ee9db">About this document version</a></li>
+<li><a href="#orgcfeb526">Front matter</a></li>
 </ul>
 </li>
 <li><a href="#introduction">1. Introduction</a></li>
@@ -295,8 +295,8 @@
 <li><a href="#arithmetic_sequences">10.1. Arithmetic sequences</a></li>
 <li><a href="#list_comprehensions">10.2. List comprehensions</a></li>
 <li><a href="#lambda_expressions">10.3. Lambda expressions</a></li>
-<li><a href="#org18ed054">10.4. Case expressions</a></li>
-<li><a href="#orgd2a971e">10.5. Operator sections</a></li>
+<li><a href="#org4e38701">10.4. Case expressions</a></li>
+<li><a href="#org6d0b029">10.5. Operator sections</a></li>
 <li><a href="#explicitly_typed_expressions">10.6. Explicitly typed expressions</a></li>
 </ul>
 </li>
@@ -324,7 +324,7 @@
 <li><a href="#type_classes_and_predicates">14.1. Type classes and predicates</a></li>
 <li><a href="#the_type_class_eq">14.2. The type class Eq</a>
 <ul>
-<li><a href="#org6670df5">14.2.1. Implicit overloading</a></li>
+<li><a href="#org1120b8a">14.2.1. Implicit overloading</a></li>
 <li><a href="#instances_of_class_eq">14.2.2. Instances of class Eq</a></li>
 <li><a href="#testing_equality_of_represented_values">14.2.3. Testing equality of represented values</a></li>
 <li><a href="#instance_declarations_without_members">14.2.4. Instance declarations without members</a></li>
@@ -334,9 +334,9 @@
 </li>
 <li><a href="#dictionaries">14.3. Dictionaries</a>
 <ul>
-<li><a href="#org3f41aae">14.3.1. Superclasses</a></li>
-<li><a href="#orga92eb8b">14.3.2. Combining classes</a></li>
-<li><a href="#orgaa0066b">14.3.3. Simplified contexts</a></li>
+<li><a href="#orgd862884">14.3.1. Superclasses</a></li>
+<li><a href="#orgcbefb25">14.3.2. Combining classes</a></li>
+<li><a href="#orgb66f9ef">14.3.3. Simplified contexts</a></li>
 </ul>
 </li>
 <li><a href="#other_issues">14.4. Other issues</a>
@@ -355,11 +355,11 @@
 <li><a href="#appendix_B">Appendix B: Contents Of Standard Prelude</a></li>
 <li><a href="#appendix_C">Appendix C: Relationship With Haskell 1.1</a>
 <ul>
-<li><a href="#orgbce1b3e">Haskell features not included in Gofer</a></li>
-<li><a href="#orge29c5b9">Gofer features not supported in Haskell</a></li>
-<li><a href="#org8141aae">Other differences</a></li>
-<li><a href="#org51e3e56">Known problems in Gofer</a></li>
-<li><a href="#org18022a7">Areas for possible future improvement</a></li>
+<li><a href="#orgad43b5b">Haskell features not included in Gofer</a></li>
+<li><a href="#org732e0bb">Gofer features not supported in Haskell</a></li>
+<li><a href="#org8060bf2">Other differences</a></li>
+<li><a href="#orgc930b69">Known problems in Gofer</a></li>
+<li><a href="#org8b287db">Areas for possible future improvement</a></li>
 </ul>
 </li>
 <li><a href="#appendix_D">Appendix D: Using Gofer With Bird+Wadler</a></li>
@@ -369,9 +369,9 @@
 </ul>
 </div>
 </nav>
-<div id="outline-container-org9911833" class="outline-3">
-<h3 id="org9911833">About this document version</h3>
-<div class="outline-text-3" id="text-org9911833">
+<div id="outline-container-orgc2ee9db" class="outline-3">
+<h3 id="orgc2ee9db">About this document version</h3>
+<div class="outline-text-3" id="text-orgc2ee9db">
 <ul style="list-style-type: none;" class="org-ul">
 <li>The original text was by Mark P. Jones c. 1991 and was largely ASCII</li>
 <li>It was HTML-ized by Rustom P. Mody, 6th August, 2026 and has minimal changes — mostly formatting, markup and hyperlinking</li>
@@ -379,10 +379,10 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org0fa6f02" class="outline-3">
-<h3 id="org0fa6f02">Front matter</h3>
-<div class="outline-text-3" id="text-org0fa6f02">
-<pre class="example" id="org9d39f9c">
+<div id="outline-container-orgcfeb526" class="outline-3">
+<h3 id="orgcfeb526">Front matter</h3>
+<div class="outline-text-3" id="text-orgcfeb526">
+<pre class="example" id="org71e7702">
      __________   __________   __________   __________   ________
     /  _______/  /  ____   /  /  _______/  /  _______/  /  ____  \
    /  / _____   /  /   /  /  /  /______   /  /______   /  /___/  /
@@ -410,7 +410,7 @@ improvements, extensions (or deletions!) to jones-mark@cs.yale.edu
                made since the original release.
 </pre>
 
-<pre class="example" id="orged375e7">
+<pre class="example" id="orgc58569a">
 --------------------------------------------------------------------
 Permission to use, copy, modify, and distribute this software and its
 documentation for any personal or educational use without fee is hereby
@@ -534,13 +534,13 @@ originally intended to write, being somewhat longer and perhaps more
 tutorial in nature. Nevertheless, you will not be able to learn
 functional programming from this document alone. A number of useful
 references are given in the reading list at the end of this document. In
-particular, the book by Bird and Wadler[<a href="#org8832fc7">1</a>] is particularly good as a
+particular, the book by Bird and Wadler[<a href="#orgc4f0847">1</a>] is particularly good as a
 general introduction to the use, techniques and theory of functional
 programming. Although their notation is a little different from the
 language used by Gofer, it is a relatively straightforward task to
 translate between the two, and some suggestions for this are given in a
 <a href="#appendix_D">Appendix D</a>. More importantly, the underlying semantics of Gofer do
-correspond to those expected by the authors of [<a href="#org8832fc7">1</a>].
+correspond to those expected by the authors of [<a href="#orgc4f0847">1</a>].
 </p>
 
 <p>
@@ -560,7 +560,7 @@ for improvements or extensions are more than welcome.
 <div class="outline-text-2" id="text-background_and_acknowledgements">
 <p>
 The language supported by Gofer  is both syntactically and semantically
-similar to that of the functional programming language Haskell [<a href="#org966288f">5</a>]. My
+similar to that of the functional programming language Haskell [<a href="#org5e1a45c">5</a>]. My
 principal task in the implementation of Gofer has therefore been to
 decide which features I should omit and then to implement what remains.
 Features common to both include:
@@ -609,7 +609,7 @@ types.</li>
 
 <p>
 These extensions stem from my own research
-[<a href="#orgb4158b8">8</a>, <a href="#orga4953f9">9</a>, <a href="#org9cc93e2">10</a>, <a href="#org51d5de1">11</a>, <a href="#orgac666e3">12</a>] and were
+[<a href="#orga2fcf58">8</a>, <a href="#orgf559762">9</a>, <a href="#org99c0cde">10</a>, <a href="#orgcb6cda1">11</a>, <a href="#org040d5ee">12</a>] and were
 among the principal motivations for the development of Gofer. Full
 details of the differences between Gofer and Haskell 1.1 are given in
 <a href="#appendix_C">Appendix C</a>.
@@ -617,12 +617,12 @@ details of the differences between Gofer and Haskell 1.1 are given in
 
 <p>
 Gofer would not have been implemented without my original introduction
-to functional programming using Orwell [<a href="#orgabeb257">6</a>], and I am particularly
+to functional programming using Orwell [<a href="#org116915f">6</a>], and I am particularly
 grateful to Quentin Miller for answering so many of my questions about
 functional programming and about the Orwell system in particular. I
 should also like to mention the influence of the Haskell B. compiler
 from Lennart Augustsson and Thomas Johnsson and based on their earlier
-LML compiler [<a href="#org0ef21e7">7</a>].
+LML compiler [<a href="#orgf7bf003">7</a>].
 </p>
 
 <p>
@@ -640,17 +640,17 @@ with source code and I hope that this will be of interest to some users.
 <p>
 Many of the ideas used in the back-end of the Gofer system (i.e. the
 compiler and abstract machine) originate from the chapters of Simon
-Peyton Jones textbook [<a href="#org3d23edd">2</a>]; I very much doubt whether Gofer would have
+Peyton Jones textbook [<a href="#org8604f01">2</a>]; I very much doubt whether Gofer would have
 been completed without frequent reference to that book. The
 lambda-lifter used in Gofer is based on Thomas Johnsson's algorithm
-described in [<a href="#orgf461111">3</a>].
+described in [<a href="#org6ac0ae8">3</a>].
 </p>
 
 <p>
 On the theoretical side, I'm grateful to Phil Wadler for the
 encouragement that he has given me with my work on qualified types. Many
 of the basic ideas that I have used were inspired by his original paper
-motivating the use of type classes [<a href="#org340f5ff">4</a>].
+motivating the use of type classes [<a href="#orgb30c02c">4</a>].
 </p>
 </div>
 </div>
@@ -663,7 +663,7 @@ after which a display something like the following will normally be
 produced:
 </p>
 
-<pre class="example" id="org6a46384">
+<pre class="example" id="org41a1228">
 Gofer Version 2.20
 
 Reading script file "/gofer/prelude":
@@ -728,7 +728,7 @@ its value on the terminal, before returning to the original prompt and
 waiting for the next expression. For example:
 </p>
 
-<pre class="example" id="orgec170d0">
+<pre class="example" id="org00415cb">
 ? (2+3)*8
 40
 (5 reductions, 9 cells)
@@ -756,7 +756,7 @@ determine the sum of a list of integers. Thus the result obtained by
 Gofer is:
 </p>
 
-<pre class="example" id="org28b68a5">
+<pre class="example" id="orgcab981a">
 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10  =  55
 </pre>
 
@@ -764,7 +764,7 @@ Gofer is:
 We could have typed this sum into Gofer directly:
 </p>
 
-<pre class="example" id="org773b68f">
+<pre class="example" id="org8ca2d69">
 ? 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
 55
 (10 reductions, 23 cells)
@@ -802,7 +802,7 @@ For example, suppose that you create a file <code>fact</code> containing the
 following definition:
 </p>
 
-<pre class="example" id="org839089c">
+<pre class="example" id="orgbe40d0c">
 fact n = product [1..n]
 </pre>
 
@@ -814,7 +814,7 @@ argument. In standard mathematical notation, fact n = n! which is
 usually defined informally by an equation of the form:
 </p>
 
-<pre class="example" id="orgc94ea01">
+<pre class="example" id="orgb12f5c7">
 n! = 1 * 2 * ... * (n-1) * n
 </pre>
 
@@ -830,7 +830,7 @@ first load the definitions of the file into the interpreter. The
 simplest way to do this uses the <code>:l</code> command:
 </p>
 
-<pre class="example" id="org8100050">
+<pre class="example" id="orgc2d15f2">
 ? :l fact
 Reading script file "fact":
 Parsing......................................................
@@ -853,7 +853,7 @@ factorial function has now been loaded, we can make use of this function
 in expressions entered to the interpreter:
 </p>
 
-<pre class="example" id="org4de7531">
+<pre class="example" id="org4106179">
 ? fact 6
 720
 (57 reductions, 85 cells)
@@ -866,7 +866,7 @@ of n objects is given by n! / (r! * (n-r)!). In Gofer, this function can
 be defined by:
 </p>
 
-<pre class="example" id="orgefc88b9">
+<pre class="example" id="orgb56c322">
 comb n r = fact n / (fact r * fact (n-r))
 </pre>
 
@@ -877,7 +877,7 @@ of <code>comb</code> on a new line, or we can include the definition as part of 
 expression entered whilst using Gofer:
 </p>
 
-<pre class="example" id="org6cc3b0f">
+<pre class="example" id="org9a2df5d">
 ? comb 5 2 where comb n r = fact n / (fact r * fact (n-r))
 10
 (110 reductions, 161 cells)
@@ -912,7 +912,7 @@ symbol <code>+</code> then the sum of the integers from 1 to 5 would have to be
 written as:
 </p>
 
-<pre class="example" id="org899a92a">
+<pre class="example" id="org047750f">
 plus (plus (plus (plus 1 2) 3) 4) 5
 </pre>
 
@@ -920,7 +920,7 @@ plus (plus (plus (plus 1 2) 3) 4) 5
 In this particular case, another way of writing the same sum is:
 </p>
 
-<pre class="example" id="org4feae69">
+<pre class="example" id="org852215e">
 plus 1 (plus 2 (plus 3 (plus 4 5)))
 </pre>
 
@@ -948,7 +948,7 @@ special kind of function called a <i>constructor function</i> described in
 <i>Gofer variable and function names</i>:
 </p>
 
-<pre class="example" id="orgef534d1">
+<pre class="example" id="org45491a7">
 sum    f    f''    integerSum    african_queen    do'until'zero
 </pre>
 
@@ -1011,7 +1011,7 @@ An operator symbol is written using one or more of the following
 symbol characters:
 </p>
 
-<pre class="example" id="org36258b2">
+<pre class="example" id="org1a18a72">
 :  !  #  $  %  &amp;  *  +  .  /  &lt;  =  &gt;  ?  @  \  ^  |  -
 </pre>
 
@@ -1025,7 +1025,7 @@ In addition, the following operator symbols have special uses in
 Gofer:
 </p>
 
-<pre class="example" id="org5078baf">
+<pre class="example" id="orgac1eb26">
 ::    =    ..    @    \    |    &lt;-    -&gt;    ~    =&gt;
 </pre>
 
@@ -1034,7 +1034,7 @@ All other operator symbols can be used as variables or function names,
 including each of the following examples:
 </p>
 
-<pre class="example" id="org9ee6eee">
+<pre class="example" id="org5210d07">
 +    ++    &amp;&amp;    ||     &lt;=    ==    /=    //  .
 ==&gt;  $     @@     -*-   \/    /\    ...   ?
 </pre>
@@ -1062,7 +1062,7 @@ in backquotes <code>`</code> &ndash; for example, the expressions using the <cod
 function above are a little easier to read using this technique:
 </p>
 
-<pre class="example" id="orga901adf">
+<pre class="example" id="org6b4d69a">
 (((1 `plus` 2) `plus` 3) `plus` 4) `plus` 5
 </pre>
 
@@ -1209,20 +1209,20 @@ The following operator declarations are taken from the standard prelude:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell"><code><span style="color: #ff7f24;">-- </span><span style="color: #ff7f24;">Operator precedence table
-</span>
-<span style="color: #00ffff;">infixl</span> 9 <span style="color: #eedd82;">!!</span>
-<span style="color: #00ffff;">infixr</span> 9 <span style="color: #eedd82;">.</span>
-<span style="color: #00ffff;">infixr</span> 8 <span style="color: #eedd82;">^</span>
-<span style="color: #00ffff;">infixl</span> 7 <span style="color: #eedd82;">*</span>
-<span style="color: #00ffff;">infix</span>  7 <span style="color: #eedd82;">/</span>, <span style="color: #eedd82;">`div`</span>, <span style="color: #eedd82;">`rem`</span>, <span style="color: #eedd82;">`mod`</span>
-<span style="color: #00ffff;">infixl</span> 6 <span style="color: #eedd82;">+</span>, <span style="color: #eedd82;">-</span>
-<span style="color: #00ffff;">infix</span>  5 <span style="color: #eedd82;">\\</span>
-<span style="color: #00ffff;">infixr</span> 5 <span style="color: #eedd82;">++</span>, <span style="color: #98fb98;">:</span>
-<span style="color: #00ffff;">infix</span>  4 <span style="color: #eedd82;">==</span>, <span style="color: #eedd82;">/=</span>, <span style="color: #eedd82;">&lt;</span>, <span style="color: #eedd82;">&lt;=</span>, <span style="color: #eedd82;">&gt;=</span>, <span style="color: #eedd82;">&gt;</span>
-<span style="color: #00ffff;">infix</span>  4 <span style="color: #eedd82;">`elem`</span>, <span style="color: #eedd82;">`notElem`</span>
-<span style="color: #00ffff;">infixr</span> 3 <span style="color: #eedd82;">&amp;&amp;</span>
-<span style="color: #00ffff;">infixr</span> 2 <span style="color: #eedd82;">||</span>
+<pre class="src src-haskell"><code>-- Operator precedence table
+
+infixl 9 !!
+infixr 9 .
+infixr 8 ^
+infixl 7 *
+infix  7 /, `div`, `rem`, `mod`
+infixl 6 +, -
+infix  5 \\
+infixr 5 ++, :
+infix  4 ==, /=, &lt;, &lt;=, &gt;=, &gt;
+infix  4 `elem`, `notElem`
+infixr 3 &amp;&amp;
+infixr 2 ||
 </code></pre>
 </div>
 
@@ -1379,7 +1379,7 @@ then <code>f x</code> is the result of applying
 <p>
 If <code>t1</code>, <code>t2</code>, &hellip;, <code>tn</code> are type expressions then:
 </p>
-<pre class="example" id="orgf8ee100">
+<pre class="example" id="org5f556ec">
 t1 -&gt; t2 -&gt; ... -&gt; tn
 </pre>
 
@@ -1387,7 +1387,7 @@ t1 -&gt; t2 -&gt; ... -&gt; tn
 can be used as an abbreviation for the type:
 </p>
 
-<pre class="example" id="org61e50b1">
+<pre class="example" id="org84530b4">
 t1 -&gt; (t2 -&gt; ( ... -&gt; tn) ...)
 </pre>
 
@@ -1421,7 +1421,7 @@ Represented by the type <code>Bool</code>, there are two boolean values written 
 functions for manipulating boolean values:
 </p>
 
-<pre class="example" id="orgdc289ec">
+<pre class="example" id="org0fe6eba">
 (&amp;&amp;), (||) :: Bool -&gt; Bool -&gt; Bool
 not  :: Bool -&gt; Bool
 </pre>
@@ -1444,7 +1444,7 @@ an expression to select between two alternatives according to the value
 of a boolean expression:
 </p>
 
-<pre class="example" id="org187da82">
+<pre class="example" id="orgc423fa2">
 if b then t else f
 </pre>
 
@@ -1507,7 +1507,7 @@ zero or positive respectively.</dd>
 The less familiar operators are illustrated by the following identities:
 </p>
 
-<pre class="example" id="org13accba">
+<pre class="example" id="orga8d50ad">
 3^4 == 81,          7 `div` 3 == 2,      even 23 == False
 7 `rem` 3 == 1,    -7 `rem` 3 == -1,     7 `rem` -3 == 1
 7 `mod` 3 == 1,    -7 `mod` 3 == 2,      7 `mod` -3 == -2
@@ -1551,7 +1551,7 @@ using an <i>escape code</i>; each of these begins with a backslash character
 character. Some of the most useful escape codes are:
 </p>
 
-<pre class="example" id="org4263ab7">
+<pre class="example" id="org68cbaf4">
 '\\'             backslash
 '\''             apostrophe
 '\"'             double quote
@@ -1567,7 +1567,7 @@ character. Some of the most useful escape codes are:
 Additional escape characters include:
 </p>
 
-<pre class="example" id="org905ad82">
+<pre class="example" id="orgbbc3a14">
 '\^c'            control character, where c is replaced by
                  one of the characters:
                     "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
@@ -1593,7 +1593,7 @@ character values are quite distinct from integers; however the standard
 prelude does include functions:
 </p>
 
-<pre class="example" id="org2228888">
+<pre class="example" id="orga6ad3f7">
 ord :: Char -&gt; Int
 chr :: Int -&gt; Char
 </pre>
@@ -1603,7 +1603,7 @@ which enable you to map a character to its corresponding ASCII value, or
 from an ASCII value to the corresponding character:
 </p>
 
-<pre class="example" id="orgf5cef8c">
+<pre class="example" id="org5e0261e">
 ? ord 'a'
 97
 (2 reductions, 6 cells)
@@ -1632,7 +1632,7 @@ single element onto the front  of  another  list  using  the  <code>(:)</code>
 operator (pronounced ‘cons’).  These notations are equivalent:
 </p>
 
-<pre class="example" id="org8018fde">
+<pre class="example" id="org94c5b3b">
 [1,3,10]  =  1 : [3,10]  =  1 : 3 : [10]  =  1 : 3 : 10 : []
 </pre>
 
@@ -1664,7 +1664,7 @@ function <code>f</code> to each of the values in the list <code>xs</code> in tur
 Here are some examples using these functions:
 </p>
 
-<pre class="example" id="orgff49890">
+<pre class="example" id="org777c99e">
 ? length [1,3,10]
 3
 (15 reductions, 28 cells)
@@ -1713,7 +1713,7 @@ sequences of characters enclosed between speech marks. All of the escape
 codes that can be used for characters may also be used in a string:
 </p>
 
-<pre class="example" id="orge147236">
+<pre class="example" id="orgb65a684">
 ? "hello, world"
 hello, world
 (0 reductions, 13 cells)
@@ -1731,7 +1731,7 @@ used to separate otherwise ambiguous pairs of characters within a
 string:
 </p>
 
-<pre class="example" id="orgb8a14a8">
+<pre class="example" id="org2710a7c">
 e.g.  "\123h"   represents the string ['\123', 'h']
       "\12\&amp;3h" represents the string ['\12', '3', 'h']
 </pre>
@@ -1742,7 +1742,7 @@ a non-empty sequence of space, tab and new line characters enclosed by
 backslash characters:
 </p>
 
-<pre class="example" id="org35d004a">
+<pre class="example" id="orgfe78c48">
 ? "hell\   \o"
 hello
 (0 reductions, 6 cells)
@@ -1763,7 +1763,7 @@ representation. The only way of printing a string value in the same way
 as any other value is by explicitly using the show' function:
 </p>
 
-<pre class="example" id="orgab8f866">
+<pre class="example" id="orgf3062fa">
 ? show' "hello"
 "hello"
 (7 reductions, 24 cells)
@@ -1786,7 +1786,7 @@ standard prelude functions for manipulating lists can also be used with
 strings:
 </p>
 
-<pre class="example" id="orgb2ce39b">
+<pre class="example" id="org4fd38f5">
 ? length "Hello"
 5
 (22 reductions, 36 cells)
@@ -1817,7 +1817,7 @@ written <code>(t1, t2, ..., tn)</code> whose elements are also written in the fo
 <code>(x1, x2, ..., xn)</code> where the expressions <code>x1</code>, <code>x2</code>, &hellip;, <code>xn</code> have types <code>t1</code>, <code>t2</code>, &hellip;, <code>tn</code> respectively.
 </p>
 
-<pre class="example" id="orgedcb429">
+<pre class="example" id="org0918b30">
 e.g.  (1, [2], 3)   :: (Int, [Int], Int)
       ('a', False)  :: (Char, Bool)
       ((1,2),(3,4)) :: ((Int, Int), (Int, Int))
@@ -1858,7 +1858,7 @@ you make a typing mistake, either leaving out some characters, or
 perhaps pressing the wrong keys instead. In the following example, the
 user has missed out a ‘[’ character:
 </p>
-<pre class="example" id="org9a7a6d0">
+<pre class="example" id="org44fe27c">
 ? sum 1..100]
 ERROR: Syntax error in input (unexpected `..')
 ?
@@ -1871,7 +1871,7 @@ misspelt the name of a function, or that the files defining a function
 have not yet been loaded. For example:
 </p>
 
-<pre class="example" id="org8756a3e">
+<pre class="example" id="org6613403">
 ? sum [1..n]
 ERROR: Undefined variable "n"
 ?
@@ -1888,7 +1888,7 @@ expression. In the expression <code>fact 'A'</code>, we can see that the argumen
 factorial function. This error will be detected by Gofer if you try to
 evaluate the expression:
 </p>
-<pre class="example" id="org552e243">
+<pre class="example" id="org75093aa">
 ? fact 'A'
 ERROR: Type error in application
 *** expression     : fact 'A'
@@ -1914,7 +1914,7 @@ of the expression being evaluated that caused the error, surrounded by
 braces ‘{’ and ‘}’:
 </p>
 
-<pre class="example" id="org1a77886">
+<pre class="example" id="org8227a13">
 ? 3/0
 {primDivInt 3 0}
 (4 reductions, 30 cells)
@@ -1928,7 +1928,7 @@ second)]. If an error occurs in just one part of an expression, only the
 part causing the problem will be displayed:
 </p>
 
-<pre class="example" id="org9c74d6f">
+<pre class="example" id="orgb289e73">
 ? 4 + (5/0)
 {primDivInt 5 0}
 (5 reductions, 32 cells)
@@ -1941,7 +1941,7 @@ which is often useful for ensuring that appropriate error messages are
 produced when an error occurs:
 </p>
 
-<pre class="example" id="org6a1dbab">
+<pre class="example" id="org4eb8563">
 ? error "Problem has occurred"
 {error "Problem has occurred"}
 (23 reductions, 99 cells)
@@ -1964,7 +1964,7 @@ problems and calculations. The declaration of a function <code>f</code> usually
 takes the form of a number of equations of the form:
 </p>
 
-<pre class="example" id="orgd302aaa">
+<pre class="example" id="org4abe96c">
 f &lt;pat1&gt; &lt;pat2&gt; ... &lt;patn&gt;  =   &lt;rhs&gt;
 </pre>
 
@@ -1987,7 +1987,7 @@ factorial function defined in
 <a href="#standard_and_user_defined_functions">section 5</a>:
 </p>
 
-<pre class="example" id="org77c4c40">
+<pre class="example" id="org4a03a5e">
 fact n = product [1..n]
 </pre>
 
@@ -2002,7 +2002,7 @@ verify that the evaluation of <code>fact 6</code> takes one more reduction than
 that of <code>product [1..6]</code>:
 </p>
 
-<pre class="example" id="org695b84d">
+<pre class="example" id="orga4922a8">
 ? fact 6
 720
 (57 reductions, 85 cells)
@@ -2018,7 +2018,7 @@ also be used in patterns, as in the following definition of the function
 <code>not</code> taken from the standard prelude:
 </p>
 
-<pre class="example" id="org69b31b1">
+<pre class="example" id="orgbe4713c">
 not True  = False
 not False = True
 </pre>
@@ -2036,7 +2036,7 @@ Other constants, including integers, characters and strings may also be
 used in patterns. For example, if we define a function <code>hello</code> by:
 </p>
 
-<pre class="example" id="orgd27801a">
+<pre class="example" id="org1222d5e">
 hello "Mark"  =  "Howdy"
 hello name    =  "Hello " ++ name ++ ", nice to meet you!"
 </pre>
@@ -2045,7 +2045,7 @@ hello name    =  "Hello " ++ name ++ ", nice to meet you!"
 then:
 </p>
 
-<pre class="example" id="org38b51ce">
+<pre class="example" id="org8c1708d">
 ? hello "Mark"
 Howdy
 (1 reduction, 12 cells)
@@ -2061,7 +2061,7 @@ because Gofer always uses the first applicable equation. If instead we
 had defined the function with the equations:
 </p>
 
-<pre class="example" id="orgb71e152">
+<pre class="example" id="org86b064f">
 hello name    =  "Hello " ++ name ++ ", nice to meet you!"
 hello "Mark"  =  "Howdy"
 </pre>
@@ -2071,7 +2071,7 @@ then the results obtained using this function would have been a little
 different:
 </p>
 
-<pre class="example" id="orgfd01f67">
+<pre class="example" id="org0fb6f1b">
 ? hello "Mark"
 Hello Mark, nice to meet you!
 (13 reductions, 66 cells)
@@ -2147,7 +2147,7 @@ Note that no variable name can be used more than once on the left hand
 side of each equation in a function definition. The following example:
 </p>
 
-<pre class="example" id="orgf144088">
+<pre class="example" id="org9cd622c">
 areTheyTheSame x x = True
 areTheyTheSame _ _ = False
 </pre>
@@ -2157,7 +2157,7 @@ will not be accepted by the Gofer system, but should instead be defined
 using the notation of guards introduced in the next section:
 </p>
 
-<pre class="example" id="org567d038">
+<pre class="example" id="org8083f8e">
 areTheyTheSame x y
         | x==y      = True
         | otherwise = False
@@ -2177,7 +2177,7 @@ argument is an even integer or not, and returns the string <code>even</code> or
 <code>odd</code> as appropriate:
 </p>
 
-<pre class="example" id="orgf7bc28f">
+<pre class="example" id="org787f7c0">
 oddity n | even n    = "even"
          | otherwise = "odd"
 </pre>
@@ -2186,7 +2186,7 @@ oddity n | even n    = "even"
 In general, an equation using guards takes the form:
 </p>
 
-<pre class="example" id="org948d3da">
+<pre class="example" id="org4f56a86">
 f x1 x2 ... xn | condition1  =  e1
                | condition2  =  e2
                .
@@ -2205,10 +2205,10 @@ guard has been satisfied.
 </p>
 
 <p>
-[ASIDE: in the notation of [<a href="#org8832fc7">1</a>], the above examples would be written as:
+[ASIDE: in the notation of [<a href="#orgc4f0847">1</a>], the above examples would be written as:
 </p>
 
-<pre class="example" id="orgfd1d9e4">
+<pre class="example" id="org6c70222">
 oddity n        =  "even",   if even n
                 =  "odd",    otherwise
 
@@ -2234,7 +2234,7 @@ Consider the following function which calculates the number of distinct
 real roots for a quadratic equation of the form a*x*x + b*x + c = 0:
 </p>
 
-<pre class="example" id="orgf6c0d6d">
+<pre class="example" id="orgfbe651f">
 numberOfRoots a b c | discr &gt; 0   =  2
                     | discr == 0  =  1
                     | discr &lt; 0   =  0
@@ -2252,7 +2252,7 @@ Local definitions can also be introduced at an arbitrary point in an
 expression using an expression of the form:
 </p>
 
-<pre class="example" id="org7838a5f">
+<pre class="example" id="orgb64b0b4">
 let &lt;decls&gt; in &lt;expr&gt;
 </pre>
 
@@ -2260,7 +2260,7 @@ let &lt;decls&gt; in &lt;expr&gt;
 For example:
 </p>
 
-<pre class="example" id="org5b3cfab">
+<pre class="example" id="org5725b39">
 ? let x = 1 + 4 in x*x + 3*x + 1
 41
 (8 reductions, 15 cells)
@@ -2300,7 +2300,7 @@ This process can be expressed directly in Gofer using a conditional
 expression:
 </p>
 
-<pre class="example" id="orgd4dc165">
+<pre class="example" id="orgbf701c7">
 fact1 n  =  if n==0 then 1 else n * fact1 (n-1)
 </pre>
 
@@ -2314,7 +2314,7 @@ further calculation. The following diagram illustrates how 6! is
 evaluated using <code>fact1</code>:
 </p>
 
-<pre class="example" id="org3fc30e8">
+<pre class="example" id="orgf313486">
 fact1 6  ==&gt;  6 * fact1 5
          ==&gt;  6 * (5 * fact1 4)
          ==&gt;  6 * (5 * (4 * fact1 3))
@@ -2335,7 +2335,7 @@ Incidentally, there are several other ways of writing the recursive
 definition of <code>fact1</code> above in Gofer. For example, using guards:
 </p>
 
-<pre class="example" id="orgab699d9">
+<pre class="example" id="orgc645604">
 fact2 n
   | n==0        =  1
   | otherwise   =  n * fact2 (n-1)
@@ -2345,7 +2345,7 @@ fact2 n
 or using pattern matching with an integer constant:
 </p>
 
-<pre class="example" id="org0702235">
+<pre class="example" id="org82eec96">
 fact3 0         =  1
 fact3 n         =  n * fact3 (n-1)
 </pre>
@@ -2359,7 +2359,7 @@ Yet another style of definition uses the (n+k) patterns mentioned in
 <a href="#simple_pattern_matching">section 9.1</a>:
 </p>
 
-<pre class="example" id="org8778122">
+<pre class="example" id="orga88f1d6">
 fact4 0         =  1
 fact4 (n+1)     =  (n+1) * fact4 n
 </pre>
@@ -2368,7 +2368,7 @@ fact4 (n+1)     =  (n+1) * fact4 n
 which is equivalent to:
 </p>
 
-<pre class="example" id="org3a588f0">
+<pre class="example" id="orgf0ae9a9">
 fact5 n | n==0  =  1
         | n&gt;=1  =  n * fact5 (n-1)
 </pre>
@@ -2423,7 +2423,7 @@ longer than xs, and so has length 1 + len xs.</li>
 Writing these two cases out leads directly to the following definition:
 </p>
 
-<pre class="example" id="org2ef2bcd">
+<pre class="example" id="org590aad1">
 len []      =  0
 len (x:xs)  =  1 + len xs
 </pre>
@@ -2434,7 +2434,7 @@ to determine the length of the list [1,2,3,4] (remember that this is
 just an abbreviation for 1 : 2 : 3 : 4 : []):
 </p>
 
-<pre class="example" id="org56e26ed">
+<pre class="example" id="orgeaf040c">
 len [1,2,3,4]  ==&gt;  1 + len [2,3,4]
                ==&gt;  1 + (1 + len [3,4])
                ==&gt;  1 + (1 + (1 + len [4]))
@@ -2452,7 +2452,7 @@ which use similar ideas to define the functions product and map
 introduced in earlier sections:
 </p>
 
-<pre class="example" id="org289f23f">
+<pre class="example" id="org55a065e">
 product []     = 1
 product (x:xs) = x * product xs
 
@@ -2481,7 +2481,7 @@ which it is used.</li>
 The first of these ideas is illustrated by the following function:
 </p>
 
-<pre class="example" id="orgf6f09a4">
+<pre class="example" id="org1ae5455">
 ignoreArgument x = "I didn't need to evaluate x"
 </pre>
 
@@ -2490,7 +2490,7 @@ Since the result of the function <code>ignoreArgument</code> doesn't depend on t
 value of its argument <code>x</code>, that argument will not be evaluated:
 </p>
 
-<pre class="example" id="orgdc8d838">
+<pre class="example" id="org9b66d0a">
 ? ignoreArgument (1/0)
 I didn't need to evaluate x
 (1 reduction, 31 cells)
@@ -2505,7 +2505,7 @@ expression of the form <code>strict f x</code> is evaluated by first evaluating 
 argument <code>x</code> and then applying the function <code>f</code> to the result:
 </p>
 
-<pre class="example" id="orgb8ad9ae">
+<pre class="example" id="org106ab49">
 ? strict ignoreArgument (1/0)
 {primDivInt 1 0}
 (4 reductions, 29 cells)
@@ -2518,7 +2518,7 @@ expression should be evaluated more than once. For example, the
 following two expressions can be used to calculate 3*3*3*3:
 </p>
 
-<pre class="example" id="org44b1c96">
+<pre class="example" id="org0bef6c0">
 ? square * square where square = 3 * 3
 81
 (3 reductions, 9 cells)
@@ -2535,7 +2535,7 @@ integer into a string, the sequences of reductions that will be used in
 each case are as follows:
 </p>
 
-<pre class="example" id="org8248c3a">
+<pre class="example" id="org760d59d">
 square * square where square = 3 * 3
    -- calculate the value of square by reducing 3 * 3 ==&gt; 9
    -- and replace each occurrence of square with this result
@@ -2561,7 +2561,7 @@ The standard prelude includes a function <code>minimum</code> which can be used 
 this very purpose:
 </p>
 
-<pre class="example" id="org8e01cdf">
+<pre class="example" id="org9316854">
 ? minimum [100,99..1]
 1
 (809 reductions, 1322 cells)
@@ -2582,7 +2582,7 @@ entirety is likely to require significantly more work than the previous
 approach:
 </p>
 
-<pre class="example" id="org0465952">
+<pre class="example" id="org2f58c1e">
 ? sort [100,99..1]
 [1, 2, 3, 4, 5, 6, 7, 8, ... etc ..., 99, 100]
 (10712 reductions, 21519 cells)
@@ -2595,7 +2595,7 @@ of the sorted list actually requires less work in this particular case
 than the first solution using <code>minimum</code>:
 </p>
 
-<pre class="example" id="org4553da8">
+<pre class="example" id="org9279802">
 ? head (sort [100,99..1])
 1
 (713 reductions, 1227 cells)
@@ -2609,7 +2609,7 @@ of elements. The results are rather different if we compare the same two
 approaches used to calculate the maximum value in the list:
 </p>
 
-<pre class="example" id="org5460e71">
+<pre class="example" id="org5f888c9">
 ? maximum [100,99..1]
 100
 (812 reductions, 1225 cells)
@@ -2645,7 +2645,7 @@ As a simple example, consider the following function which can be used
 to produce infinite lists of integer values:
 </p>
 
-<pre class="example" id="org3a84a33">
+<pre class="example" id="org871440e">
 countFrom n = n : countFrom (n+1)
 </pre>
 
@@ -2658,7 +2658,7 @@ this expression is equivalent to using an ‘infinite’ loop to print the
 list of integers in an imperative programming language:
 </p>
 
-<pre class="example" id="orgcaaccd1">
+<pre class="example" id="org3166155">
 ? countFrom 1
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,^C{Interrupted!}
 (53 reductions, 160 cells)
@@ -2674,7 +2674,7 @@ function <code>take</code> defined in the standard prelude, we can repeat the
 calculation from <a href="#using_gofer_a_basic_introduction">section 4</a> to find the sum of the integers 1 to 10:
 </p>
 
-<pre class="example" id="orga64f7dd">
+<pre class="example" id="orgcd550d1">
 ? sum (take 10 (countFrom 1))
 55
 (62 reductions, 119 cells)
@@ -2696,7 +2696,7 @@ application of that object. Consider the following definition for the
 infinite list of powers of two <code>[1, 2, 4, 8, ...]</code>:
 </p>
 
-<pre class="example" id="orgc322f5e">
+<pre class="example" id="org52466a2">
 powersOfTwo = 1 : map double powersOfTwo
               where double n = 2*n
 </pre>
@@ -2708,7 +2708,7 @@ xs], we can define a function to find the nth power of 2 for any given
 integer n:
 </p>
 
-<pre class="example" id="orgb0dd7b0">
+<pre class="example" id="orgf7d2a9b">
 twoToThe n = powersOfTwo !! n
 </pre>
 
@@ -2721,7 +2721,7 @@ Using functions from the standard prelude, this translates directly into
 the definition:
 </p>
 
-<pre class="example" id="org44ee34b">
+<pre class="example" id="orgbd94352">
 binToDec ds = sum (zipWith (*) (reverse ds) powersOfTwo)
 </pre>
 
@@ -2729,7 +2729,7 @@ binToDec ds = sum (zipWith (*) (reverse ds) powersOfTwo)
 For example:
 </p>
 
-<pre class="example" id="org1382688">
+<pre class="example" id="orga2e7154">
 ? twoToThe 12
 4096
 (15 reductions, 21 cells)
@@ -2754,7 +2754,7 @@ second argument and the result are lists, so that the type of <code>map</code> m
 be of the form:
 </p>
 
-<pre class="example" id="orgf21bccd">
+<pre class="example" id="orgb4b7224">
   (a -&gt; b)   -&gt;      [c]      -&gt;     [d]
   \______/          \___/           \___/
 type of 1st      type of 2nd      type of result
@@ -2779,7 +2779,7 @@ function <code>f</code> to some value. It is therefore reasonable to treat the
 <code>map</code> function as having any type of the form:
 </p>
 
-<pre class="example" id="org9dd82a3">
+<pre class="example" id="orgc20d0cf">
 (a -&gt; b)  -&gt;  [a]  -&gt;  [b]
 </pre>
 
@@ -2798,7 +2798,7 @@ functions which have been used in previous examples which illustrate
 this point:
 </p>
 
-<pre class="example" id="orga2b9695">
+<pre class="example" id="orgef8e96f">
 length :: [a] -&gt; Int
 (++)   :: [a] -&gt; [a] -&gt; [a]
 concat :: [[a]] -&gt; [a]
@@ -2810,7 +2810,7 @@ the length of a list of integers as well as finding the length of a
 string:
 </p>
 
-<pre class="example" id="org53a25dd">
+<pre class="example" id="orgf641c48">
 ? length [1..10]
 10
 (98 reductions, 138 cells)
@@ -2837,7 +2837,7 @@ described as <i>higher-order functions</i>. Consider the following example,
 taken from the standard prelude:
 </p>
 
-<pre class="example" id="orgd4837b2">
+<pre class="example" id="org429f77c">
 (.)       :: (b -&gt; c) -&gt; (a -&gt; b) -&gt; (a -&gt; c)
 (f . g) x  = f (g x)
 </pre>
@@ -2859,7 +2859,7 @@ characters used in a list of strings. A simple recursive function
 provides one solution:
 </p>
 
-<pre class="example" id="orgfe67937">
+<pre class="example" id="org57cf711">
 countChars []     = 0
 countChars (w:ws) = length w + countChars ws
 
@@ -2876,7 +2876,7 @@ list into a single word (using concat) and then finding the length of
 that word:
 </p>
 
-<pre class="example" id="org51daa77">
+<pre class="example" id="org00c7b25">
 ? (length . concat) ["super","cali","fragi","listic"]
 20
 (113 reductions, 211 cells)
@@ -2889,7 +2889,7 @@ Another solution is to first find the length of each word in the list
 calculate the sum of these individual lengths:
 </p>
 
-<pre class="example" id="org9f1544b">
+<pre class="example" id="orgfe2fa46">
 ? (sum . map length) ["super","cali","fragi","listic"]
 20
 (105 reductions, 172 cells)
@@ -2906,7 +2906,7 @@ A variable declaration is a special form of function definition, almost
 always consisting of a single equation of the form:
 </p>
 
-<pre class="example" id="org377248d">
+<pre class="example" id="org5b8a916">
 var = rhs
 </pre>
 
@@ -2916,7 +2916,7 @@ function declarations of arity&gt;0 are guaranteed to be functions, the
 values defined by variable declarations may or may not be functions:
 </p>
 
-<pre class="example" id="org49b803c">
+<pre class="example" id="org383d623">
 odd = not . even   -- if an integer is not even then it must be odd
 val = sum [1..100]
 </pre>
@@ -2931,7 +2931,7 @@ can then be avoided for each subsequent use of <code>val</code> (unless the file
 containing the definition of <code>val</code> is reloaded).
 </p>
 
-<pre class="example" id="org7ed6ac6">
+<pre class="example" id="org588d26f">
 ? val
 5050
 (809 reductions, 1120 cells)
@@ -2949,7 +2949,7 @@ variable declarations where the resulting value will require a lot of
 storage space. If we load a file of definitions including the line:
 </p>
 
-<pre class="example" id="org8673fc5">
+<pre class="example" id="orgfdb5010">
 longList = [1..10000]
 </pre>
 
@@ -2971,7 +2971,7 @@ Another useful way of defining variables uses <i>pattern bindings</i> which
 are equations of the form:
 </p>
 
-<pre class="example" id="org62193ef">
+<pre class="example" id="orgad9b13c">
 pat = rhs
 </pre>
 
@@ -2982,7 +2982,7 @@ possible definition for the function <code>head</code> which returns the first
 element in a list of values:
 </p>
 
-<pre class="example" id="org1fdf263">
+<pre class="example" id="org2759de6">
 head xs  =  x  where  (x:ys) = xs
 </pre>
 
@@ -3009,7 +3009,7 @@ actually packaged up in a single value such as a tuple. As an example,
 consider the function <code>span</code> defined in the standard prelude.
 </p>
 
-<pre class="example" id="orgc69ce5c">
+<pre class="example" id="org5a30d72">
 span :: (a -&gt; Bool) -&gt; [a] -&gt; ([a],[a])
 </pre>
 
@@ -3021,7 +3021,7 @@ p. A suitable definition, using a pattern binding to obtain the two
 lists resulting from the recursive call to <code>span</code> is as follows:
 </p>
 
-<pre class="example" id="org1ec637b">
+<pre class="example" id="org887ab2f">
 span p []               = ([],[])
 span p xs@(x:xs')
             | p x       = let (ys,zs) = span p xs' in (x:ys,zs)
@@ -3035,7 +3035,7 @@ right hand side of a pattern binding is not evaluated until the value of
 one of the variables bound by that pattern is required. The definition:
 </p>
 
-<pre class="example" id="org34557f4">
+<pre class="example" id="org79f47ac">
 (0:xs) = [1,2,3]
 </pre>
 
@@ -3044,7 +3044,7 @@ will not cause any errors when it is loaded into Gofer, but will cause
 an error if we attempt to evaluate the variable xs:
 </p>
 
-<pre class="example" id="orgf6101e6">
+<pre class="example" id="orgb72056f">
 ? xs
 {v120 [1, 2, 3]}
 (11 reductions, 46 cells)
@@ -3063,7 +3063,7 @@ Compare this with the behaviour of pattern matching in function
 definitions such as:
 </p>
 
-<pre class="example" id="orgcc0519b">
+<pre class="example" id="org04fb7f2">
 ? example [1] where example (0:xs) = "Hello"
 {v126 [1]}
 (4 reductions, 22 cells)
@@ -3092,13 +3092,13 @@ used to implement irrefutable patterns in Gofer) is illustrated by the
 identity:
 </p>
 
-<pre class="example" id="orgf37a89c">
+<pre class="example" id="org15b3f6e">
 f ~pat = rhs     is equivalent to     f v = rhs where pat=v
 </pre>
 
 <p>
 The following examples, based very closely on those given in the Haskell
-report [<a href="#org966288f">5</a>], illustrate the use of irrefutable patterns. The variable
+report [<a href="#org5e1a45c">5</a>], illustrate the use of irrefutable patterns. The variable
 <code>undefined</code> used in these examples is included in the standard prelude
 and causes a run-time error each time it is evaluated (technically
 speaking, it represents the bottom element of the relevant semantic
@@ -3108,7 +3108,7 @@ domain, and is the only value having all possible types):
 <p>
 @@@'=' should be -&gt;; also the examples dont quite work
 </p>
-<pre class="example" id="orgadd46d8">
+<pre class="example" id="org5dfa580">
 (\ (x,y) -&gt; 0) undefined = {undefined}
 (\~(x,y) -&gt; 0) undefined = 0
 
@@ -3129,7 +3129,7 @@ examples). Be careful not to use irrefutable patterns where they are not
 appropriate. An attempt to define a map function <code>map'</code> using:
 </p>
 
-<pre class="example" id="orgd77416d">
+<pre class="example" id="orgaea14cf">
 map' f ~(x:xs) = f x : map' f xs
 map' f []      = []
 </pre>
@@ -3138,7 +3138,7 @@ map' f []      = []
 turns out to be equivalent to the definition:
 </p>
 
-<pre class="example" id="org335610b">
+<pre class="example" id="org5ca4949">
 map' f ys  =  f x : map f xs where (x:xs) = ys
 </pre>
 
@@ -3146,7 +3146,7 @@ map' f ys  =  f x : map f xs where (x:xs) = ys
 and will not behave as you might have intended:
 </p>
 
-<pre class="example" id="org440081a">
+<pre class="example" id="orgbff4a83">
 ? map' ord "abc"
 [97, 98, 99, {v124 []}, {v124 []}, {v^C{Interrupted!}
 (35 reductions, 159 cells)
@@ -3166,7 +3166,7 @@ languages. Despite this, Gofer allows the use of type declarations of
 the form:
 </p>
 
-<pre class="example" id="org9bc209f">
+<pre class="example" id="org378644c">
 var1, ..., varn :: type
 </pre>
 
@@ -3188,7 +3188,7 @@ Gofer is more general than is required. As an example, consider the
 following function, intended to act as the identity on integer values:
 </p>
 
-<pre class="example" id="org7701756">
+<pre class="example" id="org6ab59d7">
 idInt x  =  x
 </pre>
 
@@ -3199,7 +3199,7 @@ does not cause a type error. This problem can be solved by using an
 explicit type declaration to restrict the type of <code>idInt</code> to a
 particular instance of the polymorphic type a -&gt; a:
 </p>
-<pre class="example" id="org0f39506">
+<pre class="example" id="orgc7cdd0d">
 idInt :: Int -&gt; Int
 </pre>
 
@@ -3207,7 +3207,7 @@ idInt :: Int -&gt; Int
 Note that a declaration such as:
 </p>
 
-<pre class="example" id="org461c5cf">
+<pre class="example" id="org93da31d">
 idInt :: Int -&gt; a
 </pre>
 <p>
@@ -3305,7 +3305,7 @@ In the standard prelude, the functions <code>enumFrom</code>, <code>enumFromTo</
 enumerate lists of characters or floating point values:
 </p>
 
-<pre class="example" id="orgd02eed8">
+<pre class="example" id="org8e012bf">
 ? ['0'..'9'] ++ ['A'..'Z']
 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ
 (397 reductions, 542 cells)
@@ -3326,7 +3326,7 @@ in <a href="#using_gofer_a_basic_introduction">section 4</a> used to calculate t
 look something like (especially if you think of C!):
 </p>
 
-<pre class="example" id="org897f7a3">
+<pre class="example" id="org6100c0e">
 int i;
 int total=0;
 for (i=1; i&lt;=10; i++)
@@ -3354,7 +3354,7 @@ for describing certain kinds of list expression. The basic form of a
 list comprehension is:
 </p>
 
-<pre class="example" id="orgbd5f98d">
+<pre class="example" id="org71e999d">
 [ &lt;expr&gt; | &lt;qualifiers&gt; ]
 </pre>
 
@@ -3377,7 +3377,7 @@ Formally, we can define the meaning of a list comprehension with a
 single generator by the equation:
 </p>
 
-<pre class="example" id="org4ed6e84">
+<pre class="example" id="org8f9757f">
 [ e | pat &lt;- exp ]  =  loop exp
                        where loop []       = []
                              loop (pat:xs) = e : loop xs
@@ -3389,7 +3389,7 @@ If pat is an irrefutable pattern (for example, a variable) then this
 is equivalent to:
 </p>
 
-<pre class="example" id="org08713f6">
+<pre class="example" id="orgd2b3ebc">
 [ e | pat &lt;- exp ]  =  map f exp
                        where f pat = e
 </pre>
@@ -3407,7 +3407,7 @@ in which case it is often called a filter. We can define the meaning
 of a list comprehension with a single filter by the equation:
 </p>
 
-<pre class="example" id="orge36116b">
+<pre class="example" id="org8414b22">
 [ e | condition ]  =  if condition then [e] else []
 </pre>
 
@@ -3423,7 +3423,7 @@ introduce a local definition within a list comprehension. Its meaning
 can be defined formally using the equation:
 </p>
 
-<pre class="example" id="orge63c0ac">
+<pre class="example" id="orgc797896">
 [ e | pat = exp ]  =  [ let pat=exp in e ]
 </pre>
 
@@ -3455,7 +3455,7 @@ lists of qualifiers, then we can define the meaning of multiple
 qualifiers using:
 </p>
 
-<pre class="example" id="org6c98edc">
+<pre class="example" id="org1928185">
 [ e | qs1, qs2 ]  =  concat [ [ e | qs2 ] | qs1 ]
 </pre>
 
@@ -3469,7 +3469,7 @@ Variables generated by later qualifiers vary more quickly than those
 generated by earlier qualifiers:
 </p>
 
-<pre class="example" id="orgf4f3964">
+<pre class="example" id="orgf52e881">
 ? [ (x,y) | x&lt;-[1..3], y&lt;-[1..2] ]
 [(1,1), (1,2), (2,1), (2,2), (3,1), (3,2)]
 (107 reductions, 246 cells)
@@ -3480,7 +3480,7 @@ generated by earlier qualifiers:
 Later qualifiers may use the values generated by earlier ones:
 </p>
 
-<pre class="example" id="orgc6362ef">
+<pre class="example" id="orgaa955f9">
 ? [ (x,y) | x&lt;-[1..3], y&lt;-[1..x]]
 [(1,1), (2,1), (2,2), (3,1), (3,2), (3,3)]
 (107 reductions, 246 cells)
@@ -3498,7 +3498,7 @@ this style of definition in which names are reused can result in
 programs which are difficult to understand, and is not recommended:
 </p>
 
-<pre class="example" id="org42e57d0">
+<pre class="example" id="org48105d2">
 ? [ x | x&lt;-[[1,2],[3,4]], x&lt;-x ]
 [1, 2, 3, 4]
 (18 reductions, 53 cells)
@@ -3516,7 +3516,7 @@ more reductions and cells because it repeats the evaluation of <code>even
   x</code> for each possible value of <code>y</code>.
 </p>
 
-<pre class="example" id="orga6ca384">
+<pre class="example" id="org2df5021">
 ? [ (x,y) | x&lt;-[1..3], y&lt;-[1..2], even x ]
 [(2,1), (2,2)]
 (110 reductions, 186 cells)
@@ -3535,7 +3535,7 @@ expression uses a local definition to ensure that the evaluation is
 not repeated:
 </p>
 
-<pre class="example" id="org128d77b">
+<pre class="example" id="org6db16d5">
 ? [ fact x + y | x&lt;-[1..3], y&lt;-[1..2] ]
 [2, 3, 3, 4, 7, 8]
 (246 reductions, 398 cells)
@@ -3558,7 +3558,7 @@ definition and use of unnamed functions using a <i>lambda expression</i> of
 the form:
 </p>
 
-<pre class="example" id="org6477c55">
+<pre class="example" id="org9f935a4">
 \ &lt;atomic patterns&gt; -&gt; &lt;expr&gt;
 </pre>
 
@@ -3582,7 +3582,7 @@ expression <code>(\x y-&gt;x+y)</code> which takes two integer arguments and out
 their sum; this expression is in fact equivalent to the <code>(+)</code> operator:
 </p>
 
-<pre class="example" id="org1d08d36">
+<pre class="example" id="orgfc4109e">
 ? (\x y-&gt;x+y) 2 3
 5
 (3 reductions, 7 cells)
@@ -3594,7 +3594,7 @@ A lambda expression of the form illustrated above is equivalent to the
 following expression using a local definition:
 </p>
 
-<pre class="example" id="org2230a81">
+<pre class="example" id="org0c4d2ee">
 (let newName &lt;atomic patterns&gt; = &lt;expr&gt; in newName)
 </pre>
 
@@ -3605,7 +3605,7 @@ you enter an expression involving a lambda expression without supplying
 the full number of parameters for that function:
 </p>
 
-<pre class="example" id="orga2ded6e">
+<pre class="example" id="org9ca5214">
 ? (\x y -&gt; x+y) 42
 v117 42
 (2 reductions, 14 cells)
@@ -3619,8 +3619,8 @@ approach to I/O described in <a href="#dialogues_input_and_output">section 12</a
 </p>
 </div>
 </div>
-<div id="outline-container-org18ed054" class="outline-3">
-<h3 id="org18ed054"><span class="section-number-3">10.4.</span> Case expressions</h3>
+<div id="outline-container-org4e38701" class="outline-3">
+<h3 id="org4e38701"><span class="section-number-3">10.4.</span> Case expressions</h3>
 <div class="outline-text-3" id="text-10-4">
 <p>
 A case expression can be used to evaluate an expression and, depending
@@ -3630,7 +3630,7 @@ expressions. Indeed, an expression of the form <code>if e then t else f</code> i
 in fact equivalent to the case expression:
 </p>
 
-<pre class="example" id="org55c920e">
+<pre class="example" id="org3ab089e">
 case e of
   True  -&gt; t
   False -&gt; f
@@ -3642,14 +3642,14 @@ exp is the expression to be evaluated and alts is a list of
 alternatives, each of which is of the form:
 </p>
 
-<pre class="example" id="org1ea8d50">
+<pre class="example" id="orgce0a7bd">
 pat -&gt; rhs                    for a simple alternative
 </pre>
 
 <p>
 @@@ Link doesnt work inside example
 </p>
-<pre class="example" id="orge935a57">
+<pre class="example" id="org0cece7e">
 or: pat | condition1 -&gt; rhs1      using guard expressions as
         | condition2 -&gt; rhs2      described in [[#guarded_equations][section 9.2]] for
               .                   function definitions
@@ -3667,7 +3667,7 @@ equivalent to the expression <code>newName e</code>. A simple example of this is
 the <code>scanl</code> function whose definition in the standard prelude:
 </p>
 
-<pre class="example" id="org29be961">
+<pre class="example" id="orgde2b6e2">
 scanl f q xs = q : (case xs of
                     []   -&gt; []
                     x:xs -&gt; scanl f (f q x) xs)
@@ -3677,14 +3677,14 @@ scanl f q xs = q : (case xs of
 is equivalent to:
 </p>
 
-<pre class="example" id="orgf18acf6">
+<pre class="example" id="orgfb96d23">
 scanl f q xs = q : scanl' xs
                where scanl' []     = []
                      scanl' (x:xs) = scanl f (f q x) xs
 </pre>
 
 <p>
-This latter form is precisely the definition used in [<a href="#org8832fc7">1</a>] (but using the
+This latter form is precisely the definition used in [<a href="#orgc4f0847">1</a>] (but using the
 name <code>scan</code> where Gofer uses <code>scanl</code>).
 </p>
 
@@ -3693,7 +3693,7 @@ Evaluating a case expression in which none of the alternatives match the
 value of the discriminant results in an error such as the following:
 </p>
 
-<pre class="example" id="org02483ab">
+<pre class="example" id="org21a9557">
 ? case [1,2] of [] -&gt; "empty list"
 {v117 [1, 2]}
 (6 reductions, 31 cells)
@@ -3714,7 +3714,7 @@ single equation of the form &lt;functionName&gt; = &lt;expr&gt;. For example, th
 standard function <code>map</code> whose definition is usually written as:
 </p>
 
-<pre class="example" id="org9159dd7">
+<pre class="example" id="orgef9e8fa">
 map f []     = []
 map f (x:xs) = f x : map f xs
 </pre>
@@ -3723,7 +3723,7 @@ map f (x:xs) = f x : map f xs
 can also be defined by the equation:
 </p>
 
-<pre class="example" id="org491b028">
+<pre class="example" id="orgfc0f3af">
 map = \f xs -&gt; case xs of
                  []     -&gt; []
                  (y:ys) -&gt; f y : map f ys
@@ -3732,12 +3732,12 @@ map = \f xs -&gt; case xs of
 <p>
 This kind of translation is used in the implementation of many
 functional programming languages, including Gofer. See Simon Peyton
-Jones book [<a href="#org3d23edd">2</a>] for more details of this.
+Jones book [<a href="#org8604f01">2</a>] for more details of this.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd2a971e" class="outline-3">
-<h3 id="orgd2a971e"><span class="section-number-3">10.5.</span> Operator sections</h3>
+<div id="outline-container-org6d0b029" class="outline-3">
+<h3 id="org6d0b029"><span class="section-number-3">10.5.</span> Operator sections</h3>
 <div class="outline-text-3" id="text-10-5">
 <p>
 As we have seen, most functions in Gofer taking more than one argument
@@ -3751,7 +3751,7 @@ represent an arbitrary infix operator, there are functions (e <b>) and (</b>
 e), known as <i>sections of the operator (*)</i> defined by:
 </p>
 
-<pre class="example" id="org73d2113">
+<pre class="example" id="org193ed8b">
 (e *) x  = e * x
 (* e) x  = x * e
 </pre>
@@ -3760,7 +3760,7 @@ e), known as <i>sections of the operator (*)</i> defined by:
 or, using lambda expressions as introduced in <a href="#lambda_expressions">section 10.3</a>:
 </p>
 
-<pre class="example" id="org6b10ad6">
+<pre class="example" id="orgb5ab3c7">
 (e *)    =  \x -&gt; e * x
 (* e)    =  \x -&gt; x * e
 </pre>
@@ -3793,7 +3793,7 @@ abbreviations for <code>(*) e</code> and <code>flip (*) e</code> respectively, w
 the function defined by:
 </p>
 
-<pre class="example" id="org0f28007">
+<pre class="example" id="org49fa533">
 flip        :: (a -&gt; b -&gt; c) -&gt; b -&gt; a -&gt; c
 flip  f x y  =  f y x
 </pre>
@@ -3805,7 +3805,7 @@ which subtracts the value of <code>e</code> from its argument. The latter functi
 can be written as the section <code>(+ (- e))</code> or as <code>subtract e</code> where
 <code>subtract</code> is the function defined in the standard prelude using:
 </p>
-<pre class="example" id="org448ccdd">
+<pre class="example" id="org119f61b">
 subtract = flip (-)
 </pre>
 </div>
@@ -3819,7 +3819,7 @@ the type of a variable defined in a function or pattern binding. For
 much the same reasons, Gofer allows expressions of the form:
 </p>
 
-<pre class="example" id="orgf10e3a7">
+<pre class="example" id="orge6cf0b6">
 &lt;expr&gt; :: &lt;type&gt;
 </pre>
 
@@ -3829,7 +3829,7 @@ the :t command can be used to find the type of a particular expression
 that is inferred by Gofer:
 </p>
 
-<pre class="example" id="org886104b">
+<pre class="example" id="org6930b93">
 ? :t  \x -&gt; [x]
 \x -&gt; [x] :: a -&gt; [a]
 
@@ -3844,7 +3844,7 @@ The types inferred in each case can be modified by including explicit
 types in these expressions:
 </p>
 
-<pre class="example" id="org762284f">
+<pre class="example" id="org0c7dbb4">
 ? :t  (\x -&gt; [x]) :: Char -&gt; String
 \x -&gt; [x] :: Char -&gt; String
 
@@ -3859,7 +3859,7 @@ Note that an error occurs if the type declared in an explicitly typed
 expression is not compatible with the type inferred by Gofer:
 </p>
 
-<pre class="example" id="org1432910">
+<pre class="example" id="org98a1374">
 ? :t (\x -&gt; [x]) :: Int -&gt; a
 ERROR: Declared type too general
 *** Expression    : \x -&gt; [x]
@@ -3888,7 +3888,7 @@ Gofer also allows the definition of new datatypes using declarations
 of the form:
 </p>
 
-<pre class="example" id="orgbd41935">
+<pre class="example" id="org0f941d4">
 data DatatypeName a1 ... an = Constr1 | ... | Constrm
 </pre>
 
@@ -3923,7 +3923,7 @@ As a simple example, the following definition introduces a new type <code>Day</c
 with elements <code>Sun</code>, <code>Mon</code>, <code>Tue</code>, <code>Wed</code>, <code>Thu</code>, <code>Fri</code> and <code>Sat</code>:
 </p>
 
-<pre class="example" id="org6f24b8d">
+<pre class="example" id="orgfaf23e6">
 data Day = Sun | Mon | Tue | Wed | Thu | Fri | Sat
 </pre>
 
@@ -3932,7 +3932,7 @@ Simple functions manipulating elements of type <code>Day</code> can be defined u
 pattern matching:
 </p>
 
-<pre class="example" id="org87ced9a">
+<pre class="example" id="org773908a">
 what_shall_I_do Sun = "relax"
 what_shall_I_do Sat = "go shopping"
 what_shall_I_do _   = "looks like I'll have to go to work"
@@ -3944,7 +3944,7 @@ for temperatures which may be given using either of the centigrade or
 fahrenheit scales:
 </p>
 
-<pre class="example" id="org5abb092">
+<pre class="example" id="org7c90838">
 data Temp = Centigrade Float | Fahrenheit Float
 
 freezing                  :: Temp -&gt; Bool
@@ -3958,7 +3958,7 @@ datatype definition to implement a Set type constructor for representing
 sets using a list of values:
 </p>
 
-<pre class="example" id="org9fbd5ee">
+<pre class="example" id="org4d63310">
 data Set a = Set [a]
 </pre>
 
@@ -3974,12 +3974,12 @@ function.
 Datatype definitions may also be recursive, using the name of the
 datatype being defined on the right hand side of the datatype definition
 (mutually recursive datatype definitions are also permitted). The
-following example is taken from the Haskell report [<a href="#org966288f">5</a>] and defines a
+following example is taken from the Haskell report [<a href="#org5e1a45c">5</a>] and defines a
 type representing binary trees with values of a particular type at their
 leaves:
 </p>
 
-<pre class="example" id="org6de20e4">
+<pre class="example" id="orga89137f">
 data Tree a = Lf a | Tree a :^: Tree a
 </pre>
 
@@ -3988,7 +3988,7 @@ For example, <code>(Lf 12 :^: (Lf 23 :^: Lf 13)) :^: Lf 10</code> has type <code
 and represents the binary tree:
 </p>
 
-<pre class="example" id="orgbfd0d12">
+<pre class="example" id="org07a9c64">
      ,--- 12
   ,--|
   |  |  ,--- 23
@@ -4007,7 +4007,7 @@ simple definition, whilst the second uses an <i>accumulating parameter</i>
 giving a more efficient algorithm:
 </p>
 
-<pre class="example" id="org0161033">
+<pre class="example" id="orgfce7553">
 leaves, leaves'  :: Tree a -&gt; [a]
 
 leaves (Lf l)  = [l]
@@ -4022,7 +4022,7 @@ leaves' t = leavesAcc t []
 Using the binary tree above as an example:
 </p>
 
-<pre class="example" id="orgf4f9750">
+<pre class="example" id="orge25d86b">
 ? leaves ((Lf 12 :^: (Lf 23 :^: Lf 13)) :^: Lf 10)
 [12, 23, 13, 10]
 (24 reductions, 73 cells)
@@ -4042,7 +4042,7 @@ Type synonyms are used to provide convenient abbreviations for type
 expressions. A type synonym is introduced by a declaration of the form:
 </p>
 
-<pre class="example" id="org9982c3f">
+<pre class="example" id="orgfaa0249">
 type Name a1 ... an = expansion
 </pre>
 
@@ -4054,7 +4054,7 @@ synonym definition. Using this declaration any type expression of the
 form:
 </p>
 
-<pre class="example" id="org04fad6c">
+<pre class="example" id="org9219ba5">
 Name type1 ... typen
 </pre>
 
@@ -4069,7 +4069,7 @@ The most frequently used type synonym is almost certainly the String
 type which is a synonym for [Char]:
 </p>
 
-<pre class="example" id="org5d50767">
+<pre class="example" id="orgcd29e1d">
 type String = [Char]
 </pre>
 
@@ -4086,7 +4086,7 @@ either using an explicitly typed expression (<a href="#explicitly_typed_expressi
 declaration (<a href="#type_declarations">section 9.12</a>):
 </p>
 
-<pre class="example" id="org4bef571">
+<pre class="example" id="orgcbfd4be">
 ? :t ['c']
 ['c'] :: [Char]
 ? :t ['c'] :: String
@@ -4100,7 +4100,7 @@ recursive (and mutually recursive) synonym declarations are not
 permitted. This rules out examples such as:
 </p>
 
-<pre class="example" id="orge8247ed">
+<pre class="example" id="orgf36d131">
 type BadSynonym = [BadSynonym]
 </pre>
 
@@ -4112,7 +4112,7 @@ attempt to expand the type BadSynonym would lead to the non-terminating
 sequence:
 </p>
 
-<pre class="example" id="org45be400">
+<pre class="example" id="orgeb50ecb">
 BadSynonym ==&gt; [BadSynonym] ==&gt; [[BadSynonym]] ==&gt; ....
 </pre>
 </div>
@@ -4123,7 +4123,7 @@ BadSynonym ==&gt; [BadSynonym] ==&gt; [[BadSynonym]] ==&gt; ....
 <div class="outline-text-2" id="text-dialogues_input_and_output">
 <p>
 The Gofer system implements a subset of the facilities for programs
-involving I/O described in the Haskell report [<a href="#org966288f">5</a>]. In particular, this
+involving I/O described in the Haskell report [<a href="#org5e1a45c">5</a>]. In particular, this
 makes it possible for Gofer programs to be run interactively, and to
 make limited use of text files for both reading and writing. A
 significant factor in the design of the Haskell I/O facilities is that
@@ -4139,7 +4139,7 @@ Programs using the I/O facilities in Gofer are modelled by functions of
 type <code>Dialogue</code>, defined by the type synonym:
 </p>
 
-<pre class="example" id="org78f3fd4">
+<pre class="example" id="org7bed957">
 type Dialogue  =  [Response] -&gt; [Request]
 </pre>
 
@@ -4157,7 +4157,7 @@ The current range of requests supported by Gofer is described by the
 following datatype definition, taken from the standard prelude:
 </p>
 
-<pre class="example" id="org3bf246a">
+<pre class="example" id="org57cc13b">
 data Request  =  -- file system requests:
                 ReadFile      String
               | WriteFile     String String
@@ -4175,7 +4175,7 @@ datatype definition, using an auxiliary datatype <code>IOError</code> to describ
 variety of error conditions that may occur:
 </p>
 
-<pre class="example" id="org0dafb4a">
+<pre class="example" id="org4c8df83">
 data Response = Success
               | Str String
               | Failure IOError
@@ -4286,7 +4286,7 @@ A simple example of a program using these facilities to output a short
 message on the standard output stream is:
 </p>
 
-<pre class="example" id="org9307c10">
+<pre class="example" id="orga819bcd">
 helloWorld      :: Dialogue
 helloWorld resps = [AppendChan stdout "hello, world"]
 </pre>
@@ -4296,7 +4296,7 @@ Any expression entered into Gofer of type <code>Dialogue</code> will be treated 
 a Gofer program using I/O and will be executed accordingly:
 </p>
 
-<pre class="example" id="orgd2be307">
+<pre class="example" id="orgb7fca54">
 ? helloWorld
 hello, world
 (1 reduction, 28 cells)
@@ -4310,7 +4310,7 @@ would not be executed as a <code>Dialogue</code> program. This point can be
 illustrated using lambda expressions:
 </p>
 
-<pre class="example" id="orgf704a0e">
+<pre class="example" id="org4a93533">
 ? \resps -&gt; [AppendChan stdout "hello, world"]
 v128
 (1 reduction, 7 cells)
@@ -4331,7 +4331,7 @@ determine its type as Dialogue (or equivalently as
 <p>
 @@@TODO handle ~ inside ~ @@@
 </p>
-<pre class="example" id="orga1ef7aa">
+<pre class="example" id="orgbbb41ae">
 ? \~[Success] -&gt; [AppendChan stdout "hello, world"]
 hello, world
 (1 reduction, 29 cells)
@@ -4346,7 +4346,7 @@ pattern <code>[Success]</code> against the list of responses, before the
 corresponding request had been produced:
 </p>
 
-<pre class="example" id="org7b043f5">
+<pre class="example" id="org15083b4">
 ? \ [Success] -&gt; [AppendChan stdout "hello, world"]
 
 Aborting Dialogue:
@@ -4360,7 +4360,7 @@ The next example takes a single string as a parameter and displays the
 contents of the corresponding file:
 </p>
 
-<pre class="example" id="orgf3bfaaf">
+<pre class="example" id="orgdb6197e">
 showFile               :: String -&gt; Dialogue
 showFile name ~(read:_) = [ReadFile name, AppendChan stdout result]
  where result = case read of Str contents -&gt; contents
@@ -4371,10 +4371,10 @@ showFile name ~(read:_) = [ReadFile name, AppendChan stdout result]
 With a few modifications, we can implement a similar program which
 prompts for, and reads, a filename from the standard input and then
 reads and displays the contents of that file as before. This program is
-based on a similar example in the Haskell report [<a href="#org966288f">5</a>]:
+based on a similar example in the Haskell report [<a href="#org5e1a45c">5</a>]:
 </p>
 
-<pre class="example" id="orgd8551d4">
+<pre class="example" id="org4ffb8c8">
 main ~(Success : ~(Str userInput : ~(r3 : _)))
   = [ AppendChan stdout "Please type a filename: ",
       ReadChan stdin,
@@ -4406,7 +4406,7 @@ As an example, the ReadFile request is represented by the function
 <code>readFile</code> whose definition is equivalent to:
 </p>
 
-<pre class="example" id="org4863565">
+<pre class="example" id="orgca2a8c9">
 readFile name fail succ ~(r:rs) = ReadFile name : rest rs
  where rest = case r of Str s           -&gt; succ s
                         Failure ioerror -&gt; fail ioerror
@@ -4429,7 +4429,7 @@ document) shows how the readFile function described above can be used to
 print the contents of a file called "test" on the display:
 </p>
 
-<pre class="example" id="orgedeab11">
+<pre class="example" id="orga5e63b4">
 ? readFile "test" (\ioerror resps -&gt; [])
                   (\s resps-&gt;[AppendChan stdout s])
 This is a test message
@@ -4450,7 +4450,7 @@ a dialogue which terminates immediately without any action. For example,
 assuming that the file <code>Test</code> cannot be found:
 </p>
 
-<pre class="example" id="org509b8fd">
+<pre class="example" id="org89eee9d">
 ? readFile "Test" (\ioerror resps -&gt; [])
                   (\s resps-&gt;[AppendChan stdout s])
 
@@ -4463,7 +4463,7 @@ In practice, it is usually a good idea to produce some kind of
 diagnostic message when an error occurs:
 </p>
 
-<pre class="example" id="orgea203b5">
+<pre class="example" id="org8f68960">
 ? readFile "Test"
      (\ioerror resps -&gt; [AppendChan stdout (show' ioerror)])
      (\s resps       -&gt; [AppendChan stdout s])
@@ -4478,7 +4478,7 @@ In each of the examples above, the failure continuation has type
 prelude:
 </p>
 
-<pre class="example" id="org5400dd6">
+<pre class="example" id="org5f5917b">
 type FailCont  =  IOError -&gt; Dialogue
 </pre>
 
@@ -4487,7 +4487,7 @@ Similarly, the success continuation, which takes a string representing
 an input string and produces a new Dialogue has type <code>StrCont</code>:
 </p>
 
-<pre class="example" id="org35e140d">
+<pre class="example" id="orga3c8159">
 type StrCont  =  String -&gt; Dialogue
 </pre>
 
@@ -4497,7 +4497,7 @@ response of the form "Success" if successful (e.g. output requests). In
 this case the continuation is simply another dialogue:
 </p>
 
-<pre class="example" id="org4bf724e">
+<pre class="example" id="org595e679">
 type SuccCont =  Dialogue
 </pre>
 
@@ -4508,7 +4508,7 @@ previous section. Full definitions for each of these functions are given
 in <a href="#appendix_B">Appendix B</a>:
 </p>
 
-<pre class="example" id="org81c1232">
+<pre class="example" id="org689600a">
 readFile   :: String -&gt; FailCont -&gt; StrCont -&gt; Dialogue
 writeFile  :: String -&gt; String -&gt; FailCont -&gt; SuccCont -&gt; Dialogue
 appendFile :: String -&gt; String -&gt; FailCont -&gt; SuccCont -&gt; Dialogue
@@ -4524,7 +4524,7 @@ the continuation based style of I/O, starting with the program
 <code>helloWorld</code>:
 </p>
 
-<pre class="example" id="org09cbb78">
+<pre class="example" id="org343b64a">
 helloWorld :: Dialogue
 helloWorld  = appendChan stdout "hello, world" abort done
 </pre>
@@ -4539,7 +4539,7 @@ program if an error occurs without any further action. In a similar way,
 action. Both of these values are defined in the standard prelude:
 </p>
 
-<pre class="example" id="org09d3b43">
+<pre class="example" id="org8ad5cc6">
 done         :: Dialogue
 done resps    = []
 
@@ -4552,7 +4552,7 @@ Using the same approach, the <code>showFile</code> and <code>main</code> program
 previous section are written as:
 </p>
 
-<pre class="example" id="org4ea0f8a">
+<pre class="example" id="org55c626c">
 showFile :: String -&gt; Dialogue
 showFile name
  = readFile name (\ioerror -&gt; appendChan stdout
@@ -4577,7 +4577,7 @@ main  = appendChan stdout "Please type a filename: " abort
 <p>
 One of the principal motivations for including facilities for I/O in
 Gofer programs was to provide a way of using interactive programs as
-described in [<a href="#org8832fc7">1</a>]. An interactive program is represented by a function of
+described in [<a href="#orgc4f0847">1</a>]. An interactive program is represented by a function of
 type String -&gt; String mapping an input string of characters entered at
 the keyboard into an output string to be displayed on the screen.
 </p>
@@ -4597,7 +4597,7 @@ at the end of each line. The input stream can be terminated by typing
 an end of file character at the beginning of a line:
 </p>
 
-<pre class="example" id="orgf241297">
+<pre class="example" id="orge70349d">
 ? interact (map toUpper)
 This text was entered using the interact function
 THIS TEXT WAS ENTERED USING THE INTERACT FUNCTION
@@ -4613,7 +4613,7 @@ reaching the end of the string produced by "f" is to use the interrupt
 key:
 </p>
 
-<pre class="example" id="org8304bc0">
+<pre class="example" id="org02082ca">
 ? run (map toUpper)
 ALTHOUGH THIS IS ENTERED IN LOWER CASE, IT STILL
 APPEARS IN UPPER CASE !
@@ -4635,7 +4635,7 @@ The definitions of <code>interact</code> and <code>run</code> provide further ex
 Gofer programs using simple I/O facilities:
 </p>
 
-<pre class="example" id="orgbbcb3c4">
+<pre class="example" id="orgc811476">
 interact    :: (String -&gt; String) -&gt; Dialogue
 interact f   = readChan stdin abort
                      (\s -&gt; appendChan stdout (f s) abort done)
@@ -4673,7 +4673,7 @@ comment. It is however possible to use the two characters "&ndash;" at any
 other position within an operator symbol. Thus a line such as:
 </p>
 
-<pre class="example" id="org0892126">
+<pre class="example" id="orgaf59afa">
 (xs ++ ys) -- xs
 </pre>
 
@@ -4682,7 +4682,7 @@ includes a comment and will actually be treated as if the line had
 been written:
 </p>
 
-<pre class="example" id="org639a262">
+<pre class="example" id="orgc3e75c5">
 (xs ++ ys)
 </pre>
 
@@ -4690,7 +4690,7 @@ been written:
 Whereas the line:
 </p>
 
-<pre class="example" id="org45d6500">
+<pre class="example" id="orgc5ebe41">
 xs &gt;--&gt; ys &gt;--&gt; zs
 </pre>
 
@@ -4726,7 +4726,7 @@ within a nested comment and that the strings "<code>{-</code>" and "<code>-}</co
 special significance in a single line comment. Thus:
 </p>
 
-<pre class="example" id="orga4ec45d">
+<pre class="example" id="orgec62dfc">
 [ 2, -- {-            [ 2, {-
   3, -- -}              -- -} 3,
   4 ]                   4 ]
@@ -4747,7 +4747,7 @@ indicate the structure of a program. For example, in a definition such
 as:
 </p>
 
-<pre class="example" id="org8b40efa">
+<pre class="example" id="orgd244611">
 f x y = g (x + w)
         where g u = u + v
                     where v = u * u
@@ -4760,7 +4760,7 @@ local to <code>f</code> rather than to <code>g</code>. Another example where lay
 important role is in distinguishing the two definitions:
 </p>
 
-<pre class="example" id="orgbdb74cc">
+<pre class="example" id="org011f5e8">
 example x y z = a + b       example x y z = a + b
       where a = f x y             where a   = f x
             b = g z                     y b = g z
@@ -4793,7 +4793,7 @@ In this way, the first example above will in fact be treated as if the
 user had entered:
 </p>
 
-<pre class="example" id="orgf516f2f">
+<pre class="example" id="orga4033de">
 f x y = g (x + w)
         where {g u = u + v
                      where {v = u * u
@@ -4805,7 +4805,7 @@ f x y = g (x + w)
 or, equivalently, just:
 </p>
 
-<pre class="example" id="orged74b60">
+<pre class="example" id="org16976f2">
 f x y = g (x + w) where {g u = u + v where {v = u * u}; w = 2 + y}
 </pre>
 
@@ -4838,7 +4838,7 @@ otherwise unexpected token is encountered. This part of the rule makes
 it possible to use expressions such as:
 </p>
 
-<pre class="example" id="org15079f5">
+<pre class="example" id="org922f56e">
 let a = fact 12 in a+a
 </pre>
 
@@ -4846,7 +4846,7 @@ let a = fact 12 in a+a
 without needing to use the layout characters explicitly as in:
 </p>
 
-<pre class="example" id="orgb3858d3">
+<pre class="example" id="org7e19746">
 let {a = fact 12} in a+a.
 </pre></li>
 
@@ -4863,11 +4863,11 @@ spaces as necessary to move to the next tab stop.</li>
 
 <p>
 The following (rather contrived) program, is based on an example in the
-Haskell report [<a href="#org966288f">5</a>], and provides an extended example of the use of the
+Haskell report [<a href="#org5e1a45c">5</a>], and provides an extended example of the use of the
 layout rule. A file containing the following definitions:
 </p>
 
-<pre class="example" id="org3558bd5">
+<pre class="example" id="org479c046">
 data Stack a = Empty
              | MkStack a (Stack a)
 
@@ -4890,7 +4890,7 @@ top (MkStack x s) = x
 will be treated by Gofer as if it has been written:
 </p>
 
-<pre class="example" id="orgb27efc6">
+<pre class="example" id="org12a512e">
 {data Stack a = Empty
               | MkStack a (Stack a)
 
@@ -4916,7 +4916,7 @@ written on a single line (and hence entered directly into the Gofer
 system) without explicit use of the layout characters <code>{</code>, <code>}</code> and <code>;</code>:
 </p>
 
-<pre class="example" id="org3e2434c">
+<pre class="example" id="org88c13ec">
 ? len [1..10] where len [] = 0;  len (x:xs) = 1 + len xs
 10
 (81 reductions, 108 cells)
@@ -4933,7 +4933,7 @@ One situation in which the layout rule can cause problems is with
 top-level definitions. For example, the two lines:
 </p>
 
-<pre class="example" id="org08bc569">
+<pre class="example" id="org5ec4e9f">
 f x  = 1 + x
  g y = 1 - y
 </pre>
@@ -4977,7 +4977,7 @@ The differences embodied in the Gofer system of classes stem from my
 own, theoretically based investigations into <i>qualified types</i> some of
 which is detailed in references [8-12]. In my personal opinion, the
 Gofer system has some significant advantages over the Haskell approach
-(see [<a href="#orgac666e3">12</a>] for details) and one of the principal motivations behind the
+(see [<a href="#org040d5ee">12</a>] for details) and one of the principal motivations behind the
 implementation to Gofer was to provide a way of testing such claims. One
 fact which I believe has already been established using Gofer is that
 the use and implementation of overloaded functions need not have the
@@ -5042,7 +5042,7 @@ precisely those types whose elements can be tested for equality. The
 declaration of this class given in the standard prelude is as follows:
 </p>
 
-<pre class="example" id="org4aac6be">
+<pre class="example" id="orga6de934">
 class Eq a where
     (==), (/=) :: a -&gt; a -&gt; Bool
     x /= y      = not (x == y)
@@ -5066,7 +5066,7 @@ notation introduced in the previous section, both of these operators
 have type:
 </p>
 
-<pre class="example" id="orgc2a80df">
+<pre class="example" id="orgfab1403">
 Eq a =&gt; a -&gt; a -&gt; Bool
 </pre>
 
@@ -5096,8 +5096,8 @@ giving an alternative definition as appropriate for specific instances
 of the class.</li>
 </ul>
 </div>
-<div id="outline-container-org6670df5" class="outline-4">
-<h4 id="org6670df5"><span class="section-number-4">14.2.1.</span> Implicit overloading</h4>
+<div id="outline-container-org1120b8a" class="outline-4">
+<h4 id="org1120b8a"><span class="section-number-4">14.2.1.</span> Implicit overloading</h4>
 <div class="outline-text-4" id="text-14-2-1">
 <p>
 Member functions are clearly marked as overloaded functions by their
@@ -5109,7 +5109,7 @@ member functions of that class. For example, the types inferred for the
 following two functions:
 </p>
 
-<pre class="example" id="org947f30a">
+<pre class="example" id="org1457efe">
 x  `elem`   xs   =   any (x==) xs
 xs `subset` ys   =   all (`elem` ys) xs
 </pre>
@@ -5118,7 +5118,7 @@ xs `subset` ys   =   all (`elem` ys) xs
 are:
 </p>
 
-<pre class="example" id="orgae73d66">
+<pre class="example" id="orgbf94f8f">
 elem   :: Eq a =&gt; a -&gt; [a] -&gt; Bool
 subset :: Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </pre>
@@ -5140,7 +5140,7 @@ Note also that the types appearing in the context of a qualified type
 reflect the types at which overloaded functions are used. Thus:
 </p>
 
-<pre class="example" id="org5d4bab9">
+<pre class="example" id="org6761b7d">
 f x ys  =  [x] == ys
 </pre>
 
@@ -5160,7 +5160,7 @@ examples, taken from the standard prelude, give the definitions for a
 number of simple instances of the class <code>Eq</code>:
 </p>
 
-<pre class="example" id="org5169c90">
+<pre class="example" id="org8833d03">
 instance Eq Int  where  (==) = primEqInt
 
 instance Eq Bool where
@@ -5199,7 +5199,7 @@ the same ASCII value, which is obtained using the <code>ord</code> function. Not
 that the two occurrences of the symbol <code>(==)</code> in the equation:
 </p>
 
-<pre class="example" id="org755ec01">
+<pre class="example" id="org6c92c86">
 c == d  =  ord c == ord d
 </pre>
 
@@ -5220,7 +5220,7 @@ requirement is described by the first line in the instance declaration
 using the expression:
 </p>
 
-<pre class="example" id="org3df68d0">
+<pre class="example" id="orgf14e115">
 (Eq a, Eq b) =&gt; Eq (a,b)
 </pre></li>
 
@@ -5230,7 +5230,7 @@ itself an instance of <code>Eq</code> in a similar way to the previous example. 
 context <code>Eq a</code> is used in the last equation in the declaration:
 </p>
 
-<pre class="example" id="orgf1bf88a">
+<pre class="example" id="org194eda7">
 (x:xs) == (y:ys)  =  x==y &amp;&amp; xs==ys
 </pre>
 
@@ -5247,7 +5247,7 @@ infinite family of types including <code>Int</code>, <code>Char</code>, <code>Bo
 <code>(Char,Int)</code>, <code>[Char]</code>, <code>(Bool,[Int])</code>, <code>[(Bool,Int)]</code>, etc&hellip;:
 </p>
 
-<pre class="example" id="org2476072">
+<pre class="example" id="orge12a1a4">
 ? 2 == 3                            -- using Eq Int
 False
 (2 reductions, 10 cells)
@@ -5264,7 +5264,7 @@ error. For example, the standard prelude does not define the equality
 operation on triples of values:
 </p>
 
-<pre class="example" id="org48ab172">
+<pre class="example" id="orge9f5978">
 ? (1,2,3) == (1,2,3)
 ERROR: Cannot derive instance in expression
 *** Expression        : (==) d125 (1,2,3) (1,2,3)
@@ -5277,7 +5277,7 @@ This can be solved by including an instance declaration of the following
 form into a file of definitions loaded into Gofer:
 </p>
 
-<pre class="example" id="org50a6577">
+<pre class="example" id="org2ff85ad">
 instance (Eq a, Eq b, Eq c) =&gt; Eq (a,b,c) where
     (x,y,z) == (u,v,w)  =  x==u &amp;&amp; y==v &amp;&amp; z==w
 </pre>
@@ -5286,7 +5286,7 @@ instance (Eq a, Eq b, Eq c) =&gt; Eq (a,b,c) where
 Giving:
 </p>
 
-<pre class="example" id="org5305207">
+<pre class="example" id="orgbd003ab">
 ? (1,2,3) == (1,2,3)
 True
 (6 reductions, 20 cells)
@@ -5297,7 +5297,7 @@ True
 In general, an instance declaration has the form:
 </p>
 
-<pre class="example" id="org461793e">
+<pre class="example" id="org1897cbb">
 instance  context =&gt; predicate  where
     definitions of member functions
 </pre>
@@ -5327,7 +5327,7 @@ introduce a type constructor <code>Set</code> for representing sets of values, u
 a list to store the values held in the set:
 </p>
 
-<pre class="example" id="orga162042">
+<pre class="example" id="orgf641998">
 data Set a = Set [a]
 </pre>
 
@@ -5338,7 +5338,7 @@ in the lists representing the sets. This is achieved using the following
 instance declaration:
 </p>
 
-<pre class="example" id="orgaaa2590">
+<pre class="example" id="orgc898add">
 instance Eq a =&gt; Eq (Set a) where
     Set xs == Set ys  =  xs `subset` ys  &amp;&amp;  ys `subset` xs
                          where xs `subset` ys = all (`elem` ys) xs
@@ -5348,7 +5348,7 @@ instance Eq a =&gt; Eq (Set a) where
 A couple of examples illustrate the use of this definition:
 </p>
 
-<pre class="example" id="orgebeb565">
+<pre class="example" id="orgd0bfcb8">
 ? Set [1,2,3] == Set [3,4,1]
 False
 (49 reductions, 89 cells)
@@ -5367,7 +5367,7 @@ It is possible to give an instance declaration without specifying any
 definitions for the member functions of the class. For example:
 </p>
 
-<pre class="example" id="org4498009">
+<pre class="example" id="orgedc7771">
 instance Eq ()
 </pre>
 
@@ -5377,7 +5377,7 @@ completely undefined, and hence so is the definition of <code>(/=)</code>, which
 defined in terms of <code>(==)</code>:
 </p>
 
-<pre class="example" id="org978aa86">
+<pre class="example" id="orgbe0b47a">
 ? () == ()
 {undefined_member (==)}
 (3 reductions, 34 cells)
@@ -5401,7 +5401,7 @@ definition for an instance of the form <code>Eq (a -&gt; b)</code> for any types
 <code>b</code>:
 </p>
 
-<pre class="example" id="org13e192f">
+<pre class="example" id="orga1703a8">
 ? (1==) == (\x-&gt;1==x)
 ERROR: Cannot derive instance in expression
 *** Expression        : (==) d148 ((==) {dict} 1) (\x-&gt;(==) {dict} 1 x)
@@ -5417,7 +5417,7 @@ type-checked, you can use an instance declaration to specify the
 required behaviour. For example:
 </p>
 
-<pre class="example" id="org9d45bd0">
+<pre class="example" id="orga140715">
 instance Eq (a -&gt; b) where
     (==) = error "Equality not defined between functions"
 </pre>
@@ -5427,7 +5427,7 @@ Evaluating the previous expression once this instance declaration has
 been included now produces the following result:
 </p>
 
-<pre class="example" id="org445cfa3">
+<pre class="example" id="orgdb41106">
 ? (1==) == (\x-&gt;1==x)
 {error "Equality not defined between functions"}
 (42 reductions, 173 cells)
@@ -5439,7 +5439,7 @@ A limited form of equality can be defined for functions of type (a-&gt;b)
 if a has only finitely many elements, such as the boolean type Bool:
 </p>
 
-<pre class="example" id="org392e96a">
+<pre class="example" id="org1ff79c1">
 instance Eq a =&gt; Eq (Bool -&gt; a) where
     f == g   =   f False == g False   &amp;&amp;   f True == g True
 </pre>
@@ -5456,7 +5456,7 @@ two functions taking boolean arguments for equality (assuming of course
 that their result type is also an instance of <code>Eq</code>).
 </p>
 
-<pre class="example" id="org5a62db1">
+<pre class="example" id="orgabf43a7">
 ? (&amp;&amp;) == (||)
 False
 (9 reductions, 21 cells)
@@ -5479,7 +5479,7 @@ the same time, so long as no pair of declarations overlap. For example,
 adding the following instance declaration
 </p>
 
-<pre class="example" id="org27f5bf2">
+<pre class="example" id="org2730e5e">
 instance Eq a =&gt; Eq (() -&gt; a)  where  f == g  =  f () == g ()
 </pre>
 
@@ -5487,7 +5487,7 @@ instance Eq a =&gt; Eq (() -&gt; a)  where  f == g  =  f () == g ()
 enables us to evaluate expressions such as:
 </p>
 
-<pre class="example" id="orga5d6e78">
+<pre class="example" id="orgdb405c6">
 ? (\()-&gt;"Hello") == const "Hello"
 True
 (30 reductions, 55 cells)
@@ -5500,7 +5500,7 @@ If however, we try to use instance declarations for types of the form (a
 message similar to the following:
 </p>
 
-<pre class="example" id="org0e36c4b">
+<pre class="example" id="orgfa0c43e">
 ERROR "file" (line 37): Overlapping instances for class "Eq"
 *** This instance   : Eq (a -&gt; b)
 *** Overlaps with   : Eq (Bool -&gt; a)
@@ -5522,7 +5522,7 @@ the same name) which uses the I/O facilities of Gofer to print the
 contents of one or more files on the terminal:
 </p>
 
-<pre class="example" id="orgcae34ed">
+<pre class="example" id="org89121d7">
 class    Cat a        where cat  :: a -&gt; Dialogue
 instance Cat [Char]   where cat n = showFile n done
 instance Cat [[Char]] where cat   = foldr showFile done
@@ -5535,7 +5535,7 @@ showFile name cont = readFile name abort
 Given these declarations, an expression of the form:
 </p>
 
-<pre class="example" id="org5bdefe8">
+<pre class="example" id="org0d9169a">
 cat "file"
 </pre>
 
@@ -5545,7 +5545,7 @@ files can be printed one after the other using an expression of the
 form:
 </p>
 
-<pre class="example" id="orga44ff99">
+<pre class="example" id="org15d0075">
 cat ["file1", "file2", ..., "filen"].
 
 </pre>
@@ -5579,7 +5579,7 @@ definitions for each of the functions (<code>=) and (/</code>). A dictionary for
 instance of Eq can be depicted by a diagram of the form:
 </p>
 
-<pre class="example" id="org945c0b0">
+<pre class="example" id="orgb38b1e4">
 +--------+--------+---------
 |        |        |
 |  (==)  |  (/=)  |  .....
@@ -5593,7 +5593,7 @@ dictionary expressions are being used, Gofer uses a number of special
 notations for printing expressions involving dictionaries:
 </p>
 
-<pre class="example" id="org6902998">
+<pre class="example" id="orge5a5dcf">
 (#1 d)   selects the first element of the dictionary d
 
 (#2 d)   selects the second element of the dictionary d
@@ -5623,7 +5623,7 @@ Using these notations, the member functions (<code>=) and (/</code>) of the clas
 Eq behave as if they were defined by the expressions:
 </p>
 
-<pre class="example" id="org7cabe82">
+<pre class="example" id="org90d6730">
 (==) d1  =  (#1 d1)
 (/=) d1  =  (#2 d1)
 </pre>
@@ -5634,7 +5634,7 @@ specific dictionary. Following the original instance declaration used
 for Eq Int, the corresponding dictionary is:
 </p>
 
-<pre class="example" id="org62f3d11">
+<pre class="example" id="orgb9c6396">
 d :: Eq Int
 +------------+------------+
 |            |            |
@@ -5666,7 +5666,7 @@ that this expression will first be translated to "(=</code>) d 2 3" by the
 type checker. The evaluation then proceeds as follows:
 </p>
 
-<pre class="example" id="orgbd5b630">
+<pre class="example" id="org71d4743">
 (==) d 2 3  ==&gt;  (#1 d) 2 3
             ==&gt;  primEqInt 2 3
             ==&gt;  False
@@ -5679,7 +5679,7 @@ class definition which, after translation, is represented by the
 function "defNeq" defined by:
 </p>
 
-<pre class="example" id="org2af70d2">
+<pre class="example" id="orga69ba3a">
 defNeq d1 x y = not ((==) d1 x y)
 </pre>
 
@@ -5690,7 +5690,7 @@ the appropriate overloading. For example, evaluation of the expression
 follows:
 </p>
 
-<pre class="example" id="org0c35f4d">
+<pre class="example" id="org127b5c8">
 (/=) d 2 3  ==&gt;  (#2 d) 2 3
             ==&gt;  defNeq d 2 3
             ==&gt;  not ((==) d 2 3)
@@ -5717,7 +5717,7 @@ are used in these dictionaries are obtained from the definitions of <code>(==)</
 given in the instance declarations for <code>Eq (a,b)</code> and <code>Eq [a]</code> respectively:
 </p>
 
-<pre class="example" id="orge282190">
+<pre class="example" id="org925d5ee">
 eqPair d (x,y) (u,v)   = (==) (#3 d) x u &amp;&amp; (==) (#4 d) y v
 
 eqList d [] []         = True
@@ -5733,7 +5733,7 @@ particular instance of a class, and that the dictionary d1 :: Eq Int in
 this system is automatically shared between d2 and d3:
 </p>
 
-<pre class="example" id="orgf5ae2a0">
+<pre class="example" id="org60c0912">
 d3 :: Eq (Int, [Int])
 +------------+------------+------------+------------+
 |            |            |            |            |
@@ -5764,7 +5764,7 @@ evaluate the expression "(2,[1]) <code>= (2,[1,3])" which, after translation,
 becomes "(=</code>) d3 (2,[1]) (2,[1,3])":
 </p>
 
-<pre class="example" id="org5cc3f3d">
+<pre class="example" id="org3efd36d">
 (==) d3 (2,[1]) (2,[1,3])
          ==&gt;   (#1 d3) (2,[1]) (2,[1,3])
          ==&gt;   eqPair d3 (2,[1]) (2,[1,3])
@@ -5787,14 +5787,14 @@ becomes "(=</code>) d3 (2,[1]) (2,[1,3])":
 
 </pre>
 </div>
-<div id="outline-container-org3f41aae" class="outline-4">
-<h4 id="org3f41aae"><span class="section-number-4">14.3.1.</span> Superclasses</h4>
+<div id="outline-container-orgd862884" class="outline-4">
+<h4 id="orgd862884"><span class="section-number-4">14.3.1.</span> Superclasses</h4>
 <div class="outline-text-4" id="text-14-3-1">
 <p>
 In general, a type class declaration has the form:
 </p>
 
-<pre class="example" id="org6894d80">
+<pre class="example" id="org3c768d9">
 class  context =&gt; Class a1 ... an  where
     type declarations for member functions
     default definitions of member functions
@@ -5825,7 +5825,7 @@ class Ord whose instances are types with both strict (&lt;), (&gt;) and
 non-strict (&lt;=), (&gt;=) versions of an ordering defined on their elements:
 </p>
 
-<pre class="example" id="org06ee6d0">
+<pre class="example" id="org44533a5">
 class Eq a =&gt; Ord a where
     (&lt;), (&lt;=), (&gt;), (&gt;=) :: a -&gt; a -&gt; Bool
     max, min             :: a -&gt; a -&gt; a
@@ -5861,7 +5861,7 @@ a type, it is always possible to construct a definition for the (<code>=)
   operator (and hence for (/</code>)) using the equation:
 </p>
 
-<pre class="example" id="org44026d6">
+<pre class="example" id="orga665b30">
 x==y   =   x&lt;=y &amp;&amp; y&lt;=x
 </pre>
 
@@ -5879,7 +5879,7 @@ described in <a href="#testing_equality_of_represented_values">section 14.2.3</a
 in class Ord:
 </p>
 
-<pre class="example" id="org8b27409">
+<pre class="example" id="org0d9a0ed">
 instance Ord (Set a) =&gt; Eq (Set a) where
     x == y   =   x &lt;= y  &amp;&amp;  y &lt;= x
 
@@ -5900,7 +5900,7 @@ layout of a dictionary for an instance of Ord is illustrated in the
 following diagram:
 </p>
 
-<pre class="example" id="org44ee363">
+<pre class="example" id="org1f6679a">
 +--------+--------+--------+--------+--------+--------+--------+-----
 |        |        |        |        |        |        |        |
 |  (&lt;)   |  (&lt;=)  |  (&gt;)   |  (&gt;=)  |  max   |  min   |  Eq a  | .....
@@ -5914,20 +5914,20 @@ the dictionary for the appropriate instance of Eq. This is used in the
 translation of the default definition for (&lt;) which is equivalent to:
 </p>
 
-<pre class="example" id="orgd8f96c0">
+<pre class="example" id="org2b4013c">
 defLessThan d x y  =  (&lt;=) d x y  &amp;&amp;  (/=) (#7 d) x y
 
 </pre>
 </div>
 </div>
-<div id="outline-container-orga92eb8b" class="outline-4">
-<h4 id="orga92eb8b"><span class="section-number-4">14.3.2.</span> Combining classes</h4>
+<div id="outline-container-orgcbefb25" class="outline-4">
+<h4 id="orgcbefb25"><span class="section-number-4">14.3.2.</span> Combining classes</h4>
 <div class="outline-text-4" id="text-14-3-2">
 <p>
 In general, a dictionary is made up of three separate parts:
 </p>
 
-<pre class="example" id="org77b9426">
+<pre class="example" id="org425187a">
 +-------------------+-------------------+-------------------+
 |  Implementation   |    Superclass     | Instance specific |
 | of class members  |   Dictionaries    |   Dictionaries    |
@@ -5944,7 +5944,7 @@ functions) are sometimes useful as a convenient abbreviation for a list
 of predicates. For example:
 </p>
 
-<pre class="example" id="org4e7e1d8">
+<pre class="example" id="org8dcdaaa">
 class  C a  where  cee :: a -&gt; a
 class  D a  where  dee :: a -&gt; a
 
@@ -5965,7 +5965,7 @@ predicate of the form CandD a instead of the two predicates C a and D a
 unless explicit signatures are used:
 </p>
 
-<pre class="example" id="org9d1b812">
+<pre class="example" id="org1a451b3">
 ? :t dee . cee
 \d129 d130 -&gt; dee d130 . cee d129 :: (C a, D a) =&gt; a -&gt; a
 ? :t dee . cee :: CandD a =&gt; a -&gt; a
@@ -5981,7 +5981,7 @@ general form of instance declaration permitted in Gofer; a single
 instance declaration:
 </p>
 
-<pre class="example" id="orge216f62">
+<pre class="example" id="org9f3a40e">
 instance CandD a
 </pre>
 
@@ -5991,14 +5991,14 @@ obtained, so long as corresponding instances for C and D can be found.
 </p>
 </div>
 </div>
-<div id="outline-container-orgaa0066b" class="outline-4">
-<h4 id="orgaa0066b"><span class="section-number-4">14.3.3.</span> Simplified contexts</h4>
+<div id="outline-container-orgb66f9ef" class="outline-4">
+<h4 id="orgb66f9ef"><span class="section-number-4">14.3.3.</span> Simplified contexts</h4>
 <div class="outline-text-4" id="text-14-3-3">
 <p>
 Consider the function defined by the following equation:
 </p>
 
-<pre class="example" id="org760dc33">
+<pre class="example" id="org0e9b4c6">
 eg1 x   =   [x] == [x]  ||  x == x
 </pre>
 
@@ -6009,7 +6009,7 @@ for the two occurrences of the (==) operator in the equation. We might
 therefore expect the type of eg1 to be:
 </p>
 
-<pre class="example" id="orgf39c233">
+<pre class="example" id="orga4ca5e9">
 (Eq [a], Eq a) =&gt; a -&gt; Bool
 </pre>
 
@@ -6017,7 +6017,7 @@ therefore expect the type of eg1 to be:
 with translation:
 </p>
 
-<pre class="example" id="org8e88019">
+<pre class="example" id="org1ac63ad">
 eg1 d1 d2 x  =  (==) d1 [x] [x]  ||  (==) d2 x x
 </pre>
 
@@ -6030,7 +6030,7 @@ type and translation with extra parameters, the type assigned to "eg1"
 by default is:
 </p>
 
-<pre class="example" id="orgb839fc3">
+<pre class="example" id="orgf3ea47d">
 Eq [a] =&gt; a -&gt; Bool
 </pre>
 
@@ -6038,7 +6038,7 @@ Eq [a] =&gt; a -&gt; Bool
 with translation:
 </p>
 
-<pre class="example" id="orgd774ab7">
+<pre class="example" id="org524c6a6">
 eg1 d1 x  =  (==) d1 [x] [x]  || (==) (#3 d1) x x
 </pre>
 
@@ -6056,7 +6056,7 @@ including an explicit type signature in the file containing the
 definition of eg1:
 </p>
 
-<pre class="example" id="orge4c40cd">
+<pre class="example" id="orged9b357">
 eg1   ::  (Eq [a], Eq a) =&gt; a -&gt; Bool
 eg1 x  =  [x] == [x]  ||  x == x
 </pre>
@@ -6066,7 +6066,7 @@ But even with this definition, Gofer will still always try to minimise
 the number of dictionaries used in any particular expression:
 </p>
 
-<pre class="example" id="orgfa3847d">
+<pre class="example" id="orgc1ae3a1">
 ? :t eg1
 \d153 -&gt; eg1 d153 (#3 d153) :: Eq [a] =&gt; a -&gt; Bool
 ?
@@ -6078,7 +6078,7 @@ type and translation assigned to this term can be found directly using
 Gofer:
 </p>
 
-<pre class="example" id="org010e69e">
+<pre class="example" id="orge0138c8">
 ? :t (\x y-&gt; x==x || y==y)
 \d121 d122 x y -&gt; (==) d122 x x ||
                   (==) d121 y y
@@ -6094,7 +6094,7 @@ predicate Eq (a,b), we can use an explicit type signature to produce a
 translation which needs only one dictionary parameter:
 </p>
 
-<pre class="example" id="orgb2c5746">
+<pre class="example" id="orgfeb3494">
 ? :t (\x y-&gt; x==x || y==y) :: Eq (a,b) =&gt; a -&gt; b -&gt; Bool
 \d121 x y -&gt; (==) (#3 d121) x x ||
              (==) (#4 d121) y y
@@ -6161,7 +6161,7 @@ sufficient information to resolve the use of overloading in the
 expression:
 </p>
 
-<pre class="example" id="orga9f3a93">
+<pre class="example" id="org8836d7a">
 ? [] == []
 ERROR: Unresolved overloading
 *** type        : Eq [a] =&gt; Bool
@@ -6181,7 +6181,7 @@ kind is to use an explicit type signature. For example, if we specify
 that the second empty list is an empty list of type <code>[Int]</code>:
 </p>
 
-<pre class="example" id="orga55dd27">
+<pre class="example" id="org132ce85">
 ? [] == ([]::[Int])
 True
 (2 reductions, 9 cells)
@@ -6201,7 +6201,7 @@ Further examples of unresolved overloading occur with other classes. As
 an example consider the class Reader defined by:
 </p>
 
-<pre class="example" id="org3665896">
+<pre class="example" id="orgce0ad14">
 class Reader a where
     parse   :: String -&gt; a
     unparse :: a -&gt; String
@@ -6217,7 +6217,7 @@ Reader to values of another instance via an intermediate string
 representation.
 </p>
 
-<pre class="example" id="orgf118913">
+<pre class="example" id="org533cf58">
 ? parse . unparse
 ERROR: Unresolved overloading
 *** type        : (Reader a, Reader b) =&gt; a -&gt; b
@@ -6238,7 +6238,7 @@ This can be fixed by using an explicit type declaration, although the
 expression still produces unresolved overloading:
 </p>
 
-<pre class="example" id="orgd368d6f">
+<pre class="example" id="orgcb3ee2a">
 ? (parse . unparse) :: Reader a =&gt; a -&gt; a
 ERROR: Unresolved overloading
 *** type        : Reader a =&gt; a -&gt; a
@@ -6252,7 +6252,7 @@ the unresolved overloading in this example can be eliminated when the
 function is actually used:
 </p>
 
-<pre class="example" id="org861d9bd">
+<pre class="example" id="org82300fb">
 ? ((parse . unparse) :: Reader a =&gt; a -&gt; a) 'a'
 'a'
 (4 reductions, 11 cells)
@@ -6265,7 +6265,7 @@ which maps string values to string values via some intermediate type.
 Clearly this will lead to a problem with unresolved overloading:
 </p>
 
-<pre class="example" id="org66d0c92">
+<pre class="example" id="org56bbedc">
 ? unparse . parse
 ERROR: Unresolved overloading
 *** type        : Reader a =&gt; String -&gt; String
@@ -6286,7 +6286,7 @@ Using an explicitly typed expression: Assuming for example that <code>Char</code
 is an instance of <code>Reader</code>, we can write:
 </p>
 
-<pre class="example" id="org14df23a">
+<pre class="example" id="org0fa6d93">
 ? unparse . (parse :: String -&gt; Char)
 v113 {dict} . v112 {dict}
 (5 reductions, 42 cells)
@@ -6299,7 +6299,7 @@ places, it might be better to define an auxiliary function and use
 that instead:
 </p>
 
-<pre class="example" id="orgfd7dae6">
+<pre class="example" id="orgdd38f40">
 charParse :: String -&gt; Char
 charParse  = parse
 
@@ -6319,7 +6319,7 @@ Using an extra dummy parameter in a function definition. In a
 definition such as:
 </p>
 
-<pre class="example" id="orge63362d">
+<pre class="example" id="orgcbb1e45">
 f = unparse . parse
 </pre>
 
@@ -6328,7 +6328,7 @@ we can introduce an additional dummy parameter <code>x</code> which is not used
 except to determine the type of the result produced by parse in f:
 </p>
 
-<pre class="example" id="orgc75c6eb">
+<pre class="example" id="orge26f14d">
 f x  =  unparse . (parse `asTypeOf` (\""-&gt;x))
 </pre>
 
@@ -6336,7 +6336,7 @@ f x  =  unparse . (parse `asTypeOf` (\""-&gt;x))
 where the standard prelude operator <code>asTypeOf</code> defined by:
 </p>
 
-<pre class="example" id="orgf4ea65e">
+<pre class="example" id="org01d2534">
 asTypeOf      :: a -&gt; a -&gt; a
 x `asTypeOf` _ = x
 </pre>
@@ -6351,7 +6351,7 @@ be <code>String -&gt; a</code> where a is the type of the variable <code>x</code
 The resulting type for <code>f</code> is:
 </p>
 
-<pre class="example" id="org3bbb7de">
+<pre class="example" id="org28b159c">
 f :: Reader a =&gt; a -&gt; String -&gt; String
 </pre>
 
@@ -6373,7 +6373,7 @@ been implemented quite easily in Gofer using an otherwise unused
 datatype <code>Unresolved</code> and generating instance declarations such as:
 </p>
 
-<pre class="example" id="org692e551">
+<pre class="example" id="orgb60ba0c">
 instance Eq Unresolved where
     (==) = error "unresolved overloading for (==)"
     (/=) = error "unresolved overloading for (/=)"
@@ -6414,7 +6414,7 @@ alternative definition for the class <code>Eq</code> in which the <code>(==)~ an
 operators are placed in different classes:
 </p>
 
-<pre class="example" id="org2a94f2e">
+<pre class="example" id="orge67f599">
 class Neq a =&gt; Eq a  where  (==) :: a -&gt; a -&gt; Bool
 
 class Eq a =&gt; Neq a  where  (/=) :: a -&gt; a -&gt; Bool
@@ -6432,7 +6432,7 @@ standard prelude is used instead.]
 If we then give instance declarations:
 </p>
 
-<pre class="example" id="org74520d2">
+<pre class="example" id="org3ed022f">
 instance Eq Int  where (==) = primEqInt
 instance Neq Int
 </pre>
@@ -6442,7 +6442,7 @@ and try to evaluate the expression <code>2==3</code> then the following system o
 dictionaries will be generated:
 </p>
 
-<pre class="example" id="org39966a6">
+<pre class="example" id="orgd07dc02">
 
     d1 :: Eq Int                   d2 :: Neq Int
     +-----------+-----------+      +-----------+-----------+
@@ -6459,7 +6459,7 @@ where the function <code>defNeq</code> is derived from the default definition in
 the class Neq and is equivalent to:
 </p>
 
-<pre class="example" id="orgd829881">
+<pre class="example" id="orgd1c46a3">
 defNeq d x y  =  not ((==) (#2 d) x y)
 </pre>
 
@@ -6468,7 +6468,7 @@ Incidentally, if the instance declaration for <code>Neq Int</code> above had bee
 replaced by:
 </p>
 
-<pre class="example" id="orgedf2333">
+<pre class="example" id="org6347649">
 instance Neq a
 </pre>
 
@@ -6480,7 +6480,7 @@ would give the same effect as defining <code>(/=)</code> as a top-level function
 rather than a member function in the class <code>Eq</code>:
 </p>
 
-<pre class="example" id="org1f4ae63">
+<pre class="example" id="org5957e62">
 class Eq a  where  (==) :: a -&gt; a -&gt; Bool
 
 (/=)   ::  Eq a =&gt; a -&gt; a -&gt; Bool
@@ -6495,7 +6495,7 @@ and instance declarations can also lead to problems in some (mostly
 pathological) cases. As an example, consider the class:
 </p>
 
-<pre class="example" id="org133ff73">
+<pre class="example" id="orgda48d37">
 class Bad [a] =&gt; Bad a  where  bad :: a -&gt; a
 </pre>
 
@@ -6504,7 +6504,7 @@ Without defining any instances of <code>Bad</code>, it is not possible to constr
 any dictionaries for instances of <code>Bad</code>:
 </p>
 
-<pre class="example" id="org3c9402d">
+<pre class="example" id="org9bd6f76">
 ? bad 2
 ERROR: Cannot derive instance in expression
 *** Expression        : bad d126 2
@@ -6516,7 +6516,7 @@ ERROR: Cannot derive instance in expression
 If however we add the instance declarations:
 </p>
 
-<pre class="example" id="orgbce2f2b">
+<pre class="example" id="org822877f">
 instance Bad Int where bad = id
 instance Bad [a] where bad = id
 </pre>
@@ -6529,7 +6529,7 @@ space for storing dictionaries, this process will eventually terminate
 when that space has been used up:
 </p>
 
-<pre class="example" id="org3b54e4e">
+<pre class="example" id="org6c88b0d">
 ? bad 2
 ERROR: Dictionary storage space exhausted
 ?
@@ -6541,7 +6541,7 @@ Gofer and on the nature of the class and instance declarations that are
 involved, an alternative error message
 </p>
 
-<pre class="example" id="orgd55cf38">
+<pre class="example" id="orga7a92b2">
 ERROR: Too many type variables in type checker
 </pre>
 
@@ -6597,7 +6597,7 @@ The following declaration introduces a class Iso whose elements are
 pairs of isomorphic types:
 </p>
 
-<pre class="example" id="org6b62f5c">
+<pre class="example" id="org5ecee5b">
 class Iso b a =&gt; Iso a b  where  iso :: a -&gt; b
 </pre>
 
@@ -6615,7 +6615,7 @@ The fact that any type is isomorphic to itself can be described by the
 following instance declaration:
 </p>
 
-<pre class="example" id="orgff2fad8">
+<pre class="example" id="org11f7b6f">
 instance Iso a a where iso x = x
 </pre>
 
@@ -6624,7 +6624,7 @@ For example, the dictionary structure created in order to evaluate the
 expression "iso 2 = 3" is:
 </p>
 
-<pre class="example" id="orge197068">
+<pre class="example" id="org391338a">
 
     d :: Iso Int Int
     +--------------+--------------+
@@ -6636,7 +6636,7 @@ expression "iso 2 = 3" is:
 +------------------&lt;-----------------+
 </pre>
 
-<pre class="example" id="org7f908fe">
+<pre class="example" id="org2ab9cfb">
 ? iso 2 == 3
 False
 (4 reductions, 11 cells)
@@ -6648,7 +6648,7 @@ Our first taste of the problems to come occurs when we try to evaluate
 the expression "iso 2 == iso 3":
 </p>
 
-<pre class="example" id="org35cce11">
+<pre class="example" id="orgb5c705f">
 ? iso 2 == iso 3
 ERROR: Unresolved overloading
 *** type        : (Eq a, Iso Int a) =&gt; Bool
@@ -6670,7 +6670,7 @@ needed to describe the (approximate) isomorphism between lists of pairs
 and pairs of lists:
 </p>
 
-<pre class="example" id="org7878422">
+<pre class="example" id="org49c3eab">
 instance Iso [(a,b)] ([a],[b]) where
     iso xs = (map fst xs, map snd xs)
 
@@ -6684,7 +6684,7 @@ with unresolved overloading, forcing the use of explicit type
 declarations:
 </p>
 
-<pre class="example" id="org7829033">
+<pre class="example" id="org4afa6b1">
 ? iso [(1,2),(3,4)]
 ERROR: Unresolved overloading
 *** type        : Iso [(Int,Int)] a =&gt; a
@@ -6701,7 +6701,7 @@ A second example of a multiple parameter type class is defined as
 follows:
 </p>
 
-<pre class="example" id="orgd814df8">
+<pre class="example" id="orgb6011e5">
 class Ord a =&gt; Collects a b where
     emptyCollection :: b
     addToCollection :: a -&gt; b -&gt; b
@@ -6721,7 +6721,7 @@ Obvious implementations involve the use of ordered lists or binary
 search trees defined by instances of the form:
 </p>
 
-<pre class="example" id="org5150f10">
+<pre class="example" id="orga58b0ee">
 data STree a = Empty | Node a (STree a) (STree a)
 
 instance Collects a [a] where ....
@@ -6734,7 +6734,7 @@ using these functions. As an example, the standard way of defining a
 function of type:
 </p>
 
-<pre class="example" id="orgb976aca">
+<pre class="example" id="orgcceea1f">
 Collects a b =&gt; [a] -&gt; b
 </pre>
 
@@ -6743,7 +6743,7 @@ mapping a list of values to a collection of those values using the
 higher order function "foldr":
 </p>
 
-<pre class="example" id="org2d291d6">
+<pre class="example" id="org95a89dc">
 listToCollection = foldr addToCollection emptyCollection
 </pre>
 
@@ -6751,7 +6751,7 @@ listToCollection = foldr addToCollection emptyCollection
 actually produces a function with ambiguous type:
 </p>
 
-<pre class="example" id="org6cd8fca">
+<pre class="example" id="org9cb2cd0">
 ? :t foldr addToCollection emptyCollection
 \d139 d140 -&gt; foldr (addToCollection d140) (emptyCollection d139)
           :: (Collects c b, Collects a b) =&gt; [a] -&gt; b
@@ -6786,7 +6786,7 @@ implement the full hierarchy of Haskell numeric classes, the standard
 prelude uses a single numeric type class Num defined by:
 </p>
 
-<pre class="example" id="orgf9c7d1f">
+<pre class="example" id="org74bf68a">
 class Eq a =&gt; Num a where           -- simplified numeric class
     (+), (-), (*), (/) :: a -&gt; a -&gt; a
     negate             :: a -&gt; a
@@ -6808,7 +6808,7 @@ Both Float and Int are defined as instances of Num using primitive
 functions for integer and floating point arithmetic:
 </p>
 
-<pre class="example" id="orgb282538">
+<pre class="example" id="orgee500f6">
 instance Num Int where
     (+)           = primPlusInt
     (-)           = primMinusInt
@@ -6831,7 +6831,7 @@ These definitions make it possible to evaluate numeric expressions
 involving both types:
 </p>
 
-<pre class="example" id="orgef40a99">
+<pre class="example" id="org7b36859">
 ? 2 + 3
 5
 (3 reductions, 6 cells)
@@ -6846,7 +6846,7 @@ Note however that any attempt to evaluate an expression mixing different
 arithmetic types is likely to cause a type error:
 </p>
 
-<pre class="example" id="org603d78c">
+<pre class="example" id="orgd5dffcb">
 ? 4.2 * 4
 ERROR: Type error in application
 *** expression     : 4.2 * 4
@@ -6863,7 +6863,7 @@ As an example of this, the standard prelude function "sum", roughly
 equivalent to:
 </p>
 
-<pre class="example" id="org0b4ccd6">
+<pre class="example" id="org435ccde">
 sum []     = 0
 sum (x:xs) = x + sum xs
 </pre>
@@ -6877,7 +6877,7 @@ with the expression fromInteger 0 leads to the following definition for
 a generic sum function of the required type:
 </p>
 
-<pre class="example" id="orgceb8b7e">
+<pre class="example" id="orgef749dd">
 genericSum       :: Num a =&gt; [a] -&gt; a
 genericSum []     = fromInteger 0
 genericSum (x:xs) = x + genericSum xs
@@ -6887,7 +6887,7 @@ genericSum (x:xs) = x + genericSum xs
 For example:
 </p>
 
-<pre class="example" id="org08655e5">
+<pre class="example" id="orgca95c89">
 ? genericSum [1,2,3]
 6
 (10 reductions, 18 cells)
@@ -6901,7 +6901,7 @@ For example:
 The fromInteger function can also be used to solve the previous problem:
 </p>
 
-<pre class="example" id="org71a3250">
+<pre class="example" id="orgef741d3">
 ? 4.2 * fromInteger 4
 16.8
 (3 reductions, 13 cells)
@@ -6917,7 +6917,7 @@ to each integer constant in the previous examples causes problems with
 unresolved overloading:
 </p>
 
-<pre class="example" id="org03075ad">
+<pre class="example" id="org4f7f238">
 ? fromInteger 2 + fromInteger 3
 ERROR: Unresolved overloading
 *** type        : Num a =&gt; a
@@ -6934,7 +6934,7 @@ by the type variable a above to be Int, so that the result is actually
 equivalent to the following:
 </p>
 
-<pre class="example" id="org2ae90ec">
+<pre class="example" id="org75d6a39">
 ? (fromInteger 2 + fromInteger 3) :: Int
 5
 (4 reductions, 8 cells)
@@ -6966,7 +6966,7 @@ functions are defined by variable declarations as in <a href="#variable_declarat
 example, consider the class Finite defined by:
 </p>
 
-<pre class="example" id="orgb8e29df">
+<pre class="example" id="org468b120">
 class Finite a  where  members :: [a]
 </pre>
 
@@ -6975,7 +6975,7 @@ The only member in this class is a list enumerating the elements of the
 type. For example:
 </p>
 
-<pre class="example" id="org96d4e8e">
+<pre class="example" id="org366d334">
 instance Finite Bool  where  members = [False, True]
 
 instance (Finite a, Finite b) =&gt; Finite (a,b) where
@@ -6987,7 +6987,7 @@ In order to overcome any problems with unresolved overloading, explicit
 type signatures are often needed to resolve overloading:
 </p>
 
-<pre class="example" id="orgec11c53">
+<pre class="example" id="org6b2cfb8">
 ? members :: [Bool]
 [False, True]
 (6 reductions, 26 cells)
@@ -7002,7 +7002,7 @@ In some cases, the required overloading is implicit from the context and
 no additional type information is required, as in the following example:
 </p>
 
-<pre class="example" id="org050939c">
+<pre class="example" id="orge474fc8">
 ? [ x &amp;&amp; y | (x,y) &lt;- members ]
 [False, False, False, True]
 (29 reductions, 90 cells)
@@ -7014,7 +7014,7 @@ We can also use the technique of passing a ‘dummy’ parameter to resolve
 overloading problems in a function definition:
 </p>
 
-<pre class="example" id="org7f06407">
+<pre class="example" id="orgf2f943d">
 size  :: Finite a =&gt; a -&gt; Int
 size x = length (members `asTypeOf` [x])
 </pre>
@@ -7024,7 +7024,7 @@ which calculates the number of elements of a finite type, given an
 arbitrary element of that type:
 </p>
 
-<pre class="example" id="org8b6e9d5">
+<pre class="example" id="org04b0491">
 ? size (True,False)
 4
 (31 reductions, 60 cells)
@@ -7044,7 +7044,7 @@ and the complete calculation actually uses rather fewer reductions and
 cells:
 </p>
 
-<pre class="example" id="orgc2df35e">
+<pre class="example" id="org39e1054">
 ? size (True,False) + size (True,False)
 8
 (51 reductions, 90 cells)
@@ -7064,7 +7064,7 @@ from a file of definitions, so that they are not deleted at the end of
 each calculation, using an explicitly typed variable definition such as:
 </p>
 
-<pre class="example" id="orgb4b8c17">
+<pre class="example" id="org6333007">
 boolBoolMembers = members :: [(Bool,Bool)]
 </pre>
 
@@ -7075,7 +7075,7 @@ the end of each calculation. Having loaded a file containing this
 definition, the first two attempts to evaluate "size (True,False)" give:
 </p>
 
-<pre class="example" id="orgf11a49c">
+<pre class="example" id="orge1ab1a9">
 ? size (True,False)
 4
 (31 reductions, 60 cells)
@@ -7123,7 +7123,7 @@ the required dictionary parameters. For example, given a function
 definition such as:
 </p>
 
-<pre class="example" id="orgcd28933">
+<pre class="example" id="orgadb2f72">
 isElement x []     =  False
 isElement x (y:ys) =  x==y || isElement x ys
 </pre>
@@ -7133,7 +7133,7 @@ we first add a dictionary parameter for the use of the overloaded (==)
 operator on the right hand side, obtaining:
 </p>
 
-<pre class="example" id="org0d77cdb">
+<pre class="example" id="org286b22d">
 isElement x []     = False
 isElement x (y:ys) = (==) d x y || isElement x ys
 </pre>
@@ -7144,7 +7144,7 @@ function isElement, on both the left and right hand sides of the
 definition:
 </p>
 
-<pre class="example" id="orge5e1a33">
+<pre class="example" id="org3f54f7b">
 isElement d x []     = False
 isElement d x (y:ys) = (==) d x y || isElement d x ys
 </pre>
@@ -7164,7 +7164,7 @@ declarations rather than just individual definitions. To illustrate this
 point, consider the function definitions:
 </p>
 
-<pre class="example" id="org2cb9eae">
+<pre class="example" id="org19e2a35">
 f x y  =  x==y || g x y
 g x y  =  not (f x y)
 </pre>
@@ -7173,7 +7173,7 @@ g x y  =  not (f x y)
 Adding an appropriate dictionary parameter for the (==) operator gives:
 </p>
 
-<pre class="example" id="orgeacbaec">
+<pre class="example" id="orgf9196d1">
 f x y  =  (==) d x y || g x y
 g x y  =  not (f x y)
 </pre>
@@ -7183,7 +7183,7 @@ The next stage is to make this dictionary variable into an extra
 parameter to the function f wherever it appears, giving:
 </p>
 
-<pre class="example" id="org45b86fd">
+<pre class="example" id="org15cdac5">
 f d x y  =  (==) d x y || g x y
 g x y    =  not (f d x y)
 </pre>
@@ -7194,7 +7194,7 @@ dictionary variable d which must therefore be added as an extra
 parameter to g:
 </p>
 
-<pre class="example" id="org079fd07">
+<pre class="example" id="orgc7ce7fe">
 f d x y  =  (==) d x y || g d x y
 g d x y  =  not (f d x y)
 </pre>
@@ -7234,7 +7234,7 @@ appropriate values as dictionary parameters. For example, the function
 definition:
 </p>
 
-<pre class="example" id="orga7612f5">
+<pre class="example" id="org8e65879">
 f x  =   x == 0  ||  x == 2
 </pre>
 
@@ -7242,7 +7242,7 @@ f x  =   x == 0  ||  x == 2
 can be translated as:
 </p>
 
-<pre class="example" id="org0d4bc1b">
+<pre class="example" id="org1df0d6a">
 f x  =   (==) {dict} x 0  ||  (==) {dict} x 2
 </pre>
 
@@ -7252,7 +7252,7 @@ where, in both cases, the symbol {dict} denotes the dictionary for
 determined, this can be simplified to:
 </p>
 
-<pre class="example" id="org90aba3e">
+<pre class="example" id="orgf5fab73">
 f x  =   primEqInt x 0 || primEqInt x 2
 </pre></li>
 
@@ -7264,7 +7264,7 @@ not use this technique because it typically causes ambiguity problems,
 as illustrated by the pattern binding:
 </p>
 
-<pre class="example" id="orgfdf9725">
+<pre class="example" id="orgc2a74ed">
 (plus,times) = ((+), (*))
 </pre>
 
@@ -7272,7 +7272,7 @@ as illustrated by the pattern binding:
 Translating this into a group of function bindings gives:
 </p>
 
-<pre class="example" id="org6d10aea">
+<pre class="example" id="orgb63be8b">
 newVariable  = ((+), (*))
 plus         = fst newVariable     -- fst (x,_) = x
 times        = snd newVariable     -- snd (_,y) = y
@@ -7284,7 +7284,7 @@ that the correct translation of these bindings using two dictionary
 variables gives:
 </p>
 
-<pre class="example" id="org622350f">
+<pre class="example" id="org663df83">
 newVariable da db = ((+) da, (*) db)
 plus da db        = fst (newVariable da db)
 times da db       = snd (newVariable da db)
@@ -7294,7 +7294,7 @@ times da db       = snd (newVariable da db)
 and hence the correct types for plus and times are:
 </p>
 
-<pre class="example" id="org3690d8d">
+<pre class="example" id="orga4dbfe8">
 plus  :: (Num a, Num b) =&gt; a -&gt; a -&gt; a
 times :: (Num a, Num b) =&gt; b -&gt; b -&gt; b
 </pre>
@@ -7310,7 +7310,7 @@ an example, consider the following definition using the function
 <code>size</code> and the class <code>Finite</code> described in the previous section:
 </p>
 
-<pre class="example" id="org984527e">
+<pre class="example" id="orgd537a19">
 twiceSize x = n + n  where n = size x
 </pre>
 
@@ -7321,7 +7321,7 @@ value of twiceSize. However, adding extra dictionary parameters
 without restriction gives:
 </p>
 
-<pre class="example" id="org9ba3fb5">
+<pre class="example" id="org7a6c031">
 twiceSize d x  = n d + n d  where  n d = size d x
 </pre>
 
@@ -7333,7 +7333,7 @@ usually allow extra parameters to be added to a variable definition.
 Thus the original definition above will be translated to give:
 </p>
 
-<pre class="example" id="orgb3896c3">
+<pre class="example" id="orgebd5e58">
 twiceSize d x  =  n + n  where n = size d x
 </pre>
 
@@ -7344,7 +7344,7 @@ dictionary parameters are required for the right hand side of the
 definition. As an example of this:
 </p>
 
-<pre class="example" id="orgc9cc297">
+<pre class="example" id="orgdec8d3f">
 twiceMembers = members ++ members
 </pre>
 
@@ -7352,7 +7352,7 @@ twiceMembers = members ++ members
 which produces an error message of the form:
 </p>
 
-<pre class="example" id="orgbfe6c84">
+<pre class="example" id="org03838e0">
 ERROR "ex" (line 157): Unresolved top-level overloading
 *** Binding             : twiceMembers
 *** Inferred type       : [_7]
@@ -7374,7 +7374,7 @@ to be used as an overloaded value. In this case, we need only include
 the declaration:
 </p>
 
-<pre class="example" id="org8daf035">
+<pre class="example" id="org7ce1464">
 twiceMembers :: Finite a =&gt; [a]
 </pre>
 
@@ -7389,7 +7389,7 @@ Note that the monomorphism restriction interferes with the use of
 polymorphism. For example, the definition:
 </p>
 
-<pre class="example" id="org8606448">
+<pre class="example" id="org1546167">
 aNumber = length (twiceMembers::[Bool]) +
           length (twiceMembers::[(Bool,Bool)])
           where twiceMembers = members ++ members
@@ -7402,7 +7402,7 @@ overloading (the dictionary parameter supplied to each use of members
 must be constant throughout the local definition):
 </p>
 
-<pre class="example" id="org1335969">
+<pre class="example" id="orgeaea597">
 ERROR "ex" (line 12): Type error in type signature expression
 *** term           : twiceMembers
 *** type           : [(Bool,Bool)]
@@ -7415,7 +7415,7 @@ Once again, this problem can be fixed using an explicit type
 declaration:
 </p>
 
-<pre class="example" id="orgb9bef90">
+<pre class="example" id="org45df986">
 aNumber = length (twiceMembers::[Bool]) +
           length (twiceMembers::[(Bool,Bool)])
           where twiceMembers :: Finite a =&gt; [a]
@@ -7545,7 +7545,7 @@ The following terminal symbols are used but not defined by the grammar:
 Top-level grammar
 </p>
 
-<pre class="example" id="org1042540">
+<pre class="example" id="org8df7ae2">
 &lt;module&gt;   ::= "{" &lt;topdecls&gt; "}"               module
 
 &lt;interp&gt;   ::= &lt;exp&gt; [&lt;where&gt;]                  top-level expression
@@ -7575,7 +7575,7 @@ Top-level grammar
 Type expressions
 </p>
 
-<pre class="example" id="orge41e0d7">
+<pre class="example" id="org044da22">
 &lt;sigType&gt;  ::= [&lt;context&gt; =&gt; ] &lt;type&gt;           [qualified] type
 
 &lt;context&gt;  ::= "(" [&lt;pred&gt; {, &lt;pred&gt;}] ")"      general form
@@ -7596,7 +7596,7 @@ Type expressions
 Class and instance declarations
 </p>
 
-<pre class="example" id="orgb0eed06">
+<pre class="example" id="org241e97b">
 &lt;class&gt;    ::= class [&lt;context&gt; =&gt;] &lt;pred&gt; [&lt;cbody&gt;]
 &lt;cbody&gt;    ::= where "{" &lt;cdecls&gt; "}"           class body
 &lt;cdecls&gt;   ::= &lt;cdecls&gt;; &lt;cdecls&gt;               multiple declarations
@@ -7613,7 +7613,7 @@ Class and instance declarations
 Value declarations
 </p>
 
-<pre class="example" id="org443b30a">
+<pre class="example" id="org34e94cb">
 &lt;decls&gt;  ::= &lt;decls&gt;; &lt;decls&gt;                 multiple declarations
           |  &lt;var&gt; {, &lt;var&gt;} :: &lt;sigType&gt;     type declaration
           |  &lt;fun&gt; &lt;rhs&gt; [&lt;where&gt;]            function binding
@@ -7638,7 +7638,7 @@ Value declarations
 Expressions
 </p>
 
-<pre class="example" id="org1e22563">
+<pre class="example" id="org85b01c6">
 &lt;exp&gt;    ::= \ &lt;apat&gt; {&lt;apat&gt;} -&gt; &lt;exp&gt;       lambda expression
           |  let "{" &lt;decls&gt; "}" in &lt;exp&gt;     local definition
           |  if &lt;exp&gt; then &lt;exp&gt; else &lt;exp&gt;   conditional expression
@@ -7686,7 +7686,7 @@ Expressions
 Patterns
 </p>
 
-<pre class="example" id="org99d0a7b">
+<pre class="example" id="orgf137e6f">
 &lt;pat&gt;    ::= &lt;pat&gt; &lt;conop&gt; &lt;pat&gt;              operator application
           |  &lt;var&gt; + &lt;integer&gt;                (n+k) pattern
           |  &lt;appPat&gt;
@@ -7712,7 +7712,7 @@ Patterns
 Variables and operators
 </p>
 
-<pre class="example" id="org343596f">
+<pre class="example" id="org3bb575a">
 &lt;var&gt;    ::= &lt;varid&gt;  |  "(" - ")"            variable
 &lt;op&gt;     ::= &lt;varop&gt;  |  &lt;conop&gt;   |  -       operator
 
@@ -7727,8 +7727,8 @@ Variables and operators
 <div id="outline-container-appendix_B" class="outline-2">
 <h2 id="appendix_B">Appendix B: Contents Of Standard Prelude</h2>
 <div class="outline-text-2" id="text-appendix_B">
-<pre class="example" id="org646c91b">
---         __________   __________   __________   __________   ________
+<div class="org-src-container">
+<pre class="src src-nil"><code>--         __________   __________   __________   __________   ________
 --        /  _______/  /  ____   /  /  _______/  /  _______/  /  ____  \
 --       /  / _____   /  /   /  /  /  /______   /  /______   /  /___/  /
 --      /  / /_   /  /  /   /  /  /  _______/  /  _______/  /  __   __/
@@ -7902,11 +7902,11 @@ class (Eq a, Text a) =&gt; Num a where         -- simplified numeric class
 -- Type class instances: ----------------------------------------------------
 
 primitive primEqInt    "primEqInt",
-	  primLeInt    "primLeInt"   :: Int -&gt; Int -&gt; Bool
+          primLeInt    "primLeInt"   :: Int -&gt; Int -&gt; Bool
 primitive primPlusInt  "primPlusInt",
-	  primMinusInt "primMinusInt",
-	  primDivInt   "primDivInt",
-	  primMulInt   "primMulInt"  :: Int -&gt; Int -&gt; Int
+          primMinusInt "primMinusInt",
+          primDivInt   "primDivInt",
+          primMulInt   "primMulInt"  :: Int -&gt; Int -&gt; Int
 primitive primNegInt   "primNegInt"  :: Int -&gt; Int
 
 instance Eq ()  where () == () = True
@@ -7963,9 +7963,9 @@ instance Num Float where
 
 primitive sin "primSinFloat",  asin  "primAsinFloat",
           cos "primCosFloat",  acos  "primAcosFloat",
-	  tan "primTanFloat",  atan  "primAtanFloat",
+          tan "primTanFloat",  atan  "primAtanFloat",
           log "primLogFloat",  log10 "primLog10Float",
-	  exp "primExpFloat",  sqrt  "primSqrtFloat" :: Float -&gt; Float
+          exp "primExpFloat",  sqrt  "primSqrtFloat" :: Float -&gt; Float
 primitive atan2    "primAtan2Float" :: Float -&gt; Float -&gt; Float
 primitive truncate "primFloatToInt" :: Float -&gt; Int
 
@@ -7975,7 +7975,7 @@ pi  = 3.1415926535
 {- PC version on -}
 
 primitive primEqChar   "primEqChar",
-	  primLeChar   "primLeChar"  :: Char -&gt; Char -&gt; Bool
+          primLeChar   "primLeChar"  :: Char -&gt; Char -&gt; Bool
 
 instance Eq Char  where (==) = primEqChar   -- c == d  =  ord c == ord d
 
@@ -8022,7 +8022,7 @@ instance Ord Bool where
 -- Standard numerical functions: --------------------------------------------
 
 primitive div    "primDivInt",
-	  quot   "primQuotInt",
+          quot   "primQuotInt",
           rem    "primRemInt",
           mod    "primModInt"    :: Int -&gt; Int -&gt; Int
 
@@ -8157,7 +8157,7 @@ null (_:_)        = False
 -- map f xs applies the function f to each element of the list xs returning
 -- the corresponding list of results.  filter p xs returns the sublist of xs
 -- containing those elements which satisfy the predicate p.
- 
+
 map              :: (a -&gt; b) -&gt; [a] -&gt; [b]
 map f []          = []
 map f (x:xs)      = f x : map f xs
@@ -8469,7 +8469,7 @@ instance Text Char where
                     where showl ""       = showChar '"'
                           showl ('"':cs) = showString "\\\"" . showl cs
                           showl (c:cs)   = showChar c . showl cs
-			  -- Haskell has   showLitChar c . showl cs
+                          -- Haskell has   showLitChar c . showl cs
 
 instance Text a =&gt; Text [a]  where
     showsPrec p = showList
@@ -8495,14 +8495,14 @@ data Request  =  -- file system requests:
               | AppendChan    String String
                  -- environment requests:
               | Echo          Bool
-	      | GetArgs
-	      | GetProgName
-	      | GetEnv        String
+              | GetArgs
+              | GetProgName
+              | GetEnv        String
 
 data Response = Success
               | Str     String 
               | Failure IOError
-	      | StrList [String]
+              | StrList [String]
 
 data IOError  = WriteError   String
               | ReadError    String
@@ -8517,7 +8517,7 @@ type SuccCont    =                Dialogue
 type StrCont     =  String     -&gt; Dialogue
 type StrListCont =  [String]   -&gt; Dialogue
 type FailCont    =  IOError    -&gt; Dialogue
- 
+
 done            ::                                                Dialogue
 readFile        :: String -&gt;           FailCont -&gt; StrCont     -&gt; Dialogue
 writeFile       :: String -&gt; String -&gt; FailCont -&gt; SuccCont    -&gt; Dialogue
@@ -8558,8 +8558,8 @@ succDispatch fail succ (resp:resps) =
                          Failure msg -&gt; fail msg resps
 
 strListDispatch fail succ (resp:resps) =
-	    case resp of StrList val -&gt; succ val resps
-			 Failure msg -&gt; fail msg resps
+            case resp of StrList val -&gt; succ val resps
+                         Failure msg -&gt; fail msg resps
 
 abort           :: FailCont
 abort err        = done
@@ -8580,7 +8580,7 @@ prints x s       = appendChan stdout (shows x s) exit done
 
 interact	:: (String -&gt; String) -&gt; Dialogue
 interact f	 = readChan stdin exit
-			    (\x -&gt; appendChan stdout (f x) exit done)
+                            (\x -&gt; appendChan stdout (f x) exit done)
 
 run		:: (String -&gt; String) -&gt; Dialogue
 run f		 = echo False exit (interact f)
@@ -8591,7 +8591,8 @@ openfile        :: String -&gt; String
 openfile f       = primFopen f (error ("can't open file "++f)) id
 
 -- End of Gofer standard prelude: --------------------------------------------
-</pre>
+</code></pre>
+</div>
 </div>
 </div>
 <div id="outline-container-appendix_C" class="outline-2">
@@ -8600,14 +8601,14 @@ openfile f       = primFopen f (error ("can't open file "++f)) id
 <p>
 The language supported by Gofer is both syntactically and semantically
 similar to that of the functional programming language Haskell as
-defined in the report for Haskell version 1.1 [<a href="#org966288f">5</a>]. This section details
+defined in the report for Haskell version 1.1 [<a href="#org5e1a45c">5</a>]. This section details
 the differences between the two languages, outlined briefly in
 <a href="#background_and_acknowledgements">section 2</a>.
 </p>
 </div>
-<div id="outline-container-orgbce1b3e" class="outline-3">
-<h3 id="orgbce1b3e">Haskell features not included in Gofer</h3>
-<div class="outline-text-3" id="text-orgbce1b3e">
+<div id="outline-container-orgad43b5b" class="outline-3">
+<h3 id="orgad43b5b">Haskell features not included in Gofer</h3>
+<div class="outline-text-3" id="text-orgad43b5b">
 <ul class="org-ul">
 <li>Modules</li>
 <li>Arrays</li>
@@ -8631,7 +8632,7 @@ is unnecessarily sophisticated for the intended uses of Gofer.</li>
 Datatype definitions in Haskell may involve class constraints such as:
 </p>
 
-<pre class="example" id="org33d792e">
+<pre class="example" id="orge45dc37">
 data  Ord a =&gt; Set a = Set [a]
 </pre>
 
@@ -8644,9 +8645,9 @@ ambiguity problems.
 </ul>
 </div>
 </div>
-<div id="outline-container-orge29c5b9" class="outline-3">
-<h3 id="orge29c5b9">Gofer features not supported in Haskell</h3>
-<div class="outline-text-3" id="text-orge29c5b9">
+<div id="outline-container-org732e0bb" class="outline-3">
+<h3 id="org732e0bb">Gofer features not supported in Haskell</h3>
+<div class="outline-text-3" id="text-org732e0bb">
 <ul class="org-ul">
 <li>Type classes may have multiple parameters.</li>
 <li>Predicates in type expressions may involve arbitrary type expressions,
@@ -8667,16 +8668,16 @@ available for holding dictionaries (see <a href="#recursive_dictionaries">sectio
 </ul>
 </div>
 </div>
-<div id="outline-container-org8141aae" class="outline-3">
-<h3 id="org8141aae">Other differences</h3>
-<div class="outline-text-3" id="text-org8141aae">
+<div id="outline-container-org8060bf2" class="outline-3">
+<h3 id="org8060bf2">Other differences</h3>
+<div class="outline-text-3" id="text-org8060bf2">
 <ul class="org-ul">
 <li>Whilst superficially similar the approach to type classes in Gofer is
 quite different from that used in Haskell. In particular, the approach
 used in Gofer ensures that all necessary dictionaries are constructed
 before the evaluation of an expression begins, rather than being built
 (possibly several times) during the evaluation as is the case with
-Haskell. See section 14 and reference [<a href="#org51d5de1">11</a>] for further details.</li>
+Haskell. See section 14 and reference [<a href="#orgcb6cda1">11</a>] for further details.</li>
 <li>Input/Output facilities - Gofer supports only a subset of the requests
 available in Haskell. In principle, it should not be too difficult to
 add most of the remaining forms of request (with the exception of
@@ -8718,9 +8719,9 @@ definitions if these are required.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org51e3e56" class="outline-3">
-<h3 id="org51e3e56">Known problems in Gofer</h3>
-<div class="outline-text-3" id="text-org51e3e56">
+<div id="outline-container-orgc930b69" class="outline-3">
+<h3 id="orgc930b69">Known problems in Gofer</h3>
+<div class="outline-text-3" id="text-orgc930b69">
 <ul class="org-ul">
 <li>The null escape sequence \&amp;~ is not generated in the printable
 representations of strings produced by both the primitive function
@@ -8745,9 +8746,9 @@ be used.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org18022a7" class="outline-3">
-<h3 id="org18022a7">Areas for possible future improvement</h3>
-<div class="outline-text-3" id="text-org18022a7">
+<div id="outline-container-org8b287db" class="outline-3">
+<h3 id="org8b287db">Areas for possible future improvement</h3>
+<div class="outline-text-3" id="text-org8b287db">
 <ul class="org-ul">
 <li>Relaxing the restriction on type synonyms in predicates.</li>
 <li>General purpose automatic default mechanism for eliminating certain
@@ -8768,7 +8769,7 @@ applications using Gofer.</li>
 <h2 id="appendix_D">Appendix D: Using Gofer With Bird+Wadler</h2>
 <div class="outline-text-2" id="text-appendix_D">
 <p>
-Bird and Wadler's textbook [<a href="#org8832fc7">1</a>] gives an excellent introduction to
+Bird and Wadler's textbook [<a href="#orgc4f0847">1</a>] gives an excellent introduction to
 <i>Functional Programming</i>, providing an insight into both basic techniques
 and matters of programming style as well as describing the underlying
 mathematics and its use for program development and derivation. Most of
@@ -8780,15 +8781,15 @@ points are particularly useful for this:
 
 <ul class="org-ul">
 <li>Type constructors in Gofer begin with capital letters (e.g. <code>Bool</code>, <code>Char</code>
-etc..) where lower case is used in [<a href="#org8832fc7">1</a>] (e.g. bool, char, etc..).
-Note: Gofer has no general numeric type "num" as used in [<a href="#org8832fc7">1</a>]; Use
+etc..) where lower case is used in [<a href="#orgc4f0847">1</a>] (e.g. bool, char, etc..).
+Note: Gofer has no general numeric type "num" as used in [<a href="#orgc4f0847">1</a>]; Use
 either <code>Int</code>, <code>Float</code>, or overloading in Gofer as appropriate.</li>
-<li>Datatype definitions in [<a href="#org8832fc7">1</a>] are written in the form lhs ::= constrs. The
+<li>Datatype definitions in [<a href="#orgc4f0847">1</a>] are written in the form lhs ::= constrs. The
 equivalent definition in Gofer is: <code>data lhs = constrs</code>.
-Similarly, a type synonym definition in [<a href="#org8832fc7">1</a>] of the form lhs == rhs can
+Similarly, a type synonym definition in [<a href="#orgc4f0847">1</a>] of the form lhs == rhs can
 be written in Gofer as: <code>type lhs = rhs</code>.</li>
 <li>The differences between the syntax used for guarded equations in Gofer
-compared with the notation used in [<a href="#org8832fc7">1</a>] have already been discussed in
+compared with the notation used in [<a href="#orgc4f0847">1</a>] have already been discussed in
 <a href="#guarded_equations">section 9.2</a>. For example:</li>
 </ul>
 
@@ -8803,7 +8804,7 @@ compared with the notation used in [<a href="#org8832fc7">1</a>] have already be
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">Using the notation of [<a href="#org8832fc7">1</a>]</th>
+<th scope="col" class="org-left">Using the notation of [<a href="#orgc4f0847">1</a>]</th>
 <th scope="col" class="org-left">Using Gofer</th>
 </tr>
 </thead>
@@ -8819,7 +8820,7 @@ compared with the notation used in [<a href="#org8832fc7">1</a>] have already be
 
 <ul class="org-ul">
 <li>In Gofer, list comprehension qualifiers are separated by commas rather
-than semicolons as used in [<a href="#org8832fc7">1</a>].</li>
+than semicolons as used in [<a href="#orgc4f0847">1</a>].</li>
 
 <li><p>
 A number of the function names and types in the standard prelude are
@@ -8839,9 +8840,9 @@ different:
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">[<a href="#org8832fc7">1</a>]</th>
+<th scope="col" class="org-left">[<a href="#orgc4f0847">1</a>]</th>
 <th scope="col" class="org-left">Gofer</th>
-<th scope="col" class="org-left">[<a href="#org8832fc7">1</a>]</th>
+<th scope="col" class="org-left">[<a href="#orgc4f0847">1</a>]</th>
 <th scope="col" class="org-left">Gofer</th>
 </tr>
 </thead>
@@ -8922,17 +8923,17 @@ See <a href="#appendix_B">appendix B</a> for a complete list of standard functio
 </p>
 
 <p>
-The version of foldl using "strict" which appears in [<a href="#org8832fc7">1</a>] is available
+The version of foldl using "strict" which appears in [<a href="#orgc4f0847">1</a>] is available
 in Gofer as the function "foldl'".
 </p>
 
 <p>
-The role of <code>zip</code> and <code>zipwith</code> in [<a href="#org8832fc7">1</a>] is filled by the <code>zip</code> and
+The role of <code>zip</code> and <code>zipwith</code> in [<a href="#orgc4f0847">1</a>] is filled by the <code>zip</code> and
 <code>zipWith</code> families of functions in Gofer. An expression of the form
-<code>zip (xs,ys)</code> in [<a href="#org8832fc7">1</a>] is equivalent to <code>zip xs ys</code> in Gofer etc&hellip;
+<code>zip (xs,ys)</code> in [<a href="#orgc4f0847">1</a>] is equivalent to <code>zip xs ys</code> in Gofer etc&hellip;
 </p></li>
 
-<li>Gofer does not enforce the condition assumed in [<a href="#org8832fc7">1</a>] that the left hand
+<li>Gofer does not enforce the condition assumed in [<a href="#orgc4f0847">1</a>] that the left hand
 sides of each of the equations defining a function must be disjoint.</li>
 
 <li>The equality operator in Gofer is written as <code>==</code> and the single
@@ -8941,7 +8942,7 @@ right hand sides of equations. Many C programmers will be familiar
 with this kind of notation (together with the kinds of problems it can
 create!).</li>
 
-<li>Some of the identifiers used in [<a href="#org8832fc7">1</a>] are reserved words in Gofer.
+<li>Some of the identifiers used in [<a href="#orgc4f0847">1</a>] are reserved words in Gofer.
 Examples that are particularly likely to occur include "in" and
 "then".</li>
 </ul>
@@ -9271,18 +9272,18 @@ With many editor programs, it is even possible to start the editor at the line w
 <h2 id="Appendix_G">Appendix G: Bibliography</h2>
 <div class="outline-text-2" id="text-Appendix_G">
 <ul style="list-style-type: none;" class="org-ul">
-<li><a id="org8832fc7"></a> [1] Introduction to functional programming, Richard Bird and Philip Wadler, Prentice Hall International, 1989.</li>
-<li><a id="org3d23edd"></a> [2] The Implementation of functional programming languages, Simon L. Peyton Jones, Prentice Hall International, 1987.</li>
-<li><a id="orgf461111"></a> [3] Lambda Lifting: Transforming Programs to Recursive Equations, Thomas  Johnsson,  in  Lecture  Notes  in  Computer  Science  201, Springer Verlag, 1985.  [but try to get a copy of the  version  of this paper included in Johnsson's thesis which  benefits  from  an extended typeface and is a little easier to read!]</li>
-<li><a id="org340f5ff"></a> [4] How to make ad-hoc polymorphism less ad-hoc, Philip Wadler and Stephen Blott, University of Glasgow, in the proceedings of the 16th ACM annual symposium on Principles of Programming  Languages, Austin, Texas, January 1989.</li>
-<li><a id="org966288f"></a> [5] Report on the programming language Haskell, a non-strict purely functional language (Version 1.1), Paul Hudak,  Philip  Wadler  et al.  Technical report Yale University/Glasgow University.  August, 1991.</li>
-<li><a id="orgabeb257"></a> [6] Introduction to Orwell 6.00, Philip Wadler and Quentin Miller, University of Oxford, 1990.</li>
-<li><a id="org0ef21e7"></a> [7] Lazy ML user's manual, Lennart Augustsson and Thomas Johnsson, 1990.</li>
-<li><a id="orgb4158b8"></a> [8] Computing with lattices: An application of type classes, Mark P. Jones, Technical report PRG-TR-11-90, Programming Research  Group, Oxford University Computing Laboratory, June 1990.</li>
-<li><a id="orga4953f9"></a> [9] Towards a theory of qualified types, Mark P. Jones, Technical report PRG-TR-6-91, Programming Research Group, Oxford  University Computing Laboratory, April 1991.</li>
-<li><a id="org9cc93e2"></a> [10] Type inference for qualified types, Mark P. Jones, Technical report PRG-TR-10-91, Programming Research Group, Oxford University Computing Laboratory, June 1991.</li>
-<li><a id="org51d5de1"></a> [11] A new approach to type classes, Mark P. Jones, distributed to Haskell mailing list 1991.</li>
-<li><a id="orgac666e3"></a> [12] Practical issues in the implementation of qualified types, Mark P. Jones, Forthcoming 1991.</li>
+<li><a id="orgc4f0847"></a> [1] Introduction to functional programming, Richard Bird and Philip Wadler, Prentice Hall International, 1989.</li>
+<li><a id="org8604f01"></a> [2] The Implementation of functional programming languages, Simon L. Peyton Jones, Prentice Hall International, 1987.</li>
+<li><a id="org6ac0ae8"></a> [3] Lambda Lifting: Transforming Programs to Recursive Equations, Thomas  Johnsson,  in  Lecture  Notes  in  Computer  Science  201, Springer Verlag, 1985.  [but try to get a copy of the  version  of this paper included in Johnsson's thesis which  benefits  from  an extended typeface and is a little easier to read!]</li>
+<li><a id="orgb30c02c"></a> [4] How to make ad-hoc polymorphism less ad-hoc, Philip Wadler and Stephen Blott, University of Glasgow, in the proceedings of the 16th ACM annual symposium on Principles of Programming  Languages, Austin, Texas, January 1989.</li>
+<li><a id="org5e1a45c"></a> [5] Report on the programming language Haskell, a non-strict purely functional language (Version 1.1), Paul Hudak,  Philip  Wadler  et al.  Technical report Yale University/Glasgow University.  August, 1991.</li>
+<li><a id="org116915f"></a> [6] Introduction to Orwell 6.00, Philip Wadler and Quentin Miller, University of Oxford, 1990.</li>
+<li><a id="orgf7bf003"></a> [7] Lazy ML user's manual, Lennart Augustsson and Thomas Johnsson, 1990.</li>
+<li><a id="orga2fcf58"></a> [8] Computing with lattices: An application of type classes, Mark P. Jones, Technical report PRG-TR-11-90, Programming Research  Group, Oxford University Computing Laboratory, June 1990.</li>
+<li><a id="orgf559762"></a> [9] Towards a theory of qualified types, Mark P. Jones, Technical report PRG-TR-6-91, Programming Research Group, Oxford  University Computing Laboratory, April 1991.</li>
+<li><a id="org99c0cde"></a> [10] Type inference for qualified types, Mark P. Jones, Technical report PRG-TR-10-91, Programming Research Group, Oxford University Computing Laboratory, June 1991.</li>
+<li><a id="orgcb6cda1"></a> [11] A new approach to type classes, Mark P. Jones, distributed to Haskell mailing list 1991.</li>
+<li><a id="org040d5ee"></a> [12] Practical issues in the implementation of qualified types, Mark P. Jones, Forthcoming 1991.</li>
 </ul>
 </div>
 </div>
@@ -9290,7 +9291,7 @@ With many editor programs, it is even possible to start the editor at the line w
 <div id="postamble" class="status">
 <p class="date">Date: 6th August, 2026</p>
 <p class="author">Author: Rustom P. Mody</p>
-<p class="date">Created: 2026-08-16 Sun 13:23</p>
+<p class="date">Created: 2026-08-16 Sun 22:02</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
