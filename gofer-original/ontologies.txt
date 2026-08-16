@@ -9,7 +9,8 @@ Original
 494:  called its /associativity/). An operator symbol (-) is said to:
 555: /sections/
 573: /backtick expressions/
-590:In general we write <​/object/​> ~::~ <​/type/​> to indicate that a particular
+581: Precedence
+593: Grouping
 617:In mathematics, the result of applying a function /f/ to an argument /x/ is
 618:traditionally written as /f(x)/. In many situations, these parentheses are
 669:Gofer includes a special form of /conditional expression/ which enables
