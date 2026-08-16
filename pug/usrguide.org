@@ -49,8 +49,8 @@ for improvements or extensions are more than welcome.
 :PROPERTIES:
 :CUSTOM_ID: background_and_acknowledgements
 :END:
-The language supported by Gofer  is both syntactically and semantically
-similar to that of the functional programming language Haskell [[[bib-5][5]] ]. My
+The language supported by Gofer is both syntactically and semantically
+similar to that of the functional programming language Haskell [[[bib-5][5]]]. My
 principal task in the implementation of Gofer has therefore been to
 decide which features I should omit and then to implement what remains.
 Features common to both include:
