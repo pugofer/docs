@@ -12,7 +12,7 @@
 #+attr_html: :style list-style-type: none;
 - The original text was by Mark P. Jones c. 1991 and was largely ASCII
 - It was HTML-ized by Rustom P. Mody, 6th August, 2026 and has minimal changes — mostly formatting, markup and hyperlinking
-- The Pug Manual is a [[https://pugofer.org/docs/gofer-original/usrguide.html][separate document]], currently in preparation
+- The Pug Manual is a [[https://pugofer.org/docs/pug/usrguide.html][separate document]], currently in preparation
 ** Front matter
 :PROPERTIES:
 :UNNUMBERED: t
