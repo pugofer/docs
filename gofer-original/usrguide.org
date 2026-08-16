@@ -1,5 +1,4 @@
 #+SETUPFILE: ./readtheorg.setup
-#+EXPORT_FILE_NAME: index.html
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
 #+MACRO: br @@html:<br>@@
@@ -5887,7 +5886,7 @@ Variables and operators
 :CUSTOM_ID: appendix_B
 :UNNUMBERED:
 :END:
-#+INCLUDE: "./standard.prelude" example
+#+INCLUDE: "./standard.prelude" src
 * Appendix C: Relationship With Haskell 1.1
 :PROPERTIES:
 :CUSTOM_ID: appendix_C
@@ -6224,3 +6223,8 @@ points are particularly useful for this:
 - <<bib-10>> [10] Type inference for qualified types, Mark P. Jones, Technical report PRG-TR-10-91, Programming Research Group, Oxford University Computing Laboratory, June 1991.
 - <<bib-11>> [11] A new approach to type classes, Mark P. Jones, distributed to Haskell mailing list 1991.
 - <<bib-12>> [12] Practical issues in the implementation of qualified types, Mark P. Jones, Forthcoming 1991.
+* Bookeeping :noexport:
+
+# Local Variables:
+# org-html-htmlize-output-type: nil
+# End:
