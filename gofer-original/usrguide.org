@@ -5,14 +5,18 @@
 #+MACRO: br @@html:<br>@@
 #+TITLE: Gofer User Guide
 #+DATE: 6th August, 2026
-#+SUBTITLE: Original text by Mark P. Jones, 1991\\
-#+SUBTITLE: HTML-ized by Rustom P. Mody, 6th August, 2026\\
-#+SUBTITLE: Minimal changes, mostly formatting, markup and hyperlinking\\
-#+SUBTITLE: The Pug Manual is a separate document, in preparation
 #+AUTHOR: Rustom P. Mody
+** About this document version
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+#+attr_html: :style list-style-type: none;
+- The original text was by Mark P. Jones c. 1991 and was largely ASCII
+- It was HTML-ized by Rustom P. Mody, 6th August, 2026 and has minimal changes — mostly formatting, markup and hyperlinking
+- The Pug Manual is a separate document, currently in preparation
 ** Front matter
 :PROPERTIES:
-:UNNUMBERED: Front matter
+:UNNUMBERED: t
 :END:
 #+begin_example
      __________   __________   __________   __________   ________
@@ -548,8 +552,8 @@ Gofer provides two simple mechanisms which make it possible to use an
 identifier as an operator symbol, or an operator symbol as an
 identifier:
 
-- Any identifier will be treated as an operator symbol if it is enclosed
-  in backquotes (`) -- for example, the expressions using the ~plus~
+- Backtick expressons :: Any identifier will be treated as an operator symbol if it is enclosed
+  in backquotes ~`~ -- for example, the expressions using the ~plus~
   function above are a little easier to read using this technique:
 
   #+begin_example
@@ -566,7 +570,7 @@ identifier:
   keys '9' and then '6' on the numeric keypad and then releasing the ALT
   key.]
 
-- Any operator symbol can be treated as an identifier by enclosing it in
+- Sections :: Any operator symbol can be treated as an identifier by enclosing it in
   parentheses. For example, the addition function denoted by the
   operator symbol ~+~ is often written as ~(+​)~. Any expression of the
   form ~x + y~ can also be written in the form ~(+) x y~.
@@ -574,7 +578,7 @@ identifier:
 There are two more technical problems which have to be dealt with when
 working with operator symbols:
 
-- Precedence: Given operator symbols ~(+)~ and ~(*)~, should ~2 * 3 + 4~ be
+- Precedence :: Given operator symbols ~(+)~ and ~(*)~, should ~2 * 3 + 4~ be
   treated as either\\
   ~(2 * 3) + 4~ or ~2 * (3 + 4)~?
 
@@ -586,7 +590,7 @@ working with operator symbols:
   and 7 respectively so that the expression above will actually be
   treated as ~(2 * 3) + 4~.
 
-- Grouping: The above rule is only useful when the operator symbols
+- Grouping :: The above rule is only useful when the operator symbols
   involved have distinct precedences. For example, should the expression
   ~1 - 2 - 3~ be treated as either ~(1 - 2) - 3~ giving a result of ~-4~,
   or as ~1 - (2 - 3)~ giving a result of ~2~?
@@ -596,12 +600,11 @@ working with operator symbols:
 
   - group to the left if ~x - y - z~ is treated as ~(x - y) - z~
   - group to the right if ~x - y - z~ is treated as ~x - (y - z)~
+  - A third possibility is that an expression of the form ~x - y - z~ is
+    to be treated as ambiguous and will be flagged as a syntax error. In
+    this case we say that the operator ~(-)~ is non-associative.
 
-  A third possibility is that an expression of the form ~x - y - z~ is
-  to be treated as ambiguous and will be flagged as a syntax error. In
-  this case we say that the operator (-) is non-associative.
-
-  The standard approach in Gofer is to treat (-) as grouping to the left
+  The standard approach in Gofer is to treat ~(-)~ as grouping to the left
   so that ~1 - 2 - 3~ will actually be treated as ~(1-2)-3~.
 
 By default, every operator symbol in Gofer is treated as non-associative
@@ -2140,7 +2143,7 @@ and causes a run-time error each time it is evaluated (technically
 speaking, it represents the bottom element of the relevant semantic
 domain, and is the only value having all possible types):
 
-@@'=' should be ->; also the examples dont quite work
+@@@'=' should be ->; also the examples dont quite work
 #+begin_example
 (\ (x,y) -> 0) undefined = {undefined}
 (\~(x,y) -> 0) undefined = 0
@@ -4646,8 +4649,8 @@ Consider the use of the (==) operator in the following three situations:
   #+end_example
 
 The same problem occurs in Haskell, where it is described using the idea
-of an /ambiguous type/ -- i.e. a type expression of the form @@@ context ~=>~
-type where one or more of the type variables appearing in the given
+of an /ambiguous type/ -- i.e. a type expression of the form
+~context => type~ where one or more of the type variables appearing in the given
 context do not appear in the remaining part of the type expression.
 
 Further examples of unresolved overloading occur with other classes. As
@@ -4819,7 +4822,7 @@ systems of dictionaries.
 One example of this is the ability to implement a large family of
 related functions using a group of classes instead of having to use a
 single class. The following example illustrates the technique with an
-alternative definition for the class @@@ ~Eq~ in which the ~(​=​=​)​~ and ~(/=)~
+alternative definition for the class ~Eq~ in which the ~(​=​=​)​~ and ~(/=)~
 operators are placed in different classes:
 
 #+begin_example
@@ -6060,22 +6063,18 @@ points are particularly useful for this:
 
 - A number of the function names and types in the standard prelude are
   different:
-
-
-| [[[bib-1][1]]]      | Gofer    | [[[bib-1][1]]]         | Gofer       |
-|----------+----------+-------------+-------------|
-| ~(#)~    | ~length~ | ~takewhile~ | ~takeWhile~ |
-| ~(˜)~    | ~not~    | ~dropwhile~ | ~dropWhile~ |
-| ~(/\)~   | ~(&&)~   |~zipwith~   | ~zipWith~   | 
-| ~(\/)~   | ~(∣∣)~  |  ~swap~      | ~flip~      |
-| ~(!)~    | ~(!!)~   | ~in~        | ~elem~      |
-| ~(--)~   | ~(\\)~   | ~scan~      | ~scanl~     |
-| ~hd~     | ~head~   | ~some~      | ~any~       |
-| ~tl~     | ~tail~   | ~listmin~   | ~minimum~   |
-| ~decode~ | ~chr~    | ~listmax~   | ~maximum~   |
-| ~code~   | ~ord~    |
-
-
+  | [[[bib-1][1]]]      | Gofer    | [[[bib-1][1]]]         | Gofer       |
+  |----------+----------+-------------+-------------|
+  | ~(#)~    | ~length~ | ~takewhile~ | ~takeWhile~ |
+  | ~(˜)~    | ~not~    | ~dropwhile~ | ~dropWhile~ |
+  | ~(/\)~   | ~(&&)~   | ~zipwith~   | ~zipWith~   |
+  | ~(\/)~   | ~(∣∣)~  | ~swap~      | ~flip~      |
+  | ~(!)~    | ~(!!)~   | ~in~        | ~elem~      |
+  | ~(--)~   | ~(\\)~   | ~scan~      | ~scanl~     |
+  | ~hd~     | ~head~   | ~some~      | ~any~       |
+  | ~tl~     | ~tail~   | ~listmin~   | ~minimum~   |
+  | ~decode~ | ~chr~    | ~listmax~   | ~maximum~   |
+  | ~code~   | ~ord~    |             |             |
   See [[*APPENDIX B: CONTENTS OF STANDARD PRELUDE][appendix B]] for a complete list of standard functions in Gofer.
 
   The version of foldl using "strict" which appears in [[[bib-1][1]]] is available

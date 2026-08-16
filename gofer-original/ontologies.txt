@@ -7,6 +7,8 @@ Original
 397:  special kind of function called a /constructor function/ described in
 493:  This problem is solved by giving each operator a /grouping/ (sometimes
 494:  called its /associativity/). An operator symbol (-) is said to:
+555: /sections/
+573: /backtick expressions/
 590:In general we write <​/object/​> ~::~ <​/type/​> to indicate that a particular
 617:In mathematics, the result of applying a function /f/ to an argument /x/ is
 618:traditionally written as /f(x)/. In many situations, these parentheses are
@@ -37,3 +39,4 @@ Original
 5048:user-defined type classes, rather than a small group of /standard classes,/
 5170:known as the /dreaded monomorphism restriction/. Although the initial
 5687:  there is no concept of /standard classes/.
+
