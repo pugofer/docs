@@ -2649,7 +2649,7 @@ or, using lambda expressions as introduced in [[#lambda_expressions][section 10.
 (* e)    =  \x -> x * e
 #+end_example
 
-@@@ hack need to swith id to class
+@@@ hack need to switch id to class
 #+begin_export html
 <style>
   #int-op-listx { display: grid;
@@ -2663,10 +2663,10 @@ or, using lambda expressions as introduced in [[#lambda_expressions][section 10.
 
 For examples: 
 #+attr_html: :id int-op-listx
-- ~(1+)~ :: is the successor function which returns the value of its argument plus 1
-- ~(1.0/)~ :: is the reciprocal function
-- ~(/2)~ :: is the halving function
-- ~(:[])~ :: is the function which maps any value to the singleton list containing that element
+- ~(1+)~   :: The successor function which returns the value of its argument plus 1
+- ~(1.0/)~ :: The reciprocal function
+- ~(/2)~   :: The halving function
+- ~(:[])~  :: The function which maps any value to the singleton list containing that element
 
 In Gofer, the expressions ~(e *)~ and ~(* e)~ are actually treated as
 abbreviations for ~(*) e~ and ~flip (*) e~ respectively, where ~flip~ is
@@ -2761,12 +2761,13 @@ where ~DatatypeName~ is the name of a new type constructor of arity n>=0,
 elements of the new datatype are constructed. Each constr can take one
 of two forms:
 
-- ~Name type1 ... typer~ where ~Name~ is a previously unused
+- ~Name type1 ... typer~ :: Here ~Name~ is a previously unused
   /constructor function name/
   (i.e. an identifier beginning with a capital letter).
   This declaration introduces ~Name~ as a new constructor function of
-  type: ~type1 -> ...-> typer -> DatatypeName a1 ... an~.
-- ~type1 CONOP type2~ where ~CONOP~ is a previously unused constructor
+  type:\\
+  ~type1 -> ...-> typer -> DatatypeName a1 ... an~.
+- ~type1 CONOP type2~ :: Here ~CONOP~ is a previously unused constructor
   function operator (i.e. an operator symbol beginning with a colon).
   This declaration introduces ~(CONOP)~ as a new constructor function of
   type: ~type1 -> type2 -> DatatypeName a1 ... an~.
@@ -2781,7 +2782,7 @@ with elements ~Sun~, ~Mon~, ~Tue~, ~Wed~, ~Thu~, ~Fri~ and ~Sat~:
 data Day = Sun | Mon | Tue | Wed | Thu | Fri | Sat
 #+end_example
 
-Simple functions manipulating elements of type Day can be defined using
+Simple functions manipulating elements of type ~Day~ can be defined using
 pattern matching:
 
 #+begin_example
@@ -2827,7 +2828,7 @@ leaves:
 data Tree a = Lf a | Tree a :^: Tree a
 #+end_example
 
-For example, (Lf 12 :^: (Lf 23 :^: Lf 13)) :^: Lf 10 has type Tree Int
+For example, ~(Lf 12 :^: (Lf 23 :^: Lf 13)) :^: Lf 10~ has type ~Tree Int~
 and represents the binary tree:
 
 #+begin_example
@@ -2835,8 +2836,8 @@ and represents the binary tree:
           ,--|
           |  |  ,--- 23
           |  `--|
-          |     `--- 13
-        --|
+        --|     `--- 13
+          |
           `--- 10
 #+end_example
 
@@ -6046,14 +6047,13 @@ points are particularly useful for this:
   compared with the notation used in [[[bib-1][1]]] have already been discussed in
   [[#guarded_equations][section 9.2]]. For example:
 
-  #+begin_example
-    Using the notation of [[[bib-1][1]]]:       Using Gofer:
 
-    filter p (x:xs)                  filter p (x:xs)
-       = x : filter p xs, if p x         | p x       = x : filter p xs
-       = filter p xs,     otherwise      | otherwise = filter p xs
+| Using the notation of [[[bib-1][1]]]                                                                           | Using Gofer                                                                                              |
+| <40>                                                                                                | <40>                                                                                                     |
+|-----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------|
+| ~filter p (x:xs)~ {{{br}}}    ~= x : filter p xs, if p x~ {{{br}}}   ~= filter p xs,     otherwise~ | ~filter p (x:xs)~ {{{br}}}    ~∣ p x       = x : filter p xs~  {{{br}}}      ∣ ~otherwise = filter p xs~  |
 
-  #+end_example
+
 
 - In Gofer, list comprehension qualifiers are separated by commas rather
   than semicolons as used in [[[bib-1][1]]].
@@ -6061,20 +6061,20 @@ points are particularly useful for this:
 - A number of the function names and types in the standard prelude are
   different:
 
-  #+begin_example
-  [[[bib-1][1]]]         Gofer            [[[bib-1][1]]]         Gofer
-  ---         -----            ---         ----
-  (#)         length           takewhile   takeWhile
-  (~)         not              dropwhile   dropWhile
-  (/\)        (&&)             zipwith     zipWith
-  (\/)        (||)             swap        flip
-  (!)         (!!)             in          elem
-  (--)        (\\)             scan        scanl
-  hd          head             some        any
-  tl          tail             listmin     minimum
-  decode      chr              listmax     maximum
-  code        ord
-  #+end_example
+
+| [[[bib-1][1]]]      | Gofer    | [[[bib-1][1]]]         | Gofer       |
+|----------+----------+-------------+-------------|
+| ~(#)~    | ~length~ | ~takewhile~ | ~takeWhile~ |
+| ~(˜)~    | ~not~    | ~dropwhile~ | ~dropWhile~ |
+| ~(/\)~   | ~(&&)~   |~zipwith~   | ~zipWith~   | 
+| ~(\/)~   | ~(∣∣)~  |  ~swap~      | ~flip~      |
+| ~(!)~    | ~(!!)~   | ~in~        | ~elem~      |
+| ~(--)~   | ~(\\)~   | ~scan~      | ~scanl~     |
+| ~hd~     | ~head~   | ~some~      | ~any~       |
+| ~tl~     | ~tail~   | ~listmin~   | ~minimum~   |
+| ~decode~ | ~chr~    | ~listmax~   | ~maximum~   |
+| ~code~   | ~ord~    |
+
 
   See [[*APPENDIX B: CONTENTS OF STANDARD PRELUDE][appendix B]] for a complete list of standard functions in Gofer.
 
