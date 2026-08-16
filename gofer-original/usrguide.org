@@ -2,6 +2,7 @@
 #+EXPORT_FILE_NAME: index.html
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
+#+MACRO: br @@html:<br>@@
 #+TITLE: Gofer User Guide
 #+DATE: 6th August, 2026
 #+SUBTITLE: Original text by Mark P. Jones, 1991\\
@@ -661,17 +662,14 @@ infixr 2 ||
 and their use is illustrated by the following examples:
 
 
-| Expression:     | Equivalent to:    | 3 Reasons:                                 |
-|-----------------+-------------------+--------------------------------------------|
-| ~1 + 2 - 3~     | ~(1 + 2) - 3~     | ~(+)~ and ~(-)~ have the same  precedence  |
-|                 |                   | and group to the left.                     |
-| ~x : ys ++ zs~  | ~x : (ys ++ zs)~  | ~(:)~ and ~(++)~ have the same precedence  |
-|                 |                   | and group to the right                     |
-| ~x == y ∣∣ z~  | ~(x == y) ∣∣ z~  | ~(==)~ has higher precedence than ~(∣∣)~. |
-| ~3 * 4 + 5~     | ~(3 * 4) + 5~     | ~(*)~ has higher precedence than ~(+)~.    |
-| ~y `elem` z:zs~ | ~y `elem` (z:zs)~ | ~(:)~ has higher precedence than elem.     |
-| ~12 / 6 / 3~    | syntax error      | ambiguous  use  of  ~(/)~;  could  mean    |
-|                 |                   | either ~(12/6)/3~ or ~12/(6/3)~.           |
+| Expression:     | Equivalent to:    | Reasons                                                                         |
+|-----------------+-------------------+---------------------------------------------------------------------------------|
+| ~1 + 2 - 3~     | ~(1 + 2) - 3~     | ~(+)~ and =(-)= have the same  precedence {{{br}}} and group to the left.       |
+| ~x : ys ++ zs~  | ~x : (ys ++ zs)~  | ~(:)~ and ~(++)~ have the same precedence {{{br}}} and group to the right       |
+| ~x == y ∣∣ z~  | ~(x == y) ∣∣ z~  | ~(==)~ has higher precedence than ~(∣∣)~.                                      |
+| ~3 * 4 + 5~     | ~(3 * 4) + 5~     | ~(*)~ has higher precedence than ~(+)~.                                         |
+| ~y `elem` z:zs~ | ~y `elem` (z:zs)~ | ~(:)~ has higher precedence than elem.                                          |
+| ~12 / 6 / 3~    | syntax error      | ambiguous  use  of  ~(/)~; {{{br}}} could mean either ~(12/6)/3~ or ~12/(6/3)~. |
 
 
 Note that function application always binds more tightly than any infix
@@ -693,14 +691,11 @@ expression.
 In general we write <​/object/​> ~::~ <​/type/​> to indicate that a particular
 expression has the indicated type. For example:
 
-| Typing expr          | Meaning                                             |
-|----------------------+----------------------------------------------------- |
-| ~42 :: Int~          | indicating that  ~42~  is an  integer (~Int~ is the |
-|                      | name for the type of integer values).               |
-|                      |                                                     |
-| ~fact :: Int -> Int~ | indicating  that  ~fact~  is a  function  which     |
-|                      | takes  an  integer  argument  and  returns   an     |
-|                      | integer value (its factorial).                      |
+| Typing expr          | Meaning                                                                                                                      |
+|----------------------+------------------------------------------------------------------------------------------------------------------------------|
+| ~42 :: Int~          | indicating that  ~42~  is an  integer — ~Int~ is the {{{br}}} name for the type of integer values.                           |
+| ~fact :: Int -> Int~ | indicating that ~fact~ is a function which  takes an {{{br}}} integer argument and returns an integer value — its factorial. |
+
 
 The most important property of the type system is that it is possible to
 determine the type of an expression without having to evaluate it. For
@@ -1331,13 +1326,12 @@ illustrated by the following examples:
 - Tuples :: ~(x,y)~ matches a pair whose first and second
   elements are called ~x~ and ~y~ respectively.
 - Lists ::
-        | Pattern   | Semantics                                            |
-        |-----------+------------------------------------------------------|
-        | ~[x]~     | matches a list with precisely one element called x.  |
-        | ~[_,2,_]~ | matches a list with precisely three elements,        |
-        |           | the second of which is the integer ~2~.              |
-        | ~[]~      | matches the empty list                               |
-        | ~(x:xs)~  | matches a non-empty list with head ~x~ and tail ~xs~ |
+        | Pattern   | Semantics                                                                                      |
+        |-----------+------------------------------------------------------------------------------------------------|
+        | ~[x]~     | matches a list with precisely one element called x.                                            |
+        | ~[_,2,_]~ | matches a list with precisely three elements, {{{br}}} the second of which is the integer ~2~. |
+        | ~[]~      | matches the empty list                                                                         |
+        | ~(x:xs)~  | matches a non-empty list with head ~x~ and tail ~xs~                                           |
 
 
 - ‘As’ patterns :: ~p@(x,y)~ matches a pair whose first and second
@@ -2274,32 +2268,13 @@ forms of sequence expression that can be used in Gofer, together with
 their translation using the standard functions ~enumFrom~, ~enumFromTo~,
 ~enumFromThen~ and ~enumFromThenTo~:
 
-| Expression  | Function                | Explanation and egs                                                              |
-|-------------+-------------------------+----------------------------------------------------------------------------------|
-| ~[n..]~     | ~enumFrom n~            | Produces the (potentially infinite) list of values                               |
-|             |                         | starting with the value of n and increasing in single steps.                     |
-|             |                         | e.g. ~[1..]~ = ~[1, 2, 3, 4, 5, 6, 7, 8, 9, etc...~                              |
-| ~[n..m]~    | ~enumFromTo n m~        | Produces the list of elements from ~n~ upto and including ~m~ in single steps.   |
-|             |                         | If ~m~ is less than ~n~ then the list is empty.                                  |
-|             |                         | e.g. ~[-3..3]~ = ~[-3, -2, -1, 0, 1, 2, 3]~                                      |
-|             |                         | ~[1..1]~  = ~[1]~                                                                |
-|             |                         | ~[9..0]~  = ~[]~                                                                 |
-| ~[n,m..]~   | ~enumFromThen n m~      | Produces the (potentially infinite) list of values whose first two               |
-|             |                         | elements are given by the values ~n~ and ~m~.  If m is greater than n then       |
-|             |                         | the following elements of the list are increasing in steps of the same           |
-|             |                         | size.  A similar result is obtained if ~m~ is less than ~n~ in which case        |
-|             |                         | the elements of ~[n,m..]~ will be decreasing.  If ~n~ and ~m~ are equal then     |
-|             |                         | ~[n,m..]~ is an infinite list in which each element is equal to ~n~.             |
-|             |                         | e.g. ~[1,3..]~ = ~[1, 3, 5, 7, 9, 11, 13, etc...~                                |
-|             |                         | ~[0,0..]~ = ~[0, 0, 0, 0, 0, 0, 0, etc...~                                       |
-|             |                         | ~[5,4..]~ = ~[5, 4, 3, 2, 1, 0, -1, etc...~                                      |
-| ~[n,n'..m]~ | ~enumFromThenTo n n' m~ | Produces the list of elements from ~[n,n'..]~  upto the limit value ~m~.         |
-|             |                         | If ~m~ is less than ~n~ and ~[n,n'..]~ is increasing, or ~m~ is greater than ~n~ |
-|             |                         | and ~[n,n'..]~ is decreasing the resulting list will be empty.                   |
-|             |                         | e.g. ~[1,3..12]~ = ~[1, 3, 5, 7, 9, 11]~                                         |
-|             |                         | ~[0,0..10]~ = ~[0, 0, 0, 0, 0, 0, 0, etc...~                                     |
-|             |                         | ~[5,4..1]~  = ~[5, 4, 3, 2, 1]~                                                  |
-
+| Expression  | Function                | Explanation and egs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|             |                         | <60>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|-------------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ~[n..]~     | ~enumFrom n~            | Produces the (potentially infinite) list of values {{{br}}} starting with the value of n and increasing in single steps. {{{br}}} e.g. ~[1..]~ = ~[1, 2, 3, 4, 5, 6, 7, 8, 9, etc...~                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ~[n..m]~    | ~enumFromTo n m~        | Produces the list of elements from ~n~ upto and including ~m~ in single steps. {{{br}}} If ~m~ is less than ~n~ then the list is empty. egs. {{{br}}} ~[-3..3]~ = ~[-3, -2, -1, 0, 1, 2, 3]~ {{{br}}} ~[1..1]~  = ~[1]~ {{{br}}} ~[9..0]~  = ~[]~                                                                                                                                                                                                                                                                                                                                                                                        |
+| ~[n,m..]~   | ~enumFromThen n m~      | Produces the (potentially infinite) list of values whose first two {{{br}}} elements are given by the values ~n~ and ~m~.  {{{br}}} If ~m~ is greater than n then the following elements of the list are increasing in steps of the same size.  A similar result is obtained if ~m~ is less than ~n~ in which case the elements of ~[n,m..]~ will be decreasing.  If ~n~ and ~m~ are equal then ~[n,m..]~ is an infinite list in which each element is equal to ~n~. egs. {{{br}}} ~[1,3..]~ = ~[1, 3, 5, 7, 9, 11, 13, etc...~ {{{br}}} ~[0,0..]~ = ~[0, 0, 0, 0, 0, 0, 0, etc...~ {{{br}}} ~[5,4..]~ = ~[5, 4, 3, 2, 1, 0, -1, etc...~ |
+| ~[n,n'..m]~ | ~enumFromThenTo n n' m~ | Produces the list of elements from ~[n,n'..]~  upto the limit value {{{br}}} If ~m~ is less than ~n~ and ~[n,n'..]~ is increasing, or ~m~ is greater than ~n~	and ~[n,n'..]~ is decreasing the resulting list will be empty egs. {{{br}}}  ~[1,3..12]~ = ~[1, 3, 5, 7, 9, 11]~  {{{br}}}  ~[0,0..10]~ = ~[0, 0, 0, 0, 0, 0, 0, etc..~ {{{br}}}  ~[5,4..1]~  = ~[5, 4, 3, 2, 1]~                                                                                                                                                                                                                                                        |
 
 In the standard prelude, the functions ~enumFrom~, ~enumFromTo~,
 ~enumFromThen~ and ~enumFromThenTo~ are overloaded and may also be used to
@@ -2674,18 +2649,24 @@ or, using lambda expressions as introduced in [[#lambda_expressions][section 10.
 (* e)    =  \x -> x * e
 #+end_example
 
-For example: (1+) is the successor function which returns the value
+@@@ hack need to swith id to class
+#+begin_export html
+<style>
+  #int-op-listx { display: grid;
+                 grid-template-columns: max-content auto;
+                 gap: 7px 5px;
+                 margin-bottom: 1em; }
+  #int-op-listx dt { margin: 0; }
+  #int-op-listx dd { margin: 0; }
+</style>
+#+end_export
 
-#+begin_example
-of its argument plus 1,
-#+end_example
-
-#+begin_example
-(1.0/) is the reciprocal function,
-(/2)   is the halving function,
-(:[])  is the function which maps any value to the
-       singleton list containing that element.
-#+end_example
+For examples: 
+#+attr_html: :id int-op-listx
+- ~(1+)~ :: is the successor function which returns the value of its argument plus 1
+- ~(1.0/)~ :: is the reciprocal function
+- ~(/2)~ :: is the halving function
+- ~(:[])~ :: is the function which maps any value to the singleton list containing that element
 
 In Gofer, the expressions ~(e *)~ and ~(* e)~ are actually treated as
 abbreviations for ~(*) e~ and ~flip (*) e~ respectively, where ~flip~ is
