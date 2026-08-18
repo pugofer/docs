@@ -1,3 +1,4 @@
+
 #+SETUPFILE: ./readtheorg.setup
 #+OPTIONS: TOC:t
 #+LATEX_HEADER: \usepackage{upquote}
@@ -16,117 +17,14 @@
 :PROPERTIES:
 :CUSTOM_ID: introduction
 :END:
-
-@@@ Needs significant rewrite
-
-Pug is a functional programming environment (in other words, an
-interpreter) that I have implemented for my own personal use as part of
-my research into /qualified types/. Nevertheless, the system is
-sufficiently complete for me to believe that Pug may be of interest
-and use to others interested in the field of functional programming.
-
-These notes give a brief introduction to the Pug system and include
-some examples of Pug programs. They are not the notes that I
-originally intended to write, being somewhat longer and perhaps more
-tutorial in nature. Nevertheless, you will not be able to learn
-functional programming from this document alone. A number of useful
-references are given in the reading list at the end of this document. In
-particular, the book by Bird and Wadler[[[bib-1][1]]] is particularly good as a
-general introduction to the use, techniques and theory of functional
-programming. Although their notation is a little different from the
-language used by Pug, it is a relatively straightforward task to
-translate between the two, and some suggestions for this are given in a
-[[#appendix_D][Appendix D]]. More importantly, the underlying semantics of Pug do
-correspond to those expected by the authors of [[[bib-1][1]]].
-
-Whereas the work involved in investigating and implementing the ideas on
-which Pug is based were motivated largely by my own program of work,
-the writing of these notes has rather more to do with the hope that
-Pug will be useful to others. I would therefore be very grateful for
-any feedback on any aspect of the these notes (or of the Pug system
-itself). Please let me know if you discover any errors, or if you find
-particular sections of these notes rather hard to follow. Suggestions
-for improvements or extensions are more than welcome.
-
+@@@ Needs full rewrite\\
+[[https://pugofer.org/docs/gofer-original/usrguide.html#introduction][mpj Introduction]]
 * Background And Acknowledgements
 :PROPERTIES:
 :CUSTOM_ID: background_and_acknowledgements
 :END:
-@@@ Needs significant rewrite
-
-The language supported by Pug is both syntactically and semantically
-similar to that of the functional programming language Haskell [[[bib-5][5]]]. My
-principal task in the implementation of Pug has therefore been to
-decide which features I should omit and then to implement what remains.
-Features common to both include:
-
-- Non-strict semantics (lazy evaluation).
-- Higher-order functions.
-- Extended polymorphic type system with support for user-defined
-  overloading.
-- User-defined algebraic datatypes.
-- Pattern matching.
-- List comprehensions.
-- Facilities for I/O, whilst retaining referential transparency within a
-  program.
-
-For the benefit of readers familiar with Haskell, the following features
-of Haskell are not supported in the standard version of Pug:
-
-- Modules.
-- Arrays.
-- Defaults for unresolved overloading.
-- Derived instances of standard classes.
-- Contexts in datatype definitions.
-- Full range of numeric types and classes.
-
-But Pug is not just a partial implementation of Haskell; it also
-includes a number of experimental features which extend the type system
-in several ways:
-
-- An alternative approach to type classes which avoids the need for
-  construction of dictionaries during the evaluation of an expression.
-- Type classes may take multiple parameters.
-- Instances of type classes may be defined at arbitrary non-overlapping
-  types.
-- Contexts may include arbitrary type expressions.
-
-These extensions stem from my own research
-[[[bib-8][8]], [[bib-9][9]], [[bib-10][10]], [[bib-11][11]], [[bib-12][12]]] and were
-among the principal motivations for the development of Pug. Full
-details of the differences between Pug and Haskell 1.1 are given in
-[[#appendix_C][Appendix C]].
-
-Pug would not have been implemented without my original introduction
-to functional programming using Orwell [[[bib-6][6]]], and I am particularly
-grateful to Quentin Miller for answering so many of my questions about
-functional programming and about the Orwell system in particular. I
-should also like to mention the influence of the Haskell B. compiler
-from Lennart Augustsson and Thomas Johnsson and based on their earlier
-LML compiler [[[bib-7][7]]].
-
-Right from the beginning, I wanted to be able to use Pug on a range of
-machines - and in particular, on the humble PC that I use at home. With
-this in mind, Pug was actually developed on that same PC using
-Borland's Turbo C 1.5 and a public domain version of the yacc parser
-generator that I picked up some time ago. Pug was also written with
-some degree of portability in mind and has subsequently been compiled to
-run on Sun workstations. I hope it will also be possible to port it to
-other platforms. It is my intention that Pug be distributed complete
-with source code and I hope that this will be of interest to some users.
-
-Many of the ideas used in the back-end of the Pug system (i.e. the
-compiler and abstract machine) originate from the chapters of Simon
-Peyton Jones textbook [[[bib-2][2]]]; I very much doubt whether Pug would have
-been completed without frequent reference to that book. The
-lambda-lifter used in Pug is based on Thomas Johnsson's algorithm
-described in [[[bib-3][3]]].
-
-On the theoretical side, I'm grateful to Phil Wadler for the
-encouragement that he has given me with my work on qualified types. Many
-of the basic ideas that I have used were inspired by his original paper
-motivating the use of type classes [[[bib-4][4]]].
-
+@@@ Needs full rewrite\\
+[[https://pugofer.org/docs/gofer-original/usrguide.html#background_and_acknowledgements][mpj background and ackknowledgements]]
 * Starting Pug
 :PROPERTIES:
 :CUSTOM_ID: starting_pug
