@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2026-09-24 Thu 15:11 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pugofer Philosophy</title>
+<meta name="author" content="Rusi" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<header>
+<h1 class="title">Pugofer Philosophy</h1>
+</header><p>
+<a id="org458aed5"></a>
+</p>
+<div id="outline-container-org6448cf7" class="outline-3">
+<h3 id="org6448cf7">From the Platonic Dictionary</h3>
+<div class="outline-text-3" id="text-org6448cf7">
+<dl class="org-dl">
+<dt><a id="org733ac1d"></a> Pug</dt><dd><img src="./pug_image.jpg" alt="pug_image.jpg" width="180px" style="float:right; margin-left:1em;">
+<ol class="org-ol">
+<li>(common noun) A small domesticated pet, known for a formidable face, an amiable disposition, obedience, curiosity and an unflinching commitment to type-boundaries.</li>
+<li>(proper noun) This particular Pug. The most noteworthy aspect of its personality being the '?'
+<small><small>[Did you notice it?]</small></small></li>
+<li>(acronym) <b>P</b>latonic <b>U</b>niverse for <b>G</b>eeks</li>
+<li>(short form) The short-form and executable name for Pugofer</li>
+<li>The edition of Gofer <a href="#orgef8550c">(q.v.)</a> that's currently in use;<br>
+the most visible difference between Gofer and Pugofer being the Dijkstra dot <a href="#orgd84b136">(q.v.)</a>.</li>
+</ol></dd>
+<dt>Pugofer</dt><dd><ol class="org-ol">
+<li>(archaic last century usage) <b>P</b>une <b>U</b>niversity's <b>GOFER</b> (q.v.)</li>
+<li>(acronym) <b>P</b>latonic <b>U</b>niverse that's <b>GO</b>od <b>F</b>or <b>E</b>quational <b>R</b>easoning</li>
+<li>(curial) The philosophy of which <code>pug</code> <a href="#org733ac1d">(q.v.)</a> is the executable</li>
+</ol></dd>
+<dt><a id="orgef8550c"></a>Gofer</dt><dd><ol class="org-ol">
+<li>(acronym) <b>GO</b>od <b>F</b>or <b>E</b>quational <b>R</b>easoning, a functional programming language and early implementation of Haskell</li>
+<li>(short form) Part of Mark P. Jones award-winning PhD Thesis</li>
+<li>(common mistake) \(Gofer \ne Gopher\)</li>
+<li>(common sloppy usage) \(Gofer = Pug\) <a href="#org733ac1d">(q.v.)</a></li>
+</ol></dd>
+<dt>Haskell</dt><dd>The <b>technology</b> ancestor to Pugofer in 1990
+<a href="https://en.wikipedia.org/wiki/Haskell">(c.f.)</a>;<br>
+the <b>philosophy</b> <a href="#org458aed5">(q.v.)</a> has greatly diverged by 2027.</dd>
+<dt><a id="orgd84b136"></a> Dijkstra</dt><dd>A dotty Dutch guy <a href="#orgf715e35">(q.v.)</a>. Also <a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD13xx/EWD1300.html">(c.f.)</a></dd>
+<dt><a id="org8239025"></a> Recursion</dt><dd><a href="#org8239025">(q.v.)</a> <a href="#org733ac1d">Also see</a></dd>
+</dl>
+<nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgda7d32c">1. Functional <span style="color: #e74c3c; font-size: 24px;">&#10006;</span>  —  Platonic <span style="color: #2ecc71; font-size: 24px;">&#10004;</span></a>
+<ul>
+<li><a href="#orgf68b5cc">1.1. What “Platonic” Means Here</a></li>
+<li><a href="#orgaad48f0">1.2. platonism : Platonism :: abstract : concrete</a></li>
+<li><a href="#org629cd72">1.3. Types as Thought Props</a></li>
+<li><a href="#org07c51be">1.4. Ontic Before Mnemonic</a></li>
+<li><a href="#orgdba3f7d">1.5. Niggles and hiccups</a></li>
+<li><a href="#org91fb026">1.6. Two Lineages</a></li>
+<li><a href="#org72d764b">1.7. Pug and Pugofer</a>
+<ul>
+<li><a href="#org60f0156">1.7.1. Why “Pugofer”?</a></li>
+<li><a href="#orgac4f120">1.7.2. Why “Pug”?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org7413d2a">2. Programming as Exploration</a>
+<ul>
+<li><a href="#org7bbf880">2.1. Programming is the empirical exploration of a Platonic universe</a></li>
+<li><a href="#org9d94e97">2.2. Philosophy War</a></li>
+</ul>
+</li>
+<li><a href="#org89bc8b0">3. The Hinge</a>
+<ul>
+<li><a href="#org179f994">3.1. Other Aspects of the Hinge</a></li>
+<li><a href="#orgbde1c48">3.2. The Pug File vs The Interpreter</a></li>
+</ul>
+</li>
+<li><a href="#org0aed276">4. Why Equational?</a></li>
+<li><a href="#orgda6ca03">5. Symmetry of Application and Equality</a>
+<ul>
+<li><a href="#orgbd49556">5.1. Right-Sided Cancellation (Function Extensionality)</a></li>
+<li><a href="#orga2dc2c2">5.2. Left-Sided Cancellation (Leibniz's Rule)</a></li>
+<li><a href="#org83677cd">5.3. Or in Phil Lingo</a></li>
+</ul>
+</li>
+<li><a href="#org3ed8748">6. On Paradigms</a>
+<ul>
+<li><a href="#orgb8932e6">6.1. Imperative a mistake</a></li>
+<li><a href="#org8cd9414">6.2. Functional a misnomer</a></li>
+<li><a href="#org230c4c3">6.3. OOP a trillion dollar scam</a></li>
+<li><a href="#org9d7fe32">6.4. A better alternative paradigm proposal</a></li>
+<li><a href="#orgbbea3f8">6.5. Which is the Flagship FPL</a>
+<ul>
+<li><a href="#org812c625">6.5.1. Is there any any single language today?</a></li>
+<li><a href="#org674331b">6.5.2. Haskell</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org7872ecd">7. Pug and Haskell</a>
+<ul>
+<li><a href="#org700a1bf">7.1. What pug is</a></li>
+<li><a href="#orgaaf2d7e">7.2. What pug isn't</a></li>
+</ul>
+</li>
+<li><a href="#orgfe0bd91">8. The Pug Project</a></li>
+<li><a href="#orgc904da2">9. Links</a></li>
+<li><a href="#orgfd644f1">10. Hanging@@@</a></li>
+</ul>
+</div>
+</nav>
+</div>
+</div>
+<div id="outline-container-orgda7d32c" class="outline-2">
+<h2 id="orgda7d32c"><span class="section-number-2">1.</span> Functional <span style="color: #e74c3c; font-size: 24px;">&#10006;</span>  —  Platonic <span style="color: #2ecc71; font-size: 24px;">&#10004;</span></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The term <i>functional programming</i> has become tired and is a misnomer with unfortunate consequences.<br>
+Lets correct this via a series of terminological corrections:
+</p>
+<dl class="org-dl">
+<dt>Functional Programming</dt><dd>Well sure that's how it starts (and I started with Lisp and didn't know lisp was not properly functional until decades later).<br>
+From Fortran on, programming has been centered around <b>writing</b> functions.<br>
+From C on — Perl, Python even more so — there are only functions.<br>
+[Pascal is more functional than C is more functional than Python since
+in Pascal <code>procedure</code> and <code>function</code> is a fundamental ontic separation; it C it remains but is downgraded to <code>void</code> function; in Python the ontology completely disappears though the concept remains. <code>None</code> returning doesn't really cut it]<br>
+So clearly 'functional' misses the point of functional programming so-called.<br>
+A more illuminating term was the older&hellip;</dd>
+<dt>Applicative Programming</dt><dd>More to the point than functional but too syntactic</dd>
+<dt>Mathematical Programming</dt><dd>More semantic but too broad</dd>
+<dt>Declarative Programming</dt><dd>even better</dd>
+<dt>Platonic Programming</dt><dd>The purpose of this document!</dd>
+</dl>
+
+<p>
+Note that going from:
+</p>
+<dl class="org-dl">
+<dt>‘functional’ to ‘applicative’</dt><dd>Change of emphasis from making functions to using them</dd>
+<dt>‘applicative’ to ‘mathematical’</dt><dd>Semantics and not just syntax is the focus. [Note the appearance of the Dijkstra-dot]</dd>
+<dt>‘mathematical’ to ‘declarative’</dt><dd>Drill into what is the nature of the math that Pugofer encourages</dd>
+<dt>‘declarative’ to ‘Platonic’</dt><dd>the crowning of the commitment to a semantics-first view.</dd>
+</dl>
+</div>
+<div id="outline-container-orgf68b5cc" class="outline-3">
+<h3 id="orgf68b5cc"><span class="section-number-3">1.1.</span> What “Platonic” Means Here</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+A focus on
+</p>
+<ol class="org-ol">
+<li><i>Discovering</i> over <i>Inventing</i></li>
+<li>Timeless <i>Values</i> over changing <i>Objects</i></li>
+<li><i>Expressions</i> carry most of the syntactic load; No <i>Statements</i></li>
+<li>“Look! Don't Think!” — patterns everywhere</li>
+<li>Evaluation rather than execution</li>
+<li>Types represent design decision and not merely compiler optimization directives</li>
+<li>Guiding Metaphor is managing or delegation (recursion) rather than following or executing a recipe (iteration)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgaad48f0" class="outline-3">
+<h3 id="orgaad48f0"><span class="section-number-3">1.2.</span> platonism : Platonism :: abstract : concrete</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+For the last hundred years or so (after Cantor, then Hilbert) platonism stood for the belief amongst mathematicians in the “reality” of abstract objects.
+</p>
+
+<p>
+Needless to say the word “abstract” made people, especially those already suspicious of Cantor, still more suspicious.  If it's an abstraction what is it an abstraction of? THAT must be the underlying reality.
+</p>
+
+<blockquote>
+<p>
+Note: I like to tell my students that CS is that one odd discipline where “abstraction” is a positive word. In most other places its at best neutral: an abstract is a cut down version, mildly negative: to talk abstract it to hand-wave; or downright to hide lies under fine words
+</p>
+</blockquote>
+
+<p>
+Its important to remember that Plato's (Socrates') agenda was diametrically opposed to the “abstraction” view:
+</p>
+<ul class="org-ul">
+<li><i>The Platonic World is the Real World</i></li>
+<li><i>The empirical/physical world is the shadow world</i></li>
+</ul>
+<p>
+[Note: Plato's original terms still remain better than the philosophical fashion —<br>
+<i>τὸ ὁρατόν</i> — THE sensible (world) — really sense-able<br>
+<i>τὸ νοητὸν</i> — THE intelligible (world)
+]<br>
+When we do programming in Pug, we choose the concrete over abstract data types — ADTs. That in a nutshell is the OOP vs FP choice.
+</p>
+<blockquote>
+<p>
+Irony: The Haskell world also talks of <i>ADT</i> but there it means “Algebraic Data Type”. It's not clear to me how that term makes sense aside from math-arcana about Universal Algebras and so on.
+</p>
+</blockquote>
+<p>
+Pugofer is committed to the view that — at least for beginners — <b>All types should be concrete.</b>
+</p>
+
+<p>
+The <code>ctype</code> — concrete type — construct embodies this philosophy. See <a href="#org07c51be">Ontic before Mnemonic</a>
+</p>
+<blockquote>
+<p>
+Ironic Note: <code>ctype</code> is like the modern Haskell GADT. But GADTs put the cart before horse — classic <code>data</code> is the fundamental and GADT <code>data</code> as “advanced.”
+</p>
+</blockquote>
+
+<p>
+The Pugofer view corrects this order — the GADT style is treated as having primacy with <code>data</code> being a short-cut.
+</p>
+
+<p>
+In short&hellip;
+</p>
+</div>
+</div>
+<div id="outline-container-org629cd72" class="outline-3">
+<h3 id="org629cd72"><span class="section-number-3">1.3.</span> Types as Thought Props</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+@@@ Need more on type judegements from traditional math
+</p>
+<blockquote>
+<p>
+Programming is the empirical exploration of a Platonic universe.
+</p>
+</blockquote>
+
+<p>
+<code>[1,2] :: [Int]</code>
+doesn't merely satisfy a type system.
+</p>
+
+<p>
+It brings into being — or, if we're wearing our Platonist hat, <b>discovers</b> — an object inhabiting a very specific universe.
+</p>
+
+<p>
+Whereas <code>[1, True]</code>
+isn't merely illegal syntax. It is a failed attempt to construct an inhabitant of that universe.
+</p>
+
+<p>
+The type checker is drawing boundaries.
+</p>
+
+<ul class="org-ul">
+<li>Types are <b>Boundaries</b></li>
+<li>Pug is a <b>protected nursery</b> where the budding Platonist explores the Platonic world empirically.<br></li>
+</ul>
+<p>
+A key guiding principle&hellip;
+</p>
+</div>
+</div>
+<div id="outline-container-org07c51be" class="outline-3">
+<h3 id="org07c51be"><span class="section-number-3">1.4.</span> Ontic Before Mnemonic</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Compare the Haskell
+</p>
+<pre class="example" id="org6c4ec45">
+data Maybe a =
+               Just a
+             | Nothing
+</pre>
+<p>
+with the Pug
+</p>
+<pre class="example" id="org1e473b6">
+ctype Maybe a where
+   Just    : a -&gt; Maybe a
+   Nothing : Maybe a
+</pre>
+
+<ul class="org-ul">
+<li>Haskell says <b>How</b> we expect to see the introduced entities in use</li>
+<li>Pug says <b>What</b> the new entities are</li>
+</ul>
+
+<p>
+In short Haskell is <b>mnemonic</b>. Pug is <b>ontic</b>.
+</p>
+
+<p>
+Note: Its true that the more modern GADT <code>data</code> syntax mirrors the Pug <code>ctype</code> one.
+But culturally that keeps the cart before the horse — the basic <code>data</code> is <b>primary</b>; the GADT <code>data</code> is <b>advanced</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdba3f7d" class="outline-3">
+<h3 id="orgdba3f7d"><span class="section-number-3">1.5.</span> Niggles and hiccups</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+And there have always been issues with calling it a <i>functional programming language.</i>
+</p>
+<ul class="org-ul">
+<li>Students get distressed at being sold short by not being given something ‘hot’</li>
+<li>Faculty get dissatisfied that the FP-fans are on a personal trip</li>
+<li>Yawns from curricula boards</li>
+<li>etc</li>
+</ul>
+
+<p>
+Why are functional languages specifically under attack?
+</p>
+
+<p>
+Because the alternatives — C, C++, Java, Python etc — <b>set the rules of the programming game.</b>
+</p>
+
+<p>
+Strangely these objectors don't object to all the theory/soft/humanistic courses that have no machine component.
+</p>
+
+<p>
+What if FP were not in the league of Fortran, C, Java, Python&hellip;
+But of flow charts, UML, Science of Programming, Automata Theory, Complexity Theory&hellip;?
+</p>
+
+<p>
+<b>ie a way of THINKING about programming not DOING programming</b>
+</p>
+</div>
+</div>
+<div id="outline-container-org91fb026" class="outline-3">
+<h3 id="org91fb026"><span class="section-number-3">1.6.</span> Two Lineages</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+@@@Need an image here
+Long before the modern slew of languages there was ISWIM, before that there was Denotational Semantics.
+Are these quite <b>programming</b>? Or <b>about</b> programming?
+</p>
+
+<p>
+Going further back the older lineage, before and unrelated to computers
+The Lambda and Combinatory Calculi of Church and Schönfinkel.
+Frege
+Boole
+Leibniz
+Ramon Llul
+Aristotle
+</p>
+
+<p>
+Even though Pug belongs to the first as a very very junior member of the Haskell family, Pugofer represents the wish (and pretensions) to the second.
+</p>
+
+<p>
+[Aside: Is it fantastical to put ourselves into the company of Leibniz and Aristotle?<br>
+No more than when a programmer chooses (say) C++ over Python he chooses the company of Stroustrup over Guido.<br>
+It may seem that the company of Aristotle is more metaphysically fraught than living persons like Stroustrup.<br>
+But in practice Stroustrup or Guido care as little as Leibniz or Aristotle&hellip; Or Plato do<br>
+We may not matter to them; they matter to us.<br>
+And teachers' job is to inculcate good ideals
+Brings us to&hellip;
+</p>
+</div>
+</div>
+<div id="outline-container-org72d764b" class="outline-3">
+<h3 id="org72d764b"><span class="section-number-3">1.7.</span> Pug and Pugofer</h3>
+<div class="outline-text-3" id="text-1-7">
+</div>
+<div id="outline-container-org60f0156" class="outline-4">
+<h4 id="org60f0156"><span class="section-number-4">1.7.1.</span> Why “Pugofer”?</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<p>
+There is little point being very good at some FPL <b>technology</b> and becoming quite impotent when moving to a more conventional language.
+Pugofer represents the principle that properly educated programmers should be better at a slew of languages/technologies/systems <b>they have not seen</b> than those trained within a narrow technological focus.
+In short Pugofer is about a pedagogical <b>philosophy</b> of CS mastery over and above <b>tech details</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgac4f120" class="outline-4">
+<h4 id="orgac4f120"><span class="section-number-4">1.7.2.</span> Why “Pug”?</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<p>
+The name Pug reflects the conviction that programs, algorithms, types and mathematical structures are discovered as much as invented — that computing is an exploration of an abstract world. It's the <b>teaser technology behind the philosophy.</b> ‘Technology’ because its a program; ‘Teaser’ because it does not vie with Haskell or Rust or Python or any other mainstream language&hellip;
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7413d2a" class="outline-2">
+<h2 id="org7413d2a"><span class="section-number-2">2.</span> Programming as Exploration</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org7bbf880" class="outline-3">
+<h3 id="org7bbf880"><span class="section-number-3">2.1.</span> Programming is the empirical exploration of a Platonic universe</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Pug facilitates the exploration of a Platonic world
+</p>
+<ul class="org-ul">
+<li>The world is Platonic</li>
+<li>The exploration happens in an empiric world</li>
+<li>The programmer doing the exploration remains ever suspended between the timeless stable Platonic world and his own confusions, limitations, ignorance. Sometimes even the inherent limitations of a contingent program (eg. Out of memory! Error)</li>
+</ul>
+<p>
+Note the resolution to the 2 millennial&hellip;
+</p>
+</div>
+</div>
+<div id="outline-container-org9d94e97" class="outline-3">
+<h3 id="org9d94e97"><span class="section-number-3">2.2.</span> Philosophy War</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+There has been a war for over 2 millennia between the empiricists and the rationalists (Platonists)
+</p>
+<ul class="org-ul">
+<li>Plato vs Aristotle</li>
+<li>Descartes vs Locke</li>
+<li>Kant vs Berkeley-Hume (yeah this "vs" is somewhat different)</li>
+</ul>
+
+<p>
+Pugofer doesn't take a side.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org89bc8b0" class="outline-2">
+<h2 id="org89bc8b0"><span class="section-number-2">3.</span> The Hinge</h2>
+<div class="outline-text-2" id="text-3">
+<pre class="example" id="org8af5b2e">
+          PLATONIC WORLD
+   types · values · functions
+   equations · structures
+             ▲
+              ╲
+                ╲
+                  °    PUG 
+                ╱
+              ╱
+             ▼
+      EMPIRICAL WORLD
+programmer · editor · compiler
+   CPU · memory · time
+</pre>
+
+<pre class="example" id="org5d55769">
+┌──────────────────────────────┐
+│ PUG FILE                     │
+│                              │
+│ timeless / declarative       │
+│ mathematical object          │
+└──────────────────────────────┘
+                ▲
+                 ╲
+                   ╲
+                     °  PUG 
+                   ╱
+                 ╱
+                ▼
+┌──────────────────────────────┐
+│ INTERPRETER                  │
+│                              │
+│ temporal / experimental      │
+│ observable behavior          │
+└──────────────────────────────┘
+</pre>
+<p>
+Pug is a hinge between two worlds — the empirical and the Platonic: it empiricizes the Platonic without compromising its truth.
+</p>
+
+<p>
+If mathematics is, at bottom, an intention and commitment to inhabiting a rich Platonic world, Pug is a window through which we may explore and discover that universe.
+#+end<sub>quote</sub>
+</p>
+</div>
+<div id="outline-container-org179f994" class="outline-3">
+<h3 id="org179f994"><span class="section-number-3">3.1.</span> Other Aspects of the Hinge</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Denotational and Operational (rewriting) semantics
+</p>
+
+<p>
+Platonic — programs are abstract objects.
+Equational — understanding comes through reasoning and transformation.
+Pedagogical — the language should be teachable.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbde1c48" class="outline-3">
+<h3 id="orgbde1c48"><span class="section-number-3">3.2.</span> The Pug File vs The Interpreter</h3>
+</div>
+</div>
+<div id="outline-container-org0aed276" class="outline-2">
+<h2 id="org0aed276"><span class="section-number-2">4.</span> Why Equational?</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Platonism is about the engagement with pure intellectual objects</li>
+<li><p>
+Math is the entreé into Platonism<br>
+Its apposite to remember that Plato's agenda was primarily:
+<i>What is Truth, Justice? Beauty? etc</i> ie  Level 1.<br>
+And ultimately Level 2: <i>What is The Good?</i><br>
+Math as it turned out is the best Level 0 for building this edifice.
+</p>
+
+<p>
+Inscription on Plato's academy:
+</p>
+<blockquote>
+<p>
+Ἀγεωμέτρητος μηδεὶς εἰσίτω
+</p>
+</blockquote>
+<p>
+English rendering
+</p>
+<blockquote>
+<p>
+Let no one ignorant of geometry enter
+</p>
+</blockquote></li>
+<li>Programming is the empirical exploration of mathematical objects.</li>
+<li>Programs are both equations as well as executions.<br>
+In fact if we think with equations and the interpreter converts these into executions, the equations <b>precede</b> the execution</li>
+<li>So evaluation over execution</li>
+</ul>
+
+<p>
+@@ Need to expand on
+</p>
+<ul class="org-ul">
+<li>programs as equations</li>
+<li>equational reasoning</li>
+<li>denotational semantics</li>
+<li>rewriting / operational semantics</li>
+<li>why Gofer's original “Good For Equational Reasoning” matters</li>
+</ul>
+
+<p>
+This also gives a natural explanation of Pugofer.
+</p>
+</div>
+</div>
+<div id="outline-container-orgda6ca03" class="outline-2">
+<h2 id="orgda6ca03"><span class="section-number-2">5.</span> Symmetry of Application and Equality</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The promotion of application to an explicit operator (<code>.</code>) completes the algebraic symmetry between functions, values, and equality in predicate calculus:
+</p>
+
+<p>
+@@@Repeating
+</p>
+
+<p>
+Speaking a little over-syntactically
+</p>
+</div>
+<div id="outline-container-orgbd49556" class="outline-3">
+<h3 id="orgbd49556"><span class="section-number-3">5.1.</span> Right-Sided Cancellation (Function Extensionality)</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+\[(\forall x \bullet f.x = g.x) \iff f = g\]
+</p>
+
+<p>
+Two functions are equal if and only if their application yields identical values across all inputs.
+</p>
+</div>
+</div>
+<div id="outline-container-orga2dc2c2" class="outline-3">
+<h3 id="orga2dc2c2"><span class="section-number-3">5.2.</span> Left-Sided Cancellation (Leibniz's Rule)</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+\[(\forall f \bullet f.x = f.y) \iff x = y\]
+</p>
+
+
+<p>
+Two values are equal if and only if every function applied to them yields identical results.
+</p>
+
+<p>
+When application is hidden in whitespace (\(f\;x\)), this symmetry vanishes. The dot (<code>.</code>) makes application a first-class binary operator, allowing equational proofs to treat function equality
+\[
+(\forall x \bullet f.x = g.x) \implies f = g
+\]
+and value equality
+\[
+(\forall f \bullet f.x = f.y) \implies x = y
+\]
+as exact, syntactic mirrors of one another.
+</p>
+
+<p>
+Ultimately, replacing hidden juxtaposition with \(f.x\) makes explicit a symmetry that ordinary whitespace notation leaves implicit. The notation does not add a new mathematical fact; it prevents an existing one from being obscured.
+As the discussion:
+<a href="https://github.com/pugofer/techreports/blob/master/purgatory.pdf">Recorde, Leibniz, and Dijkstra</a> adumbrates, clarity of thought follows from clarity of notation. Which means we must seek to erase all unnecessary sloppiness.
+</p>
+
+<p>
+So since<br>
+<b>Committing</b> to Platonic objects<br>
+            → <b>Facilitates</b> equational reasoning by <br>
+                                    → <b>using</b> notation that exposes the algebra.
+</p>
+</div>
+</div>
+<div id="outline-container-org83677cd" class="outline-3">
+<h3 id="org83677cd"><span class="section-number-3">5.3.</span> Or in Phil Lingo</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Ontolog(ical commitment)<br>
+            → Epistemolog(ical method)<br>
+                                    → Pedagog(ical choices, here notation)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ed8748" class="outline-2">
+<h2 id="org3ed8748"><span class="section-number-2">6.</span> On Paradigms</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+The misuse and abuse of paradigm after <a href="https://cseweb.ucsd.edu/~goguen/courses/275f00/horgan.html">Kuhn</a> has been more severe and pervasive in CS than in any other field to my knowledge.
+</p>
+</div>
+<div id="outline-container-orgb8932e6" class="outline-3">
+<h3 id="orgb8932e6"><span class="section-number-3">6.1.</span> Imperative a mistake</h3>
+</div>
+<div id="outline-container-org8cd9414" class="outline-3">
+<h3 id="org8cd9414"><span class="section-number-3">6.2.</span> Functional a misnomer</h3>
+</div>
+<div id="outline-container-org230c4c3" class="outline-3">
+<h3 id="org230c4c3"><span class="section-number-3">6.3.</span> OOP a trillion dollar scam</h3>
+</div>
+<div id="outline-container-org9d7fe32" class="outline-3">
+<h3 id="org9d7fe32"><span class="section-number-3">6.4.</span> A better alternative paradigm proposal</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+It is our belief that this division of languages is far more useful
+</p>
+<ul class="org-ul">
+<li>educational</li>
+<li>professional development</li>
+<li>research</li>
+</ul>
+
+<p>
+Gofer was a development tour de force — mpj did it on a ordinary PC!  In 1991! It showcases significant research.  It <i>happened</i> to be good for teaching beginners but that was never its primary purpose.
+</p>
+
+<p>
+Pug
+</p>
+<ul class="org-ul">
+<li>As a technology consists of not very large changes to the Gofer codebase</li>
+<li>As pedagogy it has a complementary purpose — to be an amiable negotiating tool for the learning curve for programming noobs.
+See <a href="./pedagogy.html">Pedagogy</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbbea3f8" class="outline-3">
+<h3 id="orgbbea3f8"><span class="section-number-3">6.5.</span> Which is the Flagship FPL</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+If one were asked is there ONE flagship FPL ?
+The answer would be — depends on when the conversation is happening
+</p>
+<ul class="org-ul">
+<li>From 57 into the 60s Fortran was it — the very name says so</li>
+<li>In the 60s-70s it was mostly lisp though in small dedicated circles it would be APL</li>
+<li>In the 70s into the 80s ML and its various dialects started significantly changing the game — bringing closer the prim-n-propah-ness of structured programming a la Pascal into the power and elegance of Lisp</li>
+<li>In the 80s into the 90s Turner's phased genesis of FPLs were it —
+(a) lazy (b) Really pure (c) Pleasing ISWIM syntax<br>
+Culminating in Miranda.</li>
+</ul>
+</div>
+<div id="outline-container-org812c625" class="outline-4">
+<h4 id="org812c625"><span class="section-number-4">6.5.1.</span> Is there any any single language today?</h4>
+<div class="outline-text-4" id="text-6-5-1">
+<p>
+Depends on which window we peer in from
+</p>
+<ul class="org-ul">
+<li>If professional devel — Scala, Clojure, even Rust</li>
+<li>If research Agda, Idris&hellip;</li>
+<li>If teaching — <a href="https://racket-lang.org/">Racket</a>, <a href="https://pyret.org/">Pyret</a>, <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/helium.pdf">Helium</a>, <a href="http://gracelang.org/documents/cseet13main-id92-p-16403-preprint.pdf">Grace</a>, <a href="https://www.roc-lang.org/">Roc</a> and so on.<br>
+Oh and there is this little thing called Pug — some of you may have heard of it 😉</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org674331b" class="outline-4">
+<h4 id="org674331b"><span class="section-number-4">6.5.2.</span> Haskell</h4>
+<div class="outline-text-4" id="text-6-5-2">
+<p>
+Haskell tries to belong in all 3 buckets<br>
+Whether and how far it succeeds is a matter of opinion.<br>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7872ecd" class="outline-2">
+<h2 id="org7872ecd"><span class="section-number-2">7.</span> Pug and Haskell</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+If this view is acceptable, then Haskell is facing the wrong way — its trajectory is increasing power a la C++, not more enjoyment and <i>Aha</i>!s for noobs.
+</p>
+</div>
+<div id="outline-container-org700a1bf" class="outline-3">
+<h3 id="org700a1bf"><span class="section-number-3">7.1.</span> What pug is</h3>
+</div>
+<div id="outline-container-orgaaf2d7e" class="outline-3">
+<h3 id="orgaaf2d7e"><span class="section-number-3">7.2.</span> What pug isn't</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+If the above outlined view is acceptable, then Haskell is facing the wrong way&hellip;
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfe0bd91" class="outline-2">
+<h2 id="orgfe0bd91"><span class="section-number-2">8.</span> The Pug Project</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+And perhaps:
+</p>
+
+<p>
+&gt; Pugofer is the larger intellectual project; Pug is its executable face.
+</p>
+
+<p>
+This becomes the synthesis rather than an early assertion.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc904da2" class="outline-2">
+<h2 id="orgc904da2"><span class="section-number-2">9.</span> Links</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li><a id="orgf715e35"></a> Doting on the dot</li>
+<li>Grace</li>
+<li></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfd644f1" class="outline-2">
+<h2 id="orgfd644f1"><span class="section-number-2">10.</span> Hanging@@@</h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li>exploration</li>
+<li>Rewriting semantics</li>
+<li>For a more detailed, personal (and honest!) history see <a href="./personal.html">Personal</a></li>
+<li>Note:   In short Pugofer is the larger umbrella term involving programs but also philosophy and pedagogy.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Rusi</p>
+<p class="date">Created: 2026-09-24 Thu 15:11</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
