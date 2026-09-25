@@ -1,0 +1,156 @@
+* Further Distributaries
+** 1. Mathematics
+Not merely “more discrete math,” but:
+
+- algebra
+- logic
+- probability
+- statistics
+- type theory
+- category theory, for the adventurous
+
+This is perhaps the most natural distributary from the
+*equational/Platonic* side of Pug.
+** 2. AI / ML / Data
+This is now unavoidable.
+
+But I would *not* frame it as “learn Python + PyTorch.” The interesting
+continuation is:
+
+#+begin_quote
+*programming → computation → data → models → learning*
+#+end_quote
+
+A Pug student who has learned to think in functions, values,
+transformations and equations has a rather good conceptual preparation
+for functional aspects of ML.
+
+And there's a particularly nice pedagogical point: *the student
+discovers that “programming” need not mean specifying every step of a
+procedure.* That's an important bridge from functional programming to
+machine learning.
+** Formal methods
+This one is *very natural* and I think you are currently missing it.
+Pug's:
+
+#+begin_quote
+types → equations → equational reasoning → explicit semantics
+#+end_quote
+
+can lead toward:
+
+- theorem proving
+- model checking
+- specification
+- verification
+- proof assistants
+- dependent types
+
+So:
+
+#+begin_quote
+*Pug → Agda / Idris / Lean / Coq / formal methods*
+#+end_quote
+
+is a much more intellectually significant distributary than simply
+“learn OCaml.”
+
+And it connects directly to your *philosophical maturity* idea.
+** Programming languages / language implementation
+Another obvious one, especially because Pug is deliberately small.
+
+A student may naturally become interested in:
+
+#+begin_quote
+parsers → interpreters → compilers → type systems → semantics → language
+design.
+#+end_quote
+
+This is actually one of Pug's strongest natural distributaries because
+*the student has been given a language small enough to understand rather
+than merely use*.
+
+--------------
+** Systems / hardware
+I'd include this, surprisingly.
+
+A student who has learned:
+
+#+begin_quote
+/this expression denotes X; the machine eventually evaluates it/
+#+end_quote
+
+may become curious about the other side:
+
+#+begin_quote
+*What actually happens when it runs?*
+#+end_quote
+
+Then:
+
+- C
+- assembly
+- operating systems
+- architecture
+- compilers
+- embedded systems
+- GPUs
+
+And in the AI age, this becomes particularly interesting because *AI has
+made the hardware/software boundary newly visible*: accelerators, memory
+bandwidth, tensor operations, distributed systems, etc.
+
+--------------
+** Data / information
+This is related to ML but conceptually distinct.
+
+A student might go:
+
+#+begin_quote
+values → structures → data → databases → information → information
+theory.
+#+end_quote
+
+SQL, databases, data modelling, compression, information theory, data
+engineering --- these aren't merely “AI preparation.”
+
+This is especially interesting given your friend's *five CS lineages*.
+
+--------------
+** So I might make the distributary map
+Not as a prescribed curriculum, but as a *fan-out*:
+
+#+begin_quote
+*Pug*
+
+→ Haskell / functional programming → mainstream programming → PL /
+compilers / semantics → formal methods / proof → mathematics / logic →
+AI / ML / data → systems / hardware → philosophy
+#+end_quote
+
+And perhaps *artificial intelligence is not the final destination but
+one of the great modern intersections* of several of these.
+That fits your earlier five-lineage idea beautifully:
+
+- *Automata* → systems / hardware
+- *Computation* → algorithms / complexity / PL
+- *Languages* → PL / compilers
+- *Logic* → formal methods / theorem proving
+- *Information* → data / ML / AI
+Then *philosophy* sits above or across them, asking what all these
+things /are/ and what assumptions make them intelligible.
+* Destination?
+Students are human beings (still... AFAIK!)
+The fates of students are written in the stars (or their genetic code... or their parental demands or love life or........)
+
+*Pug doesn't prescribe a destination; it gives an enjoyable+illumintating interlude in the students' life-trajectory*
+#+begin_quote
+A good introductory language leaves many intellectual doors open, rather than being a lathe to carve students into (pseudo-)masters of the next language in the syllabus.
+#+end_quote
+
+And in the AI age, that means the “next step” might be *Haskell, Lean,
+CUDA, statistics, databases, compiler construction, machine learning,
+philosophy --- or ordinary Python*.
+
+The test is not whether the student gets a job but
+whether the student carries the /habits of thought and intellectual pleasure/ with them.

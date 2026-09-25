@@ -1,0 +1,39 @@
+#+TITLE: Pugofer: Pedagogical Imperatives(!)
+* Pedagogical focus
+Gofer : Pug :: Research : Pedagogy
+- Gofer happened to be good for beginners.
+- Pug is deliberately geared around the beginner.
+  [Note Eric Meijer's preference for teaching with hugs over ghc]
+* Programming in the — Small Medium Large... Tiny??
+Software engineering boffins have long talked of Programming in the small, medium and large.
+
+What about tiny? Useful, cute, insightful, 1-line programs?
+Note: The “1-line” is not intended as fetish — 2-4 is ok!
+* The REPL as Laboratory
+What is really suggested is a constructivist pedagogy where playing around at the REPL is the primary learning mode
+* Ecosystem considerations
+- Emacs 2-window mode maps the Platonic-empiric hinge
+- Type errors
+- Sheer weight\\
+  Last I checked 10 years ago, compiling Haskell from scratch took of the order of 2+ hours. Even if it has become half an hour today, Pug takes less than 2 seconds!\\
+  Or just look at executable sizes:\\
+  pug : 300K; ghc compiler library near 110M
+  
+  Obviously this cuts both ways. We can equally say
+  - Pug is a lightweight educational tool compared to a bloated Ghc
+  - Ghc is a real modern full-featured system whereas Pug is a pointless toy
+  - I prefer to avoid both and not compare apples — noob in CS1 — with oranges — professional devel. @@Link
+* Natural Distributaries
+What does a student do after a course on Pugofer/Pug?
+
+This question is perhaps the most important neglected question
+- Haskell ofc
+- Haskellish (Elm, Purescript...)
+- Other functionals (Scala, OCaml, Clojure...)
+  But these are not the key ones!
+- C, C++, Python, Java... the usual big names... whatever is the current fashion
+- But even more interesting and further afield — philosophical maturity
+- Philosophy
+* Hanging@@@
+- tiny programs
+- negotiating the learning curve

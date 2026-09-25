@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2026-09-25 Fri 08:32 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Rusi" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="outline-container-orge6c9ee5" class="outline-2">
+<h2 id="orge6c9ee5"><span class="section-number-2">1.</span> Further Distributaries</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgb36dd87" class="outline-3">
+<h3 id="orgb36dd87"><span class="section-number-3">1.1.</span> 1. Mathematics</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Not merely “more discrete math,” but:
+</p>
+
+<ul class="org-ul">
+<li>algebra</li>
+<li>logic</li>
+<li>probability</li>
+<li>statistics</li>
+<li>type theory</li>
+<li>category theory, for the adventurous</li>
+</ul>
+
+<p>
+This is perhaps the most natural distributary from the
+<b>equational/Platonic</b> side of Pug.
+</p>
+</div>
+</div>
+<div id="outline-container-org6f6db3a" class="outline-3">
+<h3 id="org6f6db3a"><span class="section-number-3">1.2.</span> 2. AI / ML / Data</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+This is now unavoidable.
+</p>
+
+<p>
+But I would <b>not</b> frame it as “learn Python + PyTorch.” The interesting
+continuation is:
+</p>
+
+<blockquote>
+<p>
+<b>programming → computation → data → models → learning</b>
+</p>
+</blockquote>
+
+<p>
+A Pug student who has learned to think in functions, values,
+transformations and equations has a rather good conceptual preparation
+for functional aspects of ML.
+</p>
+
+<p>
+And there's a particularly nice pedagogical point: <b>the student
+discovers that “programming” need not mean specifying every step of a
+procedure.</b> That's an important bridge from functional programming to
+machine learning.
+</p>
+</div>
+</div>
+<div id="outline-container-org893faa6" class="outline-3">
+<h3 id="org893faa6"><span class="section-number-3">1.3.</span> Formal methods</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+This one is <b>very natural</b> and I think you are currently missing it.
+Pug's:
+</p>
+
+<blockquote>
+<p>
+types → equations → equational reasoning → explicit semantics
+</p>
+</blockquote>
+
+<p>
+can lead toward:
+</p>
+
+<ul class="org-ul">
+<li>theorem proving</li>
+<li>model checking</li>
+<li>specification</li>
+<li>verification</li>
+<li>proof assistants</li>
+<li>dependent types</li>
+</ul>
+
+<p>
+So:
+</p>
+
+<blockquote>
+<p>
+<b>Pug → Agda / Idris / Lean / Coq / formal methods</b>
+</p>
+</blockquote>
+
+<p>
+is a much more intellectually significant distributary than simply
+“learn OCaml.”
+</p>
+
+<p>
+And it connects directly to your <b>philosophical maturity</b> idea.
+</p>
+</div>
+</div>
+<div id="outline-container-org2f6e8bb" class="outline-3">
+<h3 id="org2f6e8bb"><span class="section-number-3">1.4.</span> Programming languages / language implementation</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Another obvious one, especially because Pug is deliberately small.
+</p>
+
+<p>
+A student may naturally become interested in:
+</p>
+
+<blockquote>
+<p>
+parsers → interpreters → compilers → type systems → semantics → language
+design.
+</p>
+</blockquote>
+
+<p>
+This is actually one of Pug's strongest natural distributaries because
+<b>the student has been given a language small enough to understand rather
+than merely use</b>.
+</p>
+
+<hr>
+</div>
+</div>
+<div id="outline-container-org8c48d99" class="outline-3">
+<h3 id="org8c48d99"><span class="section-number-3">1.5.</span> Systems / hardware</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+I'd include this, surprisingly.
+</p>
+
+<p>
+A student who has learned:
+</p>
+
+<blockquote>
+<p>
+<i>this expression denotes X; the machine eventually evaluates it</i>
+</p>
+</blockquote>
+
+<p>
+may become curious about the other side:
+</p>
+
+<blockquote>
+<p>
+<b>What actually happens when it runs?</b>
+</p>
+</blockquote>
+
+<p>
+Then:
+</p>
+
+<ul class="org-ul">
+<li>C</li>
+<li>assembly</li>
+<li>operating systems</li>
+<li>architecture</li>
+<li>compilers</li>
+<li>embedded systems</li>
+<li>GPUs</li>
+</ul>
+
+<p>
+And in the AI age, this becomes particularly interesting because <b>AI has
+made the hardware/software boundary newly visible</b>: accelerators, memory
+bandwidth, tensor operations, distributed systems, etc.
+</p>
+
+<hr>
+</div>
+</div>
+<div id="outline-container-org6441d49" class="outline-3">
+<h3 id="org6441d49"><span class="section-number-3">1.6.</span> Data / information</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+This is related to ML but conceptually distinct.
+</p>
+
+<p>
+A student might go:
+</p>
+
+<blockquote>
+<p>
+values → structures → data → databases → information → information
+theory.
+</p>
+</blockquote>
+
+<p>
+SQL, databases, data modelling, compression, information theory, data
+engineering &mdash; these aren't merely “AI preparation.”
+</p>
+
+<p>
+This is especially interesting given your friend's <b>five CS lineages</b>.
+</p>
+
+<hr>
+</div>
+</div>
+<div id="outline-container-orgc7d2fa4" class="outline-3">
+<h3 id="orgc7d2fa4"><span class="section-number-3">1.7.</span> So I might make the distributary map</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Not as a prescribed curriculum, but as a <b>fan-out</b>:
+</p>
+
+<blockquote>
+<p>
+<b>Pug</b>
+</p>
+
+<p>
+→ Haskell / functional programming → mainstream programming → PL /
+compilers / semantics → formal methods / proof → mathematics / logic →
+AI / ML / data → systems / hardware → philosophy
+</p>
+</blockquote>
+
+<p>
+And perhaps <b>artificial intelligence is not the final destination but
+one of the great modern intersections</b> of several of these.
+That fits your earlier five-lineage idea beautifully:
+</p>
+
+<ul class="org-ul">
+<li><b>Automata</b> → systems / hardware</li>
+<li><b>Computation</b> → algorithms / complexity / PL</li>
+<li><b>Languages</b> → PL / compilers</li>
+<li><b>Logic</b> → formal methods / theorem proving</li>
+<li><b>Information</b> → data / ML / AI</li>
+</ul>
+<p>
+Then <b>philosophy</b> sits above or across them, asking what all these
+things <i>are</i> and what assumptions make them intelligible.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2cb8ed5" class="outline-2">
+<h2 id="org2cb8ed5"><span class="section-number-2">2.</span> Destination?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Students are human beings (still&hellip; AFAIK!)
+The fates of students are written in the stars (or their genetic code&hellip; or their parental demands or love life or&hellip;&hellip;..)
+</p>
+
+<p>
+<b>Pug doesn't prescribe a destination; it gives an enjoyable+illumintating interlude in the students' life-trajectory</b>
+</p>
+<blockquote>
+<p>
+A good introductory language leaves many intellectual doors open, rather than being a lathe to carve students into (pseudo-)masters of the next language in the syllabus.
+</p>
+</blockquote>
+
+<p>
+And in the AI age, that means the “next step” might be <b>Haskell, Lean,
+CUDA, statistics, databases, compiler construction, machine learning,
+philosophy &mdash; or ordinary Python</b>.
+</p>
+
+<p>
+The test is not whether the student gets a job but
+whether the student carries the <i>habits of thought and intellectual pleasure</i> with them.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Rusi</p>
+<p class="date">Created: 2026-09-25 Fri 08:32</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

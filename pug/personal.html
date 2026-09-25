@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2026-09-25 Fri 08:24 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pug History</title>
+<meta name="author" content="Rusi" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<header>
+<h1 class="title">Pug History</h1>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4bb2a90">1. Lineage</a>
+<ul>
+<li><a href="#orga4d41d5">1.1. Principal</a></li>
+<li><a href="#org9b5f0fa">1.2. Acks to Teachers Bosses Colleagues and Friends</a></li>
+<li><a href="#orge202dd5">1.3. Other Big Guys</a></li>
+</ul>
+</li>
+<li><a href="#org9a87368">2. Principal Lineages</a></li>
+<li><a href="#org73bd295">3. Less grand word history</a></li>
+</ul>
+</div>
+</nav>
+<div id="outline-container-org4bb2a90" class="outline-2">
+<h2 id="org4bb2a90"><span class="section-number-2">1.</span> Lineage</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orga4d41d5" class="outline-3">
+<h3 id="orga4d41d5"><span class="section-number-3">1.1.</span> Principal</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+There are three principal lineages that form the tributaries for the Pugofer project
+</p>
+<dl class="org-dl">
+<dt>Technology</dt><dd>Gofer of Mark P. Jones</dd>
+<dt>Pedagogy</dt><dd><p>
+Dijkstra (Eindhoven school) use of an explicit application dot to denote application. ie we write <code>f.x</code> instead of  <code>f x</code> of Haskell or <code>f(x)</code> of most other languages.
+</p>
+
+<p>
+Note: Math is not quite consistent. Mostly we write <i>f(x)</i> but we write sin <i>x</i> or log <i>x</i> without the parentheses.
+</p></dd>
+<dt>Philosophy</dt><dd>For the place and importance of Plato, see the entry below on <a href="#orge202dd5">Peter Wegner</a></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org9b5f0fa" class="outline-3">
+<h3 id="org9b5f0fa"><span class="section-number-3">1.2.</span> Acks to Teachers Bosses Colleagues and Friends</h3>
+<div class="outline-text-3" id="text-1-2">
+<dl class="org-dl">
+<dt>Hvs</dt><dd>taught me Lisp then guided my project where I implemented a lisp; then started teaching Scheme in CS1; then (after some wrestling) allowed me freedom to teach with a functional style. Also he taught me&hellip; too many things to ack&hellip; I'll just say he taught me to be a teacher</dd>
+<dt>Keshav Nori</dt><dd>Somehow by osmosis I got that semantics (denotational and axiomatic ) and  functional programming are two sides of the same coin.
+Also his favorite rib against us FP aficianodos <i>Show me heapsort1</i></dd>
+<dt>Jayant Kirtane</dt><dd><p>
+When I was quite certain (c. 2004-06) that now that Haskell has come of age, an old obsolete toy like gofer/pug belonged to the bin of forgotten history.
+</p>
+
+<p>
+Kirtane held onto a strong belief and commitment to pug as a pedagogical tool <i>par excellence</i>, and over time convinced me that it had a quite different role from Haskell.
+</p></dd>
+<dt>Kavi Arya</dt><dd>Who sent over the floppies containing gofer&hellip; brought by his ‘courier’&hellip;</dd>
+<dt>Anuradha Laxminarayan</dt><dd>&hellip; who sauntered into the PU campus on a rainy July in 1992 carrying the floppies</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orge202dd5" class="outline-3">
+<h3 id="orge202dd5"><span class="section-number-3">1.3.</span> Other Big Guys</h3>
+<div class="outline-text-3" id="text-1-3">
+<dl class="org-dl">
+<dt>Herbert Simon</dt><dd><p>
+For coining the phrase “Science of the Artificial”
+And thereby showing that <i>Art</i> of Programming; <i>Discipline</i> of Programming; <i>Science</i> of Programming; <i>Method</i> of Programming; <i>Craft</i> of Programming; <i>Engineering</i> of Software&hellip;
+</p>
+
+<p>
+All these are metaphors and will ultimately fail to carry&hellip; until Simon's insight is properly grokked
+</p></dd>
+<dt>Azriel Rosenfield</dt><dd><ul class="org-ul">
+<li>The dogged commitment to generality ie breadth</li>
+<li>The dizzying tower of math constructions (some may call it abstractions — I dont like the word, see <a href="./philosophy.html">Note on Platonism</a> ie height</li>
+<li>The quotes at beginning</li>
+</ul></dd>
+<dt>David Turner</dt><dd>Miranda is — in my considered opintion — at least as significant a contribution as Haskell at least as to programming pedagogy and is too often forgotten.<br>
+Note: Turner has passed on but Miranda is now free.</dd>
+<dt>Bird &amp; Wadler</dt><dd>Remains the best book on introduction to programming. Also
+<ol class="org-ol">
+<li>Concrete vs Abstract types</li>
+<li>Nice Fonts!</li>
+<li>Better than its successor (agreeing with Meijer)</li>
+</ol></dd>
+<dt>Marvin Minsky</dt><dd>His Turing award and its table of thought pumps</dd>
+<dt>Tom Myers</dt><dd>His book comes closest to the Pugofer project in outlook and direction</dd>
+<dt>PC Scheme</dt><dd>I must have seen SICP in 88. Never liked it — too imperative! HTDP is better if only it were thinner; Friedman's books still better. But the most outstanding Scheme ‘book’ for me was the PC Scheme manual</dd>
+<dt>Peter Wegner</dt><dd><p>
+Wegner's writings on how OOP as technology was related to Empiricism as philosophy and transcended the older more dated commmitment to Rationalism.
+</p>
+
+<p>
+I was not convinced.
+</p>
+
+<p>
+The more I thought about it the more wrong he became.<br>
+     But it set me a-thinking&hellip;<br>
+            The need to think outside of technology&hellip;<br>
+                     Or even Computer <b>Science</b>&hellip;<br>
+                                    The need for philosophy <i>per se&hellip;</i>
+</p></dd>
+</dl>
+
+<div class="org-center">
+<p>
+<b>PLATO!</b>
+</p>
+</div>
+<blockquote>
+<p>
+Funny Note: The word for Plato in Arabic is <i>aflatoon.</i> When imported into South Asia it has come to mean something like Amazing, Fantabulous&hellip;! Often with a slight sarcasm twist.
+</p>
+
+<p>
+Yeah <code>pug</code> is <i>aflatoon</i> for noobs.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org9a87368" class="outline-2">
+<h2 id="org9a87368"><span class="section-number-2">2.</span> Principal Lineages</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example" id="org8580da1">
+Dijkstra ──────────┐
+                   │
+Gofer    ──────────┼──→ Pugofer → Pug
+                   │
+Plato    ──────────┘
+
+</pre>
+<p>
+To use Aristotle's <a href="https://en.wikipedia.org/wiki/Four_causes">framework of 4 causes</a>
+</p>
+<ul class="org-ul">
+<li>Gofer provided the material cause — a working neat little system</li>
+<li>Dijkstra's dot provided the formal cause — it seemed good to have Dijkstra's notation in an executable FP world</li>
+<li>From Plato comes the <i>telos</i> the final (so-called) cause — the motivation to vision programming as an <i>activity</i> in a Platonic world</li>
+</ul>
+
+<p>
+Note: If we want the 4th Aristotle cause — efficient cause — I guess its the milieu of Pune University under hvs that allowed free (enough) reign to all this seeming crazy experimentation on a mainline course. Whence the original "PU" in Pugofer
+</p>
+</div>
+</div>
+<div id="outline-container-org73bd295" class="outline-2">
+<h2 id="org73bd295"><span class="section-number-2">3.</span> Less grand word history</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Fortran 83 (yeah thats the 1st functional lang)</li>
+<li>Lisp 84</li>
+<li>My lisp 86</li>
+<li>Scheme 88</li>
+<li>Miranda (yeah I know about ml) 89</li>
+<li>Gofer 92</li>
+<li>Pugofer 93?</li>
+<li>Pug 2017?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Rusi</p>
+<p class="date">Created: 2026-09-25 Fri 08:24</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+#+OPTIONS: toc:t
+#+TITLE: Pug History
+* Lineage
+** Principal
+There are three principal lineages that form the tributaries for the Pugofer project
+- Technology :: Gofer of Mark P. Jones
+- Pedagogy :: Dijkstra (Eindhoven school) use of an explicit application dot to denote application. ie we write ~f.x~ instead of  ~f x~ of Haskell or ~f(x)~ of most other languages.
+
+  Note: Math is not quite consistent. Mostly we write /f(x)/ but we write sin /x/ or log /x/ without the parentheses.
+- Philosophy :: For the place and importance of Plato, see the entry below on [[*Other Big Guys][Peter Wegner]]
+** Acks to Teachers Bosses Colleagues and Friends
+- Hvs :: taught me Lisp then guided my project where I implemented a lisp; then started teaching Scheme in CS1; then (after some wrestling) allowed me freedom to teach with a functional style. Also he taught me... too many things to ack... I'll just say he taught me to be a teacher
+- Keshav Nori :: Somehow by osmosis I got that semantics (denotational and axiomatic) and functional programming are two sides of the same coin.
+  Also his favorite rib against us FP aficianodos /Show me heapsort!/
+- Jayant Kirtane :: When I was quite certain (c. 2004-06) that now that Haskell has come of age, an old obsolete toy like gofer/pug belonged to the bin of forgotten history.
+
+  Kirtane held onto a strong belief and commitment to pug as a pedagogical tool /par excellence/, and over time convinced me that it had a quite different role from Haskell.
+- Kavi Arya :: Who sent over the floppies containing gofer... brought by his ‘courier’...
+- Anuradha Laxminarayan :: ... who sauntered into the PU campus on a rainy July in 1992 carrying the floppies
+** Other Big Guys
+- Herbert Simon :: For coining the phrase “Science of the Artificial”
+  And thereby showing that /Art/ of Programming; /Discipline/ of Programming; /Science/ of Programming; /Method/ of Programming; /Craft/ of Programming; /Engineering/ of Software...
+
+  All these are metaphors and will ultimately fail to carry... until Simon's insight is properly grokked
+- Azriel Rosenfield ::
+  - The dogged commitment to generality ie breadth
+  - The dizzying tower of math constructions (some may call it abstractions — I dont like the word, see note on Platonism in [[./philosophy.org][philosophy]]
+  - The quotes at beginning
+- David Turner ::
+  Miranda is — in my considered opintion — at least as significant a contribution as Haskell at least as to programming pedagogy and is too often forgotten.\\
+  Note: Turner has passed on but Miranda is now free.
+- Bird & Wadler :: Remains the best book on introduction to programming. Also
+  1. Concrete vs Abstract types
+  2. Nice Fonts!
+  3. Better than its successor (agreeing with Meijer)
+- Marvin Minsky :: His Turing award and its table of thought pumps
+- Tom Myers :: His book comes closest to the Pugofer project in outlook and direction
+- PC Scheme :: I must have seen SICP in 88. Never liked it — too imperative! HTDP is better if only it were thinner; Friedman's books still better. But the most outstanding Scheme ‘book’ for me was the PC Scheme manual
+- Peter Wegner :: Wegner's writings on how OOP as technology was related to Empiricism as philosophy and transcended the older more dated commmitment to Rationalism.
+
+  I was not convinced.
+
+  The more I thought about it the more wrong he became.\\
+       But it set me a-thinking...\\
+              The need to think outside of technology...\\
+                       Or even Computer *Science*...\\
+                                      The need for philosophy /per se.../
+
+#+begin_center
+*PLATO!*
+#+end_center
+#+begin_quote
+Funny Note: The word for Plato in Arabic is /aflatoon./ When imported into South Asia it has come to mean something like Amazing, Fantabulous...! Often with a slight sarcasm twist.
+
+Yeah ~pug~ is /aflatoon/ for noobs.
+#+end_quote
+* Principal Lineages
+#+begin_example
+Dijkstra ──────────┐
+                   │
+Gofer    ──────────┼──→ Pugofer → Pug
+                   │
+Plato    ──────────┘
+
+#+end_example
+To use Aristotle's [[https://en.wikipedia.org/wiki/Four_causes][framework of 4 causes]]
+- Gofer provided the material cause — a working neat little system
+- Dijkstra's dot provided the formal cause — it seemed good to have Dijkstra's notation in an executable FP world
+- From Plato comes the /telos/ the final (so-called) cause — the motivation to vision programming as an /activity/ in a Platonic world
+
+Note: If we want the 4th Aristotle cause — efficient cause — I guess its the milieu of Pune University under hvs that allowed free (enough) reign to all this seeming crazy experimentation on a mainline course. Whence the original "PU" in Pugofer
+
+* Less grand word history
+- Fortran 83 (yeah thats the 1st functional lang)
+- Lisp 84
+- My lisp 86
+- Scheme 88
+- Miranda (yeah I know about ml) 89
+- Gofer 92
+- Pugofer 93?
+- Pug 2017?
