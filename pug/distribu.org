@@ -1,4 +1,4 @@
-* Further Distributaries
+#+TITLE: More on Distributaries
 ** 1. Mathematics
 Not merely “more discrete math,” but:
 
