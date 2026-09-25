@@ -32,7 +32,7 @@ This question is perhaps the most important neglected question
 - Other functionals (Scala, OCaml, Clojure...)
   But these are not the key ones!
 - C, C++, Python, Java... the usual big names... whatever is the current fashion
-- But even more interesting and further afield — philosophical maturity
+- But even more interesting and further afield — perspective, maturity
 - Philosophy
 - [[./distribu.org][more]]
 * Hanging@@@
