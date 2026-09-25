@@ -173,7 +173,10 @@ Even though Pug belongs to the first as a very very junior member of the Haskell
 Aside: Is it fantastical to put ourselves into the company of Leibniz and Aristotle?\\
 No more than when a programmer chooses (say) C++ over Python he chooses the company of Stroustrup over Guido.\\
 It may seem that the company of Aristotle is more metaphysically fraught than living persons like Stroustrup.\\
-But in practice Stroustrup or Guido care as little as Leibniz or Aristotle... Or Plato do\\
+But in practice Stroustrup or Guido care as little about us as Leibniz or Aristotle do...
+
+Or Plato!
+
 We may not matter to them; they matter to us.\\
 And teachers' job is to inculcate good ideals
 #+end_quote
